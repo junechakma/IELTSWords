@@ -12,7 +12,7 @@ void main() {
   testWidgets('splash leads to onboarding on first launch', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final store = await AppStore.load();
-    final repo = loadFromDisk();
+    final repo = await loadFromDisk();
 
     await tester.pumpWidget(IeltsWordsApp(repo: repo, store: store));
     expect(find.textContaining('Band 7+', findRichText: true), findsOneWidget);

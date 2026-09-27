@@ -1,0 +1,1636 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "increase",
+      "group": "trends",
+      "head": "Increase",
+      "scale": true,
+      "mascot": "excited",
+      "words": [
+        {
+          "w": "edge up",
+          "strength": 1,
+          "note": "a very small rise"
+        },
+        {
+          "w": "creep up",
+          "strength": 1,
+          "note": "a small, slow rise"
+        },
+        {
+          "w": "climb",
+          "strength": 2,
+          "note": "a steady rise, often over several years"
+        },
+        {
+          "w": "rise",
+          "strength": 3,
+          "note": "neutral; any size"
+        },
+        {
+          "w": "increase",
+          "strength": 3,
+          "note": "neutral; any size"
+        },
+        {
+          "w": "jump",
+          "strength": 4,
+          "note": "a big rise in a short time"
+        },
+        {
+          "w": "surge",
+          "strength": 4,
+          "note": "a big, fast rise"
+        },
+        {
+          "w": "soar",
+          "strength": 5,
+          "note": "a very big rise"
+        },
+        {
+          "w": "rocket",
+          "strength": 5,
+          "note": "a very big, very fast rise; use once at most"
+        }
+      ],
+      "nouns": [
+        "a slight rise",
+        "a rise",
+        "an increase",
+        "a jump",
+        "a surge"
+      ],
+      "example": "Sales edged up in 2011 before soaring in 2012.",
+      "entryIds": [
+        "a2-increase",
+        "a2-surge",
+        "a2-soar"
+      ]
+    },
+    {
+      "id": "decrease",
+      "group": "trends",
+      "head": "Decrease",
+      "scale": true,
+      "mascot": "sad",
+      "words": [
+        {
+          "w": "dip",
+          "strength": 1,
+          "note": "a small, often temporary fall"
+        },
+        {
+          "w": "slip",
+          "strength": 1,
+          "note": "a small fall"
+        },
+        {
+          "w": "decline",
+          "strength": 2,
+          "note": "a gradual fall"
+        },
+        {
+          "w": "drop",
+          "strength": 3,
+          "note": "neutral; any size"
+        },
+        {
+          "w": "fall",
+          "strength": 3,
+          "note": "neutral; any size"
+        },
+        {
+          "w": "slump",
+          "strength": 4,
+          "note": "a big, sudden fall"
+        },
+        {
+          "w": "plunge",
+          "strength": 5,
+          "note": "a very big, fast fall"
+        },
+        {
+          "w": "plummet",
+          "strength": 5,
+          "note": "a very big, fast fall"
+        }
+      ],
+      "nouns": [
+        "a dip",
+        "a decline",
+        "a drop",
+        "a fall",
+        "a slump",
+        "a plunge"
+      ],
+      "example": "Profits dipped in 2015 and then plummeted in 2016.",
+      "entryIds": [
+        "a3-decrease",
+        "a3-dip",
+        "a3-plummet"
+      ]
+    },
+    {
+      "id": "no-change",
+      "group": "trends",
+      "head": "No change",
+      "scale": false,
+      "mascot": "peaceful",
+      "words": [
+        {
+          "w": "remained stable",
+          "note": "no real change"
+        },
+        {
+          "w": "remained constant",
+          "note": "exactly the same figure"
+        },
+        {
+          "w": "levelled off",
+          "note": "stopped rising or falling"
+        },
+        {
+          "w": "plateaued",
+          "note": "levelled off, usually after a rise"
+        },
+        {
+          "w": "stabilised",
+          "note": "became steady after changing"
+        },
+        {
+          "w": "hovered around",
+          "note": "moved only slightly around one figure"
+        }
+      ],
+      "nouns": [
+        "a plateau",
+        "a period of stability"
+      ],
+      "example": "Unemployment rose until 2012 and then levelled off at around 5%.",
+      "entryIds": [
+        "a4-remain-steady",
+        "a4-level-off",
+        "a4-reach-a-plateau",
+        "a4-hover-around"
+      ]
+    },
+    {
+      "id": "fluctuation",
+      "group": "trends",
+      "head": "Fluctuation",
+      "scale": false,
+      "mascot": "confused",
+      "words": [
+        {
+          "w": "fluctuated",
+          "note": "went up and down"
+        },
+        {
+          "w": "was erratic",
+          "note": "changed irregularly and unpredictably"
+        },
+        {
+          "w": "oscillated",
+          "note": "moved up and down between two levels"
+        },
+        {
+          "w": "was volatile",
+          "note": "changed often and sharply"
+        }
+      ],
+      "nouns": [
+        "fluctuations",
+        "volatility"
+      ],
+      "example": "Oil prices fluctuated between $60 and $80 throughout the year.",
+      "entryIds": [
+        "a4-fluctuate-v",
+        "a4-erratic",
+        "a4-oscillate"
+      ]
+    },
+    {
+      "id": "peak-low",
+      "group": "trends",
+      "head": "Peak & low point",
+      "scale": false,
+      "mascot": "proud",
+      "words": [
+        {
+          "w": "peaked at",
+          "note": "highest point"
+        },
+        {
+          "w": "reached a peak of",
+          "note": "highest point"
+        },
+        {
+          "w": "hit a high of",
+          "note": "highest point"
+        },
+        {
+          "w": "hit a low of",
+          "note": "lowest point"
+        },
+        {
+          "w": "bottomed out at",
+          "note": "lowest point, before levelling or rising"
+        },
+        {
+          "w": "reached a trough of",
+          "note": "lowest point"
+        }
+      ],
+      "nouns": [
+        "a peak",
+        "a high",
+        "a low",
+        "a trough"
+      ],
+      "example": "Rainfall peaked at 120 mm in July and hit a low of 15 mm in January.",
+      "entryIds": [
+        "a2-peak",
+        "a3-hit-a-trough"
+      ]
+    },
+    {
+      "id": "degree",
+      "group": "trends",
+      "head": "Degree adverbs: small → big",
+      "scale": true,
+      "mascot": "focused",
+      "words": [
+        {
+          "w": "marginally",
+          "strength": 1,
+          "note": "a tiny change"
+        },
+        {
+          "w": "slightly",
+          "strength": 1,
+          "note": "a small change"
+        },
+        {
+          "w": "modestly",
+          "strength": 2,
+          "note": "a small to medium change"
+        },
+        {
+          "w": "moderately",
+          "strength": 2,
+          "note": "a medium change"
+        },
+        {
+          "w": "noticeably",
+          "strength": 3,
+          "note": "large enough to stand out"
+        },
+        {
+          "w": "significantly",
+          "strength": 4,
+          "note": "a large change"
+        },
+        {
+          "w": "considerably",
+          "strength": 4,
+          "note": "a large change"
+        },
+        {
+          "w": "substantially",
+          "strength": 4,
+          "note": "a large change"
+        },
+        {
+          "w": "dramatically",
+          "strength": 5,
+          "note": "a very large change"
+        }
+      ],
+      "nouns": [
+        "a marginal fall",
+        "a slight rise",
+        "a modest increase",
+        "a moderate decline",
+        "a noticeable drop",
+        "a significant rise",
+        "a considerable increase",
+        "a substantial fall",
+        "a dramatic rise"
+      ],
+      "example": "Car use fell slightly in 2010, whereas cycling rose dramatically.",
+      "entryIds": [
+        "a5-marginal",
+        "a5-slight",
+        "a5-modest",
+        "a5-moderate",
+        "a5-noticeable",
+        "a5-significant",
+        "a5-considerable",
+        "a5-substantial",
+        "a5-dramatic"
+      ]
+    },
+    {
+      "id": "speed",
+      "group": "trends",
+      "head": "Speed: slow → fast",
+      "scale": true,
+      "mascot": "surprised",
+      "words": [
+        {
+          "w": "gradually",
+          "strength": 1,
+          "note": "slowly, over a long time"
+        },
+        {
+          "w": "steadily",
+          "strength": 2,
+          "note": "at a regular pace"
+        },
+        {
+          "w": "rapidly",
+          "strength": 3,
+          "note": "fast"
+        },
+        {
+          "w": "sharply",
+          "strength": 4,
+          "note": "big and fast; a steep line"
+        },
+        {
+          "w": "abruptly",
+          "strength": 5,
+          "note": "very suddenly, without warning"
+        },
+        {
+          "w": "suddenly",
+          "strength": 5,
+          "note": "all at once"
+        }
+      ],
+      "nouns": [
+        "a gradual rise",
+        "a steady decline",
+        "a rapid increase",
+        "a sharp fall",
+        "an abrupt drop",
+        "a sudden jump"
+      ],
+      "example": "Prices rose gradually until 2015 and then fell abruptly.",
+      "entryIds": [
+        "a5-gradual",
+        "a5-steady",
+        "a5-rapid",
+        "a5-sharp",
+        "a5-abrupt",
+        "a5-sudden"
+      ]
+    },
+    {
+      "id": "recovery",
+      "group": "trends",
+      "head": "Recovery",
+      "scale": false,
+      "mascot": "happy",
+      "words": [
+        {
+          "w": "recovered",
+          "note": "rose again after a fall"
+        },
+        {
+          "w": "rebounded",
+          "note": "rose again quickly after a fall"
+        },
+        {
+          "w": "picked up",
+          "note": "began to rise again; less formal"
+        }
+      ],
+      "nouns": [
+        "a recovery",
+        "a rebound"
+      ],
+      "example": "After a slump in 2009, sales recovered to 40,000 units in 2011.",
+      "entryIds": [
+        "a2-recover"
+      ]
+    },
+    {
+      "id": "tn-people",
+      "group": "topic-nouns",
+      "head": "People",
+      "mascot": "friendly",
+      "pairs": [
+        {
+          "plain": "people",
+          "formal": [
+            "individuals",
+            "residents"
+          ],
+          "example": "The table compares the number of individuals who emigrated in 2000 and 2020."
+        },
+        {
+          "plain": "all the people in a country or city",
+          "formal": [
+            "the population",
+            "the inhabitants"
+          ],
+          "example": "The graph depicts changes in the population of three cities."
+        },
+        {
+          "plain": "old people",
+          "formal": [
+            "the elderly",
+            "senior citizens",
+            "people aged 65 and over"
+          ],
+          "example": "The pie chart illustrates how the elderly spend their leisure time."
+        },
+        {
+          "plain": "young people",
+          "formal": [
+            "young adults",
+            "people aged 18 to 25"
+          ],
+          "example": "The bar chart compares the proportion of young adults who live with their parents."
+        },
+        {
+          "plain": "teenagers",
+          "formal": [
+            "adolescents",
+            "people aged 13 to 19"
+          ],
+          "example": "The chart compares the number of hours adolescents spend online each week."
+        },
+        {
+          "plain": "kids",
+          "formal": [
+            "children"
+          ],
+          "example": "The line graph illustrates the percentage of children who walk to school."
+        },
+        {
+          "plain": "men and women",
+          "formal": [
+            "males and females"
+          ],
+          "example": "The table presents the average income of males and females in four occupations."
+        }
+      ],
+      "example": "The graph illustrates the number of senior citizens living alone.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-transport",
+      "group": "topic-nouns",
+      "head": "Transport",
+      "mascot": "relaxed",
+      "pairs": [
+        {
+          "plain": "cars",
+          "formal": [
+            "motor vehicles",
+            "private cars",
+            "automobiles"
+          ],
+          "example": "The bar chart compares the number of motor vehicles registered in four countries."
+        },
+        {
+          "plain": "buses and trains",
+          "formal": [
+            "public transport"
+          ],
+          "example": "The pie chart illustrates the proportion of commuters who used public transport."
+        },
+        {
+          "plain": "people who travel to work",
+          "formal": [
+            "commuters"
+          ],
+          "example": "The graph depicts how commuters in London travelled to work."
+        },
+        {
+          "plain": "ways of travelling",
+          "formal": [
+            "modes of transport",
+            "means of transport"
+          ],
+          "example": "The chart compares four modes of transport in terms of cost."
+        },
+        {
+          "plain": "trips",
+          "formal": [
+            "journeys"
+          ],
+          "example": "The table presents the number of journeys made by bicycle each day."
+        },
+        {
+          "plain": "flying",
+          "formal": [
+            "air travel"
+          ],
+          "example": "The line graph illustrates the growth of air travel between 1980 and 2020."
+        },
+        {
+          "plain": "people on trains",
+          "formal": [
+            "rail passengers"
+          ],
+          "example": "The bar chart compares the number of rail passengers in five European countries."
+        }
+      ],
+      "example": "The chart compares the modes of transport used by commuters in 1990 and 2020.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-money",
+      "group": "topic-nouns",
+      "head": "Money & spending",
+      "mascot": "confident",
+      "pairs": [
+        {
+          "plain": "money spent",
+          "formal": [
+            "expenditure",
+            "spending"
+          ],
+          "example": "The pie chart illustrates household expenditure on various goods and services."
+        },
+        {
+          "plain": "money earned",
+          "formal": [
+            "income",
+            "earnings"
+          ],
+          "example": "The graph depicts the average income of workers in three sectors."
+        },
+        {
+          "plain": "money a company makes",
+          "formal": [
+            "revenue",
+            "turnover"
+          ],
+          "example": "The bar chart compares the annual revenue of four supermarket chains."
+        },
+        {
+          "plain": "things people buy",
+          "formal": [
+            "goods and services",
+            "consumer goods"
+          ],
+          "example": "The table presents spending on goods and services in five countries."
+        },
+        {
+          "plain": "customers",
+          "formal": [
+            "consumers",
+            "shoppers"
+          ],
+          "example": "The graph illustrates how consumers paid for their purchases."
+        },
+        {
+          "plain": "money the government spends",
+          "formal": [
+            "public spending",
+            "government expenditure"
+          ],
+          "example": "The chart compares public spending on health and education."
+        },
+        {
+          "plain": "rich countries",
+          "formal": [
+            "developed countries",
+            "high-income countries"
+          ],
+          "example": "The table compares energy use in developed countries and developing countries."
+        }
+      ],
+      "example": "The pie charts compare household expenditure in 1980 and 2020.",
+      "entryIds": [
+        "b4-expenditure"
+      ]
+    },
+    {
+      "id": "tn-work",
+      "group": "topic-nouns",
+      "head": "Work & jobs",
+      "mascot": "focused",
+      "pairs": [
+        {
+          "plain": "jobs",
+          "formal": [
+            "employment"
+          ],
+          "example": "The line graph illustrates employment in three sectors of the economy."
+        },
+        {
+          "plain": "kinds of job",
+          "formal": [
+            "occupations",
+            "professions"
+          ],
+          "example": "The bar chart compares average salaries in six occupations."
+        },
+        {
+          "plain": "workers",
+          "formal": [
+            "employees",
+            "members of staff"
+          ],
+          "example": "The pie chart illustrates how employees at a large company travel to work."
+        },
+        {
+          "plain": "people without a job",
+          "formal": [
+            "the unemployed",
+            "jobseekers"
+          ],
+          "example": "The bar chart compares how long the unemployed in four regions had been out of work."
+        },
+        {
+          "plain": "pay",
+          "formal": [
+            "wages",
+            "salaries",
+            "earnings"
+          ],
+          "example": "The graph depicts changes in wages in the manufacturing sector."
+        },
+        {
+          "plain": "areas of work",
+          "formal": [
+            "sectors",
+            "industries"
+          ],
+          "example": "The chart compares the number of women working in five sectors."
+        },
+        {
+          "plain": "people who have stopped working",
+          "formal": [
+            "retirees",
+            "pensioners"
+          ],
+          "example": "The table illustrates how retirees in Canada spend their income."
+        }
+      ],
+      "example": "The graph compares employment in the agricultural and service sectors.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-housing",
+      "group": "topic-nouns",
+      "head": "Housing & buildings",
+      "mascot": "calm",
+      "pairs": [
+        {
+          "plain": "houses",
+          "formal": [
+            "dwellings",
+            "residential properties"
+          ],
+          "example": "The bar chart compares the number of new dwellings built in three regions."
+        },
+        {
+          "plain": "places to live",
+          "formal": [
+            "housing",
+            "accommodation"
+          ],
+          "example": "The pie chart illustrates the types of accommodation occupied by students."
+        },
+        {
+          "plain": "flats",
+          "formal": [
+            "apartments"
+          ],
+          "example": "The table presents the average price of apartments in five cities."
+        },
+        {
+          "plain": "people who own their home",
+          "formal": [
+            "homeowners",
+            "owner-occupiers"
+          ],
+          "example": "The graph depicts the proportion of homeowners in the UK since 1970."
+        },
+        {
+          "plain": "people who rent",
+          "formal": [
+            "tenants",
+            "renters"
+          ],
+          "example": "The chart compares the rent paid by tenants in four cities."
+        },
+        {
+          "plain": "shops",
+          "formal": [
+            "retail outlets",
+            "retail premises"
+          ],
+          "example": "The map illustrates the number of retail outlets in the town centre."
+        },
+        {
+          "plain": "offices and shops",
+          "formal": [
+            "commercial premises",
+            "commercial buildings"
+          ],
+          "example": "The table compares the floor space of commercial premises in three districts."
+        }
+      ],
+      "example": "The chart illustrates the number of dwellings completed each year.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-energy",
+      "group": "topic-nouns",
+      "head": "Energy & environment",
+      "mascot": "peaceful",
+      "pairs": [
+        {
+          "plain": "making electricity",
+          "formal": [
+            "electricity generation",
+            "power generation"
+          ],
+          "example": "The pie chart illustrates the sources used for electricity generation in France."
+        },
+        {
+          "plain": "energy used",
+          "formal": [
+            "energy consumption",
+            "energy use"
+          ],
+          "example": "The line graph compares energy consumption in four countries."
+        },
+        {
+          "plain": "rubbish",
+          "formal": [
+            "waste",
+            "refuse"
+          ],
+          "example": "The bar chart illustrates the amount of waste produced by households."
+        },
+        {
+          "plain": "CO2 released",
+          "formal": [
+            "carbon dioxide emissions",
+            "CO2 emissions"
+          ],
+          "example": "The graph depicts carbon dioxide emissions per person in five countries."
+        },
+        {
+          "plain": "green energy",
+          "formal": [
+            "renewable energy",
+            "renewables"
+          ],
+          "example": "The chart compares the share of renewable energy in total supply."
+        },
+        {
+          "plain": "oil, coal and gas",
+          "formal": [
+            "fossil fuels"
+          ],
+          "example": "The table presents the proportion of electricity produced from fossil fuels."
+        },
+        {
+          "plain": "water used",
+          "formal": [
+            "water consumption",
+            "water use"
+          ],
+          "example": "The graph illustrates water consumption in agriculture, industry and homes."
+        }
+      ],
+      "example": "The chart compares energy consumption from fossil fuels and renewables.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-education",
+      "group": "topic-nouns",
+      "head": "Education",
+      "mascot": "thinking",
+      "pairs": [
+        {
+          "plain": "school students",
+          "formal": [
+            "pupils",
+            "schoolchildren"
+          ],
+          "example": "The bar chart compares the number of pupils per teacher in five countries."
+        },
+        {
+          "plain": "university students",
+          "formal": [
+            "undergraduates",
+            "tertiary students"
+          ],
+          "example": "The pie chart illustrates how undergraduates fund their studies."
+        },
+        {
+          "plain": "going to university",
+          "formal": [
+            "higher education",
+            "tertiary education"
+          ],
+          "example": "The graph depicts participation in higher education since 1990."
+        },
+        {
+          "plain": "people who finished their degree",
+          "formal": [
+            "graduates"
+          ],
+          "example": "The table presents the destinations of graduates six months after leaving."
+        },
+        {
+          "plain": "students joining",
+          "formal": [
+            "enrolment",
+            "enrolments"
+          ],
+          "example": "The line graph illustrates enrolment in three types of school."
+        },
+        {
+          "plain": "degrees and diplomas",
+          "formal": [
+            "qualifications"
+          ],
+          "example": "The chart compares the qualifications held by adults in two age groups."
+        },
+        {
+          "plain": "teachers",
+          "formal": [
+            "teaching staff",
+            "educators"
+          ],
+          "example": "The table presents the number of teaching staff at four universities."
+        }
+      ],
+      "example": "The chart compares the number of graduates in science and the arts.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-health",
+      "group": "topic-nouns",
+      "head": "Health & age",
+      "mascot": "calm",
+      "pairs": [
+        {
+          "plain": "how long people live",
+          "formal": [
+            "life expectancy"
+          ],
+          "example": "The line graph compares life expectancy in three countries."
+        },
+        {
+          "plain": "how many babies are born",
+          "formal": [
+            "the birth rate"
+          ],
+          "example": "The graph depicts the birth rate in Japan between 1950 and 2020."
+        },
+        {
+          "plain": "how many people die",
+          "formal": [
+            "the death rate",
+            "the mortality rate"
+          ],
+          "example": "The table presents the death rate from heart disease in five countries."
+        },
+        {
+          "plain": "being very fat",
+          "formal": [
+            "obesity"
+          ],
+          "example": "The bar chart compares rates of obesity among adults and children."
+        },
+        {
+          "plain": "doctors and nurses",
+          "formal": [
+            "medical staff",
+            "healthcare professionals"
+          ],
+          "example": "The chart illustrates the number of medical staff per 1,000 people."
+        },
+        {
+          "plain": "people going into hospital",
+          "formal": [
+            "hospital admissions"
+          ],
+          "example": "The graph depicts hospital admissions for flu over a twelve-month period."
+        },
+        {
+          "plain": "smoking",
+          "formal": [
+            "tobacco use",
+            "cigarette consumption"
+          ],
+          "example": "The line graph illustrates tobacco use among men and women since 1960."
+        },
+        {
+          "plain": "sport and exercise",
+          "formal": [
+            "physical activity"
+          ],
+          "example": "The chart compares the amount of physical activity done by different age groups."
+        }
+      ],
+      "example": "The table compares life expectancy and the birth rate in four countries.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-technology",
+      "group": "topic-nouns",
+      "head": "Technology & media",
+      "mascot": "excited",
+      "pairs": [
+        {
+          "plain": "people who use the internet",
+          "formal": [
+            "internet users"
+          ],
+          "example": "The line graph illustrates the number of internet users in four regions."
+        },
+        {
+          "plain": "phones",
+          "formal": [
+            "mobile phones",
+            "smartphones"
+          ],
+          "example": "The bar chart compares ownership of mobile phones by age group."
+        },
+        {
+          "plain": "computers at home",
+          "formal": [
+            "home computers",
+            "personal computers"
+          ],
+          "example": "The table presents the percentage of households with home computers."
+        },
+        {
+          "plain": "shopping online",
+          "formal": [
+            "e-commerce",
+            "online retail"
+          ],
+          "example": "The graph depicts the growth of e-commerce in the UK."
+        },
+        {
+          "plain": "TV",
+          "formal": [
+            "television"
+          ],
+          "example": "The chart compares the time spent watching television and using the internet."
+        },
+        {
+          "plain": "social media apps",
+          "formal": [
+            "social media platforms",
+            "social networking sites"
+          ],
+          "example": "The pie chart illustrates the popularity of five social media platforms."
+        },
+        {
+          "plain": "newspapers and magazines",
+          "formal": [
+            "print media"
+          ],
+          "example": "The line graph compares advertising spending on print media and online media."
+        }
+      ],
+      "example": "The graph compares the number of internet users and mobile phone subscribers.",
+      "entryIds": []
+    },
+    {
+      "id": "tn-food",
+      "group": "topic-nouns",
+      "head": "Food & consumption",
+      "mascot": "delighted",
+      "pairs": [
+        {
+          "plain": "how much people eat",
+          "formal": [
+            "consumption"
+          ],
+          "example": "The line graph illustrates the consumption of meat in Britain."
+        },
+        {
+          "plain": "junk food",
+          "formal": [
+            "fast food"
+          ],
+          "example": "The bar chart compares weekly spending on fast food by teenagers."
+        },
+        {
+          "plain": "sweets",
+          "formal": [
+            "confectionery"
+          ],
+          "example": "The table presents sales of confectionery in five countries."
+        },
+        {
+          "plain": "drinks",
+          "formal": [
+            "beverages"
+          ],
+          "example": "The pie chart illustrates the beverages sold in a café in one week."
+        },
+        {
+          "plain": "fizzy drinks",
+          "formal": [
+            "soft drinks",
+            "carbonated drinks"
+          ],
+          "example": "The graph depicts the consumption of soft drinks among children."
+        },
+        {
+          "plain": "fruit and vegetables",
+          "formal": [
+            "fresh produce"
+          ],
+          "example": "The chart compares household spending on fresh produce and processed food."
+        },
+        {
+          "plain": "eating out",
+          "formal": [
+            "dining out",
+            "restaurant meals"
+          ],
+          "example": "The bar chart illustrates spending on dining out in three age groups."
+        }
+      ],
+      "example": "The graph illustrates the consumption of fast food and fresh produce.",
+      "entryIds": []
+    },
+    {
+      "id": "num-approx",
+      "group": "numbers",
+      "head": "Approximation",
+      "scale": false,
+      "mascot": "thinking",
+      "words": [
+        {
+          "w": "just under",
+          "note": "slightly below: 48% = just under half"
+        },
+        {
+          "w": "almost / nearly",
+          "note": "slightly below: 29% = almost 30%"
+        },
+        {
+          "w": "approximately",
+          "note": "close to: 51% = approximately half"
+        },
+        {
+          "w": "roughly / around",
+          "note": "close to; slightly less formal"
+        },
+        {
+          "w": "just over",
+          "note": "slightly above: 26% = just over a quarter"
+        },
+        {
+          "w": "well over",
+          "note": "clearly above: 62% = well over half"
+        },
+        {
+          "w": "well under",
+          "note": "clearly below: 38% = well under half"
+        }
+      ],
+      "example": "Just over a quarter of visitors were under 18, and approximately 40% were over 50.",
+      "entryIds": [
+        "a6-approximately"
+      ]
+    },
+    {
+      "id": "num-proportion",
+      "group": "numbers",
+      "head": "Proportion: small → big",
+      "scale": true,
+      "mascot": "focused",
+      "words": [
+        {
+          "w": "a tiny fraction",
+          "strength": 1,
+          "note": "under about 5%"
+        },
+        {
+          "w": "a small minority",
+          "strength": 1,
+          "note": "about 5–15%"
+        },
+        {
+          "w": "a minority",
+          "strength": 2,
+          "note": "under half, often 20–40%"
+        },
+        {
+          "w": "just under half",
+          "strength": 3,
+          "note": "about 45–49%"
+        },
+        {
+          "w": "half",
+          "strength": 3,
+          "note": "50%"
+        },
+        {
+          "w": "the majority",
+          "strength": 4,
+          "note": "over 50%"
+        },
+        {
+          "w": "the vast majority",
+          "strength": 5,
+          "note": "about 80–95%"
+        },
+        {
+          "w": "almost all",
+          "strength": 5,
+          "note": "about 95–99%"
+        }
+      ],
+      "example": "The vast majority of students travelled by bus, whereas only a small minority cycled.",
+      "entryIds": [
+        "a6-a-minority-of",
+        "a6-the-majority-of",
+        "a6-half",
+        "a6-proportion"
+      ]
+    },
+    {
+      "id": "num-fractions",
+      "group": "numbers",
+      "head": "Fractions",
+      "scale": false,
+      "mascot": "calm",
+      "words": [
+        {
+          "w": "one in ten",
+          "note": "10%"
+        },
+        {
+          "w": "a fifth",
+          "note": "20% (also: one in five)"
+        },
+        {
+          "w": "a quarter",
+          "note": "25%"
+        },
+        {
+          "w": "a third",
+          "note": "about 33%"
+        },
+        {
+          "w": "half",
+          "note": "50%"
+        },
+        {
+          "w": "two thirds",
+          "note": "about 66–67%"
+        },
+        {
+          "w": "three quarters",
+          "note": "75%"
+        }
+      ],
+      "example": "Almost a third of households owned two cars, while one in ten owned none.",
+      "entryIds": [
+        "a6-half"
+      ]
+    },
+    {
+      "id": "num-multiples",
+      "group": "numbers",
+      "head": "Multiples",
+      "scale": false,
+      "mascot": "confident",
+      "words": [
+        {
+          "w": "twice as many",
+          "note": "countable nouns: twice as many cars as"
+        },
+        {
+          "w": "twice as much",
+          "note": "uncountable nouns: twice as much energy as"
+        },
+        {
+          "w": "three times as many",
+          "note": "countable; \"three times as much\" for uncountable"
+        },
+        {
+          "w": "half as many",
+          "note": "countable; \"half as much\" for uncountable"
+        },
+        {
+          "w": "doubled",
+          "note": "verb: rose to twice the level"
+        },
+        {
+          "w": "tripled",
+          "note": "verb: rose to three times the level"
+        },
+        {
+          "w": "halved",
+          "note": "verb: fell to half the level"
+        }
+      ],
+      "example": "Men spent twice as much time on sport as women, and the number of female players doubled.",
+      "entryIds": [
+        "a6-twice-as-much",
+        "a2-double",
+        "a3-halve"
+      ]
+    },
+    {
+      "id": "num-comparison",
+      "group": "numbers",
+      "head": "Comparison",
+      "scale": false,
+      "mascot": "thinking",
+      "words": [
+        {
+          "w": "slightly higher than",
+          "note": "a small gap"
+        },
+        {
+          "w": "considerably lower than",
+          "note": "a big gap"
+        },
+        {
+          "w": "on a par with",
+          "note": "about the same level"
+        },
+        {
+          "w": "identical to",
+          "note": "exactly the same"
+        },
+        {
+          "w": "surpassed",
+          "note": "became higher than"
+        },
+        {
+          "w": "exceeded",
+          "note": "was higher than"
+        },
+        {
+          "w": "outnumbered",
+          "note": "countable only: there were more of"
+        }
+      ],
+      "example": "By 2020, online sales had surpassed high-street sales, while rents were on a par with 2010 levels.",
+      "entryIds": [
+        "a7-surpass",
+        "a7-outnumber"
+      ]
+    },
+    {
+      "id": "map-build",
+      "group": "map",
+      "head": "Build",
+      "scale": false,
+      "mascot": "proud",
+      "words": [
+        {
+          "w": "constructed",
+          "note": "was constructed; any building or road"
+        },
+        {
+          "w": "erected",
+          "note": "tall structures: towers, blocks, statues"
+        },
+        {
+          "w": "built",
+          "note": "neutral"
+        },
+        {
+          "w": "added",
+          "note": "something new next to what was there"
+        },
+        {
+          "w": "introduced",
+          "note": "facilities: a cycle lane, a bus route"
+        },
+        {
+          "w": "opened",
+          "note": "a new facility started operating"
+        }
+      ],
+      "example": "A car park was constructed to the north of the station, and a new footbridge was added.",
+      "entryIds": []
+    },
+    {
+      "id": "map-remove",
+      "group": "map",
+      "head": "Remove",
+      "scale": false,
+      "mascot": "angry",
+      "words": [
+        {
+          "w": "demolished",
+          "note": "buildings only; = knocked down"
+        },
+        {
+          "w": "removed",
+          "note": "anything taken away"
+        },
+        {
+          "w": "cleared",
+          "note": "an area of trees or buildings was emptied"
+        },
+        {
+          "w": "felled",
+          "note": "trees only"
+        },
+        {
+          "w": "replaced by",
+          "note": "something new stands in its place"
+        }
+      ],
+      "example": "The factory was demolished and the woodland to its east was cleared.",
+      "entryIds": []
+    },
+    {
+      "id": "map-change",
+      "group": "map",
+      "head": "Change of use",
+      "scale": false,
+      "mascot": "playful",
+      "words": [
+        {
+          "w": "converted into",
+          "note": "same building, new use"
+        },
+        {
+          "w": "redeveloped as",
+          "note": "area rebuilt for a new purpose"
+        },
+        {
+          "w": "transformed into",
+          "note": "completely changed"
+        },
+        {
+          "w": "gave way to",
+          "note": "the old feature disappeared for the new one"
+        },
+        {
+          "w": "made way for",
+          "note": "was removed so something new could be built"
+        }
+      ],
+      "example": "The old warehouse was converted into flats, and the farmland gave way to a housing estate.",
+      "entryIds": []
+    },
+    {
+      "id": "map-size",
+      "group": "map",
+      "head": "Size",
+      "scale": false,
+      "mascot": "excited",
+      "words": [
+        {
+          "w": "extended",
+          "note": "made longer or bigger: roads, buildings"
+        },
+        {
+          "w": "expanded",
+          "note": "grew in area"
+        },
+        {
+          "w": "enlarged",
+          "note": "made bigger"
+        },
+        {
+          "w": "reduced in size",
+          "note": "made smaller"
+        },
+        {
+          "w": "shrank",
+          "note": "became smaller (past of shrink)"
+        }
+      ],
+      "example": "The school was extended to the west, while the park was reduced in size.",
+      "entryIds": [
+        "a2-expand"
+      ]
+    },
+    {
+      "id": "map-position",
+      "group": "map",
+      "head": "Position",
+      "scale": false,
+      "mascot": "focused",
+      "words": [
+        {
+          "w": "adjacent to",
+          "note": "right next to; touching"
+        },
+        {
+          "w": "alongside",
+          "note": "next to and parallel with: a road, a river"
+        },
+        {
+          "w": "opposite",
+          "note": "facing it, on the other side"
+        },
+        {
+          "w": "to the north of",
+          "note": "outside it, in that direction"
+        },
+        {
+          "w": "in the north-east corner",
+          "note": "inside the area"
+        },
+        {
+          "w": "surrounded by",
+          "note": "with something on every side"
+        }
+      ],
+      "example": "A new hotel was built adjacent to the beach, opposite the car park.",
+      "entryIds": []
+    },
+    {
+      "id": "map-unchanged",
+      "group": "map",
+      "head": "Unchanged",
+      "scale": false,
+      "mascot": "peaceful",
+      "words": [
+        {
+          "w": "remained unchanged",
+          "note": "no change at all"
+        },
+        {
+          "w": "was retained",
+          "note": "kept while other things changed"
+        },
+        {
+          "w": "remained intact",
+          "note": "not damaged or removed"
+        },
+        {
+          "w": "was preserved",
+          "note": "kept deliberately, e.g. historic buildings"
+        }
+      ],
+      "example": "The church in the town centre remained unchanged, and the old bridge was retained.",
+      "entryIds": []
+    },
+    {
+      "id": "adj-adv",
+      "group": "adj-adv",
+      "head": "Adjective ↔ adverb",
+      "mascot": "thinking",
+      "example": "Sales rose sharply in 2010. → There was a sharp rise in sales in 2010.",
+      "pairs": [
+        {
+          "adj": "dramatic",
+          "adv": "dramatically",
+          "plain": "a huge amount",
+          "verbSentence": "Car ownership rose dramatically between 1990 and 2000.",
+          "nounSentence": "There was a dramatic rise in car ownership between 1990 and 2000.",
+          "entryId": "a5-dramatic"
+        },
+        {
+          "adj": "substantial",
+          "adv": "substantially",
+          "plain": "a lot",
+          "verbSentence": "Spending on healthcare increased substantially over the decade.",
+          "nounSentence": "There was a substantial increase in spending on healthcare over the decade.",
+          "entryId": "a5-substantial"
+        },
+        {
+          "adj": "considerable",
+          "adv": "considerably",
+          "plain": "quite a lot",
+          "verbSentence": "Unemployment fell considerably in 2015.",
+          "nounSentence": "There was a considerable fall in unemployment in 2015.",
+          "entryId": "a5-considerable"
+        },
+        {
+          "adj": "significant",
+          "adv": "significantly",
+          "plain": "a lot",
+          "verbSentence": "The number of tourists grew significantly after 2010.",
+          "nounSentence": "There was significant growth in the number of tourists after 2010.",
+          "entryId": "a5-significant"
+        },
+        {
+          "adj": "marked",
+          "adv": "markedly",
+          "plain": "clearly, a lot",
+          "verbSentence": "Exports increased markedly in 2012.",
+          "nounSentence": "There was a marked increase in exports in 2012.",
+          "entryId": "a5-marked"
+        },
+        {
+          "adj": "sharp",
+          "adv": "sharply",
+          "plain": "a lot and fast",
+          "verbSentence": "Sales rose sharply in 2010.",
+          "nounSentence": "There was a sharp rise in sales in 2010.",
+          "entryId": "a5-sharp"
+        },
+        {
+          "adj": "steep",
+          "adv": "steeply",
+          "plain": "fast and a lot, like a cliff",
+          "verbSentence": "Coal production declined steeply after 1990.",
+          "nounSentence": "There was a steep decline in coal production after 1990.",
+          "entryId": "a5-steep"
+        },
+        {
+          "adj": "rapid",
+          "adv": "rapidly",
+          "plain": "fast",
+          "verbSentence": "Internet use grew rapidly between 2000 and 2005.",
+          "nounSentence": "There was rapid growth in internet use between 2000 and 2005.",
+          "entryId": "a5-rapid"
+        },
+        {
+          "adj": "abrupt",
+          "adv": "abruptly",
+          "plain": "very suddenly",
+          "verbSentence": "Oil prices dropped abruptly in 2008.",
+          "nounSentence": "There was an abrupt drop in oil prices in 2008.",
+          "entryId": "a5-abrupt"
+        },
+        {
+          "adj": "sudden",
+          "adv": "suddenly",
+          "plain": "all at once",
+          "verbSentence": "Visitor numbers fell suddenly in 2020.",
+          "nounSentence": "There was a sudden fall in visitor numbers in 2020.",
+          "entryId": "a5-sudden"
+        },
+        {
+          "adj": "moderate",
+          "adv": "moderately",
+          "plain": "a medium amount",
+          "verbSentence": "Rents increased moderately between 2015 and 2020.",
+          "nounSentence": "There was a moderate increase in rents between 2015 and 2020.",
+          "entryId": "a5-moderate"
+        },
+        {
+          "adj": "noticeable",
+          "adv": "noticeably",
+          "plain": "enough to see",
+          "verbSentence": "Bus use decreased noticeably in 2019.",
+          "nounSentence": "There was a noticeable decrease in bus use in 2019.",
+          "entryId": "a5-noticeable"
+        },
+        {
+          "adj": "modest",
+          "adv": "modestly",
+          "plain": "a bit",
+          "verbSentence": "Wages rose modestly over the period.",
+          "nounSentence": "There was a modest rise in wages over the period.",
+          "entryId": "a5-modest"
+        },
+        {
+          "adj": "slight",
+          "adv": "slightly",
+          "plain": "a little",
+          "verbSentence": "The birth rate fell slightly in 2005.",
+          "nounSentence": "There was a slight fall in the birth rate in 2005.",
+          "entryId": "a5-slight"
+        },
+        {
+          "adj": "marginal",
+          "adv": "marginally",
+          "plain": "a tiny bit",
+          "verbSentence": "Profits fell marginally in 2014.",
+          "nounSentence": "There was a marginal fall in profits in 2014.",
+          "entryId": "a5-marginal"
+        },
+        {
+          "adj": "gradual",
+          "adv": "gradually",
+          "plain": "slowly",
+          "verbSentence": "Life expectancy increased gradually between 1950 and 2000.",
+          "nounSentence": "There was a gradual increase in life expectancy between 1950 and 2000.",
+          "entryId": "a5-gradual"
+        },
+        {
+          "adj": "steady",
+          "adv": "steadily",
+          "plain": "slowly and regularly",
+          "verbSentence": "The population grew steadily throughout the century.",
+          "nounSentence": "There was steady growth in the population throughout the century.",
+          "entryId": "a5-steady"
+        },
+        {
+          "adj": "consistent",
+          "adv": "consistently",
+          "plain": "every year, without stopping",
+          "verbSentence": "Recycling rates rose consistently from 2000 to 2020.",
+          "nounSentence": "There was a consistent rise in recycling rates from 2000 to 2020.",
+          "entryId": "a5-consistent"
+        }
+      ]
+    }
+  ]
+}
