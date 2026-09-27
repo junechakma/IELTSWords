@@ -1,0 +1,703 @@
+{
+  "id": "B",
+  "slug": "task-2",
+  "title": "Task 2 Vocabulary",
+  "subtitle": "Essays",
+  "sections": [
+    {
+      "id": "B1",
+      "title": "General Academic Words",
+      "entries": [
+        {
+          "id": "b1-advantage",
+          "type": "word",
+          "term": "advantage",
+          "synonyms": [
+            "benefit",
+            "merit",
+            "upside"
+          ],
+          "example": "The main advantage of online learning is flexibility."
+        },
+        {
+          "id": "b1-disadvantage",
+          "type": "word",
+          "term": "disadvantage",
+          "synonyms": [
+            "drawback",
+            "downside",
+            "pitfall"
+          ],
+          "example": "A major drawback of urbanisation is air pollution."
+        },
+        {
+          "id": "b1-crucial",
+          "type": "word",
+          "term": "crucial",
+          "synonyms": [
+            "essential",
+            "vital",
+            "critical"
+          ],
+          "example": "Sport plays a crucial role in building character."
+        },
+        {
+          "id": "b1-fundamental",
+          "type": "word",
+          "term": "fundamental",
+          "synonyms": [
+            "basic",
+            "core"
+          ],
+          "example": "Regular exercise is fundamental to good health."
+        },
+        {
+          "id": "b1-indispensable",
+          "type": "word",
+          "term": "indispensable",
+          "synonyms": [
+            "essential",
+            "necessary"
+          ],
+          "example": "Computers have become indispensable in the workplace."
+        },
+        {
+          "id": "b1-substantial",
+          "type": "word",
+          "term": "substantial",
+          "synonyms": [
+            "considerable",
+            "significant"
+          ],
+          "example": "Governments need substantial evidence before changing the law."
+        },
+        {
+          "id": "b1-negligible",
+          "type": "word",
+          "term": "negligible",
+          "synonyms": [
+            "insignificant",
+            "trivial"
+          ],
+          "example": "The extra cost was negligible."
+        },
+        {
+          "id": "b1-comprehensive",
+          "type": "word",
+          "term": "comprehensive",
+          "synonyms": [
+            "thorough",
+            "extensive"
+          ],
+          "example": "A comprehensive plan is needed to tackle poverty."
+        },
+        {
+          "id": "b1-prevalent",
+          "type": "word",
+          "term": "prevalent",
+          "synonyms": [
+            "common",
+            "widespread"
+          ],
+          "example": "Obesity is prevalent in many developed nations."
+        },
+        {
+          "id": "b1-ubiquitous",
+          "type": "word",
+          "term": "ubiquitous",
+          "synonyms": [
+            "found everywhere"
+          ],
+          "example": "Smartphones have become ubiquitous."
+        },
+        {
+          "id": "b1-salient",
+          "type": "word",
+          "term": "salient",
+          "synonyms": [
+            "most important",
+            "notable"
+          ],
+          "example": "The salient point is that costs are rising."
+        },
+        {
+          "id": "b1-viable",
+          "type": "word",
+          "term": "viable",
+          "synonyms": [
+            "feasible",
+            "workable"
+          ],
+          "example": "Green energy is a viable solution to climate change."
+        },
+        {
+          "id": "b1-pragmatic",
+          "type": "word",
+          "term": "pragmatic",
+          "synonyms": [
+            "practical",
+            "realistic"
+          ],
+          "example": "Governments should adopt pragmatic solutions."
+        },
+        {
+          "id": "b1-sustainable",
+          "type": "word",
+          "term": "sustainable",
+          "synonyms": [
+            "able to continue long-term"
+          ],
+          "example": "Sustainable farming protects the soil."
+        },
+        {
+          "id": "b1-inevitable",
+          "type": "word",
+          "term": "inevitable",
+          "synonyms": [
+            "unavoidable"
+          ],
+          "example": "Some job losses to automation are inevitable."
+        },
+        {
+          "id": "b1-imminent",
+          "type": "word",
+          "term": "imminent",
+          "synonyms": [
+            "about to happen"
+          ],
+          "example": "Many scientists warn that a water crisis is imminent."
+        },
+        {
+          "id": "b1-controversial",
+          "type": "word",
+          "term": "controversial",
+          "synonyms": [
+            "debatable",
+            "contentious"
+          ],
+          "example": "Animal testing remains a controversial issue."
+        },
+        {
+          "id": "b1-compelling",
+          "type": "word",
+          "term": "compelling",
+          "synonyms": [
+            "convincing",
+            "persuasive"
+          ],
+          "example": "There is compelling evidence that smoking causes cancer."
+        },
+        {
+          "id": "b1-detrimental",
+          "type": "word",
+          "term": "detrimental",
+          "synonyms": [
+            "harmful",
+            "damaging"
+          ],
+          "example": "Too much screen time is detrimental to children."
+        },
+        {
+          "id": "b1-compulsory",
+          "type": "word",
+          "term": "compulsory",
+          "synonyms": [
+            "mandatory",
+            "obligatory"
+          ],
+          "example": "Education is compulsory up to the age of 16."
+        },
+        {
+          "id": "b1-equitable",
+          "type": "word",
+          "term": "equitable",
+          "synonyms": [
+            "fair",
+            "just"
+          ],
+          "example": "An equitable tax system benefits everyone."
+        },
+        {
+          "id": "b1-affluent",
+          "type": "word",
+          "term": "affluent",
+          "synonyms": [
+            "wealthy",
+            "prosperous"
+          ],
+          "example": "Affluent cities often have high living costs."
+        },
+        {
+          "id": "b1-exorbitant",
+          "type": "word",
+          "term": "exorbitant",
+          "synonyms": [
+            "extremely expensive"
+          ],
+          "example": "Many families cannot afford exorbitant tuition fees."
+        },
+        {
+          "id": "b1-obsolete",
+          "type": "word",
+          "term": "obsolete",
+          "synonyms": [
+            "outdated"
+          ],
+          "example": "Many manual jobs have become obsolete."
+        },
+        {
+          "id": "b1-cutting-edge",
+          "type": "word",
+          "term": "cutting-edge",
+          "synonyms": [
+            "advanced",
+            "state-of-the-art"
+          ],
+          "example": "Hospitals need cutting-edge equipment."
+        },
+        {
+          "id": "b1-redundant",
+          "type": "word",
+          "term": "redundant",
+          "synonyms": [
+            "unnecessary; (of workers) no longer needed"
+          ],
+          "example": "Automation has made many factory workers redundant."
+        },
+        {
+          "id": "b1-divergent",
+          "type": "word",
+          "term": "divergent",
+          "variants": [
+            "disparate"
+          ],
+          "synonyms": [
+            "different"
+          ],
+          "example": "Experts hold divergent views on climate policy."
+        },
+        {
+          "id": "b1-holistic",
+          "type": "word",
+          "term": "holistic",
+          "synonyms": [
+            "considering the whole"
+          ],
+          "example": "A holistic approach to education develops the whole child."
+        },
+        {
+          "id": "b1-altruistic",
+          "type": "word",
+          "term": "altruistic",
+          "synonyms": [
+            "selfless"
+          ],
+          "example": "Volunteering is an altruistic act."
+        },
+        {
+          "id": "b1-incumbent-upon",
+          "type": "word",
+          "term": "incumbent upon",
+          "synonyms": [
+            "the duty of"
+          ],
+          "example": "It is incumbent upon governments to protect citizens."
+        }
+      ]
+    },
+    {
+      "id": "B2",
+      "title": "Verbs for Cause, Effect and Change",
+      "entries": [
+        {
+          "id": "b2-enhance",
+          "type": "word",
+          "term": "enhance",
+          "synonyms": [
+            "improve",
+            "boost"
+          ],
+          "example": "Reading can enhance mental well-being."
+        },
+        {
+          "id": "b2-alleviate",
+          "type": "word",
+          "term": "alleviate",
+          "variants": [
+            "mitigate"
+          ],
+          "synonyms": [
+            "reduce (a problem)"
+          ],
+          "example": "Measures must be taken to alleviate hunger."
+        },
+        {
+          "id": "b2-ameliorate",
+          "type": "word",
+          "term": "ameliorate",
+          "synonyms": [
+            "make better"
+          ],
+          "example": "New policies helped ameliorate the housing shortage."
+        },
+        {
+          "id": "b2-exacerbate",
+          "type": "word",
+          "term": "exacerbate",
+          "synonyms": [
+            "make worse"
+          ],
+          "example": "Poor planning exacerbates traffic congestion."
+        },
+        {
+          "id": "b2-deteriorate",
+          "type": "word",
+          "term": "deteriorate",
+          "synonyms": [
+            "become worse"
+          ],
+          "example": "Air quality has deteriorated in major cities."
+        },
+        {
+          "id": "b2-undermine",
+          "type": "word",
+          "term": "undermine",
+          "synonyms": [
+            "weaken gradually"
+          ],
+          "example": "Misinformation undermines trust in the media."
+        },
+        {
+          "id": "b2-curtail",
+          "type": "word",
+          "term": "curtail",
+          "synonyms": [
+            "limit",
+            "cut down"
+          ],
+          "example": "The government curtailed public spending."
+        },
+        {
+          "id": "b2-accelerate",
+          "type": "word",
+          "term": "accelerate",
+          "variants": [
+            "expedite"
+          ],
+          "synonyms": [
+            "speed up"
+          ],
+          "example": "Technology has accelerated economic growth."
+        },
+        {
+          "id": "b2-facilitate",
+          "type": "word",
+          "term": "facilitate",
+          "synonyms": [
+            "make easier"
+          ],
+          "example": "Group work facilitates active participation."
+        },
+        {
+          "id": "b2-reinforce",
+          "type": "word",
+          "term": "reinforce",
+          "variants": [
+            "bolster"
+          ],
+          "synonyms": [
+            "strengthen"
+          ],
+          "example": "Parents should reinforce good habits at home."
+        },
+        {
+          "id": "b2-deplete",
+          "type": "word",
+          "term": "deplete",
+          "synonyms": [
+            "use up"
+          ],
+          "example": "Overfishing depletes marine resources."
+        },
+        {
+          "id": "b2-offset",
+          "type": "word",
+          "term": "offset",
+          "synonyms": [
+            "balance out"
+          ],
+          "example": "Planting trees can offset carbon emissions."
+        },
+        {
+          "id": "b2-deprive",
+          "type": "word",
+          "term": "deprive",
+          "pos": "of",
+          "synonyms": [
+            "take away"
+          ],
+          "example": "Many children are deprived of basic education."
+        },
+        {
+          "id": "b2-disrupt",
+          "type": "word",
+          "term": "disrupt",
+          "synonyms": [
+            "interrupt",
+            "disturb"
+          ],
+          "example": "Noise disrupts students' concentration."
+        },
+        {
+          "id": "b2-integrate",
+          "type": "word",
+          "term": "integrate",
+          "synonyms": [
+            "combine",
+            "incorporate"
+          ],
+          "example": "Schools should integrate technology into lessons."
+        },
+        {
+          "id": "b2-harness",
+          "type": "word",
+          "term": "harness",
+          "synonyms": [
+            "make use of"
+          ],
+          "example": "Countries should harness solar energy."
+        },
+        {
+          "id": "b2-prohibit",
+          "type": "word",
+          "term": "prohibit",
+          "synonyms": [
+            "ban",
+            "forbid"
+          ],
+          "example": "Many countries prohibit smoking in public places."
+        },
+        {
+          "id": "b2-discourage",
+          "type": "word",
+          "term": "discourage",
+          "synonyms": [
+            "deter",
+            "dissuade"
+          ],
+          "example": "High taxes discourage people from smoking."
+        },
+        {
+          "id": "b2-compensate",
+          "type": "word",
+          "term": "compensate",
+          "pos": "for",
+          "synonyms": [
+            "make up for"
+          ],
+          "example": "Employers should compensate staff for overtime."
+        },
+        {
+          "id": "b2-contribute-to",
+          "type": "word",
+          "term": "contribute to",
+          "synonyms": [
+            "add to",
+            "lead to"
+          ],
+          "example": "Fast food contributes to obesity."
+        },
+        {
+          "id": "b2-outweigh",
+          "type": "word",
+          "term": "outweigh",
+          "synonyms": [
+            "be greater than"
+          ],
+          "example": "The benefits outweigh the drawbacks."
+        },
+        {
+          "id": "b2-prevail",
+          "type": "word",
+          "term": "prevail",
+          "synonyms": [
+            "win",
+            "dominate"
+          ],
+          "example": "In the end, common sense prevailed."
+        }
+      ]
+    },
+    {
+      "id": "B3",
+      "title": "Verbs for Arguments and Opinions",
+      "entries": [
+        {
+          "id": "b3-assert",
+          "type": "word",
+          "term": "assert",
+          "variants": [
+            "contend"
+          ],
+          "meaning": "argue strongly",
+          "example": "Many contend that technology is destroying jobs."
+        },
+        {
+          "id": "b3-advocate",
+          "type": "word",
+          "term": "advocate",
+          "meaning": "publicly support",
+          "example": "Some experts advocate a four-day working week."
+        },
+        {
+          "id": "b3-endorse",
+          "type": "word",
+          "term": "endorse",
+          "meaning": "officially support",
+          "example": "The WHO endorses sugar taxes."
+        },
+        {
+          "id": "b3-concede",
+          "type": "word",
+          "term": "concede",
+          "meaning": "admit (unwillingly)",
+          "example": "Critics concede that the policy has some benefits."
+        },
+        {
+          "id": "b3-highlight",
+          "type": "word",
+          "term": "highlight",
+          "variants": [
+            "underscore"
+          ],
+          "meaning": "emphasise",
+          "example": "The report highlights the need for reform."
+        },
+        {
+          "id": "b3-imply",
+          "type": "word",
+          "term": "imply",
+          "variants": [
+            "suggest"
+          ],
+          "meaning": "indicate indirectly",
+          "example": "This implies that current policies are failing."
+        },
+        {
+          "id": "b3-reiterate",
+          "type": "word",
+          "term": "reiterate",
+          "meaning": "say again",
+          "example": "I would reiterate that education is key."
+        },
+        {
+          "id": "b3-delineate",
+          "type": "word",
+          "term": "delineate",
+          "meaning": "describe precisely",
+          "example": "The report delineates the causes of poverty."
+        }
+      ]
+    },
+    {
+      "id": "B4",
+      "title": "Topic Nouns",
+      "entries": [
+        {
+          "id": "b4-disparity",
+          "type": "word",
+          "term": "disparity",
+          "variants": [
+            "inequality"
+          ],
+          "meaning": "unfair difference",
+          "example": "Income disparity is a growing problem."
+        },
+        {
+          "id": "b4-expenditure",
+          "type": "word",
+          "term": "expenditure",
+          "meaning": "spending",
+          "example": "Public expenditure on health is rising."
+        },
+        {
+          "id": "b4-incentive",
+          "type": "word",
+          "term": "incentive",
+          "meaning": "motivation, reward",
+          "example": "Tax incentives encourage green investment."
+        },
+        {
+          "id": "b4-impediment",
+          "type": "word",
+          "term": "impediment",
+          "meaning": "obstacle, barrier",
+          "example": "Poverty is a major impediment to education."
+        },
+        {
+          "id": "b4-repercussions",
+          "type": "word",
+          "term": "repercussions",
+          "meaning": "(negative) consequences",
+          "example": "The decision had serious repercussions."
+        },
+        {
+          "id": "b4-proliferation",
+          "type": "word",
+          "term": "proliferation",
+          "meaning": "rapid increase",
+          "example": "The proliferation of social media has changed news."
+        },
+        {
+          "id": "b4-breakthrough",
+          "type": "word",
+          "term": "breakthrough",
+          "meaning": "important discovery",
+          "example": "The vaccine was a medical breakthrough."
+        },
+        {
+          "id": "b4-resilience",
+          "type": "word",
+          "term": "resilience",
+          "meaning": "ability to recover",
+          "example": "Resilience helps students cope with pressure."
+        },
+        {
+          "id": "b4-autonomy",
+          "type": "word",
+          "term": "autonomy",
+          "meaning": "independence",
+          "example": "Universities value academic autonomy."
+        },
+        {
+          "id": "b4-biodiversity",
+          "type": "word",
+          "term": "biodiversity",
+          "meaning": "variety of life",
+          "example": "Deforestation threatens biodiversity."
+        },
+        {
+          "id": "b4-curriculum",
+          "type": "word",
+          "term": "curriculum",
+          "meaning": "subjects taught",
+          "example": "The school curriculum should include coding."
+        },
+        {
+          "id": "b4-pedagogy",
+          "type": "word",
+          "term": "pedagogy",
+          "meaning": "teaching methods",
+          "example": "Modern pedagogy encourages active learning."
+        },
+        {
+          "id": "b4-prosperity",
+          "type": "word",
+          "term": "prosperity",
+          "meaning": "wealth, success",
+          "example": "Trade brings economic prosperity."
+        }
+      ]
+    }
+  ]
+}

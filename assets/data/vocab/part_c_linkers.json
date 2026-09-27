@@ -1,0 +1,392 @@
+{
+  "id": "C",
+  "slug": "linkers",
+  "title": "Linking Words",
+  "subtitle": "Cohesive devices",
+  "sections": [
+    {
+      "id": "C",
+      "title": "Linking Words",
+      "entries": [
+        {
+          "id": "c-firstly",
+          "type": "linker",
+          "term": "firstly",
+          "purpose": "Sequencing"
+        },
+        {
+          "id": "c-secondly",
+          "type": "linker",
+          "term": "secondly",
+          "purpose": "Sequencing"
+        },
+        {
+          "id": "c-finally",
+          "type": "linker",
+          "term": "finally",
+          "purpose": "Sequencing"
+        },
+        {
+          "id": "c-to-begin-with",
+          "type": "linker",
+          "term": "to begin with",
+          "purpose": "Sequencing"
+        },
+        {
+          "id": "c-subsequently",
+          "type": "linker",
+          "term": "subsequently",
+          "purpose": "Sequencing"
+        },
+        {
+          "id": "c-in-addition",
+          "type": "linker",
+          "term": "in addition",
+          "purpose": "Adding"
+        },
+        {
+          "id": "c-moreover",
+          "type": "linker",
+          "term": "moreover",
+          "purpose": "Adding"
+        },
+        {
+          "id": "c-furthermore",
+          "type": "linker",
+          "term": "furthermore",
+          "purpose": "Adding"
+        },
+        {
+          "id": "c-what-is-more",
+          "type": "linker",
+          "term": "what is more",
+          "purpose": "Adding"
+        },
+        {
+          "id": "c-besides",
+          "type": "linker",
+          "term": "besides",
+          "purpose": "Adding"
+        },
+        {
+          "id": "c-not-only-but-also",
+          "type": "linker",
+          "term": "not only… but also",
+          "purpose": "Adding"
+        },
+        {
+          "id": "c-for-example",
+          "type": "linker",
+          "term": "for example",
+          "purpose": "Giving examples"
+        },
+        {
+          "id": "c-for-instance",
+          "type": "linker",
+          "term": "for instance",
+          "purpose": "Giving examples"
+        },
+        {
+          "id": "c-such-as",
+          "type": "linker",
+          "term": "such as",
+          "purpose": "Giving examples"
+        },
+        {
+          "id": "c-namely",
+          "type": "linker",
+          "term": "namely",
+          "purpose": "Giving examples"
+        },
+        {
+          "id": "c-in-particular",
+          "type": "linker",
+          "term": "in particular",
+          "purpose": "Giving examples"
+        },
+        {
+          "id": "c-a-good-illustration-of-this-is",
+          "type": "linker",
+          "term": "a good illustration of this is",
+          "purpose": "Giving examples"
+        },
+        {
+          "id": "c-therefore",
+          "type": "linker",
+          "term": "therefore",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-consequently",
+          "type": "linker",
+          "term": "consequently",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-as-a-result",
+          "type": "linker",
+          "term": "as a result",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-thus",
+          "type": "linker",
+          "term": "thus",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-hence",
+          "type": "linker",
+          "term": "hence",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-for-this-reason",
+          "type": "linker",
+          "term": "for this reason",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-accordingly",
+          "type": "linker",
+          "term": "accordingly",
+          "purpose": "Result"
+        },
+        {
+          "id": "c-however",
+          "type": "linker",
+          "term": "however",
+          "purpose": "Contrast"
+        },
+        {
+          "id": "c-whereas",
+          "type": "linker",
+          "term": "whereas",
+          "purpose": "Contrast"
+        },
+        {
+          "id": "c-by-contrast",
+          "type": "linker",
+          "term": "by contrast",
+          "purpose": "Contrast"
+        },
+        {
+          "id": "c-conversely",
+          "type": "linker",
+          "term": "conversely",
+          "purpose": "Contrast"
+        },
+        {
+          "id": "c-on-the-other-hand",
+          "type": "linker",
+          "term": "on the other hand",
+          "purpose": "Contrast"
+        },
+        {
+          "id": "c-on-the-contrary",
+          "type": "linker",
+          "term": "on the contrary",
+          "purpose": "Contrast"
+        },
+        {
+          "id": "c-although",
+          "type": "linker",
+          "term": "although",
+          "purpose": "Concession"
+        },
+        {
+          "id": "c-even-though",
+          "type": "linker",
+          "term": "even though",
+          "purpose": "Concession"
+        },
+        {
+          "id": "c-despite",
+          "type": "linker",
+          "term": "despite",
+          "purpose": "Concession"
+        },
+        {
+          "id": "c-nevertheless",
+          "type": "linker",
+          "term": "nevertheless",
+          "purpose": "Concession"
+        },
+        {
+          "id": "c-nonetheless",
+          "type": "linker",
+          "term": "nonetheless",
+          "purpose": "Concession"
+        },
+        {
+          "id": "c-similarly",
+          "type": "linker",
+          "term": "similarly",
+          "purpose": "Similarity"
+        },
+        {
+          "id": "c-likewise",
+          "type": "linker",
+          "term": "likewise",
+          "purpose": "Similarity"
+        },
+        {
+          "id": "c-in-the-same-way",
+          "type": "linker",
+          "term": "in the same way",
+          "purpose": "Similarity"
+        },
+        {
+          "id": "c-correspondingly",
+          "type": "linker",
+          "term": "correspondingly",
+          "purpose": "Similarity"
+        },
+        {
+          "id": "c-in-general",
+          "type": "linker",
+          "term": "in general",
+          "purpose": "Generalising"
+        },
+        {
+          "id": "c-on-the-whole",
+          "type": "linker",
+          "term": "on the whole",
+          "purpose": "Generalising"
+        },
+        {
+          "id": "c-by-and-large",
+          "type": "linker",
+          "term": "by and large",
+          "purpose": "Generalising"
+        },
+        {
+          "id": "c-for-the-most-part",
+          "type": "linker",
+          "term": "for the most part",
+          "purpose": "Generalising"
+        },
+        {
+          "id": "c-overall",
+          "type": "linker",
+          "term": "overall",
+          "purpose": "Generalising"
+        },
+        {
+          "id": "c-above-all",
+          "type": "linker",
+          "term": "above all",
+          "purpose": "Emphasis"
+        },
+        {
+          "id": "c-especially",
+          "type": "linker",
+          "term": "especially",
+          "purpose": "Emphasis"
+        },
+        {
+          "id": "c-particularly",
+          "type": "linker",
+          "term": "particularly",
+          "purpose": "Emphasis"
+        },
+        {
+          "id": "c-notably",
+          "type": "linker",
+          "term": "notably",
+          "purpose": "Emphasis"
+        },
+        {
+          "id": "c-clearly",
+          "type": "linker",
+          "term": "clearly",
+          "purpose": "Stating the obvious"
+        },
+        {
+          "id": "c-evidently",
+          "type": "linker",
+          "term": "evidently",
+          "purpose": "Stating the obvious"
+        },
+        {
+          "id": "c-undeniably",
+          "type": "linker",
+          "term": "undeniably",
+          "purpose": "Stating the obvious"
+        },
+        {
+          "id": "c-it-is-evident-that",
+          "type": "linker",
+          "term": "it is evident that",
+          "purpose": "Stating the obvious"
+        },
+        {
+          "id": "c-in-other-words",
+          "type": "linker",
+          "term": "in other words",
+          "purpose": "Rephrasing"
+        },
+        {
+          "id": "c-to-put-it-more-simply",
+          "type": "linker",
+          "term": "to put it more simply",
+          "purpose": "Rephrasing"
+        },
+        {
+          "id": "c-with-regard-to",
+          "type": "linker",
+          "term": "with regard to",
+          "purpose": "Changing topic"
+        },
+        {
+          "id": "c-as-for",
+          "type": "linker",
+          "term": "as for",
+          "purpose": "Changing topic"
+        },
+        {
+          "id": "c-turning-to",
+          "type": "linker",
+          "term": "turning to",
+          "purpose": "Changing topic"
+        },
+        {
+          "id": "c-as-far-as-x-is-concerned",
+          "type": "linker",
+          "term": "as far as X is concerned",
+          "purpose": "Changing topic"
+        },
+        {
+          "id": "c-in-conclusion",
+          "type": "linker",
+          "term": "in conclusion",
+          "purpose": "Concluding"
+        },
+        {
+          "id": "c-to-conclude",
+          "type": "linker",
+          "term": "to conclude",
+          "purpose": "Concluding"
+        },
+        {
+          "id": "c-to-summarise",
+          "type": "linker",
+          "term": "to summarise",
+          "purpose": "Concluding"
+        },
+        {
+          "id": "c-on-balance",
+          "type": "linker",
+          "term": "on balance",
+          "purpose": "Concluding"
+        },
+        {
+          "id": "c-taking-everything-into-consideration",
+          "type": "linker",
+          "term": "taking everything into consideration",
+          "purpose": "Concluding"
+        }
+      ]
+    }
+  ]
+}

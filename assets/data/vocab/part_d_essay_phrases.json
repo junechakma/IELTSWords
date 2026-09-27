@@ -1,0 +1,54 @@
+{
+  "id": "D",
+  "slug": "essay-phrases",
+  "title": "Essay Phrases",
+  "subtitle": "Task 2",
+  "sections": [
+    {
+      "id": "D1",
+      "title": "Giving your opinion",
+      "phrases": [
+        "In my opinion, …",
+        "I would argue that …",
+        "As far as I am concerned, …",
+        "It seems to me that …"
+      ]
+    },
+    {
+      "id": "D2",
+      "title": "Strong opinion",
+      "phrases": [
+        "I am convinced that …",
+        "There is no doubt that …"
+      ]
+    },
+    {
+      "id": "D3",
+      "title": "Presenting other views",
+      "phrases": [
+        "It is generally believed that …",
+        "It is widely argued that …",
+        "A common view is that …",
+        "Some people claim that …"
+      ]
+    },
+    {
+      "id": "D4",
+      "title": "Supporting arguments",
+      "phrases": [
+        "This is evidenced by …",
+        "This is supported by …",
+        "A clear example of this is …"
+      ]
+    },
+    {
+      "id": "D5",
+      "title": "Concluding",
+      "phrases": [
+        "In conclusion, …",
+        "On balance, …",
+        "Taking everything into consideration, …"
+      ]
+    }
+  ]
+}

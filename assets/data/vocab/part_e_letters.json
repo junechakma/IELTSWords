@@ -1,0 +1,74 @@
+{
+  "id": "E",
+  "slug": "letters",
+  "title": "Letters",
+  "subtitle": "General Training Task 1",
+  "sections": [
+    {
+      "id": "E1",
+      "title": "Openings and Closings",
+      "letterTypes": [
+        {
+          "type": "Formal, name unknown",
+          "opening": "Dear Sir or Madam,",
+          "closings": [
+            "Yours faithfully,"
+          ]
+        },
+        {
+          "type": "Formal, name known",
+          "opening": "Dear Mr / Ms Ahmed,",
+          "closings": [
+            "Yours sincerely,"
+          ]
+        },
+        {
+          "type": "Semi-formal",
+          "opening": "Dear Sam,",
+          "closings": [
+            "Best regards,",
+            "Kind regards,"
+          ]
+        },
+        {
+          "type": "Informal",
+          "opening": "Hi John,",
+          "closings": [
+            "Best wishes,",
+            "See you soon,",
+            "Love,"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E2",
+      "title": "Formal openings",
+      "phrases": [
+        "I am writing to request / enquire about / complain about …",
+        "I am writing in response to your letter of 13 January.",
+        "With reference to your advertisement in …, I would like to …"
+      ]
+    },
+    {
+      "id": "E3",
+      "title": "Formal closings",
+      "phrases": [
+        "I look forward to hearing from you.",
+        "If you require any further information, please do not hesitate to contact me.",
+        "Thank you for your assistance.",
+        "Once again, I apologise for any inconvenience."
+      ]
+    },
+    {
+      "id": "E4",
+      "title": "Informal openings and closings",
+      "phrases": [
+        "Hi there, I hope you're doing well. It's been ages since we last met!",
+        "Thanks so much for your letter.",
+        "Anyway, I'd better go now. Call me if you need anything.",
+        "Can't wait to hear from you!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,746 @@
+{
+  "id": "A",
+  "slug": "task-1",
+  "title": "Task 1 Vocabulary",
+  "subtitle": "Academic: graphs, charts and tables",
+  "sections": [
+    {
+      "id": "A1",
+      "title": "Introducing the Visual",
+      "entries": [
+        {
+          "id": "a1-illustrates",
+          "type": "word",
+          "term": "illustrates",
+          "replaces": "shows",
+          "example": "The line graph illustrates changes in migration to the US in the 1990s."
+        },
+        {
+          "id": "a1-depicts",
+          "type": "word",
+          "term": "depicts",
+          "replaces": "shows",
+          "example": "The bar chart depicts household spending in four countries."
+        },
+        {
+          "id": "a1-gives",
+          "type": "word",
+          "term": "gives",
+          "variants": [
+            "provides information about"
+          ],
+          "replaces": "shows",
+          "example": "The table provides information about energy use by sector."
+        },
+        {
+          "id": "a1-compares",
+          "type": "word",
+          "term": "compares",
+          "replaces": "shows",
+          "example": "The pie charts compare the sources of electricity in 2000 and 2020."
+        },
+        {
+          "id": "a1-presents",
+          "type": "word",
+          "term": "presents",
+          "replaces": "shows",
+          "example": "The diagram presents the stages of paper recycling."
+        },
+        {
+          "id": "a1-reveals",
+          "type": "word",
+          "term": "reveals",
+          "variants": [
+            "indicates"
+          ],
+          "replaces": "shows",
+          "example": "The data reveal a clear rise in online sales."
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "Upward Movement",
+      "entries": [
+        {
+          "id": "a2-increase",
+          "type": "word",
+          "term": "increase",
+          "pos": "v/n",
+          "synonyms": [
+            "rise",
+            "grow",
+            "climb"
+          ],
+          "example": "The number of part-time jobs increased significantly over the decade."
+        },
+        {
+          "id": "a2-surge",
+          "type": "word",
+          "term": "surge",
+          "pos": "v/n",
+          "synonyms": [
+            "jump",
+            "leap"
+          ],
+          "example": "There was a surge in car ownership after 2010."
+        },
+        {
+          "id": "a2-soar",
+          "type": "word",
+          "term": "soar",
+          "variants": [
+            "rocket"
+          ],
+          "synonyms": [
+            "rise very sharply"
+          ],
+          "example": "Online sales soared to 8 million units."
+        },
+        {
+          "id": "a2-uptick",
+          "type": "word",
+          "term": "uptick",
+          "pos": "n",
+          "synonyms": [
+            "slight increase"
+          ],
+          "example": "There was a small uptick in insurance sales in the final year."
+        },
+        {
+          "id": "a2-peak",
+          "type": "word",
+          "term": "peak",
+          "pos": "v/n",
+          "synonyms": [
+            "reach the highest point"
+          ],
+          "example": "Visitor numbers peaked at 2 million in July."
+        },
+        {
+          "id": "a2-double",
+          "type": "word",
+          "term": "double",
+          "variants": [
+            "triple"
+          ],
+          "synonyms": [
+            "increase twofold / threefold"
+          ],
+          "example": "Car production doubled between 2000 and 2010."
+        },
+        {
+          "id": "a2-expand",
+          "type": "word",
+          "term": "expand",
+          "synonyms": [
+            "grow"
+          ],
+          "example": "The service sector expanded steadily."
+        },
+        {
+          "id": "a2-recover",
+          "type": "word",
+          "term": "recover",
+          "variants": [
+            "revive"
+          ],
+          "synonyms": [
+            "return to a previous level"
+          ],
+          "example": "Exports recovered after the 2008 downturn."
+        },
+        {
+          "id": "a2-escalate",
+          "type": "word",
+          "term": "escalate",
+          "synonyms": [
+            "rise sharply (often costs",
+            "problems)"
+          ],
+          "example": "Housing costs escalated in the final five years."
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Downward Movement",
+      "entries": [
+        {
+          "id": "a3-decrease",
+          "type": "word",
+          "term": "decrease",
+          "pos": "v/n",
+          "synonyms": [
+            "fall",
+            "drop",
+            "decline"
+          ],
+          "example": "Average rainfall decreased gradually after 2015."
+        },
+        {
+          "id": "a3-plummet",
+          "type": "word",
+          "term": "plummet",
+          "variants": [
+            "plunge"
+          ],
+          "synonyms": [
+            "fall very sharply"
+          ],
+          "example": "Coal consumption plummeted to just 5%."
+        },
+        {
+          "id": "a3-dip",
+          "type": "word",
+          "term": "dip",
+          "pos": "v/n",
+          "synonyms": [
+            "slight drop"
+          ],
+          "example": "There was a slight dip in sales in March."
+        },
+        {
+          "id": "a3-contract",
+          "type": "word",
+          "term": "contract",
+          "variants": [
+            "shrink"
+          ],
+          "synonyms": [
+            "become smaller"
+          ],
+          "example": "The manufacturing sector contracted by a third."
+        },
+        {
+          "id": "a3-halve",
+          "type": "word",
+          "term": "halve",
+          "synonyms": [
+            "fall by 50%"
+          ],
+          "example": "Pollution levels halved over the period."
+        },
+        {
+          "id": "a3-downturn",
+          "type": "word",
+          "term": "downturn",
+          "pos": "n",
+          "synonyms": [
+            "decline (often economic)"
+          ],
+          "example": "The figures show a sharp downturn in 2009."
+        },
+        {
+          "id": "a3-subside",
+          "type": "word",
+          "term": "subside",
+          "synonyms": [
+            "decrease after a high"
+          ],
+          "example": "Demand subsided after the peak season."
+        },
+        {
+          "id": "a3-hit-a-trough",
+          "type": "word",
+          "term": "hit a trough",
+          "synonyms": [
+            "reach the lowest point"
+          ],
+          "example": "Unemployment hit a trough of 3% in 2019."
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "No Change and Irregular Change",
+      "entries": [
+        {
+          "id": "a4-remain-steady",
+          "type": "word",
+          "term": "remain steady",
+          "synonyms": [
+            "remain stable / constant / unchanged"
+          ],
+          "example": "The unemployment rate remained steady at 5%."
+        },
+        {
+          "id": "a4-level-off",
+          "type": "word",
+          "term": "level off",
+          "synonyms": [
+            "plateau",
+            "stabilise"
+          ],
+          "example": "Growth levelled off after 2012."
+        },
+        {
+          "id": "a4-reach-a-plateau",
+          "type": "word",
+          "term": "reach a plateau",
+          "synonyms": [
+            "stop changing after a rise"
+          ],
+          "example": "Sales reached a plateau at around 500 units."
+        },
+        {
+          "id": "a4-hover-around",
+          "type": "word",
+          "term": "hover around",
+          "synonyms": [
+            "stay close to"
+          ],
+          "example": "The success rate hovered around 10%."
+        },
+        {
+          "id": "a4-fluctuate-v",
+          "type": "word",
+          "term": "fluctuate (v)",
+          "variants": [
+            "fluctuation"
+          ],
+          "pos": "n",
+          "synonyms": [
+            "vary"
+          ],
+          "example": "Prices fluctuated between $10 and $15."
+        },
+        {
+          "id": "a4-erratic",
+          "type": "word",
+          "term": "erratic",
+          "variants": [
+            "volatile"
+          ],
+          "synonyms": [
+            "irregular",
+            "unstable"
+          ],
+          "example": "Share prices were highly volatile in 2020."
+        },
+        {
+          "id": "a4-oscillate",
+          "type": "word",
+          "term": "oscillate",
+          "synonyms": [
+            "move up and down repeatedly"
+          ],
+          "example": "Temperatures oscillated between 2°C and 8°C."
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "title": "Degree and Speed of Change",
+      "entries": [
+        {
+          "id": "a5-dramatic",
+          "type": "degree",
+          "term": "dramatic",
+          "pos": "adj",
+          "adverb": "dramatically",
+          "degree": "very big"
+        },
+        {
+          "id": "a5-substantial",
+          "type": "degree",
+          "term": "substantial",
+          "pos": "adj",
+          "adverb": "substantially",
+          "degree": "very big"
+        },
+        {
+          "id": "a5-considerable",
+          "type": "degree",
+          "term": "considerable",
+          "pos": "adj",
+          "adverb": "considerably",
+          "degree": "very big"
+        },
+        {
+          "id": "a5-significant",
+          "type": "degree",
+          "term": "significant",
+          "pos": "adj",
+          "adverb": "significantly",
+          "degree": "very big"
+        },
+        {
+          "id": "a5-marked",
+          "type": "degree",
+          "term": "marked",
+          "pos": "adj",
+          "adverb": "markedly",
+          "degree": "very big"
+        },
+        {
+          "id": "a5-exponential",
+          "type": "degree",
+          "term": "exponential",
+          "pos": "adj",
+          "degree": "very big"
+        },
+        {
+          "id": "a5-sharp",
+          "type": "degree",
+          "term": "sharp",
+          "pos": "adj",
+          "adverb": "sharply",
+          "degree": "big and sudden"
+        },
+        {
+          "id": "a5-steep",
+          "type": "degree",
+          "term": "steep",
+          "pos": "adj",
+          "adverb": "steeply",
+          "degree": "big and sudden"
+        },
+        {
+          "id": "a5-rapid",
+          "type": "degree",
+          "term": "rapid",
+          "pos": "adj",
+          "adverb": "rapidly",
+          "degree": "big and sudden"
+        },
+        {
+          "id": "a5-abrupt",
+          "type": "degree",
+          "term": "abrupt",
+          "pos": "adj",
+          "adverb": "abruptly",
+          "degree": "big and sudden"
+        },
+        {
+          "id": "a5-sudden",
+          "type": "degree",
+          "term": "sudden",
+          "pos": "adj",
+          "adverb": "suddenly",
+          "degree": "big and sudden"
+        },
+        {
+          "id": "a5-moderate",
+          "type": "degree",
+          "term": "moderate",
+          "pos": "adj",
+          "adverb": "moderately",
+          "degree": "medium"
+        },
+        {
+          "id": "a5-noticeable",
+          "type": "degree",
+          "term": "noticeable",
+          "pos": "adj",
+          "adverb": "noticeably",
+          "degree": "medium"
+        },
+        {
+          "id": "a5-discernible",
+          "type": "degree",
+          "term": "discernible",
+          "pos": "adj",
+          "degree": "medium"
+        },
+        {
+          "id": "a5-slight",
+          "type": "degree",
+          "term": "slight",
+          "pos": "adj",
+          "adverb": "slightly",
+          "degree": "small"
+        },
+        {
+          "id": "a5-marginal",
+          "type": "degree",
+          "term": "marginal",
+          "pos": "adj",
+          "adverb": "marginally",
+          "degree": "small"
+        },
+        {
+          "id": "a5-modest",
+          "type": "degree",
+          "term": "modest",
+          "pos": "adj",
+          "adverb": "modestly",
+          "degree": "small"
+        },
+        {
+          "id": "a5-minimal",
+          "type": "degree",
+          "term": "minimal",
+          "pos": "adj",
+          "degree": "small"
+        },
+        {
+          "id": "a5-gradual",
+          "type": "degree",
+          "term": "gradual",
+          "pos": "adj",
+          "adverb": "gradually",
+          "degree": "slow and steady"
+        },
+        {
+          "id": "a5-steady",
+          "type": "degree",
+          "term": "steady",
+          "pos": "adj",
+          "adverb": "steadily",
+          "degree": "slow and steady"
+        },
+        {
+          "id": "a5-consistent",
+          "type": "degree",
+          "term": "consistent",
+          "pos": "adj",
+          "adverb": "consistently",
+          "degree": "slow and steady"
+        },
+        {
+          "id": "a5-progressive",
+          "type": "degree",
+          "term": "progressive",
+          "pos": "adj",
+          "adverb": "progressively",
+          "degree": "slow and steady"
+        }
+      ],
+      "phrases": [
+        "a sharp rise",
+        "a gradual decline",
+        "an upward trend",
+        "a downward trend",
+        "a dramatic shift",
+        "a sudden surge",
+        "moderate growth",
+        "a marginal difference",
+        "a significant difference"
+      ]
+    },
+    {
+      "id": "A6",
+      "title": "Proportions and Numbers",
+      "entries": [
+        {
+          "id": "a6-account-for",
+          "type": "word",
+          "term": "account for",
+          "meaning": "make up, constitute, represent",
+          "example": "The service sector accounted for nearly 50% of employment."
+        },
+        {
+          "id": "a6-proportion",
+          "type": "word",
+          "term": "proportion",
+          "variants": [
+            "share"
+          ],
+          "meaning": "part of a whole",
+          "example": "A large proportion of students preferred practical courses."
+        },
+        {
+          "id": "a6-the-majority-of",
+          "type": "word",
+          "term": "the majority of",
+          "meaning": "most",
+          "example": "The majority of consumers chose online shopping."
+        },
+        {
+          "id": "a6-a-minority-of",
+          "type": "word",
+          "term": "a minority of",
+          "meaning": "a small part",
+          "example": "Only a minority of commuters used the metro."
+        },
+        {
+          "id": "a6-half",
+          "type": "word",
+          "term": "half",
+          "variants": [
+            "a quarter",
+            "a third"
+          ],
+          "meaning": "50% / 25% / 33%",
+          "example": "A quarter of the budget went on housing."
+        },
+        {
+          "id": "a6-twice-as-much",
+          "type": "word",
+          "term": "twice as much",
+          "variants": [
+            "many as"
+          ],
+          "meaning": "two times",
+          "example": "EV production was twice as high as in 2015."
+        },
+        {
+          "id": "a6-approximately",
+          "type": "word",
+          "term": "approximately",
+          "variants": [
+            "roughly"
+          ],
+          "meaning": "about",
+          "example": "Roughly 40% of people lived in rural areas."
+        },
+        {
+          "id": "a6-per-capita",
+          "type": "word",
+          "term": "per capita",
+          "meaning": "per person",
+          "example": "Income per capita rose to $8,000."
+        },
+        {
+          "id": "a6-ratio",
+          "type": "word",
+          "term": "ratio",
+          "meaning": "relationship between two numbers",
+          "example": "The male-to-female ratio was 3:1."
+        },
+        {
+          "id": "a6-aggregate",
+          "type": "word",
+          "term": "aggregate",
+          "meaning": "total",
+          "example": "The aggregate number of visitors was 50,000."
+        },
+        {
+          "id": "a6-respectively",
+          "type": "word",
+          "term": "respectively",
+          "meaning": "in the same order",
+          "example": "Men and women spent $80 and $90 respectively."
+        }
+      ],
+      "phrases": [
+        "a small fraction",
+        "a tiny minority",
+        "the vast majority",
+        "just over half",
+        "nearly a third",
+        "in the region of 56%",
+        "one in ten",
+        "one in a hundred"
+      ]
+    },
+    {
+      "id": "A7",
+      "title": "Comparing and Contrasting",
+      "entries": [
+        {
+          "id": "a7-surpass",
+          "type": "word",
+          "term": "surpass",
+          "variants": [
+            "exceed"
+          ],
+          "meaning": "be more than",
+          "example": "Female employment surpassed male employment in 2018."
+        },
+        {
+          "id": "a7-overtake",
+          "type": "word",
+          "term": "overtake",
+          "meaning": "pass (a rising line)",
+          "example": "Solar power overtook coal in 2021."
+        },
+        {
+          "id": "a7-outnumber",
+          "type": "word",
+          "term": "outnumber",
+          "meaning": "be more in number",
+          "example": "Female athletes outnumbered male athletes."
+        },
+        {
+          "id": "a7-outpace",
+          "type": "word",
+          "term": "outpace",
+          "meaning": "grow faster than",
+          "example": "Car sales outpaced motorbike sales."
+        },
+        {
+          "id": "a7-dominate",
+          "type": "word",
+          "term": "dominate",
+          "variants": [
+            "predominate"
+          ],
+          "meaning": "be the largest",
+          "example": "Online shopping dominated retail spending."
+        },
+        {
+          "id": "a7-predominantly",
+          "type": "word",
+          "term": "predominantly",
+          "meaning": "mainly, largely",
+          "example": "The workforce was predominantly male."
+        },
+        {
+          "id": "a7-widen",
+          "type": "word",
+          "term": "widen",
+          "variants": [
+            "narrow the gap"
+          ],
+          "meaning": "increase / reduce the difference",
+          "example": "The gap between the two cities narrowed after 2010."
+        },
+        {
+          "id": "a7-converge",
+          "type": "word",
+          "term": "converge",
+          "variants": [
+            "diverge"
+          ],
+          "meaning": "come together / move apart",
+          "example": "The two lines converged in 2015."
+        },
+        {
+          "id": "a7-in-comparison-to",
+          "type": "word",
+          "term": "in comparison to",
+          "variants": [
+            "with"
+          ],
+          "meaning": "compared with",
+          "example": "Scores were higher in comparison with 2019."
+        },
+        {
+          "id": "a7-by-contrast",
+          "type": "word",
+          "term": "by contrast",
+          "variants": [
+            "conversely"
+          ],
+          "meaning": "on the other hand",
+          "example": "Smoking decreased; conversely, vaping increased."
+        },
+        {
+          "id": "a7-whereas",
+          "type": "word",
+          "term": "whereas",
+          "variants": [
+            "while"
+          ],
+          "meaning": "but (joining two clauses)",
+          "example": "Urban populations grew, whereas rural ones shrank."
+        }
+      ]
+    },
+    {
+      "id": "A8",
+      "title": "Time Phrases",
+      "phrases": [
+        "over the period shown",
+        "over the course of a decade",
+        "throughout the period",
+        "during the following years",
+        "by 2020",
+        "from 2000 onwards",
+        "at the start / end of the period"
+      ]
+    }
+  ]
+}

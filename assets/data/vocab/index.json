@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "source": "ielts-writing-vocabulary.md",
+  "parts": [
+    "part_a_task_1.json",
+    "part_b_task_2.json",
+    "part_c_linkers.json",
+    "part_d_essay_phrases.json",
+    "part_e_letters.json"
+  ]
+}
