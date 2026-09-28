@@ -26,6 +26,7 @@ import 'package:ielts_words/services/speech.dart';
 import 'package:ielts_words/state/providers.dart';
 import 'package:ielts_words/theme/app_icons.dart';
 import 'package:ielts_words/theme/app_theme.dart';
+import 'package:ielts_words/widgets/strength_ladder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'vocab_data_test.dart' show loadFromDisk;
@@ -179,6 +180,87 @@ void main() {
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.byIcon(AppIcons.close), findsOneWidget);
+  });
+
+  testWidgets('Full answer and paragraph flow tabs show the model answer in order', (tester) async {
+    _phone(tester);
+    for (final chart in repo.topics) {
+      await tester.pumpWidget(_harness(ChartScreen(key: ValueKey(chart.id), topic: chart)));
+      await _settle(tester);
+      await tester.tap(find.text('Full answer'));
+      await _settle(tester);
+      expect(tester.takeException(), isNull, reason: chart.id);
+      expect(find.text(chart.report!.question), findsOneWidget, reason: chart.id);
+      for (final slot in chart.task.slots) {
+        await tester.ensureVisible(find.text(slot.label).first);
+        await tester.tap(find.text(slot.label).first);
+        await _settle(tester);
+        expect(tester.takeException(), isNull, reason: '${chart.id} ${slot.label}');
+        expect(find.text('MODEL PARAGRAPH'), findsOneWidget, reason: '${chart.id} ${slot.label}');
+      }
+    }
+  });
+
+  testWidgets('Game modes: swipe, match, sentence builder and letter tiles all play', (tester) async {
+    _phone(tester);
+    Future<void> start(PracticeMode m) async {
+      await tester.pumpWidget(const SizedBox()); // drop the previous session's routes
+      await tester.pumpWidget(_harness(const HomeScreen()));
+      await _settle(tester);
+      startPractice(tester.element(find.byType(HomeScreen)), SessionRequest(m, topicId: 'line'));
+      await _settle(tester);
+      expect(tester.takeException(), isNull, reason: m.title);
+      expect(find.byIcon(AppIcons.close), findsOneWidget, reason: '${m.title} opened a session');
+    }
+
+    // Plain or Band 8?: answer every card with the buttons until the round ends.
+    await start(PracticeMode.speedSwipe);
+    for (var i = 0; i < 20 && find.text('Continue').evaluate().isEmpty && find.text('Got it').evaluate().isEmpty; i++) {
+      await tester.tap(find.text(i.isEven ? 'Band 8' : 'Plain').last);
+      await _settle(tester, frames: 5);
+      expect(tester.takeException(), isNull);
+    }
+    expect(find.text('Continue').evaluate().isNotEmpty || find.text('Got it').evaluate().isNotEmpty, isTrue);
+
+    // Match pairs: tap a plain pebble then a Band 8 pebble.
+    await start(PracticeMode.matchPairs);
+    expect(find.text('YOU’D WRITE'), findsOneWidget);
+
+    // Build the sentence: tap every chip, then Check.
+    await start(PracticeMode.buildSentence);
+    for (var i = 0; i < 20 && find.text('Check').evaluate().isEmpty; i++) {
+      final chips = find.descendant(of: find.byType(Wrap).last, matching: find.byType(GestureDetector));
+      if (chips.evaluate().isEmpty) break;
+      await tester.ensureVisible(chips.first);
+      await tester.pump();
+      await tester.tap(chips.first, warnIfMissed: false);
+      await _settle(tester, frames: 2);
+    }
+    await tester.tap(find.text('Check'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('Continue').evaluate().isNotEmpty || find.text('Got it').evaluate().isNotEmpty, isTrue);
+
+    // Letter tiles: use the hint, then undo.
+    await start(PracticeMode.letterTiles);
+    await tester.tap(find.text('💡 First letter'));
+    await _settle(tester, frames: 3);
+    await tester.tap(find.text('⌫ Undo'));
+    await _settle(tester, frames: 3);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Strength ladder: tap a step to see its words and example', (tester) async {
+    _phone(tester);
+    final increase = repo.wordSets.firstWhere((s) => s.id == 'increase');
+    await tester.pumpWidget(_harness(SingleChildScrollView(child: StrengthLadder(set: increase, initialLevel: 0))));
+    await _settle(tester);
+    expect(find.text('Level 1 · tiny'), findsOneWidget);
+    expect(find.text('Sales edged up from 100 to 102.'), findsOneWidget);
+    await tester.tap(find.text('5'));
+    await _settle(tester);
+    expect(find.text('Level 5 · huge'), findsOneWidget);
+    expect(find.text('Sales soared from 100 to 300.'), findsOneWidget);
   });
 
   testWidgets('Learn tab: swiping cards moves the highlighted part', (tester) async {

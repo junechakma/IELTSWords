@@ -48,6 +48,10 @@ class SessionBuilder {
       PracticeMode.meaningMatch => _meaning(n),
       PracticeMode.linkerSort => _linkers(),
       PracticeMode.letterRegister => _register(n),
+      PracticeMode.speedSwipe => _speed(_pool(r, topic)),
+      PracticeMode.matchPairs => _match(_pool(r, topic)),
+      PracticeMode.buildSentence => _sentences(_pool(r, topic), n),
+      PracticeMode.letterTiles => _tiles(_pool(r, topic), n),
       PracticeMode.whereIsIt => [for (final q in _shuffled(repo.listening.whereIsIt).take(8)) WhereQ(q, repo.listening.map)],
       PracticeMode.pictureIt => _picture(),
       PracticeMode.followRoute => [for (final q in _shuffled(repo.listening.routes).take(5)) RouteQ(q, repo.listening.map)],
@@ -251,6 +255,53 @@ class SessionBuilder {
     // Keep the same phrase from showing twice.
     final seen = <String>{};
     return [for (final q in _shuffled(items)) if (seen.add(q.phrase)) q].take(min(n, 10)).toList();
+  }
+
+  // ---- game modes ----
+
+  /// One round of ~14 swipe cards: half plain, half Band 8, from different swaps.
+  List<Question> _speed(List<Swap> pool) {
+    final picked = _pick(pool, 14);
+    if (picked.length < 4) return const [];
+    final cards = [for (final (i, s) in picked.indexed) SpeedCard(s, formal: i.isEven)]..shuffle(rnd);
+    return [SpeedQ(cards)];
+  }
+
+  /// Two boards of 5 short pairs each.
+  List<Question> _match(List<Swap> pool) {
+    final short = [for (final s in pool) if (s.plain.length <= 26 && s.best.length <= 28) s];
+    final picked = _pick(short.length >= 5 ? short : pool, 10);
+    final out = <Question>[];
+    for (var i = 0; i + 4 < picked.length && out.length < 2; i += 5) {
+      final board = picked.sublist(i, i + 5);
+      // Plain phrases must be unique on a board or the match is ambiguous.
+      if (board.map((s) => s.plain.toLowerCase()).toSet().length == board.length) out.add(MatchQ(board));
+    }
+    return out;
+  }
+
+  List<Question> _sentences(List<Swap> pool, int n) {
+    final ok = [
+      for (final s in pool)
+        if (s.formalSentence.contains(s.best) && SentenceQ.chipsOf(s).length >= 5 && SentenceQ.chipsOf(s).length <= 16) s,
+    ];
+    return [
+      for (final s in _pick(ok, n.clamp(1, 6)))
+        SentenceQ(s, repo.topic(s.topicId), SentenceQ.chipsOf(s)..shuffle(rnd)),
+    ];
+  }
+
+  List<Question> _tiles(List<Swap> pool, int n) {
+    final ok = [for (final s in pool) if (RegExp(r'^[a-zA-Z]{4,12}$').hasMatch(s.best)) s];
+    const decoys = 'aeioulnrst';
+    return [
+      for (final s in _pick(ok, n.clamp(1, 8)))
+        TilesQ(
+          s,
+          repo.topic(s.topicId),
+          [...s.best.toLowerCase().split(''), decoys[rnd.nextInt(decoys.length)], decoys[rnd.nextInt(decoys.length)]]..shuffle(rnd),
+        ),
+    ];
   }
 
   List<Question> _picture() {

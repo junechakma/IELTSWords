@@ -34,6 +34,12 @@ abstract final class AppIcons {
   static const IconData bell = PhosphorIconsRegular.bell;
   static const IconData reset = PhosphorIconsRegular.arrowCounterClockwise;
   static const IconData edit = PhosphorIconsRegular.pencilSimple;
+  static const IconData trendUp = PhosphorIconsBold.trendUp;
+  static const IconData trendDown = PhosphorIconsBold.trendDown;
+  static const IconData timer = PhosphorIconsRegular.timer;
+  static const IconData swipe = PhosphorIconsRegular.handSwipeRight;
+  static const IconData backspace = PhosphorIconsRegular.backspace;
+  static const IconData shuffle = PhosphorIconsRegular.shuffle;
 
   // Chart / topic types
   static const IconData line = PhosphorIconsRegular.chartLine;

@@ -172,6 +172,60 @@ class TrapQ extends Question {
   String get tag => 'Trap';
 }
 
+/// One card in a "Plain or Band 8?" round.
+class SpeedCard {
+  const SpeedCard(this.swap, {required this.formal});
+  final Swap swap;
+
+  /// True when the card shows the Band 8 phrase, false for the plain one.
+  final bool formal;
+  String get text => formal ? swap.best : swap.plain;
+  String get sentence => formal ? swap.formalSentence : swap.plainSentence;
+}
+
+/// A whole round of swipe cards.
+class SpeedQ extends Question {
+  const SpeedQ(this.cards);
+  final List<SpeedCard> cards;
+  @override
+  String get tag => '${cards.length} cards';
+}
+
+/// Tap-to-match: plain phrases on one side, Band 8 on the other.
+class MatchQ extends Question {
+  const MatchQ(this.swaps);
+  final List<Swap> swaps;
+  @override
+  String get tag => '${swaps.length} pairs';
+}
+
+/// Rebuild the Band 8 sentence from shuffled chips (the swap stays one chip).
+class SentenceQ extends Question {
+  const SentenceQ(this.swap, this.topic, this.chips);
+  final Swap swap;
+  final SwapTopic topic;
+  final List<String> chips;
+  @override
+  String get tag => '${topic.shortTitle} · ${swap.slot.label}';
+
+  /// The sentence split into chips, keeping the Band 8 phrase whole.
+  static List<String> chipsOf(Swap s) {
+    final (before, after) = s.formalParts;
+    List<String> words(String t) => [for (final w in t.split(RegExp(r'\s+'))) if (w.isNotEmpty) w];
+    return [...words(before), s.best, ...words(after)];
+  }
+}
+
+/// Spell the Band 8 word from scrambled letter tiles.
+class TilesQ extends Question {
+  const TilesQ(this.swap, this.topic, this.letters);
+  final Swap swap;
+  final SwapTopic topic;
+  final List<String> letters;
+  @override
+  String get tag => '${topic.shortTitle} · ${swap.slot.label}';
+}
+
 extension TopicTitle on SwapTopic {
   /// "Pie" for "Pie chart", "Line" for "Line graph".
   String get shortTitle => switch (id) {

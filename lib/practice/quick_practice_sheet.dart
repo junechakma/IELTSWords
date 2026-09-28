@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/app_store.dart';
 import '../state/providers.dart';
+import '../mascots/mascot_image.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/pressable.dart';
@@ -54,7 +55,7 @@ class QuickPracticeSheet extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               mainAxisSpacing: 9,
               crossAxisSpacing: 9,
-              childAspectRatio: 1.7,
+              childAspectRatio: 2.05,
               children: [for (final m in PracticeMode.habit) _ModeTile(m)],
             ),
             const SizedBox(height: 16),
@@ -91,17 +92,23 @@ class _ModeTile extends StatelessWidget {
           startPractice(context, SessionRequest(mode));
         },
         child: Container(
-          padding: const EdgeInsets.fromLTRB(14, 12, 10, 10),
-          decoration: BoxDecoration(color: mode.color, borderRadius: BorderRadius.circular(20)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(mode.title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14.5)),
-              const SizedBox(height: 3),
-              Text(mode.hint, style: const TextStyle(fontSize: 11.5, color: AppColors.ink)),
-            ],
-          ),
+          clipBehavior: Clip.antiAlias,
+          decoration: ShapeDecoration(color: mode.color, shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(40))),
+          child: Stack(children: [
+            Positioned(right: -6, bottom: -8, child: MascotImage(mode.mascot, size: 54, sticker: true)),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(14, 12, 50, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(mode.title, maxLines: 2, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14.5, height: 1.15)),
+                  const SizedBox(height: 3),
+                  Text(mode.hint, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11.5, color: AppColors.ink.withValues(alpha: .75))),
+                ],
+              ),
+            ),
+          ]),
         ),
       );
 }

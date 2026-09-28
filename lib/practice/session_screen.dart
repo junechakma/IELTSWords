@@ -10,6 +10,7 @@ import '../mascots/mascot_image.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import 'modes/chart_modes.dart';
+import 'modes/game_modes.dart';
 import 'modes/listening_modes.dart';
 import 'modes/side_modes.dart';
 import 'modes/swap_modes.dart';
@@ -114,6 +115,10 @@ class _SessionScreenState extends State<SessionScreen> {
         RouteQ q => RouteView(q),
         SpellQ q => SpellView(q),
         TrapQ q => TrapView(q),
+        SpeedQ q => SpeedView(q),
+        MatchQ q => MatchView(q),
+        SentenceQ q => SentenceView(q),
+        TilesQ q => TilesView(q),
       };
 }
 

@@ -12,9 +12,13 @@ enum PracticeMode {
   spotPlain('Spot the plain', 'Tap your habits', AppColors.peach, Mascot.surprised, ModeGroup.core),
   buildParagraph('Build paragraph', 'Intro · overview · body', AppColors.lilac, Mascot.focused, ModeGroup.core),
   describe('Describe chart', 'Line → map', AppColors.sand, Mascot.peaceful, ModeGroup.core),
-  adjAdv('Adj ↔ adverb', 'sharp · sharply', Color(0xFFB9CB7C), Mascot.playful, ModeGroup.core),
+  adjAdv('Adj + adverb', 'sharp · sharply', Color(0xFFB9CB7C), Mascot.playful, ModeGroup.core),
   labelGraph('Label the graph', 'Every part, its word', AppColors.peach, Mascot.excited, ModeGroup.core),
   orderSet('Order the set', 'dip → plummet', AppColors.lilac, Mascot.thinking, ModeGroup.core),
+  speedSwipe('Plain or Band 8?', 'Swipe on instinct', AppColors.sunflowerSoft, Mascot.excited, ModeGroup.core),
+  matchPairs('Match pairs', 'plain → Band 8', AppColors.lilac, Mascot.playful, ModeGroup.core),
+  buildSentence('Build the sentence', 'Tap words in order', AppColors.peach, Mascot.focused, ModeGroup.core),
+  letterTiles('Letter tiles', 'Spell it from tiles', Color(0xFFB9CB7C), Mascot.cheerful, ModeGroup.core),
   flashcards('Flashcards', 'Flip the card', AppColors.blush, Mascot.focused, ModeGroup.side),
   meaningMatch('Meaning match', 'Words you mark', AppColors.lilac, Mascot.confused, ModeGroup.side),
   linkerSort('Linker sort', 'Contrast or result?', AppColors.sand, Mascot.silly, ModeGroup.side),
@@ -36,7 +40,7 @@ enum PracticeMode {
   bool get core => group == ModeGroup.core;
 
   /// Modes shown in the "Build the habit" grid of the quick practice sheet.
-  static const habit = [swapIt, rewrite, spotPlain, buildParagraph, describe, adjAdv, labelGraph, orderSet];
+  static const habit = [speedSwipe, swapIt, matchPairs, letterTiles, buildSentence, rewrite, spotPlain, buildParagraph, describe, adjAdv, labelGraph, orderSet];
   static const side = [flashcards, meaningMatch, linkerSort, letterRegister];
   static const listening = [whereIsIt, pictureIt, followRoute, spellIt, trapDrill];
 
@@ -44,5 +48,5 @@ enum PracticeMode {
   bool get chartOnly => this == describe || this == labelGraph;
 
   /// Modes that work on one topic's swaps (can be started from a chart page).
-  bool get topicMode => const {swapIt, rewrite, spotPlain, buildParagraph, describe, labelGraph, flashcards}.contains(this);
+  bool get topicMode => const {swapIt, rewrite, spotPlain, buildParagraph, describe, labelGraph, flashcards, speedSwipe, matchPairs, buildSentence, letterTiles}.contains(this);
 }

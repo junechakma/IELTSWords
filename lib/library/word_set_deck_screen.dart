@@ -10,6 +10,7 @@ import '../services/speech.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/flash_deck.dart';
+import '../widgets/strength_ladder.dart';
 import '../theme/app_icons.dart';
 
 /// One flashcard made from a word set: a whole synonym set, one topic-noun
@@ -114,14 +115,18 @@ class WordSetDeckScreen extends StatelessWidget {
         body = [
           Text('${set.head} = …', style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
           const SizedBox(height: 12),
-          if (set.scale) ...[
-            Container(height: 6, decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), gradient: const LinearGradient(colors: [Color(0xFFF6E3C8), AppColors.rust]))),
-            const Padding(
-              padding: EdgeInsets.only(top: 4, bottom: 10),
-              child: Row(children: [Text('small', style: TextStyle(fontSize: 12)), Spacer(), Text('big', style: TextStyle(fontSize: 12))]),
-            ),
-          ],
-          Wrap(spacing: 6, runSpacing: 6, children: [for (final w in set.scale ? set.ordered : set.words) TagChip(w.w, color: AppColors.cream)]),
+          if (set.scale && set.steps.length >= 2)
+            StrengthLadder(set: set)
+          else
+            for (final w in set.words)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Flexible(child: TagChip(w.w, color: AppColors.cream)),
+                  const SizedBox(width: 8),
+                  if (w.note != null) Expanded(child: Padding(padding: const EdgeInsets.only(top: 5), child: Text(w.note!, style: const TextStyle(fontSize: 13, height: 1.3)))),
+                ]),
+              ),
           if (set.nouns.isNotEmpty) ...[
             const SizedBox(height: 14),
             const CardCaption('As nouns'),

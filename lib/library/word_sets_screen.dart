@@ -13,6 +13,7 @@ import '../state/providers.dart';
 import '../theme/app_icons.dart';
 import '../widgets/common.dart';
 import '../widgets/pressable.dart';
+import '../widgets/strength_ladder.dart';
 import 'word_set_deck_screen.dart';
 
 /// Synonym scales (small → big), the no-change set, topic nouns and numbers.
@@ -117,15 +118,9 @@ class _SetCard extends StatelessWidget {
             Expanded(child: Text('${set.head}${set.scale ? ' = …' : ''}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600))),
             if (set.scale) const Text('small → big', style: TextStyle(fontSize: 12, color: AppColors.inkSoft)),
           ]),
-          if (set.scale) ...[
-            const SizedBox(height: 10),
-            Container(height: 6, decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), gradient: const LinearGradient(colors: [Color(0xFFF6E3C8), AppColors.rust]))),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 6,
-              children: [for (final w in set.ordered) TagChip(w.w, color: AppColors.cream)],
-            ),
+          if (set.scale && set.steps.length >= 2) ...[
+            const SizedBox(height: 12),
+            StrengthLadder(set: set),
             if (set.nouns.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 8), child: Text('Nouns: ${set.nouns.join(' · ')}', style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
           ] else if (set.words.isNotEmpty) ...[
             const SizedBox(height: 10),

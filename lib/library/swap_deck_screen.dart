@@ -14,6 +14,8 @@ import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/flash_deck.dart';
+import '../widgets/flow_widgets.dart';
+import '../data/flow.dart';
 
 /// Opens [swaps] as a swipeable deck of flashcards, starting at [index].
 void openSwapDeck(BuildContext context, List<Swap> swaps, int index) {
@@ -71,16 +73,17 @@ Widget _swapFront(BuildContext context, Swap s, SwapTopic topic, Mascot mascot) 
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Flexible(flex: 3, child: TagChip('${s.slot.label} · ${s.position.label}')),
-            const Spacer(),
-            const Icon(AppIcons.flip, size: 18),
-            const SizedBox(width: 4),
-            const Text('Tap to flip', style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500)),
-          ],
-        ),
-        const SizedBox(height: 18),
+        // Where this sentence lives in the answer.
+        SlotFlowBar(task: topic.task, current: s.slot, light: true),
+        const SizedBox(height: 8),
+        Row(children: [
+          Flexible(child: FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.centerLeft, child: PositionSteps(current: s.position))),
+          const SizedBox(width: 8),
+          const FlipHint(),
+        ]),
+        const SizedBox(height: 6),
+        Text(positionPurpose(topic.task, s.slot, s.position), style: TextStyle(fontSize: 12.5, color: AppColors.ink.withValues(alpha: .7))),
+        const SizedBox(height: 16),
         const Text('YOU\u2019D WRITE', style: TextStyle(fontSize: 11.5, letterSpacing: .8, fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         ConstrainedBox(
@@ -174,11 +177,27 @@ Widget _swapBack(BuildContext context, Swap s, SwapTopic topic) {
                 ),
                 const SizedBox(height: 14),
                 const Text(
-                  'WHERE TO USE IT',
+                  'WHERE IT GOES',
                   style: TextStyle(fontSize: 11.5, letterSpacing: .8, color: AppColors.inkSoft, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 6),
-                Text('${topic.title} \u00b7 ${s.slot.label} paragraph \u00b7 ${s.position.label.toLowerCase()}', style: const TextStyle(fontSize: 14.5)),
+                SlotFlowBar(task: topic.task, current: s.slot),
+                const SizedBox(height: 6),
+                Text('${s.position.label} of the ${s.slot.label.toLowerCase()} — ${positionPurpose(topic.task, s.slot, s.position).toLowerCase()}',
+                    style: const TextStyle(fontSize: 13.5, height: 1.35)),
+                if (topic.report?.paragraph(s.slot) case final para?) ...[
+                  const SizedBox(height: 14),
+                  const Text(
+                    'IN THE MODEL PARAGRAPH',
+                    style: TextStyle(fontSize: 11.5, letterSpacing: .8, color: AppColors.inkSoft, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(color: topicColor(topic.id).withValues(alpha: .3), borderRadius: BorderRadius.circular(14)),
+                    child: ParagraphText(paragraph: para, highlights: s.formal, emphasis: s.position, size: 14.5),
+                  ),
+                ],
                 if (s.note != null) ...[
                   const SizedBox(height: 12),
                   Container(
