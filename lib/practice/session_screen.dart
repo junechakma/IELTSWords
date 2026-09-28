@@ -119,6 +119,7 @@ class _SessionScreenState extends State<SessionScreen> {
         MatchQ q => MatchView(q),
         SentenceQ q => SentenceView(q),
         TilesQ q => TilesView(q),
+        MapGapQ q => MapGapView(q),
       };
 }
 

@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "title": "Real exam maps",
+  "subtitle": "5 sets of map & plan vocabulary, each on a real exam-style map",
+  "source": "Word lists and sentences: docs/listening_map_vocabulary_source.md. Map images: Cambridge English past papers (copyright Cambridge) — for private study only; replace before any public release.",
+  "sets": [
+    {
+      "id": "set1",
+      "number": 1,
+      "title": "Inside a building",
+      "place": "University sports centre (present)",
+      "image": "assets/maps/set1_sports_centre_present.jpg",
+      "focus": "Simple prepositions of place: where one thing is compared with another.",
+      "words": [
+        { "term": "in front of", "type": "location", "meaning": "directly ahead of something, on the side it faces" },
+        { "term": "facing", "type": "location", "meaning": "looking towards something; the front of one points at the other" },
+        { "term": "in the middle of", "type": "location", "meaning": "in the centre, with space on all sides", "also": ["in the centre of"] },
+        { "term": "behind", "type": "location", "meaning": "at the back of something, on the side away from you" },
+        { "term": "between", "type": "location", "meaning": "with one thing on each side" },
+        { "term": "next to", "type": "location", "meaning": "right beside it, touching or very close", "also": ["by"] }
+      ],
+      "sentences": [
+        { "id": "m1-1", "text": "The entrance is in front of the reception desk.", "term": "in front of" },
+        { "id": "m1-2", "text": "The reception desk is facing the entrance.", "term": "facing" },
+        { "id": "m1-3", "text": "The pool is in the middle of the sports centre.", "term": "in the middle of" },
+        { "id": "m1-4", "text": "The gym is behind the swimming pool.", "term": "behind" },
+        { "id": "m1-5", "text": "The pool is between the reception and the gym.", "term": "between" },
+        { "id": "m1-6", "text": "The seating area is next to the pool.", "term": "next to" }
+      ]
+    },
+    {
+      "id": "set2",
+      "number": 2,
+      "title": "Walking through a building",
+      "place": "University sports centre (future plans)",
+      "image": "assets/maps/set2_sports_centre_future.jpg",
+      "focus": "Sides and movement: left / right as you walk in, and going through or along.",
+      "words": [
+        { "term": "on the left-hand side", "type": "location", "meaning": "on your left as you face forward or walk in" },
+        { "term": "to the right-hand side", "type": "location", "meaning": "on your right as you face forward" },
+        { "term": "pass through", "type": "direction", "meaning": "go in one side and out the other (a door, gate or room)" },
+        { "term": "turn right", "type": "direction", "meaning": "change direction to your right" },
+        { "term": "on the other side", "type": "location", "meaning": "on the opposite side of a building, road or area" },
+        { "term": "beyond", "type": "location", "meaning": "further on than something, past it" },
+        { "term": "along", "type": "direction", "meaning": "following the length of something (a corridor, wall or road)" },
+        { "term": "corner", "type": "location", "meaning": "where two walls or roads meet; ‘the far corner’ = the one furthest away" },
+        { "term": "go straight", "type": "direction", "meaning": "keep moving forward without turning" },
+        { "term": "beside", "type": "location", "meaning": "at the side of; next to" },
+        { "term": "to your right", "type": "location", "meaning": "on your right from where you are standing or walking" }
+      ],
+      "sentences": [
+        { "id": "m2-1", "text": "The sports shop is on the left-hand side as you enter the sports centre.", "term": "on the left-hand side" },
+        { "id": "m2-2", "text": "To the right-hand side of the entrance, there's a café.", "term": "to the right-hand side" },
+        { "id": "m2-3", "text": "Pass through the entrance, turn right and the café is immediately in front of you.", "term": "pass through" },
+        { "id": "m2-4", "text": "Pass through the entrance, turn right and the café is immediately in front of you.", "term": "turn right" },
+        { "id": "m2-5", "text": "The leisure pool is on the other side of the sports centre to the dance studios.", "term": "on the other side" },
+        { "id": "m2-6", "text": "There is a large changing room just beyond the café.", "term": "beyond" },
+        { "id": "m2-7", "text": "Walk along the side of the sports hall and you'll find the second dance studio in the far corner of the building.", "term": "along" },
+        { "id": "m2-8", "text": "Walk along the side of the sports hall and you'll find the second dance studio in the far corner of the building.", "term": "corner" },
+        { "id": "m2-9", "text": "Go straight along the corridor beside the sports hall and to your right, you'll see two dance studios.", "term": "go straight" },
+        { "id": "m2-10", "text": "Go straight along the corridor beside the sports hall and to your right, you'll see two dance studios.", "term": "beside" },
+        { "id": "m2-11", "text": "Go straight along the corridor beside the sports hall and to your right, you'll see two dance studios.", "term": "to your right" }
+      ]
+    },
+    {
+      "id": "set3",
+      "number": 3,
+      "title": "Compass points",
+      "place": "Stokeford village, 2010",
+      "image": "assets/maps/set3_stokeford_2010.jpg",
+      "focus": "The 8 compass points and the ways speakers use them, plus turnings.",
+      "words": [
+        { "term": "near", "type": "location", "meaning": "a short distance from" },
+        { "term": "heading north", "type": "direction", "meaning": "moving towards the north" },
+        { "term": "second turning", "type": "direction", "meaning": "the second road you can turn into (don't take the first)" },
+        { "term": "on the left", "type": "location", "meaning": "on your left-hand side" },
+        { "term": "straight ahead", "type": "location", "meaning": "directly in front of you, without turning" },
+        { "term": "just southeast of", "type": "location", "meaning": "a short way towards the bottom-right of it on the map" },
+        { "term": "to the northwest of", "type": "location", "meaning": "towards the top-left of it on the map" },
+        { "term": "slightly east of", "type": "location", "meaning": "a little to the right of it on the map" },
+        { "term": "west side", "type": "location", "meaning": "the left-hand side of a place on the map" }
+      ],
+      "sentences": [
+        { "id": "m3-1", "text": "The houses immediately to the north and south of the Post Office are very near the river.", "term": "near" },
+        { "id": "m3-2", "text": "The bridge is just beyond the final row of houses heading north.", "term": "heading north" },
+        { "id": "m3-3", "text": "After crossing the bridge, take the second turning on the left and you'll see the retirement home straight ahead.", "term": "second turning" },
+        { "id": "m3-4", "text": "After crossing the bridge, take the second turning on the left and you'll see the retirement home straight ahead.", "term": "on the left" },
+        { "id": "m3-5", "text": "After crossing the bridge, take the second turning on the left and you'll see the retirement home straight ahead.", "term": "straight ahead" },
+        { "id": "m3-6", "text": "The retirement home is just southeast of the primary school.", "term": "just southeast of" },
+        { "id": "m3-7", "text": "The post office is to the northwest of the retirement home.", "term": "to the northwest of" },
+        { "id": "m3-8", "text": "The village of Stokeford is slightly east of the River Stoke.", "term": "slightly east of" },
+        { "id": "m3-9", "text": "There is a housing estate to the west side of the retirement home.", "term": "west side" }
+      ]
+    },
+    {
+      "id": "set4",
+      "number": 4,
+      "title": "Roads and streets",
+      "place": "Granford: High Street, Station Road and School Road",
+      "image": "assets/maps/set4_granford_high_street.jpg",
+      "focus": "Which side of the road, and how roads meet.",
+      "words": [
+        { "term": "opposite", "type": "location", "meaning": "facing it on the other side of a road or space" },
+        { "term": "across the road", "type": "location", "meaning": "on the other side of the road" },
+        { "term": "same side", "type": "location", "meaning": "on the same side of the road, not across it" },
+        { "term": "before you get to", "type": "direction", "meaning": "you reach this first, then the other place" },
+        { "term": "junction", "type": "location", "meaning": "where two or more roads meet" },
+        { "term": "dead end", "type": "location", "meaning": "a road that is closed at one end — you can't go through" },
+        { "term": "leads off", "type": "location", "meaning": "starts from (branches off) another road" }
+      ],
+      "sentences": [
+        { "id": "m4-1", "text": "The chemist is opposite a supermarket.", "term": "opposite" },
+        { "id": "m4-2", "text": "They are going to build new houses across the road from the school at point G.", "term": "across the road" },
+        { "id": "m4-3", "text": "There is a supermarket on the same side of the road as the library.", "term": "same side" },
+        { "id": "m4-4", "text": "Walk west along High Street and you'll pass the library before you get to the junction with Station Road.", "term": "before you get to" },
+        { "id": "m4-5", "text": "Walk west along High Street and you'll pass the library before you get to the junction with Station Road.", "term": "junction" },
+        { "id": "m4-6", "text": "The bank is on a dead end road that leads off the High Street.", "term": "dead end" },
+        { "id": "m4-7", "text": "The bank is on a dead end road that leads off the High Street.", "term": "leads off" }
+      ]
+    },
+    {
+      "id": "set5",
+      "number": 5,
+      "title": "Around a town centre",
+      "place": "Islip town centre: planned development",
+      "image": "assets/maps/set5_islip_town_centre.jpg",
+      "focus": "Curves in the road, things side by side, and keeping going.",
+      "words": [
+        { "term": "bend", "type": "location", "meaning": "a curve in a road or river" },
+        { "term": "just past", "type": "location", "meaning": "a little after something, once you have gone by it" },
+        { "term": "alongside", "type": "location", "meaning": "next to and running the same way as something" },
+        { "term": "adjoining", "type": "location", "meaning": "joined to each other, sharing a wall" },
+        { "term": "carry straight on", "type": "direction", "meaning": "keep going forward in the same direction" }
+      ],
+      "sentences": [
+        { "id": "m5-1", "text": "The school is situated on a bend in the dual carriageway.", "term": "bend" },
+        { "id": "m5-2", "text": "The bus station is on the right just past the shopping centre.", "term": "just past" },
+        { "id": "m5-3", "text": "The town centre has a pedestrian walkway running alongside a row of adjoining shops.", "term": "alongside" },
+        { "id": "m5-4", "text": "The town centre has a pedestrian walkway running alongside a row of adjoining shops.", "term": "adjoining" },
+        { "id": "m5-5", "text": "After passing the school on your right, carry straight on and you'll see the park on your left around the next bend.", "term": "carry straight on" }
+      ]
+    }
+  ]
+}

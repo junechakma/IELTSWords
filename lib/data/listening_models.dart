@@ -163,3 +163,59 @@ class ListeningData {
 
   List<ListeningItem> ofType(ListeningType t) => [for (final i in items) if (i.type == t) i];
 }
+
+// ---------------------------------------------------------------- real exam maps
+
+/// A word from a real-map set (location or direction language).
+class MapWord {
+  const MapWord({required this.term, required this.type, required this.meaning, this.also = const []});
+  factory MapWord.fromJson(Map<String, dynamic> j) => MapWord(
+        term: j['term'] as String,
+        type: j['type'] as String? ?? 'location',
+        meaning: j['meaning'] as String,
+        also: (j['also'] as List? ?? const []).cast<String>(),
+      );
+  final String term, type, meaning;
+  final List<String> also;
+  bool get isDirection => type == 'direction';
+}
+
+/// A sample sentence on the map, teaching one [term].
+class MapSentence {
+  const MapSentence({required this.id, required this.text, required this.term});
+  factory MapSentence.fromJson(Map<String, dynamic> j) => MapSentence(id: j['id'] as String, text: j['text'] as String, term: j['term'] as String);
+  final String id, text, term;
+
+  /// (before, term as written, after) — case-insensitive split on [term].
+  (String, String, String) get parts {
+    final i = text.toLowerCase().indexOf(term.toLowerCase());
+    if (i < 0) return (text, '', '');
+    return (text.substring(0, i), text.substring(i, i + term.length), text.substring(i + term.length));
+  }
+}
+
+/// One of the 5 vocabulary sets, each on a real exam-style map image.
+class MapSet {
+  const MapSet({required this.id, required this.number, required this.title, required this.place, required this.image, required this.focus, required this.words, required this.sentences});
+  factory MapSet.fromJson(Map<String, dynamic> j) => MapSet(
+        id: j['id'] as String,
+        number: j['number'] as int,
+        title: j['title'] as String,
+        place: j['place'] as String,
+        image: j['image'] as String,
+        focus: j['focus'] as String? ?? '',
+        words: [for (final w in j['words'] as List) MapWord.fromJson(w as Map<String, dynamic>)],
+        sentences: [for (final x in j['sentences'] as List) MapSentence.fromJson(x as Map<String, dynamic>)],
+      );
+  final String id, title, place, image, focus;
+  final int number;
+  final List<MapWord> words;
+  final List<MapSentence> sentences;
+
+  MapWord? word(String term) {
+    for (final w in words) {
+      if (w.term == term) return w;
+    }
+    return null;
+  }
+}

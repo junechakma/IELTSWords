@@ -3,12 +3,95 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../data/listening_models.dart';
+import '../../library/map_set_screen.dart';
 import '../../services/speech.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/common.dart';
+import '../../widgets/shapes.dart';
 import '../questions.dart';
 import '../session_controller.dart';
 import '../session_screen.dart';
+
+// ------------------------------------------------------------ Real map gaps
+
+/// A real exam map (zoomable) and one sentence about it with the key word
+/// gapped; tap the word that fits.
+class MapGapView extends StatefulWidget {
+  const MapGapView(this.q, {super.key});
+  final MapGapQ q;
+  @override
+  State<MapGapView> createState() => _MapGapViewState();
+}
+
+class _MapGapViewState extends State<MapGapView> {
+  String? _picked;
+
+  Future<void> _pick(String o) async {
+    if (_picked != null) return;
+    setState(() => _picked = o);
+    final s = widget.q.sentence;
+    final ok = o == s.term;
+    final c = sessionOf(context);
+    await c.record(s.id, correct: ok);
+    if (!mounted) return;
+    if (ok) Speech.instance.speak(s.text);
+    final w = widget.q.set.word(s.term);
+    c.answer(ok
+        ? AnswerFeedback(Verdict.right, 'Yes — “${s.term}”', body: w?.meaning)
+        : AnswerFeedback(Verdict.wrong, 'Look at the map again', answer: s.term, body: w?.meaning));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = widget.q.sentence;
+    final (before, term, after) = s.parts;
+    return SessionFrame(
+      header: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        ExamMap(image: widget.q.set.image, height: 220),
+        const SizedBox(height: 4),
+        Text(widget.q.set.place, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+      ]),
+      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const SizedBox(height: 4),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(16, 14, 16, 14 + 12),
+          decoration: const ShapeDecoration(color: Colors.white, shape: BubbleBorder(tailAt: 30)),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Expanded(
+              child: Text.rich(TextSpan(style: const TextStyle(fontSize: 18, height: 1.45, color: AppColors.ink), children: [
+                TextSpan(text: before),
+                TextSpan(
+                  text: _picked == null ? ' ________ ' : term,
+                  style: TextStyle(fontWeight: FontWeight.w700, backgroundColor: _picked == null ? null : const Color(0xFFFDE6B0)),
+                ),
+                TextSpan(text: after),
+              ])),
+            ),
+            HearIt(_picked == null ? '$before … $after' : s.text),
+          ]),
+        ),
+        const SizedBox(height: 16),
+        Wrap(spacing: 10, runSpacing: 12, children: [
+          for (final (i, o) in widget.q.options.indexed)
+            GestureDetector(
+              onTap: () => _pick(o),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+                decoration: ShapeDecoration(
+                  color: _picked == null
+                      ? AppColors.card
+                      : (o == s.term ? const Color(0xFFE6EDCF) : (o == _picked ? const Color(0xFFFBEAE5) : AppColors.card)),
+                  shape: PebbleBorder(seed: i + 3, side: BorderSide(color: o == _picked ? AppColors.ink : Colors.transparent, width: 2)),
+                ),
+                child: Text(o, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              ),
+            ),
+        ]),
+      ]),
+    );
+  }
+}
 
 /// A "hear it" pill that speaks [text] aloud (or just shows it, if TTS is off).
 class HearIt extends StatelessWidget {

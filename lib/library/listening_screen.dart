@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/listening_models.dart';
@@ -12,7 +12,9 @@ import '../theme/app_theme.dart';
 import '../state/providers.dart';
 import '../theme/app_icons.dart';
 import '../widgets/common.dart';
+import '../widgets/shapes.dart';
 import 'listening_deck_screen.dart';
+import 'map_set_screen.dart';
 
 /// Library entry for Part F: the labelled map, every item explained, and the
 /// five listening practice modes.
@@ -28,6 +30,7 @@ class _ListeningScreenState extends ConsumerState<ListeningScreen> {
   @override
   Widget build(BuildContext context) {
     final data = ref.watch(repoProvider).listening;
+    final mapSets = ref.watch(repoProvider).mapSets;
     final items = _type == null ? data.items : data.ofType(_type!);
     return Scaffold(
       backgroundColor: AppColors.cream,
@@ -43,7 +46,42 @@ class _ListeningScreenState extends ConsumerState<ListeningScreen> {
             ]),
             const SizedBox(height: 4),
             Center(child: Text(data.subtitle, style: const TextStyle(color: AppColors.inkSoft, fontSize: 13))),
-            const SizedBox(height: 14),
+            // Real exam-style maps, one vocabulary set each.
+            if (mapSets.isNotEmpty) ...[
+              const CapsLabel('Real exam maps · 5 sets'),
+              SizedBox(
+                height: 212,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  clipBehavior: Clip.none,
+                  itemCount: mapSets.length,
+                  separatorBuilder: (_, _) => const SizedBox(width: 10),
+                  itemBuilder: (context, i) {
+                    final m = mapSets[i];
+                    return GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MapSetScreen(set: m))),
+                      child: Container(
+                        width: 210,
+                        padding: const EdgeInsets.all(10),
+                        decoration: ShapeDecoration(color: Colors.white, shape: const TicketBorder(radius: 20, notch: 9, notchAt: .66)),
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(m.image, height: 118, width: double.infinity, fit: BoxFit.cover, cacheWidth: 600),
+                          ),
+                          const SizedBox(height: 14),
+                          Text('Set ${m.number} · ${m.title}', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w700)),
+                          const SizedBox(height: 2),
+                          Text('${m.words.length} words · ${m.words.take(3).map((w) => w.term).join(', ')}…',
+                              maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12, color: AppColors.inkSoft)),
+                        ]),
+                      ),
+                    ).animate(delay: (50 * i).ms).fadeIn(duration: 250.ms).moveX(begin: 16, end: 0);
+                  },
+                ),
+              ),
+            ],
+            const CapsLabel('Practice park map'),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(22)),

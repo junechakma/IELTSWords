@@ -8,7 +8,7 @@ import 'vocab_models.dart';
 import 'word_set_models.dart';
 
 class VocabRepository {
-  VocabRepository(this.parts, {this.topics = const [], this.wordSets = const [], this.listening = ListeningData.empty}) {
+  VocabRepository(this.parts, {this.topics = const [], this.wordSets = const [], this.listening = ListeningData.empty, this.mapSets = const []}) {
     for (final t in topics) {
       for (final s in t.swaps) {
         _swaps[s.id] = s;
@@ -23,6 +23,9 @@ class VocabRepository {
   final List<SwapTopic> topics;
   final List<WordSet> wordSets;
   final ListeningData listening;
+
+  /// Real exam-style maps with their vocabulary sets.
+  final List<MapSet> mapSets;
   final _swaps = <String, Swap>{};
   final _entries = <String, VocabEntry>{};
 
@@ -40,17 +43,20 @@ class VocabRepository {
     final swapFiles = (index['swaps'] as List? ?? const []).cast<String>();
     final setsFile = index['wordSets'] as String?;
     final listeningFile = index['listening'] as String?;
-    final (parts, topicFiles, sets, listening) = await (
+    final mapSetsFile = index['mapSets'] as String?;
+    final (parts, topicFiles, sets, listening, maps) = await (
       Future.wait(partFiles.map((f) async => VocabPart.fromJson(await read(f)))),
       Future.wait(swapFiles.map(read)),
       setsFile == null ? Future.value(null) : read(setsFile),
       listeningFile == null ? Future.value(null) : read(listeningFile),
+      mapSetsFile == null ? Future.value(null) : read(mapSetsFile),
     ).wait;
     return VocabRepository(
       parts,
       topics: [for (final f in topicFiles) for (final t in f['topics'] as List) SwapTopic.fromJson(t as Map<String, dynamic>)],
       wordSets: sets == null ? const [] : [for (final s in sets['sets'] as List) WordSet.fromJson(s as Map<String, dynamic>)],
       listening: listening == null ? ListeningData.empty : ListeningData.fromJson(listening),
+      mapSets: maps == null ? const [] : [for (final m in maps['sets'] as List) MapSet.fromJson(m as Map<String, dynamic>)],
     );
   }
 

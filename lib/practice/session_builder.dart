@@ -52,6 +52,7 @@ class SessionBuilder {
       PracticeMode.matchPairs => _match(_pool(r, topic)),
       PracticeMode.buildSentence => _sentences(_pool(r, topic), n),
       PracticeMode.letterTiles => _tiles(_pool(r, topic), n),
+      PracticeMode.mapGaps => _mapGaps(r.topicId, n),
       PracticeMode.whereIsIt => [for (final q in _shuffled(repo.listening.whereIsIt).take(8)) WhereQ(q, repo.listening.map)],
       PracticeMode.pictureIt => _picture(),
       PracticeMode.followRoute => [for (final q in _shuffled(repo.listening.routes).take(5)) RouteQ(q, repo.listening.map)],
@@ -255,6 +256,16 @@ class SessionBuilder {
     // Keep the same phrase from showing twice.
     final seen = <String>{};
     return [for (final q in _shuffled(items)) if (seen.add(q.phrase)) q].take(min(n, 10)).toList();
+  }
+
+  /// Gap-fill on the real exam maps: one set (if [setId]) or a mix.
+  List<Question> _mapGaps(String? setId, int n) {
+    final sets = [for (final m in repo.mapSets) if (setId == null || m.id == setId) m];
+    final items = [for (final m in sets) for (final s in m.sentences) (m, s)];
+    return [
+      for (final (m, s) in _shuffled(items).take(setId == null ? n.clamp(5, 10) : items.length))
+        MapGapQ(m, s, _shuffled({s.term, ..._shuffled([for (final w in m.words) if (w.term != s.term) w.term]).take(3)})),
+    ];
   }
 
   // ---- game modes ----

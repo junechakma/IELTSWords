@@ -226,6 +226,16 @@ class TilesQ extends Question {
   String get tag => '${topic.shortTitle} · ${swap.slot.label}';
 }
 
+/// A sentence about a real exam map with its key word gapped.
+class MapGapQ extends Question {
+  const MapGapQ(this.set, this.sentence, this.options);
+  final MapSet set;
+  final MapSentence sentence;
+  final List<String> options;
+  @override
+  String get tag => 'Set ${set.number} · ${set.title}';
+}
+
 extension TopicTitle on SwapTopic {
   /// "Pie" for "Pie chart", "Line" for "Line graph".
   String get shortTitle => switch (id) {

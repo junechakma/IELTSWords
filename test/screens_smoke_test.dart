@@ -2,6 +2,8 @@
 // UI (Home, Library, chart/swap detail, Word sets, Listening, Progress,
 // Profile, and a live practice session) and check nothing throws. This is
 // what a manual click-through on a device would otherwise have to catch.
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +14,7 @@ import 'package:ielts_words/library/chart_screen.dart';
 import 'package:ielts_words/library/library_screen.dart';
 import 'package:ielts_words/library/listening_screen.dart';
 import 'package:ielts_words/library/listening_deck_screen.dart';
+import 'package:ielts_words/library/map_set_screen.dart';
 import 'package:ielts_words/library/swap_deck_screen.dart';
 import 'package:ielts_words/library/word_set_deck_screen.dart';
 import 'package:ielts_words/library/word_sets_screen.dart';
@@ -248,6 +251,43 @@ void main() {
     await tester.tap(find.text('⌫ Undo'));
     await _settle(tester, frames: 3);
     expect(tester.takeException(), isNull);
+  });
+
+  test('Real exam map sets: 5 sets, images exist, every sentence contains its word', () {
+    expect(repo.mapSets.length, 5);
+    for (final m in repo.mapSets) {
+      expect(File(m.image).existsSync(), isTrue, reason: m.image);
+      expect(m.words, isNotEmpty);
+      for (final s in m.sentences) {
+        expect(s.text.toLowerCase(), contains(s.term.toLowerCase()), reason: s.id);
+        expect(m.word(s.term), isNotNull, reason: '${s.id}: "${s.term}" is in the word list');
+      }
+    }
+  });
+
+  testWidgets('Map set screen, its flashcards and the gap game all work', (tester) async {
+    _phone(tester);
+    final m = repo.mapSets.first;
+    await tester.pumpWidget(_harness(MapSetScreen(set: m)));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('Set 1 · ${m.title}'), findsOneWidget);
+
+    await tester.tap(find.text('Flashcards'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.text('Tap to flip').first);
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text(m.sentences.first.term), findsWidgets);
+
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpWidget(_harness(MapSetScreen(set: m)));
+    await _settle(tester);
+    await tester.tap(find.text('Fill the gaps'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.byIcon(AppIcons.close), findsOneWidget);
   });
 
   testWidgets('Strength ladder: tap a step to see its words and example', (tester) async {

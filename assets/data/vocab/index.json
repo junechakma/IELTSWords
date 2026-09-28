@@ -13,5 +13,6 @@
     "task2_letters.json"
   ],
   "wordSets": "word_sets.json",
-  "listening": "part_f_listening_maps.json"
+  "listening": "part_f_listening_maps.json",
+  "mapSets": "listening_map_sets.json"
 }

@@ -28,7 +28,8 @@ enum PracticeMode {
   pictureIt('Picture it', 'Pick the diagram', AppColors.lilac, Mascot.shy, ModeGroup.listening),
   followRoute('Follow the route', 'Walk it on the map', Color(0xFFB9CB7C), Mascot.goofy, ModeGroup.listening),
   spellIt('Spell it', 'Spelling counts', AppColors.peach, Mascot.focused, ModeGroup.listening),
-  trapDrill('Trap drill', 'Sorry, I mean…', AppColors.blush, Mascot.anxious, ModeGroup.listening);
+  trapDrill('Trap drill', 'Sorry, I mean…', AppColors.blush, Mascot.anxious, ModeGroup.listening),
+  mapGaps('Real map gaps', 'Exam maps, fill the gap', Color(0xFF9CC7E4), Mascot.goofy, ModeGroup.listening);
 
   const PracticeMode(this.title, this.hint, this.color, this.mascot, this.group);
   final String title;
@@ -42,7 +43,7 @@ enum PracticeMode {
   /// Modes shown in the "Build the habit" grid of the quick practice sheet.
   static const habit = [speedSwipe, swapIt, matchPairs, letterTiles, buildSentence, rewrite, spotPlain, buildParagraph, describe, adjAdv, labelGraph, orderSet];
   static const side = [flashcards, meaningMatch, linkerSort, letterRegister];
-  static const listening = [whereIsIt, pictureIt, followRoute, spellIt, trapDrill];
+  static const listening = [mapGaps, whereIsIt, pictureIt, followRoute, spellIt, trapDrill];
 
   /// Modes that need a Task 1 chart.
   bool get chartOnly => this == describe || this == labelGraph;
