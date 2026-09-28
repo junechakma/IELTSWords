@@ -36,20 +36,32 @@ class _PracticeHeatmapState extends State<PracticeHeatmap> {
     final label = Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.inkSoft, fontSize: 11);
 
     return LayoutBuilder(builder: (context, c) {
-      const dayLabelW = 26.0;
-      const gap = 4.0;
-      final cell = ((c.maxWidth - dayLabelW - gap * (widget.weeks - 1)) / widget.weeks).floorToDouble();
+      const dayLabelW = 30.0;
+      const gap = 3.0;
+      // Fit the grid to the width, but never below a tappable cell size;
+      // when it doesn't fit, the grid scrolls sideways and opens at today.
+      final fitted = ((c.maxWidth - dayLabelW - gap * (widget.weeks - 1)) / widget.weeks).floorToDouble();
+      final cell = fitted < 13 ? 14.0 : fitted;
+      final scrolls = fitted < 13;
 
       final columns = <Widget>[];
       final monthLabels = <Widget>[];
-      int? lastMonth;
+      var lastLabelAt = -99;
       for (var w = 0; w < widget.weeks; w++) {
         final weekStart = firstMonday.add(Duration(days: w * 7));
-        final showMonth = weekStart.month != lastMonth && weekStart.day <= 7 || w == 0;
-        lastMonth = weekStart.month;
+        final newMonth = w == 0 || weekStart.day <= 7;
+        // Keep at least 3 weeks between labels so they never collide.
+        final showMonth = newMonth && w - lastLabelAt >= 3 && w < widget.weeks - 1;
+        if (showMonth) lastLabelAt = w;
         monthLabels.add(SizedBox(
           width: cell + (w == widget.weeks - 1 ? 0 : gap),
-          child: showMonth ? Text(_months[weekStart.month - 1], style: label, overflow: TextOverflow.visible, softWrap: false) : null,
+          child: showMonth
+              ? OverflowBox(
+                  alignment: Alignment.centerLeft,
+                  maxWidth: 40,
+                  child: Text(_months[weekStart.month - 1], style: label, softWrap: false),
+                )
+              : null,
         ));
 
         columns.add(Padding(
@@ -70,10 +82,10 @@ class _PracticeHeatmapState extends State<PracticeHeatmap> {
                       margin: EdgeInsets.only(bottom: d == 6 ? 0 : gap),
                       decoration: BoxDecoration(
                         color: future ? Colors.transparent : AppColors.heat[lvl],
-                        borderRadius: BorderRadius.circular(cell * .3),
+                        borderRadius: BorderRadius.circular(cell * .28),
                         border: isToday || day == _selected ? Border.all(color: AppColors.ink, width: 1.4) : null,
                       ),
-                    ).animate(delay: (w * 18).ms).fadeIn(duration: 300.ms).scaleXY(begin: .6, end: 1, curve: Curves.easeOutBack),
+                    ),
                   );
                 }),
             ],
@@ -81,28 +93,42 @@ class _PracticeHeatmapState extends State<PracticeHeatmap> {
         ));
       }
 
+      final grid = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 16, child: Row(children: monthLabels)),
+          const SizedBox(height: 4),
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: columns),
+        ],
+      ).animate().fadeIn(duration: 350.ms);
+
+      final dayLabels = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          for (var d = 0; d < 7; d++)
+            SizedBox(
+              height: cell + (d == 6 ? 0 : gap),
+              child: d.isEven ? Align(alignment: Alignment.centerLeft, child: Text(_days[d], style: label?.copyWith(height: 1))) : null,
+            ),
+        ],
+      );
+
       final sel = _selected ?? today;
       final selWords = widget.wordsOn(sel);
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(padding: const EdgeInsets.only(left: dayLabelW), child: Row(children: monthLabels)),
-          const SizedBox(height: 6),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: dayLabelW,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (var d = 0; d < 7; d++)
-                      SizedBox(height: cell + (d == 6 ? 0 : gap), child: d.isEven ? Text(_days[d], style: label) : null),
-                  ],
-                ),
+              SizedBox(width: dayLabelW, child: dayLabels),
+              Expanded(
+                child: scrolls
+                    ? SingleChildScrollView(scrollDirection: Axis.horizontal, reverse: true, child: grid)
+                    : grid,
               ),
-              ...columns,
             ],
           ),
           const SizedBox(height: 14),
