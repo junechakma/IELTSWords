@@ -80,4 +80,23 @@ class Activity {
   }
 
   int get total => byDay.values.fold(0, (a, b) => a + b);
+
+  /// Days in a row with practice, ending today (or yesterday if today is
+  /// still empty, so the streak doesn't drop before you've practised).
+  int streak({DateTime? today}) {
+    var d = today ?? DateTime.now();
+    if (wordsOn(d) == 0) d = d.subtract(const Duration(days: 1));
+    var n = 0;
+    while (wordsOn(d) > 0) {
+      n++;
+      d = d.subtract(const Duration(days: 1));
+    }
+    return n;
+  }
+
+  /// Words practised in the last 7 days, today included.
+  int lastWeek({DateTime? today}) {
+    final t = today ?? DateTime.now();
+    return [for (var i = 0; i < 7; i++) wordsOn(t.subtract(Duration(days: i)))].fold(0, (a, b) => a + b);
+  }
 }

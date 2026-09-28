@@ -12,14 +12,16 @@ import '../practice/practice_mode.dart';
 import '../practice/session_builder.dart';
 import '../practice/session_screen.dart';
 import '../progress/spaced_repetition.dart';
+import 'progress_charts.dart';
 import '../state/providers.dart';
 import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/pressable.dart';
 
-/// Year heatmap, mastery bars (New · Seen · Using · Natural), saved swaps and
-/// progress per chart / essay / letter type. Everything is read from
+/// Streak, learned, mistakes and right-answer stats, today's review, the
+/// practice heatmap, how-well-you-know-it bars, most-missed words, saved swaps
+/// and progress per chart / essay / letter type. Everything is read from
 /// providers, so it updates the moment a practice answer is recorded.
 class ProgressScreen extends ConsumerWidget {
   const ProgressScreen({super.key});
@@ -33,6 +35,44 @@ class ProgressScreen extends ConsumerWidget {
     final counts = ref.watch(masteryCountsProvider);
     final total = repo.totalSwaps;
     final saved = [for (final id in progress.saved) if (repo.swap(id) != null) repo.swap(id)!];
+    final today = ref.watch(clockProvider)();
+
+    // Every answer ever recorded (swaps, word sets, listening).
+    var answers = 0, mistakes = 0;
+    for (final p in progress.items.values) {
+      answers += p.seen;
+      mistakes += p.wrong;
+    }
+    final rightPct = answers == 0 ? null : ((answers - mistakes) * 100 / answers).round();
+    final due = progress.dueIds(ref.watch(allSwapIdsProvider));
+    final missed = [for (final s in repo.allSwaps) if (progress.of(s.id).wrong > 0) s]
+      ..sort((a, b) => progress.of(b.id).wrong.compareTo(progress.of(a.id).wrong));
+    final topMissed = missed.take(5).toList();
+
+    // Last 7 days of practice, and reviews coming up in the next 7 (anything
+    // overdue counts as today).
+    final day0 = SpacedRepetition.dayOf(today);
+    final week = [for (var i = 6; i >= 0; i--) day0.subtract(Duration(days: i))];
+    final ahead = [for (var i = 0; i < 7; i++) day0.add(Duration(days: i))];
+    final reviews = List.filled(7, 0);
+    for (final s in repo.allSwaps) {
+      final d = progress.of(s.id).due;
+      if (d == null) continue;
+      final i = SpacedRepetition.dayOf(d).difference(day0).inDays;
+      if (i < 7) reviews[i < 0 ? 0 : i]++;
+    }
+
+    // Wrong answers grouped by topic and by paragraph part.
+    MistakeRow rowOf(String label, Iterable<String> ids) {
+      var a = 0, w = 0;
+      for (final id in ids) {
+        a += progress.of(id).seen;
+        w += progress.of(id).wrong;
+      }
+      return MistakeRow(label, a, w);
+    }
+    final byTopic = [for (final t in repo.topics) rowOf(t.title, [for (final s in t.swaps) s.id])];
+    final byPart = [for (final slot in Slot.values) rowOf(slot.label, [for (final s in repo.allSwaps) if (s.slot == slot) s.id])];
 
     return SafeArea(
       bottom: false,
@@ -42,14 +82,39 @@ class ProgressScreen extends ConsumerWidget {
           Text('Progress', style: t.headlineMedium),
           const SizedBox(height: 16),
 
-          // Headline numbers — no scores, just what you've done.
           Row(children: [
-            Expanded(child: _Stat(value: '${activity.daysPractised()}', label: 'days practised', color: AppColors.sunflowerSoft)),
+            Expanded(child: _Stat(value: '${activity.streak(today: today)}', label: 'day streak\nin a row', color: AppColors.sunflowerSoft)),
             const SizedBox(width: 8),
-            Expanded(child: _Stat(value: '${activity.total}', label: 'swaps practised', color: AppColors.lilac)),
-            const SizedBox(width: 8),
-            Expanded(child: _Stat(value: '${counts[Mastery.natural] ?? 0}', label: 'feel natural', color: const Color(0xFFD8E4B0))),
+            Expanded(child: _Stat(value: '${counts[Mastery.natural] ?? 0}', label: 'words learned\nof $total', color: const Color(0xFFD8E4B0))),
           ]).animate().fadeIn(duration: 300.ms).moveY(begin: 8, end: 0),
+          const SizedBox(height: 8),
+          Row(children: [
+            Expanded(child: _Stat(value: '$mistakes', label: 'mistakes\nin total', color: AppColors.blush)),
+            const SizedBox(width: 8),
+            Expanded(child: _Stat(value: rightPct == null ? '–' : '$rightPct%', label: 'answers right\n$answers answered', color: AppColors.lilac)),
+          ]).animate().fadeIn(duration: 300.ms, delay: 80.ms).moveY(begin: 8, end: 0),
+          const SizedBox(height: 12),
+
+          Pressable(
+            onTap: () => startPractice(context, const SessionRequest(PracticeMode.review)),
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+              decoration: BoxDecoration(color: AppColors.ink, borderRadius: BorderRadius.circular(22)),
+              child: Row(children: [
+                const Icon(AppIcons.timer, color: Colors.white),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(due.isEmpty ? 'Nothing to review today' : '${due.length} words to review today',
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
+                    Text(due.isEmpty ? 'Come back tomorrow, or practise something new' : 'Review now so you don\'t forget them',
+                        style: const TextStyle(fontSize: 12.5, color: Colors.white70)),
+                  ]),
+                ),
+                const Icon(AppIcons.chevron, color: Colors.white),
+              ]),
+            ),
+          ),
           const SizedBox(height: 12),
 
           Container(
@@ -58,11 +123,29 @@ class ProgressScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('This year', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                const SizedBox(height: 10),
+                const Text('Days you practised', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 2, bottom: 10),
+                  child: Text('${activity.lastWeek(today: today)} words this week · ${activity.daysPractised(today: today)} days this year',
+                      style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+                ),
                 PracticeHeatmap(wordsOn: activity.wordsOn, weeks: 36),
               ],
             ),
+          ),
+          const SizedBox(height: 12),
+
+          ChartCard(
+            title: 'Last 7 days',
+            subtitle: 'Words practised each day · tap a bar',
+            child: DayBars(values: [for (final d in week) activity.wordsOn(d)], labels: [for (final d in week) dayLabel(d, today)], color: AppColors.olive, unit: 'words', highlight: 6),
+          ),
+          const SizedBox(height: 12),
+
+          ChartCard(
+            title: 'Coming reviews',
+            subtitle: 'Words due for review in the next 7 days',
+            child: DayBars(values: reviews, labels: [for (final d in ahead) dayLabel(d, today)], color: AppColors.sunflower, unit: 'due'),
           ),
           const SizedBox(height: 12),
 
@@ -72,15 +155,62 @@ class ProgressScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Mastery', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600)),
+                const Text('How well you know your words', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600)),
                 Padding(
                   padding: const EdgeInsets.only(top: 2, bottom: 14),
-                  child: Text('How natural the $total Band 8 swaps feel', style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+                  child: Text('All $total Band 8 words, grouped by how well you know them', style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
                 ),
                 Row(children: [for (final (i, m) in Mastery.values.indexed) Expanded(child: _MasteryBar(m, counts[m] ?? 0, total, delay: i * 90))]),
               ],
             ),
           ),
+
+          const SizedBox(height: 12),
+          ChartCard(
+            title: 'Where you make mistakes',
+            subtitle: 'Share of your answers that were wrong, worst first',
+            child: MistakeBars(groups: {'By topic': byTopic, 'By paragraph part': byPart}),
+          ),
+
+          if (topMissed.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+              decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(24)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Words you often get wrong', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600)),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 2, bottom: 10),
+                    child: Text('Plain word → Band 8 word', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+                  ),
+                  for (final s in topMissed)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: Row(children: [
+                        Expanded(
+                          child: Text.rich(TextSpan(children: [
+                            TextSpan(text: s.plain, style: const TextStyle(color: AppColors.inkSoft)),
+                            const TextSpan(text: '  →  '),
+                            TextSpan(text: s.formal.first, style: const TextStyle(fontWeight: FontWeight.w600)),
+                          ]), style: const TextStyle(fontSize: 14.5)),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(color: AppColors.blush, borderRadius: BorderRadius.circular(10)),
+                          child: Text('${progress.of(s.id).wrong}× wrong', style: const TextStyle(fontSize: 12, color: AppColors.rust, fontWeight: FontWeight.w600)),
+                        ),
+                      ]),
+                    ),
+                  const SizedBox(height: 10),
+                  PillButton('Practise these ${missed.length > 20 ? 20 : missed.length}',
+                      height: 46,
+                      onTap: () => startPractice(context, SessionRequest(PracticeMode.fillGap, swapIds: [for (final s in missed.take(20)) s.id], size: missed.length.clamp(1, 20)))),
+                ],
+              ),
+            ),
+          ],
 
           if (saved.isNotEmpty) ...[
             const SizedBox(height: 12),
@@ -109,9 +239,6 @@ class ProgressScreen extends ConsumerWidget {
               CapsLabel(label, padding: const EdgeInsets.fromLTRB(2, 20, 0, 8)),
               for (final topic in repo.topicsFor(kind)) _TopicRow(topic),
             ],
-
-          const SizedBox(height: 16),
-          PillButton('Start a review session', onTap: () => startPractice(context, const SessionRequest(PracticeMode.review))),
         ],
       ),
     );
@@ -215,7 +342,9 @@ class _MasteryBar extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Text(mastery.label, style: const TextStyle(fontSize: 13.5)),
+          Text(mastery.label, style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600)),
+          const SizedBox(height: 2),
+          Text(mastery.hint, textAlign: TextAlign.center, style: const TextStyle(fontSize: 11, height: 1.2, color: AppColors.inkSoft)),
         ],
       ),
     );

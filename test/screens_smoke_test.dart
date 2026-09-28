@@ -401,9 +401,11 @@ void main() {
     await tester.pumpWidget(_harness(const ProgressScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
-    expect(find.text('Mastery'), findsOneWidget);
-    await tester.scrollUntilVisible(find.text('Start a review session'), 300, scrollable: find.byType(Scrollable).first);
-    expect(find.text('Start a review session'), findsOneWidget);
+    expect(find.text('Nothing to review today'), findsOneWidget);
+    expect(find.text('day streak\nin a row'), findsOneWidget);
+    expect(find.text('mistakes\nin total'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('How well you know your words'), 300, scrollable: find.byType(Scrollable).first);
+    expect(find.text('Learned'), findsOneWidget);
   });
 
   testWidgets('Recording answers updates Progress, Library and Home live (Riverpod)', (tester) async {
@@ -420,7 +422,9 @@ void main() {
     await container.read(activityProvider.notifier).recordPractice(3);
     await _settle(tester);
     expect(tester.takeException(), isNull);
-    expect(find.text('3'), findsWidgets); // swaps practised + Seen bar
+    expect(find.text('answers right\n3 answered'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('3 words'), 300, scrollable: find.byType(Scrollable).first);
+    expect(find.text('3 words'), findsOneWidget); // today's bar in "Last 7 days"
     expect(container.read(topicStatsProvider(chart.id)).seen, 3);
 
     // Profile changes flow to Home's greeting.

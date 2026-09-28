@@ -228,7 +228,7 @@ Widget _swapBack(BuildContext context, Swap s, SwapTopic topic) {
                     children: [
                       MasteryDot(m),
                       const SizedBox(width: 8),
-                      Text(m.label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                      Flexible(child: Text(m.label, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500))),
                     ],
                   );
                 },

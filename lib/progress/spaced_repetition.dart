@@ -1,13 +1,16 @@
 /// Leitner boxes: correct moves up a box (review after 1, 2, 4, 7, 15 days),
 /// wrong drops to box 1.
 enum Mastery {
-  newItem('New'),
-  seen('Seen'),
-  using('Using'),
-  natural('Natural');
+  newItem('Not tried', 'Not practised yet'),
+  seen('Learning', 'Seen, still new'),
+  using('Almost', 'Mostly right'),
+  natural('Learned', 'You know it');
 
-  const Mastery(this.label);
+  const Mastery(this.label, this.hint);
   final String label;
+
+  /// One-line plain-English meaning, shown under the label.
+  final String hint;
 }
 
 class ItemProgress {
