@@ -57,74 +57,171 @@ class _ChartScreenState extends ConsumerState<ChartScreen> {
   Widget build(BuildContext context) {
     final stats = ref.watch(topicStatsProvider(t.id));
 
+    final top = MediaQuery.paddingOf(context).top;
+
     return Scaffold(
       backgroundColor: AppColors.cream,
-      body: Column(
-        children: [
-          // Coloured header band with a wavy edge (prototype chart screen).
-          ClipPath(
-            clipper: const WaveClipper(),
-            child: Container(
+      // The coloured header collapses into a slim bar as you scroll, and the
+      // tab row stays pinned under it, so the content gets the screen.
+      body: NestedScrollView(
+        headerSliverBuilder: (context, _) => [
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _HeaderDelegate(
+              topPadding: top,
               color: topicColor(t.id),
-              padding: EdgeInsets.fromLTRB(16, MediaQuery.paddingOf(context).top + 8, 16, 38),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const BackPill(),
-                  const SizedBox(height: 6),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(t.task.label, style: TextStyle(fontSize: 13, color: AppColors.ink.withValues(alpha: .7))),
-                            Text(t.title, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w600, height: 1.1)),
-                            const SizedBox(height: 6),
-                            Text('${stats.total} swaps · ${stats.natural} natural · ${stats.percent}% in use', style: const TextStyle(fontSize: 14)),
-                          ],
-                        ),
-                      ),
-                      MascotImage(Mascot.byName(t.mascot), size: 108, sticker: true, idle: true),
-                    ],
-                  ),
-                ],
-              ),
+              title: t.title,
+              caption: t.task.label,
+              stats: '${stats.total} swaps · ${stats.natural} natural · ${stats.percent}% in use',
+              mascot: Mascot.byName(t.mascot),
             ),
           ),
-          SizedBox(
-            height: 42,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              scrollDirection: Axis.horizontal,
-              child: Row(children: [
-                for (final (i, (label, _)) in _tabs.indexed)
-                  Padding(
-                    key: _tabKeys[i],
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ChoiceChipPill(label, selected: _tab == i, onTap: () => _select(i)),
-                  ),
-              ]),
-            ),
-          ),
-          Expanded(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 220),
-              child: KeyedSubtree(
-                key: ValueKey(_tab),
-                child: switch (_tabs[_tab]) {
-                  ('Learn', null) => _LearnTab(topic: t),
-                  (_, null) => _AnswerTab(topic: t, onSlot: _goToSlot),
-                  (_, final Slot slot) => _SlotTab(topic: t, slot: slot, onSlot: _goToSlot),
-                },
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _TabsDelegate(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                child: Row(children: [
+                  for (final (i, (label, _)) in _tabs.indexed)
+                    Padding(
+                      key: _tabKeys[i],
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChipPill(label, selected: _tab == i, onTap: () => _select(i)),
+                    ),
+                ]),
               ),
             ),
           ),
         ],
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 220),
+          child: KeyedSubtree(
+            key: ValueKey(_tab),
+            child: switch (_tabs[_tab]) {
+              ('Learn', null) => _LearnTab(topic: t),
+              (_, null) => _AnswerTab(topic: t, onSlot: _goToSlot),
+              (_, final Slot slot) => _SlotTab(topic: t, slot: slot, onSlot: _goToSlot),
+            },
+          ),
+        ),
       ),
     );
   }
+}
+
+// ------------------------------------------------------------ Collapsing header
+
+/// Coloured header: big title, stats and a large character when expanded;
+/// shrinks to a slim bar with the title beside the back button when
+/// scrolled. The wavy edge flattens as it collapses.
+class _HeaderDelegate extends SliverPersistentHeaderDelegate {
+  _HeaderDelegate({required this.topPadding, required this.color, required this.title, required this.caption, required this.stats, required this.mascot});
+  final double topPadding;
+  final Color color;
+  final String title, caption, stats;
+  final Mascot mascot;
+
+  @override
+  double get maxExtent => topPadding + 206;
+  @override
+  double get minExtent => topPadding + 66;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final t = (shrinkOffset / (maxExtent - minExtent)).clamp(0.0, 1.0);
+    final big = 1 - Curves.easeOut.transform(t);
+    return ClipPath(
+      clipper: _WaveClip(depth: 26 * (1 - t)),
+      child: Container(
+        color: color,
+        padding: EdgeInsets.fromLTRB(16, topPadding + 8, 16, 0),
+        child: Stack(children: [
+          // Big content (fades and slides up as it collapses).
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 50 - 30 * t,
+            child: Opacity(
+              opacity: big,
+              child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(caption, style: TextStyle(fontSize: 13, color: AppColors.ink.withValues(alpha: .7))),
+                    Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w600, height: 1.1)),
+                    const SizedBox(height: 6),
+                    Text(stats, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 14)),
+                  ]),
+                ),
+                Transform.scale(scale: .6 + .4 * big, alignment: Alignment.bottomRight, child: MascotImage(mascot, size: 104, sticker: true, idle: true)),
+              ]),
+            ),
+          ),
+          // Slim bar: back button + title appears as it collapses.
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            child: Row(children: [
+              const BackPill(),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Opacity(
+                  opacity: Curves.easeIn.transform(t),
+                  child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w600)),
+                ),
+              ),
+              Opacity(opacity: Curves.easeIn.transform(t), child: MascotImage(mascot, size: 40)),
+            ]),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(_HeaderDelegate old) => old.stats != stats || old.title != title || old.topPadding != topPadding;
+}
+
+/// Wavy bottom edge whose depth shrinks to flat as the header collapses.
+class _WaveClip extends CustomClipper<Path> {
+  const _WaveClip({required this.depth});
+  final double depth;
+  @override
+  Path getClip(Size size) {
+    final h = size.height, w = size.width, d = depth;
+    return Path()
+      ..lineTo(0, h - d)
+      ..cubicTo(w * .22, h - d * .1, w * .38, h - d * 1.6, w * .6, h - d)
+      ..cubicTo(w * .78, h - d * .5, w * .9, h - d * .55, w, h - d * 1.05)
+      ..lineTo(w, 0)
+      ..close();
+  }
+
+  @override
+  bool shouldReclip(_WaveClip old) => old.depth != depth;
+}
+
+/// Pinned tab row with breathing room above and below.
+class _TabsDelegate extends SliverPersistentHeaderDelegate {
+  _TabsDelegate({required this.child});
+  final Widget child;
+
+  @override
+  double get maxExtent => 62;
+  @override
+  double get minExtent => 62;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) => Container(
+        color: AppColors.cream,
+        padding: const EdgeInsets.only(top: 8, bottom: 12),
+        alignment: Alignment.centerLeft,
+        child: SizedBox(height: 42, child: child),
+      );
+
+  @override
+  bool shouldRebuild(_TabsDelegate old) => true;
 }
 
 // ------------------------------------------------------------ Learn tab
