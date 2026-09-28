@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../mascots/mascot.dart';
+import '../mascots/mascot_image.dart';
+import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
 
+/// Upword splash: the buddy pops in above the wordmark and tagline.
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.onDone});
 
@@ -24,23 +28,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.cream,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Logo(size: 50)
-                .animate()
-                .fadeIn(duration: 500.ms)
-                .scaleXY(begin: .92, end: 1, duration: 600.ms, curve: Curves.easeOutBack),
-            const SizedBox(height: 16),
-            Text.rich(
-              TextSpan(children: [
-                const TextSpan(text: 'Writing words for '),
-                TextSpan(text: 'Band 7+', style: AppTheme.poppins(size: 14, weight: FontWeight.w400, color: AppColors.rust)),
-              ]),
-              style: AppTheme.poppins(size: 14, weight: FontWeight.w400),
-            ).animate(delay: 350.ms).fadeIn(duration: 500.ms).moveY(begin: 6, end: 0),
+            Container(
+              width: 150,
+              height: 150,
+              decoration: const BoxDecoration(color: AppColors.lilac, shape: BoxShape.circle),
+              alignment: Alignment.center,
+              child: const MascotImage(Mascot.delighted, size: 118, sticker: true, idle: true),
+            ).animate().scaleXY(begin: .5, end: 1, duration: 650.ms, curve: Curves.elasticOut),
+            const SizedBox(height: 22),
+            const Logo(size: 46).animate(delay: 200.ms).fadeIn(duration: 450.ms).moveY(begin: 8, end: 0),
+            const SizedBox(height: 10),
+            Text('Upgrade every word.', style: AppTheme.poppins(size: 15, weight: FontWeight.w400, color: AppColors.inkSoft))
+                .animate(delay: 450.ms)
+                .fadeIn(duration: 450.ms),
           ],
         ),
       ),
@@ -48,41 +53,28 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-/// "IELTS / Words" wordmark with a halo over the I, as in mockup 5.
+/// The "Upword" wordmark: one word, with a small rising-arrow badge riding
+/// on its shoulder.
 class Logo extends StatelessWidget {
-  const Logo({super.key, this.size = 50, this.color = AppColors.ink, this.singleLine = false});
+  const Logo({super.key, this.size = 46, this.color = AppColors.ink});
 
   final double size;
   final Color color;
-  final bool singleLine;
 
   @override
   Widget build(BuildContext context) {
-    final style = AppTheme.poppins(size: size, weight: FontWeight.w600, color: color).copyWith(height: 1.02, letterSpacing: -0.5);
-    final halo = Container(
-      width: size * .62,
-      height: size * .14,
-      decoration: BoxDecoration(
-        border: Border.all(color: color, width: size * .045),
-        borderRadius: const BorderRadius.all(Radius.elliptical(40, 10)),
+    final style = AppTheme.poppins(size: size, weight: FontWeight.w700, color: color).copyWith(height: 1, letterSpacing: -1);
+    return Row(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text('Upword', style: style),
+      Transform.translate(
+        offset: Offset(size * .02, -size * .12),
+        child: Container(
+          width: size * .44,
+          height: size * .44,
+          decoration: const BoxDecoration(color: AppColors.sunflower, shape: BoxShape.circle),
+          child: Icon(AppIcons.trendUp, size: size * .28, color: AppColors.ink),
+        ).animate(onPlay: (c) => c.repeat(reverse: true)).moveY(begin: 0, end: -size * .08, duration: 1200.ms, curve: Curves.easeInOut),
       ),
-    )
-        .animate(onPlay: (c) => c.repeat(reverse: true))
-        .moveY(begin: 0, end: -size * .05, duration: 1400.ms, curve: Curves.easeInOut);
-
-    final firstLine = Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Text(singleLine ? 'IELTS Words' : 'IELTS', style: style),
-        Positioned(left: size * -.12, top: size * -.06, child: halo),
-      ],
-    );
-
-    if (singleLine) return firstLine;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [firstLine, Text('Words', style: style)],
-    );
+    ]);
   }
 }

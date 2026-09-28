@@ -185,7 +185,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          const Center(child: Text('IELTS Words · 1.0.0', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
+          const Center(child: Text('Upword · 1.0.0 · Upgrade every word.', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
         ],
       ),
     );

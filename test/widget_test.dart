@@ -19,7 +19,7 @@ void main() {
     addTearDown(container.dispose);
 
     await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const IeltsWordsApp()));
-    expect(find.textContaining('Band 7+', findRichText: true), findsOneWidget);
+    expect(find.text('Upgrade every word.'), findsOneWidget);
 
     await tester.pump(const Duration(milliseconds: 2300));
     await tester.pump(const Duration(milliseconds: 500));

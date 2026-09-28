@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="ielts_words"
+        android:label="Upword"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

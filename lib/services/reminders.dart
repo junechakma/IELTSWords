@@ -48,7 +48,7 @@ class Reminders {
       if (!at.isAfter(now)) at = at.add(const Duration(days: 1));
       await _plugin.zonedSchedule(
         id: 1,
-        title: 'IELTS Words',
+        title: 'Upword',
         body: 'A few swaps today? shows → illustrates, went up → rose sharply.',
         scheduledDate: tz.TZDateTime.from(at.toUtc(), tz.UTC),
         matchDateTimeComponents: DateTimeComponents.time,

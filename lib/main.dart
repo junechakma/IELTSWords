@@ -30,7 +30,7 @@ class IeltsWordsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'IELTS Words',
+      title: 'Upword',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       home: const _Root(),
