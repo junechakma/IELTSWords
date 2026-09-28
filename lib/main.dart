@@ -64,16 +64,14 @@ class _RootState extends State<_Root> {
 
   @override
   Widget build(BuildContext context) {
+    // Onboarding is a short, beautiful intro shown on every launch (not a
+    // one-off setup step) — name, buddy and other settings live in Profile
+    // instead. `--dart-define=SKIP_INTRO=true` bypasses both for dev preview.
     final child = switch (_stage) {
-      _Stage.splash => SplashScreen(
-          onDone: () => setState(() => _stage = widget.store.onboarded ? _Stage.app : _Stage.onboarding),
-        ),
+      _Stage.splash => SplashScreen(onDone: () => setState(() => _stage = _Stage.onboarding)),
       _Stage.onboarding => OnboardingScreen(
-          totalWords: widget.repo.totalWords,
-          onDone: () async {
-            await widget.store.completeOnboarding();
-            setState(() => _stage = _Stage.app);
-          },
+          repo: widget.repo,
+          onDone: () => setState(() => _stage = _Stage.app),
         ),
       _Stage.app => const AppShell(),
     };

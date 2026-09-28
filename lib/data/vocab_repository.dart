@@ -133,4 +133,15 @@ class VocabRepository {
     final dayIndex = DateTime(day.year, day.month, day.day).difference(DateTime(2026)).inDays;
     return withWords[dayIndex % withWords.length];
   }
+
+  /// [count] swaps for the onboarding "word of the day" cards. Deterministic
+  /// and stable (same id order every run) so the same day always shows the
+  /// same words, and moves on to a new group tomorrow.
+  List<Swap> wordsOfTheDay(DateTime day, {int count = 3}) {
+    final pool = allSwaps.toList()..sort((a, b) => a.id.compareTo(b.id));
+    if (pool.length <= count) return pool;
+    final dayIndex = DateTime(day.year, day.month, day.day).difference(DateTime(2026)).inDays;
+    final start = (dayIndex * count) % pool.length;
+    return [for (var i = 0; i < count; i++) pool[(start + i) % pool.length]];
+  }
 }

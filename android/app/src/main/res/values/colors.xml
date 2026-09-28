@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App cream background (theme/app_theme.dart AppColors.cream), shown
+         behind the native launch screen before Flutter draws its first frame. -->
+    <color name="launch_background">#F3F0EA</color>
+</resources>

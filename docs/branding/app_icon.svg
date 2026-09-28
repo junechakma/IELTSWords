@@ -1,0 +1,7 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- IELTS Words app icon: sunflower background, bold "W", and a halo ring
+       echoing the splash screen's haloed wordmark. -->
+  <rect x="0" y="0" width="512" height="512" rx="92" ry="92" fill="#FBB92C"/>
+  <circle cx="366" cy="126" r="34" fill="none" stroke="#1D1D1D" stroke-width="13"/>
+  <text x="256" y="336" text-anchor="middle" font-family="Poppins, 'Segoe UI', sans-serif" font-weight="700" font-size="272" fill="#1D1D1D">W</text>
+</svg>

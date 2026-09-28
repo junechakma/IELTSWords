@@ -14,6 +14,7 @@ import 'package:ielts_words/library/library_screen.dart';
 import 'package:ielts_words/library/listening_screen.dart';
 import 'package:ielts_words/library/swap_detail_screen.dart';
 import 'package:ielts_words/library/word_sets_screen.dart';
+import 'package:ielts_words/onboarding/onboarding_screen.dart';
 import 'package:ielts_words/practice/practice_mode.dart';
 import 'package:ielts_words/practice/quick_practice_sheet.dart';
 import 'package:ielts_words/practice/session_builder.dart';
@@ -60,6 +61,40 @@ void main() {
     repo = await loadFromDisk();
     store = await AppStore.load();
     progress = await ProgressStore.load();
+  });
+
+  testWidgets('Onboarding shows a word of the day and Start reaches Home', (tester) async {
+    var done = false;
+    await tester.pumpWidget(MaterialApp(
+      theme: AppTheme.light(),
+      home: OnboardingScreen(repo: repo, onDone: () => done = true),
+    ));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('Swap plain words for Band 8'), findsOneWidget);
+    expect(find.text('WORD OF THE DAY'), findsOneWidget);
+
+    // Swipe through to the last slide.
+    await tester.tap(find.text('Next'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('WORD OF THE DAY'), findsOneWidget);
+    await tester.tap(find.text('Next'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+
+    expect(find.text('Start'), findsOneWidget);
+    await tester.tap(find.text('Start'));
+    await _settle(tester);
+    expect(done, isTrue);
+  });
+
+  testWidgets('Onboarding word of the day rotates with the day', (tester) async {
+    final today = repo.wordsOfTheDay(DateTime(2026, 1, 1));
+    final tomorrow = repo.wordsOfTheDay(DateTime(2026, 1, 2));
+    expect(today, isNotEmpty);
+    // Different day -> a different group (given the swap pool is far bigger than 3).
+    expect(today.map((s) => s.id), isNot(equals(tomorrow.map((s) => s.id))));
   });
 
   testWidgets('Home renders with no exceptions and a Start button', (tester) async {
