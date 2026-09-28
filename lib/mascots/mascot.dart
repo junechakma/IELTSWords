@@ -38,6 +38,27 @@ enum Mascot {
 
   String get asset => 'assets/mascots/$file.png';
 
+  /// Enum name as used in the JSON data ("excited", "proud"…); falls back to thinking.
+  static Mascot byName(String? name) => values.asNameMap()[name] ?? thinking;
+
+  /// Label for the profile ("Delighted").
+  String get label => name[0].toUpperCase() + name.substring(1);
+
+  // Mood lookups (PLAN.md section 4).
+  static const correct = [delighted, joyful, cheerful];
+  static const wrong = [confused, nervous];
+  static const finished = [proud, ecstatic];
+  static const perfect = excited;
+  static const loading = thinking;
+  static const empty = [relaxed, bored];
+  static const noResults = shocked;
+  static const settings = calm;
+  static const flashcardBack = focused;
+  static const reset = scared;
+  static const spotThePlain = surprised;
+
+  static Mascot pick(List<Mascot> from, [int seed = 0]) => from[seed.abs() % from.length];
+
   static Mascot forSection(String code) => switch (code) {
         'A1' => friendly,
         'A2' => excited,

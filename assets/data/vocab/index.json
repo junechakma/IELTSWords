@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "source": "ielts-writing-vocabulary.md",
   "parts": [
     "part_a_task_1.json",
@@ -7,5 +7,11 @@
     "part_c_linkers.json",
     "part_d_essay_phrases.json",
     "part_e_letters.json"
-  ]
+  ],
+  "swaps": [
+    "task1_by_chart.json",
+    "task2_letters.json"
+  ],
+  "wordSets": "word_sets.json",
+  "listening": "part_f_listening_maps.json"
 }

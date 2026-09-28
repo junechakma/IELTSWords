@@ -327,7 +327,7 @@ Packages: `google_fonts`, `shared_preferences`, `flutter_animate`. Required from
 | 1 ✅ | Theme, mascot helper, JSON data + tests | all sections and counts load |
 | 2 ✅ | Splash + 3 onboarding slides | runs on simulator |
 | 3 ✅ | Home (today card, heatmap, sections board, quick practice) + bottom nav | runs on simulator |
-| 3b | **Content:** write `task1_by_chart.json` (swaps for all 7 chart types × 4 slots, incl. new map + process vocab, plus one annotated sample per chart) and `word_sets.json` (trend scales, topic nouns); tests | every chart has a Learn sample and intro, overview and body swaps |
+| 3b ✅ | **Content:** write `task1_by_chart.json` (swaps for all 7 chart types × 4 slots, incl. new map + process vocab, plus one annotated sample per chart) and `word_sets.json` (trend scales, topic nouns); tests | every chart has a Learn sample and intro, overview and body swaps. *Done: 194 swaps (27–29 per chart), each with 2–3 traps, a grammar hint and a tip; one annotated sample + 8–11 labels, 8–10 Describe items, 7–8 Rewrites and a full 170–200-word model answer per chart (built sentence by sentence). 30 word sets (trends, 10 topic-noun sets, numbers, map, 18 adj↔adv pairs). Schema in `docs/DATA_SCHEMA.md`, checked by `tool/validate_content.py` and `test/vocab_data_test.dart`. Rule: formalSentence = plainSentence with plain → formal[0], so typing and highlighting are exact.* |
 | 3c | Setup screen, Library (By chart + By topic), chart **Learn tab** (annotated chart painter), **Word sets** screen, Word detail | see each chart annotated, browse every swap by chart and slot |
 | 4 | Progress store + spaced repetition + **Swap it** (choose + type) + **Rewrite the sentence** | a full session updates mastery and the heatmap |
 | 5 | Progress screen (mastery bars, year heatmap) + session summary ("plain words you still used") | numbers match the stored progress |
@@ -337,7 +337,7 @@ Packages: `google_fonts`, `shared_preferences`, `flutter_animate`. Required from
 | 8b | **Listening maps (Part F):** `part_f_listening_maps.json` (compass, position, movement, road features, places, traps — each with explanation, speaker line, diagram key), sample map painter, direction diagram painters, `flutter_tts`; modes Where is it?, Picture it, Follow the route, Spell it, Trap drill | every Part F item has an explanation + diagram; a route can be followed on the sample map |
 | 9 | Animations polish, confetti, pronunciation, reminders | |
 
-Each phase: `flutter analyze` clean, tests pass, checked on the iOS simulator with screenshots (in a cloud build without a simulator: `flutter test` incl. widget tests + golden/screenshot tests, and `flutter build web` screenshots). Mark the phase ✅ in this table when done.
+Each phase: `flutter analyze` clean, tests pass, checked on an Android emulator/device with screenshots. The app targets Android (no web build). Mark the phase ✅ in this table when done.
 
 Dev preview flags: `flutter run --dart-define=DEMO_ACTIVITY=true` (sample heatmap, not saved) and `--dart-define=SKIP_INTRO=true` (open straight on Home).
 

@@ -1,0 +1,5582 @@
+{
+ "version": 1,
+ "topics": [
+  {
+   "id": "opinion",
+   "task": "task2",
+   "title": "Opinion essay",
+   "mascot": "angry",
+   "blurb": "Agree or disagree: take a clear position and defend it in every paragraph.",
+   "slots": [
+    {
+     "slot": "intro",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "op-widely-held",
+       "plain": "A lot of people think",
+       "formal": [
+        "It is widely held",
+        "It is commonly believed",
+        "Many people contend"
+       ],
+       "plainSentence": "A lot of people think that university education should be free for all students.",
+       "formalSentence": "It is widely held that university education should be free for all students.",
+       "traps": [
+        {
+         "text": "It is widely thinking",
+         "why": "wrong form: 'widely held / believed'"
+        },
+        {
+         "text": "Lots of people reckon",
+         "why": "'reckon' is too informal"
+        },
+        {
+         "text": "It is wide believed",
+         "why": "needs the adverb 'widely'"
+        }
+       ],
+       "form": "impersonal opener + that-clause",
+       "note": "Report the view impersonally before giving your own.",
+       "entryIds": []
+      },
+      {
+       "id": "op-in-recent-years",
+       "plain": "Nowadays,",
+       "formal": [
+        "In recent years,",
+        "Over the past few decades,"
+       ],
+       "plainSentence": "Nowadays, many governments have increased their spending on public transport.",
+       "formalSentence": "In recent years, many governments have increased their spending on public transport.",
+       "traps": [
+        {
+         "text": "In this modern era,",
+         "why": "memorised cliché that examiners dislike"
+        },
+        {
+         "text": "In nowadays,",
+         "why": "'nowadays' never takes 'in'"
+        },
+        {
+         "text": "Since recent years,",
+         "why": "wrong preposition: 'in recent years'"
+        }
+       ],
+       "form": "time phrase + comma (present perfect)",
+       "note": "Pair 'In recent years' with the present perfect.",
+       "entryIds": []
+      },
+      {
+       "id": "op-controversial",
+       "plain": "something people argue a lot about",
+       "formal": [
+        "a highly controversial issue",
+        "a contentious issue",
+        "a matter of considerable debate"
+       ],
+       "plainSentence": "Whether zoos should be closed is something people argue a lot about.",
+       "formalSentence": "Whether zoos should be closed is a highly controversial issue.",
+       "traps": [
+        {
+         "text": "a very arguing issue",
+         "why": "wrong form: 'arguing' is not an adjective"
+        },
+        {
+         "text": "a hot potato",
+         "why": "idiom too informal for an essay"
+        },
+        {
+         "text": "a controversy issue",
+         "why": "noun used as adjective: 'controversial'"
+        }
+       ],
+       "form": "noun phrase",
+       "note": "Frame the topic as a debate, then give your view.",
+       "entryIds": [
+        "b1-controversial"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "intro",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "op-firmly-believe",
+       "plain": "I think",
+       "formal": [
+        "I firmly believe",
+        "I would argue",
+        "I am convinced"
+       ],
+       "plainSentence": "I think that free public transport would bring more benefits than drawbacks.",
+       "formalSentence": "I firmly believe that free public transport would bring more benefits than drawbacks.",
+       "traps": [
+        {
+         "text": "I am believing",
+         "why": "stative verb: no '-ing' form"
+        },
+        {
+         "text": "I guess",
+         "why": "too informal and too weak"
+        },
+        {
+         "text": "In my point of view I think",
+         "why": "'from my point of view'; redundant"
+        }
+       ],
+       "form": "opinion verb + that-clause",
+       "note": "Thesis sentence: make your position unmistakable.",
+       "entryIds": []
+      },
+      {
+       "id": "op-wholeheartedly-agree",
+       "plain": "totally agree",
+       "formal": [
+        "wholeheartedly agree",
+        "entirely agree",
+        "fully agree"
+       ],
+       "plainSentence": "For the reasons outlined below, I totally agree with this proposal.",
+       "formalSentence": "For the reasons outlined below, I wholeheartedly agree with this proposal.",
+       "traps": [
+        {
+         "text": "very agree",
+         "why": "'very' cannot modify the verb 'agree'"
+        },
+        {
+         "text": "super agree",
+         "why": "slang, not academic"
+        },
+        {
+         "text": "am totally agree",
+         "why": "'agree' is a verb: no 'am'"
+        }
+       ],
+       "form": "adverb + agree",
+       "note": "Strong agreement: 'wholeheartedly agree with this view'.",
+       "entryIds": []
+      },
+      {
+       "id": "op-limited-extent",
+       "plain": "only a bit",
+       "formal": [
+        "only to a limited extent",
+        "only partially"
+       ],
+       "plainSentence": "Although this policy has some merit, I agree with it only a bit.",
+       "formalSentence": "Although this policy has some merit, I agree with it only to a limited extent.",
+       "traps": [
+        {
+         "text": "only in a limited extent",
+         "why": "wrong preposition: 'to an extent'"
+        },
+        {
+         "text": "only a little bit",
+         "why": "still plain and conversational"
+        },
+        {
+         "text": "only limitedly",
+         "why": "not a natural adverb"
+        }
+       ],
+       "form": "adverbial of degree",
+       "note": "Partial agreement answers 'to what extent' precisely.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "op-compelling-reason",
+       "plain": "The first thing is that",
+       "formal": [
+        "The most compelling reason for this view is that",
+        "The primary justification for this view is that"
+       ],
+       "plainSentence": "The first thing is that free public transport would reduce the number of cars on the roads.",
+       "formalSentence": "The most compelling reason for this view is that free public transport would reduce the number of cars on the roads.",
+       "traps": [
+        {
+         "text": "The most compelled reason is that",
+         "why": "wrong form: 'compelling'"
+        },
+        {
+         "text": "Firstly thing is that",
+         "why": "grammar: 'firstly' is an adverb"
+        },
+        {
+         "text": "The first stuff is that",
+         "why": "'stuff' is informal"
+        }
+       ],
+       "form": "topic-sentence frame",
+       "note": "Open Body 1 with your strongest reason.",
+       "entryIds": [
+        "b1-compelling"
+       ]
+      },
+      {
+       "id": "op-to-begin-with",
+       "plain": "To start,",
+       "formal": [
+        "To begin with,",
+        "Firstly,"
+       ],
+       "plainSentence": "To start, a university degree greatly improves a graduate's job prospects.",
+       "formalSentence": "To begin with, a university degree greatly improves a graduate's job prospects.",
+       "traps": [
+        {
+         "text": "Firstly of all,",
+         "why": "mixes 'firstly' and 'first of all'"
+        },
+        {
+         "text": "At first,",
+         "why": "means 'initially', not 'first point'"
+        },
+        {
+         "text": "For start,",
+         "why": "missing article: 'for a start'"
+        }
+       ],
+       "form": "sequencing linker + comma",
+       "note": "'At first' describes time, not the first argument.",
+       "entryIds": [
+        "c-to-begin-with",
+        "c-firstly"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "op-owing-to",
+       "plain": "because of",
+       "formal": [
+        "owing to",
+        "as a result of"
+       ],
+       "plainSentence": "Many city centres are gridlocked because of the growing number of private cars.",
+       "formalSentence": "Many city centres are gridlocked owing to the growing number of private cars.",
+       "traps": [
+        {
+         "text": "because",
+         "why": "needs a clause, not a noun phrase"
+        },
+        {
+         "text": "owing of",
+         "why": "wrong preposition: 'owing to'"
+        },
+        {
+         "text": "resulting from of",
+         "why": "extra preposition"
+        }
+       ],
+       "form": "preposition + noun phrase",
+       "note": "Owing to / as a result of + noun, never + clause.",
+       "entryIds": []
+      },
+      {
+       "id": "op-detrimental-to",
+       "plain": "bad for",
+       "formal": [
+        "detrimental to",
+        "harmful to"
+       ],
+       "plainSentence": "Exhaust fumes are bad for the health of city residents.",
+       "formalSentence": "Exhaust fumes are detrimental to the health of city residents.",
+       "traps": [
+        {
+         "text": "detrimental for",
+         "why": "wrong preposition: 'detrimental to'"
+        },
+        {
+         "text": "very bad to",
+         "why": "plain, and wrong preposition"
+        },
+        {
+         "text": "detriment to",
+         "why": "noun, not adjective"
+        }
+       ],
+       "form": "adjective + to",
+       "note": "Detrimental always takes 'to'.",
+       "entryIds": [
+        "b1-detrimental"
+       ]
+      },
+      {
+       "id": "op-for-instance",
+       "plain": "Like,",
+       "formal": [
+        "For instance,",
+        "For example,"
+       ],
+       "plainSentence": "Like, in Luxembourg, public transport has been free since 2020.",
+       "formalSentence": "For instance, in Luxembourg, public transport has been free since 2020.",
+       "traps": [
+        {
+         "text": "Such as,",
+         "why": "cannot start a sentence"
+        },
+        {
+         "text": "As an example of,",
+         "why": "incomplete: needs a noun"
+        },
+        {
+         "text": "For instances,",
+         "why": "fixed phrase: 'for instance'"
+        }
+       ],
+       "form": "example linker + comma",
+       "note": "'Like' as a filler is spoken English.",
+       "entryIds": [
+        "c-for-instance",
+        "c-for-example"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "op-consequently",
+       "plain": "So,",
+       "formal": [
+        "Consequently,",
+        "As a result,",
+        "Therefore,"
+       ],
+       "plainSentence": "So, commuters would spend far less time stuck in traffic.",
+       "formalSentence": "Consequently, commuters would spend far less time stuck in traffic.",
+       "traps": [
+        {
+         "text": "Thus that,",
+         "why": "extra 'that'"
+        },
+        {
+         "text": "So that,",
+         "why": "expresses purpose, not result"
+        },
+        {
+         "text": "Hence of this,",
+         "why": "'hence' takes no 'of this'"
+        }
+       ],
+       "form": "result linker + comma",
+       "note": "Close a body paragraph with the result of your reason.",
+       "entryIds": [
+        "c-consequently",
+        "c-as-a-result",
+        "c-therefore"
+       ]
+      },
+      {
+       "id": "op-exacerbate",
+       "plain": "make the problem worse",
+       "formal": [
+        "exacerbate the problem",
+        "aggravate the problem",
+        "compound the problem"
+       ],
+       "plainSentence": "Building more roads would only make the problem worse by encouraging people to drive.",
+       "formalSentence": "Building more roads would only exacerbate the problem by encouraging people to drive.",
+       "traps": [
+        {
+         "text": "exaggerate the problem",
+         "why": "wrong meaning: 'overstate'"
+        },
+        {
+         "text": "worsen up the problem",
+         "why": "no particle 'up'"
+        },
+        {
+         "text": "exacerbate the problem worse",
+         "why": "redundant 'worse'"
+        }
+       ],
+       "form": "verb + object",
+       "note": "Exacerbate already means 'make worse'.",
+       "entryIds": [
+        "b2-exacerbate"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "op-furthermore",
+       "plain": "Also,",
+       "formal": [
+        "Furthermore,",
+        "Moreover,",
+        "In addition,"
+       ],
+       "plainSentence": "Also, free public transport would benefit low-income families the most.",
+       "formalSentence": "Furthermore, free public transport would benefit low-income families the most.",
+       "traps": [
+        {
+         "text": "Moreover that,",
+         "why": "extra 'that'"
+        },
+        {
+         "text": "And also,",
+         "why": "plain; do not start with 'and'"
+        },
+        {
+         "text": "In addition of this,",
+         "why": "wrong preposition: 'in addition to this'"
+        }
+       ],
+       "form": "addition linker + comma",
+       "note": "Open Body 2 by adding a second, separate argument.",
+       "entryIds": [
+        "c-furthermore",
+        "c-moreover",
+        "c-in-addition"
+       ]
+      },
+      {
+       "id": "op-further-advantage",
+       "plain": "Another good point is that",
+       "formal": [
+        "A further advantage is that",
+        "Another significant benefit is that"
+       ],
+       "plainSentence": "Another good point is that people would have more money to spend in local businesses.",
+       "formalSentence": "A further advantage is that people would have more money to spend in local businesses.",
+       "traps": [
+        {
+         "text": "Another advantageous is that",
+         "why": "adjective used as noun"
+        },
+        {
+         "text": "One more good thing is that",
+         "why": "still plain"
+        },
+        {
+         "text": "A further advantage is because",
+         "why": "'advantage is because' is ungrammatical"
+        }
+       ],
+       "form": "topic-sentence frame",
+       "note": "'Good point' → advantage / benefit / merit.",
+       "entryIds": [
+        "b1-advantage"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "op-facilitate",
+       "plain": "help",
+       "formal": [
+        "facilitate",
+        "promote"
+       ],
+       "plainSentence": "Free travel would help the integration of elderly people into community life.",
+       "formalSentence": "Free travel would facilitate the integration of elderly people into community life.",
+       "traps": [
+        {
+         "text": "facilitate to",
+         "why": "no 'to' after facilitate"
+        },
+        {
+         "text": "helpful",
+         "why": "adjective, not a verb"
+        },
+        {
+         "text": "facility",
+         "why": "noun: 'a facility'"
+        }
+       ],
+       "form": "verb + noun object",
+       "note": "Facilitate + noun (not + person + to-infinitive).",
+       "entryIds": [
+        "b2-facilitate"
+       ]
+      },
+      {
+       "id": "op-considerable-number",
+       "plain": "Lots of",
+       "formal": [
+        "A considerable number of",
+        "A significant number of"
+       ],
+       "plainSentence": "Lots of elderly people rarely leave their homes because of the cost of travel.",
+       "formalSentence": "A considerable number of elderly people rarely leave their homes because of the cost of travel.",
+       "traps": [
+        {
+         "text": "A considerable amount of",
+         "why": "'amount' is for uncountable nouns"
+        },
+        {
+         "text": "A big number of",
+         "why": "unnatural collocation"
+        },
+        {
+         "text": "Considerable of",
+         "why": "ungrammatical"
+        }
+       ],
+       "form": "quantifier (countable)",
+       "note": "Number + countable nouns; amount + uncountable nouns.",
+       "entryIds": []
+      },
+      {
+       "id": "op-crucial",
+       "plain": "very important",
+       "formal": [
+        "crucial",
+        "vital",
+        "essential"
+       ],
+       "plainSentence": "Affordable transport is very important for a fair and inclusive society.",
+       "formalSentence": "Affordable transport is crucial for a fair and inclusive society.",
+       "traps": [
+        {
+         "text": "very crucial",
+         "why": "'crucial' is already extreme"
+        },
+        {
+         "text": "importantly",
+         "why": "adverb, not adjective"
+        },
+        {
+         "text": "the most crucial",
+         "why": "no comparison being made"
+        }
+       ],
+       "form": "adjective",
+       "note": "Never put 'very' before crucial, vital or essential.",
+       "entryIds": [
+        "b1-crucial"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "op-enhance-quality",
+       "plain": "make life better for",
+       "formal": [
+        "enhance the quality of life for",
+        "improve the quality of life for"
+       ],
+       "plainSentence": "Such a policy would make life better for millions of urban residents.",
+       "formalSentence": "Such a policy would enhance the quality of life for millions of urban residents.",
+       "traps": [
+        {
+         "text": "enhance life better for",
+         "why": "'enhance' already means 'make better'"
+        },
+        {
+         "text": "upgrade the life of",
+         "why": "wrong collocation for people"
+        },
+        {
+         "text": "enhancing the quality of life for",
+         "why": "after 'would': base form"
+        }
+       ],
+       "form": "verb + noun phrase",
+       "note": "Enhance / improve + the quality of life.",
+       "entryIds": [
+        "b2-enhance"
+       ]
+      },
+      {
+       "id": "op-highlights",
+       "plain": "shows",
+       "formal": [
+        "highlights",
+        "demonstrates",
+        "illustrates"
+       ],
+       "plainSentence": "This shows that the social benefits would justify the financial cost.",
+       "formalSentence": "This highlights that the social benefits would justify the financial cost.",
+       "traps": [
+        {
+         "text": "shows off",
+         "why": "wrong meaning: 'boasts'"
+        },
+        {
+         "text": "is highlighting",
+         "why": "progressive sounds unnatural here"
+        },
+        {
+         "text": "highlights about",
+         "why": "no 'about'"
+        }
+       ],
+       "form": "reporting verb, present simple",
+       "note": "End Body 2 by linking the example back to your thesis.",
+       "entryIds": [
+        "b3-highlight"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "op-in-conclusion",
+       "plain": "To sum up,",
+       "formal": [
+        "In conclusion,",
+        "To conclude,"
+       ],
+       "plainSentence": "To sum up, I believe that free public transport is a policy worth pursuing.",
+       "formalSentence": "In conclusion, I believe that free public transport is a policy worth pursuing.",
+       "traps": [
+        {
+         "text": "In the end,",
+         "why": "means 'finally', not 'to conclude'"
+        },
+        {
+         "text": "In conclusion of,",
+         "why": "incomplete phrase"
+        },
+        {
+         "text": "At the conclusion,",
+         "why": "not a linking phrase"
+        }
+       ],
+       "form": "concluding linker + comma",
+       "note": "Restate your position; add no new arguments.",
+       "entryIds": [
+        "c-in-conclusion",
+        "c-to-conclude"
+       ]
+      },
+      {
+       "id": "op-certain-drawbacks",
+       "plain": "there are some bad points",
+       "formal": [
+        "there are certain drawbacks",
+        "there are some disadvantages"
+       ],
+       "plainSentence": "Although there are some bad points, such as the cost to taxpayers, the advantages are far greater.",
+       "formalSentence": "Although there are certain drawbacks, such as the cost to taxpayers, the advantages are far greater.",
+       "traps": [
+        {
+         "text": "there are some drawbacks points",
+         "why": "redundant 'points'"
+        },
+        {
+         "text": "there are some bad sides",
+         "why": "still plain and unnatural"
+        },
+        {
+         "text": "there are certain drawback",
+         "why": "needs a plural noun"
+        }
+       ],
+       "form": "there are + noun phrase",
+       "note": "'Bad point' → drawback / disadvantage.",
+       "entryIds": [
+        "b1-disadvantage"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "op-far-outweigh",
+       "plain": "are much bigger than",
+       "formal": [
+        "far outweigh",
+        "clearly outweigh"
+       ],
+       "plainSentence": "In my view, the advantages of the policy are much bigger than its costs.",
+       "formalSentence": "In my view, the advantages of the policy far outweigh its costs.",
+       "traps": [
+        {
+         "text": "far overweigh",
+         "why": "'overweigh' is not the right verb"
+        },
+        {
+         "text": "outweigh over",
+         "why": "no preposition after 'outweigh'"
+        },
+        {
+         "text": "are far outweigh",
+         "why": "'are' + base verb is wrong"
+        }
+       ],
+       "form": "adverb + transitive verb",
+       "note": "X outweighs Y: no 'than', no preposition.",
+       "entryIds": [
+        "b2-outweigh"
+       ]
+      },
+      {
+       "id": "op-well-advised",
+       "plain": "should really think about",
+       "formal": [
+        "would be well advised to consider",
+        "should give serious consideration to"
+       ],
+       "plainSentence": "Governments should really think about introducing it in major cities.",
+       "formalSentence": "Governments would be well advised to consider introducing it in major cities.",
+       "traps": [
+        {
+         "text": "should give serious consider to",
+         "why": "'consider' is a verb; use 'consideration'"
+        },
+        {
+         "text": "should think very hardly about",
+         "why": "'hardly' means 'almost not'"
+        },
+        {
+         "text": "would be well advised considering",
+         "why": "'advised to' + base verb"
+        }
+       ],
+       "form": "modal recommendation",
+       "note": "A measured recommendation makes a strong final sentence.",
+       "entryIds": []
+      }
+     ]
+    }
+   ],
+   "rewrites": [
+    {
+     "id": "op-r1",
+     "slot": "intro",
+     "plain": "Nowadays a lot of people think that university should be free for everyone.",
+     "best": "In recent years, it has been widely argued that university education should be free for all students.",
+     "tooPlain": "Nowadays, many people think that university should be free for everybody.",
+     "tooPlainWhy": "still 'nowadays' and 'think'",
+     "broken": "In nowadays, it is widely believing that university should be free for all.",
+     "brokenWhy": "'in nowadays' and 'widely believing' are wrong"
+    },
+    {
+     "id": "op-r2",
+     "slot": "intro",
+     "plain": "I totally agree with this because it has lots of good points.",
+     "best": "I wholeheartedly agree with this view, as the policy offers a number of significant advantages.",
+     "tooPlain": "I really agree with this because it has many good points.",
+     "tooPlainWhy": "'really agree' and 'good points' are plain",
+     "broken": "I am very agree with this view because it has many advantage.",
+     "brokenWhy": "'am very agree'; 'advantage' must be plural"
+    },
+    {
+     "id": "op-r3",
+     "slot": "body1",
+     "plain": "Also, cars are bad for the environment and make pollution worse.",
+     "best": "Furthermore, private cars are detrimental to the environment and exacerbate air pollution.",
+     "tooPlain": "Also, cars are harmful to the environment and make pollution worse.",
+     "tooPlainWhy": "'also' and 'make … worse' remain plain",
+     "broken": "Furthermore, cars are detrimental for the environment and exacerbate pollution worse.",
+     "brokenWhy": "'detrimental for'; 'exacerbate … worse' is redundant"
+    },
+    {
+     "id": "op-r4",
+     "slot": "body1",
+     "plain": "For example, some cities in Europe like Tallinn have made buses free for the people who live there.",
+     "best": "For instance, several European cities, such as Tallinn, have made public transport free for residents.",
+     "tooPlain": "For example, some European cities like Tallinn have made buses free for residents.",
+     "tooPlainWhy": "'like' is informal; 'such as' is better",
+     "broken": "For instance, several European cities, such like Tallinn, have made free the public transport for residents.",
+     "brokenWhy": "'such like' is wrong; word order is unnatural"
+    },
+    {
+     "id": "op-r5",
+     "slot": "body2",
+     "plain": "But some people say it costs too much money.",
+     "best": "Nevertheless, critics contend that such a scheme would place an excessive burden on public finances.",
+     "tooPlain": "However, some people say that it costs too much.",
+     "tooPlainWhy": "'people say' and 'costs too much' are plain",
+     "broken": "Nevertheless, critics are contending that the scheme would be too much expensive for public finances.",
+     "brokenWhy": "'too much expensive' is ungrammatical"
+    },
+    {
+     "id": "op-r6",
+     "slot": "conclusion",
+     "plain": "To sum up, the good points are bigger than the bad points.",
+     "best": "In conclusion, I believe that the advantages of this policy far outweigh its drawbacks.",
+     "tooPlain": "In conclusion, the good points are more than the bad points.",
+     "tooPlainWhy": "'good / bad points' and 'more than' are plain",
+     "broken": "In conclusion, the advantages are far outweigh than the disadvantages.",
+     "brokenWhy": "'are … outweigh than' mixes two structures"
+    },
+    {
+     "id": "op-r7",
+     "slot": "conclusion",
+     "plain": "The government should do this soon because it will help a lot of people.",
+     "best": "Governments should therefore implement this policy without delay, as it would benefit a considerable number of citizens.",
+     "tooPlain": "The government should do this soon because it will help many people.",
+     "tooPlainWhy": "'do this' and 'help many people' are vague",
+     "broken": "Governments should implement this policy without delay, as it would beneficial a considerable number of citizens.",
+     "brokenWhy": "'beneficial' is an adjective, not a verb"
+    }
+   ],
+   "report": {
+    "question": "Some people believe that public transport in cities should be free of charge for everyone who uses it. To what extent do you agree or disagree with this view?",
+    "chart": null,
+    "paragraphs": [
+     {
+      "slot": "intro",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Paraphrase the question",
+        "best": "In recent years, it has been proposed in a number of countries that public transport in urban areas should be made free of charge for all passengers, regardless of their income.",
+        "others": [
+         {
+          "text": "Some people believe that public transport in cities should be free of charge for everyone who uses it.",
+          "why": "copies the question word for word"
+         },
+         {
+          "text": "In this modern era, public transport is a hot topic that everyone is talking about.",
+          "why": "cliché; does not paraphrase the question"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "State your position clearly",
+        "best": "I wholeheartedly agree with this proposal, since I believe that its environmental and social benefits would far outweigh the financial cost to governments.",
+        "others": [
+         {
+          "text": "I will discuss both sides of this question in this essay.",
+          "why": "no clear position for 'to what extent'"
+         },
+         {
+          "text": "I am totally agree with this idea because it is good.",
+          "why": "'am agree' is wrong; the reason is vague"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body1",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Topic sentence: your strongest reason",
+        "best": "The most compelling argument in favour of free public transport is that it would significantly reduce the number of private cars on city roads.",
+        "others": [
+         {
+          "text": "The first reason is that cars are bad.",
+          "why": "too vague and too plain"
+         },
+         {
+          "text": "Firstly of all, free transport can reduce cars in the roads.",
+          "why": "'Firstly of all' and 'in the roads' are wrong"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Explain and develop the reason",
+        "best": "At present, many city centres are heavily congested owing to commuters' reliance on cars, and the resulting exhaust fumes are highly detrimental to the health of local residents.",
+        "others": [
+         {
+          "text": "Now many cities have a lot of traffic because of cars and it is bad for health.",
+          "why": "accurate idea, but too plain"
+         },
+         {
+          "text": "Presently, city centres are congesting due to cars, which is detrimental for health.",
+          "why": "'are congesting' and 'detrimental for' are wrong"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Give an example and link back",
+        "best": "For instance, after Tallinn abolished fares for its residents in 2013, passenger numbers increased, which suggests that cost is a powerful incentive for drivers to leave their cars at home.",
+        "others": [
+         {
+          "text": "For example, Tallinn made it free and more people used it.",
+          "why": "correct idea, but plain wording"
+         },
+         {
+          "text": "Such as Tallinn, which made transport free, and passengers were increased.",
+          "why": "'Such as' cannot start a sentence; wrong passive"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body2",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Topic sentence: a second, separate reason",
+        "best": "Furthermore, free travel would be an effective means of reducing inequality, as low-income households spend a disproportionate share of their earnings on getting to work.",
+        "others": [
+         {
+          "text": "Also, poor people would like it because they don't have much money.",
+          "why": "plain and informal"
+         },
+         {
+          "text": "Moreover, free travel will reduce the inequality because poor families spends a lot.",
+          "why": "'families spends' is a grammar error"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Develop the idea",
+        "best": "Removing fares would facilitate access to education, employment and healthcare, thereby enhancing the quality of life of some of the most vulnerable members of society.",
+        "others": [
+         {
+          "text": "It would help people go to school, work and hospital and make their lives better.",
+          "why": "plain verbs: 'help', 'make better'"
+         },
+         {
+          "text": "Removing fares would facilitate to access education and enhance the life quality better.",
+          "why": "'facilitate to' and 'enhance … better' are wrong"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Concede, then rebut",
+        "best": "Admittedly, such a scheme would be costly; however, much of this expense could be offset by lower spending on road maintenance and on treating pollution-related illnesses.",
+        "others": [
+         {
+          "text": "It costs a lot, but that's OK because we save money in other ways.",
+          "why": "informal and vague"
+         },
+         {
+          "text": "Admittedly, the scheme is expensive; nevertheless of this, costs could offset by savings.",
+          "why": "'nevertheless of this'; missing 'be'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "conclusion",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Restate your position",
+        "best": "In conclusion, I firmly believe that making urban public transport free is a sensible policy, as it would ease congestion, cut pollution and promote social equality.",
+        "others": [
+         {
+          "text": "To sum up, I think free transport is a good idea.",
+          "why": "plain, and adds nothing"
+         },
+         {
+          "text": "In conclusion, free transport has both advantages and disadvantages, so it depends.",
+          "why": "contradicts your clear position"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Finish with a recommendation",
+        "best": "Although the initial cost would be considerable, the long-term benefits far outweigh it, and governments would be well advised to introduce such schemes in their major cities.",
+        "others": [
+         {
+          "text": "The good points are bigger than the bad points, so governments should do it.",
+          "why": "plain comparison; 'do it' is vague"
+         },
+         {
+          "text": "Although the cost is considerable, but the benefits are far outweighing it.",
+          "why": "'although … but'; progressive 'outweighing'"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "discussion",
+   "task": "task2",
+   "title": "Discuss both views",
+   "mascot": "amused",
+   "blurb": "Present each side fairly, then say which view you support and why.",
+   "slots": [
+    {
+     "slot": "intro",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "dis-opinions-divided",
+       "plain": "People have different ideas about",
+       "formal": [
+        "Opinions are divided on",
+        "There is considerable debate about"
+       ],
+       "plainSentence": "People have different ideas about when children should start formal schooling.",
+       "formalSentence": "Opinions are divided on when children should start formal schooling.",
+       "traps": [
+        {
+         "text": "Opinions are dividing on",
+         "why": "wrong form: 'are divided'"
+        },
+        {
+         "text": "People are arguing about",
+         "why": "conversational and plain"
+        },
+        {
+         "text": "Opinions divide about",
+         "why": "unnatural verb and preposition"
+        }
+       ],
+       "form": "opening frame + wh-clause",
+       "note": "Signal immediately that there are two sides.",
+       "entryIds": []
+      },
+      {
+       "id": "dis-some-contend",
+       "plain": "Some people say",
+       "formal": [
+        "Some contend",
+        "Some maintain",
+        "It is often argued"
+       ],
+       "plainSentence": "Some people say that an early start gives children an academic advantage.",
+       "formalSentence": "Some contend that an early start gives children an academic advantage.",
+       "traps": [
+        {
+         "text": "Some people are saying",
+         "why": "progressive is unnatural here"
+        },
+        {
+         "text": "Someone says",
+         "why": "wrong meaning: one single person"
+        },
+        {
+         "text": "Some contend about",
+         "why": "'contend that', not 'contend about'"
+        }
+       ],
+       "form": "reporting verb + that-clause",
+       "note": "Vary reporting verbs: argue, contend, maintain, claim.",
+       "entryIds": [
+        "b3-assert"
+       ]
+      },
+      {
+       "id": "dis-examine",
+       "plain": "talk about",
+       "formal": [
+        "examine",
+        "discuss",
+        "consider"
+       ],
+       "plainSentence": "This essay will talk about both views before giving my own opinion.",
+       "formalSentence": "This essay will examine both views before giving my own opinion.",
+       "traps": [
+        {
+         "text": "discuss about",
+         "why": "'discuss' takes no 'about'"
+        },
+        {
+         "text": "speak about",
+         "why": "still spoken register"
+        },
+        {
+         "text": "examinate",
+         "why": "not an English word"
+        }
+       ],
+       "form": "verb + object",
+       "note": "Discuss / examine + object directly: no 'about'.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "intro",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "dis-have-merit",
+       "plain": "both sides have good points",
+       "formal": [
+        "both views have merit",
+        "both positions have some validity"
+       ],
+       "plainSentence": "Although both sides have good points, I believe that a later start is preferable.",
+       "formalSentence": "Although both views have merit, I believe that a later start is preferable.",
+       "traps": [
+        {
+         "text": "both sides have merits points",
+         "why": "redundant 'points'"
+        },
+        {
+         "text": "both sides are meritful",
+         "why": "'meritful' is not a word"
+        },
+        {
+         "text": "both views have validity points",
+         "why": "redundant and unnatural"
+        }
+       ],
+       "form": "noun phrase: have merit",
+       "note": "Acknowledge both sides, then commit to one.",
+       "entryIds": [
+        "b1-advantage"
+       ]
+      },
+      {
+       "id": "dis-the-latter",
+       "plain": "the second view",
+       "formal": [
+        "the latter view",
+        "the latter"
+       ],
+       "plainSentence": "Personally, I agree more with the second view.",
+       "formalSentence": "Personally, I agree more with the latter view.",
+       "traps": [
+        {
+         "text": "the later view",
+         "why": "'later' refers to time"
+        },
+        {
+         "text": "the last view",
+         "why": "with two views, use 'the latter'"
+        },
+        {
+         "text": "the latest view",
+         "why": "'latest' means most recent"
+        }
+       ],
+       "form": "the former / the latter",
+       "note": "Two items: the former (first), the latter (second).",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "dis-proponents",
+       "plain": "People who support",
+       "formal": [
+        "Proponents of",
+        "Advocates of",
+        "Supporters of"
+       ],
+       "plainSentence": "People who support early schooling believe that young children learn remarkably quickly.",
+       "formalSentence": "Proponents of early schooling believe that young children learn remarkably quickly.",
+       "traps": [
+        {
+         "text": "Advocators of",
+         "why": "not a word: 'advocates'"
+        },
+        {
+         "text": "Proponents for",
+         "why": "wrong preposition: 'proponents of'"
+        },
+        {
+         "text": "Supporting people of",
+         "why": "garbled noun phrase"
+        }
+       ],
+       "form": "noun + of",
+       "note": "Name the group holding the first view.",
+       "entryIds": [
+        "b3-advocate"
+       ]
+      },
+      {
+       "id": "dis-on-the-one-hand",
+       "plain": "On one side,",
+       "formal": [
+        "On the one hand,"
+       ],
+       "plainSentence": "On one side, an early start may give children a head start in literacy.",
+       "formalSentence": "On the one hand, an early start may give children a head start in literacy.",
+       "traps": [
+        {
+         "text": "In one hand,",
+         "why": "wrong preposition: 'on'"
+        },
+        {
+         "text": "From one hand,",
+         "why": "not an English phrase"
+        },
+        {
+         "text": "On the one side,",
+         "why": "fixed phrase: 'on the one hand'"
+        }
+       ],
+       "form": "contrast frame + comma",
+       "note": "Pairs with 'On the other hand' in Body 2.",
+       "entryIds": [
+        "c-on-the-other-hand"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "dis-rationale",
+       "plain": "The reason they think this is that",
+       "formal": [
+        "Their rationale is that",
+        "The reasoning behind this view is that"
+       ],
+       "plainSentence": "The reason they think this is that the brain is most receptive before the age of seven.",
+       "formalSentence": "Their rationale is that the brain is most receptive before the age of seven.",
+       "traps": [
+        {
+         "text": "Their rational is that",
+         "why": "'rational' is an adjective"
+        },
+        {
+         "text": "The reason why is because",
+         "why": "redundant: 'reason … because'"
+        },
+        {
+         "text": "Their rationale is because",
+         "why": "'rationale is that'"
+        }
+       ],
+       "form": "noun + that-clause",
+       "note": "Explain the logic behind the view, not just the view.",
+       "entryIds": []
+      },
+      {
+       "id": "dis-acquire",
+       "plain": "get",
+       "formal": [
+        "acquire",
+        "develop"
+       ],
+       "plainSentence": "Children who start early get basic reading and counting skills sooner.",
+       "formalSentence": "Children who start early acquire basic reading and counting skills sooner.",
+       "traps": [
+        {
+         "text": "gain up",
+         "why": "no particle 'up'"
+        },
+        {
+         "text": "catch",
+         "why": "wrong meaning for skills"
+        },
+        {
+         "text": "acquaint",
+         "why": "wrong word: 'acquaint' is 'make familiar'"
+        }
+       ],
+       "form": "verb, present simple",
+       "note": "Acquire / develop + skills or knowledge.",
+       "entryIds": []
+      },
+      {
+       "id": "dis-beneficial",
+       "plain": "good for",
+       "formal": [
+        "beneficial for",
+        "of particular benefit to"
+       ],
+       "plainSentence": "Structured learning is also said to be good for children from disadvantaged homes.",
+       "formalSentence": "Structured learning is also said to be beneficial for children from disadvantaged homes.",
+       "traps": [
+        {
+         "text": "benefit for",
+         "why": "noun: needs 'of benefit to'"
+        },
+        {
+         "text": "beneficiary to",
+         "why": "wrong word: a beneficiary is a person"
+        },
+        {
+         "text": "beneficially for",
+         "why": "adverb, not adjective"
+        }
+       ],
+       "form": "adjective + for/to",
+       "note": "'Good for' → beneficial for / advantageous for.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "dis-consequently",
+       "plain": "So,",
+       "formal": [
+        "Consequently,",
+        "Therefore,",
+        "Thus,"
+       ],
+       "plainSentence": "So, they argue, delaying school wastes valuable learning time.",
+       "formalSentence": "Consequently, they argue, delaying school wastes valuable learning time.",
+       "traps": [
+        {
+         "text": "So that,",
+         "why": "expresses purpose, not result"
+        },
+        {
+         "text": "As a result of,",
+         "why": "needs a noun after it"
+        },
+        {
+         "text": "Thereby,",
+         "why": "needs an -ing clause, not a sentence"
+        }
+       ],
+       "form": "result linker + comma",
+       "note": "Show the result the first group predicts.",
+       "entryIds": [
+        "c-consequently",
+        "c-therefore",
+        "c-thus"
+       ]
+      },
+      {
+       "id": "dis-lag-behind",
+       "plain": "be behind",
+       "formal": [
+        "lag behind",
+        "fall behind"
+       ],
+       "plainSentence": "Children who start late may be behind their peers in other countries.",
+       "formalSentence": "Children who start late may lag behind their peers in other countries.",
+       "traps": [
+        {
+         "text": "be lagged behind",
+         "why": "'lag' has no passive"
+        },
+        {
+         "text": "be in back of",
+         "why": "not British English"
+        },
+        {
+         "text": "fall behindhand",
+         "why": "wrong word: 'fall behind'"
+        }
+       ],
+       "form": "phrasal verb, base form",
+       "note": "Lag behind / fall behind + peers / competitors.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "dis-conversely",
+       "plain": "But other people say",
+       "formal": [
+        "Conversely, others maintain",
+        "On the other hand, others argue"
+       ],
+       "plainSentence": "But other people say that young children need time to play.",
+       "formalSentence": "Conversely, others maintain that young children need time to play.",
+       "traps": [
+        {
+         "text": "On the contrary, others argue",
+         "why": "contradicts a statement; not for views"
+        },
+        {
+         "text": "On the other side, others say",
+         "why": "fixed phrase: 'on the other hand'"
+        },
+        {
+         "text": "Conversely of this, others say",
+         "why": "no 'of this' after conversely"
+        }
+       ],
+       "form": "contrast linker + reporting verb",
+       "note": "Open Body 2 by switching clearly to the opposite view.",
+       "entryIds": [
+        "c-conversely",
+        "c-on-the-other-hand"
+       ]
+      },
+      {
+       "id": "dis-critics",
+       "plain": "People who are against this",
+       "formal": [
+        "Critics of this approach",
+        "Opponents of early schooling"
+       ],
+       "plainSentence": "People who are against this claim that formal lessons can damage a child's natural curiosity.",
+       "formalSentence": "Critics of this approach claim that formal lessons can damage a child's natural curiosity.",
+       "traps": [
+        {
+         "text": "Criticisers of this approach",
+         "why": "not a word: 'critics'"
+        },
+        {
+         "text": "Opposers against this",
+         "why": "unnatural and redundant"
+        },
+        {
+         "text": "Critical of this approach",
+         "why": "adjective phrase cannot be the subject"
+        }
+       ],
+       "form": "noun phrase (subject)",
+       "note": "Critics / opponents name the second group precisely.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "dis-stifle",
+       "plain": "stop",
+       "formal": [
+        "stifle",
+        "suppress"
+       ],
+       "plainSentence": "Too much pressure at a young age can stop creativity.",
+       "formalSentence": "Too much pressure at a young age can stifle creativity.",
+       "traps": [
+        {
+         "text": "prohibit",
+         "why": "means to ban by law"
+        },
+        {
+         "text": "stop up",
+         "why": "wrong meaning: 'block'"
+        },
+        {
+         "text": "stiffen",
+         "why": "wrong word: 'stifle'"
+        }
+       ],
+       "form": "verb, base form after modal",
+       "note": "Stifle collocates with creativity, curiosity and innovation.",
+       "entryIds": []
+      },
+      {
+       "id": "dis-in-addition",
+       "plain": "And",
+       "formal": [
+        "In addition,",
+        "Furthermore,"
+       ],
+       "plainSentence": "And children who are pushed too early may lose interest in learning altogether.",
+       "formalSentence": "In addition, children who are pushed too early may lose interest in learning altogether.",
+       "traps": [
+        {
+         "text": "Additionally to,",
+         "why": "'in addition to' needs a noun"
+        },
+        {
+         "text": "And also,",
+         "why": "plain; do not start with 'and'"
+        },
+        {
+         "text": "Besides of this,",
+         "why": "'besides this', no 'of'"
+        }
+       ],
+       "form": "addition linker + comma",
+       "note": "Avoid starting a formal sentence with 'And'.",
+       "entryIds": [
+        "c-in-addition",
+        "c-furthermore"
+       ]
+      },
+      {
+       "id": "dis-suggests",
+       "plain": "means",
+       "formal": [
+        "suggests",
+        "indicates",
+        "implies"
+       ],
+       "plainSentence": "The success of Finland, where school begins at seven, means that a late start does no harm.",
+       "formalSentence": "The success of Finland, where school begins at seven, suggests that a late start does no harm.",
+       "traps": [
+        {
+         "text": "proves",
+         "why": "overclaims: one example proves nothing"
+        },
+        {
+         "text": "implies about",
+         "why": "no 'about'"
+        },
+        {
+         "text": "suggestion",
+         "why": "noun, not verb"
+        }
+       ],
+       "form": "reporting verb + that-clause",
+       "note": "Hedge claims drawn from a single example.",
+       "entryIds": [
+        "b3-imply"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "dis-essential",
+       "plain": "really important",
+       "formal": [
+        "essential",
+        "vital",
+        "indispensable"
+       ],
+       "plainSentence": "In their view, free play is really important for social and emotional development.",
+       "formalSentence": "In their view, free play is essential for social and emotional development.",
+       "traps": [
+        {
+         "text": "very vital",
+         "why": "'vital' is already extreme"
+        },
+        {
+         "text": "importantly",
+         "why": "adverb, not adjective"
+        },
+        {
+         "text": "essentially",
+         "why": "adverb, not adjective"
+        }
+       ],
+       "form": "adjective",
+       "note": "No 'very' or 'really' before absolute adjectives.",
+       "entryIds": [
+        "b1-indispensable"
+       ]
+      },
+      {
+       "id": "dis-wide-range",
+       "plain": "a lot of",
+       "formal": [
+        "a wide range of",
+        "a wealth of"
+       ],
+       "plainSentence": "Children learn a lot of skills through play, such as cooperation and problem-solving.",
+       "formalSentence": "Children learn a wide range of skills through play, such as cooperation and problem-solving.",
+       "traps": [
+        {
+         "text": "a large amount of",
+         "why": "'amount' is for uncountable nouns"
+        },
+        {
+         "text": "a lot many",
+         "why": "ungrammatical"
+        },
+        {
+         "text": "a wide range",
+         "why": "missing 'of'"
+        }
+       ],
+       "form": "quantifier",
+       "note": "A wide range of + plural noun shows variety.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "dis-on-balance",
+       "plain": "All in all,",
+       "formal": [
+        "On balance,",
+        "Taking everything into consideration,"
+       ],
+       "plainSentence": "All in all, while early schooling has some benefits, a later start seems wiser.",
+       "formalSentence": "On balance, while early schooling has some benefits, a later start seems wiser.",
+       "traps": [
+        {
+         "text": "In balance,",
+         "why": "wrong preposition: 'on balance'"
+        },
+        {
+         "text": "At the end,",
+         "why": "wrong phrase: not a conclusion linker"
+        },
+        {
+         "text": "Taking everything into considerations,",
+         "why": "fixed phrase: 'consideration'"
+        }
+       ],
+       "form": "concluding linker + comma",
+       "note": "'On balance' weighs both views: perfect for discussion essays.",
+       "entryIds": [
+        "c-on-balance",
+        "c-taking-everything-into-consideration"
+       ]
+      },
+      {
+       "id": "dis-remain-convinced",
+       "plain": "I think that",
+       "formal": [
+        "I remain convinced that",
+        "I would maintain that"
+       ],
+       "plainSentence": "Having considered both sides, I think that children should not start formal lessons before the age of six.",
+       "formalSentence": "Having considered both sides, I remain convinced that children should not start formal lessons before the age of six.",
+       "traps": [
+        {
+         "text": "I am thinking that",
+         "why": "stative verb: no '-ing' form"
+        },
+        {
+         "text": "I feel like",
+         "why": "too informal"
+        },
+        {
+         "text": "I remain convincing that",
+         "why": "wrong form: 'convinced'"
+        }
+       ],
+       "form": "opinion verb + that-clause",
+       "note": "Restate the view you gave in the introduction.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "dis-ensure",
+       "plain": "make sure",
+       "formal": [
+        "ensure",
+        "see to it"
+       ],
+       "plainSentence": "Parents and teachers should make sure that the early years focus on play rather than tests.",
+       "formalSentence": "Parents and teachers should ensure that the early years focus on play rather than tests.",
+       "traps": [
+        {
+         "text": "insure",
+         "why": "means to buy insurance"
+        },
+        {
+         "text": "assure",
+         "why": "means to promise someone"
+        },
+        {
+         "text": "ensure of",
+         "why": "no 'of' after ensure"
+        }
+       ],
+       "form": "verb + that-clause",
+       "note": "Ensure (make certain) ≠ assure (promise) ≠ insure (insurance).",
+       "entryIds": []
+      },
+      {
+       "id": "dis-combination",
+       "plain": "a mix of",
+       "formal": [
+        "a combination of",
+        "a blend of"
+       ],
+       "plainSentence": "The ideal approach may be a mix of play and gentle instruction.",
+       "formalSentence": "The ideal approach may be a combination of play and gentle instruction.",
+       "traps": [
+        {
+         "text": "a mixture from",
+         "why": "wrong preposition: 'of'"
+        },
+        {
+         "text": "a combine of",
+         "why": "'combine' is a verb here"
+        },
+        {
+         "text": "a combination between",
+         "why": "'combination of'"
+        }
+       ],
+       "form": "noun + of",
+       "note": "Suggest a compromise to end a discussion essay.",
+       "entryIds": []
+      }
+     ]
+    }
+   ],
+   "rewrites": [
+    {
+     "id": "dis-r1",
+     "slot": "intro",
+     "plain": "Some people think children should start school early but other people disagree.",
+     "best": "Opinions are divided on whether children should begin formal education at an early age.",
+     "tooPlain": "Some people think children should start school early, but others disagree.",
+     "tooPlainWhy": "'some people think' copies the question",
+     "broken": "Opinions are dividing about if children should begin formal education early.",
+     "brokenWhy": "'are dividing' and 'about if' are wrong"
+    },
+    {
+     "id": "dis-r2",
+     "slot": "intro",
+     "plain": "This essay will talk about both sides and then I will say what I think.",
+     "best": "This essay will examine both perspectives before explaining why I favour the latter.",
+     "tooPlain": "This essay will discuss both sides and then give my opinion.",
+     "tooPlainWhy": "correct but does not preview your view",
+     "broken": "This essay will discuss about both sides and I will tell my opinion.",
+     "brokenWhy": "'discuss about' and 'tell my opinion' are wrong"
+    },
+    {
+     "id": "dis-r3",
+     "slot": "body1",
+     "plain": "People who like early school say kids learn really fast.",
+     "best": "Proponents of early schooling contend that young children absorb new information remarkably quickly.",
+     "tooPlain": "People who support early school say children learn very fast.",
+     "tooPlainWhy": "'people who support' and 'say' are plain",
+     "broken": "Proponents for early schooling contend that young children absorbs information remarkable quickly.",
+     "brokenWhy": "'proponents for', 'children absorbs', 'remarkable'"
+    },
+    {
+     "id": "dis-r4",
+     "slot": "body1",
+     "plain": "So they think waiting until seven wastes time.",
+     "best": "Consequently, they argue that delaying formal education until the age of seven wastes valuable learning time.",
+     "tooPlain": "So they think that waiting until seven is a waste of time.",
+     "tooPlainWhy": "'So' and 'they think' are plain",
+     "broken": "Consequently, they argue delaying formal education until seven is wasting of valuable time.",
+     "brokenWhy": "'is wasting of' is ungrammatical"
+    },
+    {
+     "id": "dis-r5",
+     "slot": "body2",
+     "plain": "But other people say too much school stops kids being creative.",
+     "best": "Conversely, critics maintain that excessive academic pressure at a young age can stifle creativity.",
+     "tooPlain": "However, other people say that too much school stops creativity.",
+     "tooPlainWhy": "'people say' and 'stops' are plain",
+     "broken": "On the contrary, critics maintain that excessive pressure can stifle the creative of children.",
+     "brokenWhy": "'on the contrary' is wrong; 'the creative'"
+    },
+    {
+     "id": "dis-r6",
+     "slot": "body2",
+     "plain": "In Finland school starts at seven and it is fine.",
+     "best": "In Finland, for instance, formal schooling begins at seven, yet academic standards remain among the highest in Europe.",
+     "tooPlain": "For example, in Finland school starts at seven and the results are good.",
+     "tooPlainWhy": "'the results are good' is vague",
+     "broken": "Such as Finland, school begins at seven, yet the standards remains high.",
+     "brokenWhy": "'Such as' cannot start; 'standards remains'"
+    },
+    {
+     "id": "dis-r7",
+     "slot": "conclusion",
+     "plain": "In the end, I think the second group is more right.",
+     "best": "On balance, I would maintain that the latter view is more convincing.",
+     "tooPlain": "In conclusion, I think the second view is better.",
+     "tooPlainWhy": "'the second view' → 'the latter view'",
+     "broken": "On balance, I would maintain that the later view is more convinced.",
+     "brokenWhy": "'later' and 'convinced' are the wrong words"
+    }
+   ],
+   "report": {
+    "question": "Some people believe that children should start formal education at a very early age, while others think they should not begin school until they are at least seven years old. Discuss both these views and give your own opinion.",
+    "chart": null,
+    "paragraphs": [
+     {
+      "slot": "intro",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Paraphrase the question and show two sides",
+        "best": "Opinions are divided on the question of when children should begin formal schooling, with some favouring an early start and others arguing that it should be delayed until around the age of seven.",
+        "others": [
+         {
+          "text": "Some people believe that children should start formal education at a very early age, while others disagree.",
+          "why": "copies the question"
+         },
+         {
+          "text": "Nowadays, education is a very important topic in the modern world.",
+          "why": "cliché; says nothing about the question"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Outline the essay and give your view",
+        "best": "This essay will examine both perspectives, but I would argue that a later start, preceded by play-based learning, is more beneficial for the majority of children.",
+        "others": [
+         {
+          "text": "I will talk about both sides and then say what I think.",
+          "why": "plain and vague"
+         },
+         {
+          "text": "This essay will discuss about both views and I am agree with the second.",
+          "why": "'discuss about' and 'am agree' are wrong"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body1",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Present the first view",
+        "best": "On the one hand, proponents of early schooling contend that young children absorb new information remarkably quickly and should therefore be taught to read and count as soon as possible.",
+        "others": [
+         {
+          "text": "On one side, some people think children learn fast so they should go to school early.",
+          "why": "'on one side' is wrong; plain wording"
+         },
+         {
+          "text": "Firstly, proponents of early schooling are contending that children absorbs knowledge fast.",
+          "why": "'are contending'; 'children absorbs'"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Explain their reasoning",
+        "best": "Their rationale is that pupils who acquire basic literacy and numeracy skills at an early age will have a firm foundation for all their later learning.",
+        "others": [
+         {
+          "text": "The reason is because children who learn early do better later.",
+          "why": "'the reason is because' is redundant"
+         },
+         {
+          "text": "Their rational is that pupils obtain literacies earlier and have firm foundation.",
+          "why": "'rational' is an adjective; missing article"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Add a supporting point",
+        "best": "Moreover, early schooling is often said to be particularly beneficial for children from disadvantaged backgrounds, who might otherwise fall behind their more privileged peers.",
+        "others": [
+         {
+          "text": "Also, it is good for poor children so they are not behind rich children.",
+          "why": "plain and informal"
+         },
+         {
+          "text": "Moreover, early schooling is beneficial for children from disadvantage backgrounds.",
+          "why": "'disadvantage' must be 'disadvantaged'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body2",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Present the opposing view",
+        "best": "Conversely, critics of this approach maintain that formal lessons at the age of four or five can stifle children's natural curiosity and cause them unnecessary stress.",
+        "others": [
+         {
+          "text": "On the contrary, other people say that school is too stressful for small kids.",
+          "why": "'on the contrary' contradicts; 'kids' is informal"
+         },
+         {
+          "text": "Conversely, critics maintain that formal lessons can stifle the curious of children.",
+          "why": "'the curious' is not a noun"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Support it with evidence",
+        "best": "They point to countries such as Finland, where formal schooling does not begin until the age of seven, as evidence that a later start does not harm academic achievement.",
+        "others": [
+         {
+          "text": "For example, in Finland they start at seven and they are OK.",
+          "why": "vague and too informal"
+         },
+         {
+          "text": "Such as Finland, where school begins at seven, the results are not harmed.",
+          "why": "'Such as' cannot begin a sentence"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Explain why it matters",
+        "best": "In their view, unstructured play is essential for developing the social and emotional skills, such as cooperation and resilience, that underpin successful learning in later years.",
+        "others": [
+         {
+          "text": "They think playing is very important for children's feelings and making friends.",
+          "why": "plain and imprecise"
+         },
+         {
+          "text": "In their view, play is very essential for developing social skills that underpins learning.",
+          "why": "'very essential'; 'skills that underpins'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "conclusion",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Weigh up both views",
+        "best": "In conclusion, while there are valid arguments for introducing academic lessons early, the evidence suggests that young children benefit more from learning through play.",
+        "others": [
+         {
+          "text": "In the end, both sides are right in some ways.",
+          "why": "'in the end' means 'finally'; vague"
+         },
+         {
+          "text": "In conclusion, early and late start both has advantages.",
+          "why": "subject–verb agreement error"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Give your final opinion",
+        "best": "I would therefore maintain that formal education should begin at around six or seven, provided that the preceding years offer a rich and stimulating environment.",
+        "others": [
+         {
+          "text": "So I think kids should start school at seven.",
+          "why": "informal and underdeveloped"
+         },
+         {
+          "text": "I would therefore maintain that school should begin at seven, provided the years before offers rich environment.",
+          "why": "'years … offers'; missing article"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "adv-disadv",
+   "task": "task2",
+   "title": "Advantages and disadvantages",
+   "mascot": "fierce",
+   "blurb": "Weigh the benefits against the drawbacks and say which side wins.",
+   "slots": [
+    {
+     "slot": "intro",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "adv-increasing-number",
+       "plain": "more and more people",
+       "formal": [
+        "an increasing number of people",
+        "a growing number of people"
+       ],
+       "plainSentence": "In recent years, more and more people have started to work from home.",
+       "formalSentence": "In recent years, an increasing number of people have started to work from home.",
+       "traps": [
+        {
+         "text": "an increasing amount of people",
+         "why": "'amount' is for uncountable nouns"
+        },
+        {
+         "text": "more and more of people",
+         "why": "no 'of'"
+        },
+        {
+         "text": "a growing numbers of people",
+         "why": "'a number of', singular 'number'"
+        }
+       ],
+       "form": "quantifier (countable)",
+       "note": "'More and more' is spoken; use 'an increasing number of'.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-this-trend",
+       "plain": "This thing",
+       "formal": [
+        "This trend",
+        "This development",
+        "This shift"
+       ],
+       "plainSentence": "This thing has been made possible by high-speed internet connections.",
+       "formalSentence": "This trend has been made possible by high-speed internet connections.",
+       "traps": [
+        {
+         "text": "This trending",
+         "why": "'trending' is not a noun"
+        },
+        {
+         "text": "This stuff",
+         "why": "'stuff' is informal"
+        },
+        {
+         "text": "This tendence",
+         "why": "not a word: 'tendency'"
+        }
+       ],
+       "form": "noun phrase (subject)",
+       "note": "Refer back with 'this trend / development', never 'this thing'.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-benefits-drawbacks",
+       "plain": "good and bad points",
+       "formal": [
+        "benefits and drawbacks",
+        "advantages and disadvantages"
+       ],
+       "plainSentence": "Working from home has both good and bad points.",
+       "formalSentence": "Working from home has both benefits and drawbacks.",
+       "traps": [
+        {
+         "text": "plus and minus points",
+         "why": "unnatural in an essay"
+        },
+        {
+         "text": "benefits and drawbacks points",
+         "why": "redundant 'points'"
+        },
+        {
+         "text": "advantageous and disadvantageous",
+         "why": "adjectives, not nouns"
+        }
+       ],
+       "form": "noun pair",
+       "note": "Name both sides in the introduction.",
+       "entryIds": [
+        "b1-advantage",
+        "b1-disadvantage"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "intro",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "adv-outweigh",
+       "plain": "are more than",
+       "formal": [
+        "outweigh"
+       ],
+       "plainSentence": "I believe that the benefits are more than the drawbacks.",
+       "formalSentence": "I believe that the benefits outweigh the drawbacks.",
+       "traps": [
+        {
+         "text": "are outweighing",
+         "why": "progressive is unnatural here"
+        },
+        {
+         "text": "outweigh than",
+         "why": "no 'than' after outweigh"
+        },
+        {
+         "text": "overweigh",
+         "why": "wrong verb: 'outweigh'"
+        }
+       ],
+       "form": "transitive verb",
+       "note": "Answer 'Do the advantages outweigh…?' directly in the thesis.",
+       "entryIds": [
+        "b2-outweigh"
+       ]
+      },
+      {
+       "id": "adv-majority",
+       "plain": "for most people",
+       "formal": [
+        "for the majority of workers",
+        "for most employees"
+       ],
+       "plainSentence": "I would argue that the advantages outweigh the disadvantages for most people.",
+       "formalSentence": "I would argue that the advantages outweigh the disadvantages for the majority of workers.",
+       "traps": [
+        {
+         "text": "for the most of people",
+         "why": "no 'the' or 'of'"
+        },
+        {
+         "text": "for the majority of worker",
+         "why": "needs a plural noun"
+        },
+        {
+         "text": "for the majority workers",
+         "why": "missing 'of'"
+        }
+       ],
+       "form": "prepositional phrase",
+       "note": "Qualify your claim: 'for the majority of …'.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "adv-principal-advantage",
+       "plain": "The main good thing about",
+       "formal": [
+        "The principal advantage of",
+        "The chief benefit of"
+       ],
+       "plainSentence": "The main good thing about working from home is the time it saves.",
+       "formalSentence": "The principal advantage of working from home is the time it saves.",
+       "traps": [
+        {
+         "text": "The principle advantage of",
+         "why": "spelling: 'principal' = main"
+        },
+        {
+         "text": "The main advantage about",
+         "why": "wrong preposition: 'advantage of'"
+        },
+        {
+         "text": "The chief benefit about",
+         "why": "wrong preposition: 'benefit of'"
+        }
+       ],
+       "form": "topic-sentence frame",
+       "note": "Principal (main) ≠ principle (a rule).",
+       "entryIds": [
+        "b1-advantage"
+       ]
+      },
+      {
+       "id": "adv-commute",
+       "plain": "travel to work every day",
+       "formal": [
+        "commute daily",
+        "make a daily commute"
+       ],
+       "plainSentence": "Remote workers no longer have to travel to work every day.",
+       "formalSentence": "Remote workers no longer have to commute daily.",
+       "traps": [
+        {
+         "text": "communicate daily",
+         "why": "wrong word: 'commute'"
+        },
+        {
+         "text": "commute to work daily trips",
+         "why": "garbled phrase"
+        },
+        {
+         "text": "commuting daily",
+         "why": "after 'have to': base form"
+        }
+       ],
+       "form": "verb phrase",
+       "note": "Commute = travel regularly between home and work.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "adv-expenditure",
+       "plain": "spend less money on offices",
+       "formal": [
+        "reduce their expenditure on office space",
+        "cut their spending on office space"
+       ],
+       "plainSentence": "Companies can also spend less money on offices.",
+       "formalSentence": "Companies can also reduce their expenditure on office space.",
+       "traps": [
+        {
+         "text": "reduce their expenditures of office",
+         "why": "wrong preposition: 'expenditure on'"
+        },
+        {
+         "text": "spend lesser money on offices",
+         "why": "'lesser' is wrong; use 'less'"
+        },
+        {
+         "text": "reduce their expense of office",
+         "why": "wrong preposition and form"
+        }
+       ],
+       "form": "verb + noun phrase",
+       "note": "Expenditure on + noun (a formal noun for spending).",
+       "entryIds": [
+        "b4-expenditure"
+       ]
+      },
+      {
+       "id": "adv-enable",
+       "plain": "help",
+       "formal": [
+        "enable",
+        "allow"
+       ],
+       "plainSentence": "Flexible hours help parents to combine work and childcare.",
+       "formalSentence": "Flexible hours enable parents to combine work and childcare.",
+       "traps": [
+        {
+         "text": "facilitate",
+         "why": "not 'facilitate + person + to'"
+        },
+        {
+         "text": "make",
+         "why": "'make parents to' is ungrammatical"
+        },
+        {
+         "text": "enables",
+         "why": "plural subject: 'hours enable'"
+        }
+       ],
+       "form": "verb + object + to-infinitive",
+       "note": "Enable / allow + person + to do.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-lower-stress",
+       "plain": "say they feel less stressed",
+       "formal": [
+        "report lower levels of stress",
+        "report reduced stress levels"
+       ],
+       "plainSentence": "Many workers say they feel less stressed when they work at home.",
+       "formalSentence": "Many workers report lower levels of stress when they work at home.",
+       "traps": [
+        {
+         "text": "report less stresses",
+         "why": "'stress' is uncountable here"
+        },
+        {
+         "text": "report to be less stressful",
+         "why": "'stressful' describes the situation"
+        },
+        {
+         "text": "report lower levels of stressed",
+         "why": "adjective used as noun"
+        }
+       ],
+       "form": "verb + noun phrase",
+       "note": "Report + noun sounds objective and academic.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "adv-as-a-result",
+       "plain": "Because of this,",
+       "formal": [
+        "As a result,",
+        "Consequently,"
+       ],
+       "plainSentence": "Because of this, productivity often rises rather than falls.",
+       "formalSentence": "As a result, productivity often rises rather than falls.",
+       "traps": [
+        {
+         "text": "As a result of,",
+         "why": "needs a noun after it"
+        },
+        {
+         "text": "Resulting,",
+         "why": "not a linker"
+        },
+        {
+         "text": "Consequent,",
+         "why": "adjective, not a linker"
+        }
+       ],
+       "form": "result linker + comma",
+       "note": "End Body 1 with the positive result.",
+       "entryIds": [
+        "c-as-a-result",
+        "c-consequently"
+       ]
+      },
+      {
+       "id": "adv-more-productive",
+       "plain": "work better",
+       "formal": [
+        "are more productive",
+        "perform more effectively"
+       ],
+       "plainSentence": "Studies suggest that many remote employees work better without office distractions.",
+       "formalSentence": "Studies suggest that many remote employees are more productive without office distractions.",
+       "traps": [
+        {
+         "text": "are more productible",
+         "why": "not a word"
+        },
+        {
+         "text": "work more better",
+         "why": "double comparative"
+        },
+        {
+         "text": "perform more effective",
+         "why": "adjective, not adverb"
+        }
+       ],
+       "form": "comparative verb phrase",
+       "note": "'Productive' names exactly what 'better' means here.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "adv-however",
+       "plain": "But",
+       "formal": [
+        "However,",
+        "Nevertheless,"
+       ],
+       "plainSentence": "But remote working is not without its problems.",
+       "formalSentence": "However, remote working is not without its problems.",
+       "traps": [
+        {
+         "text": "Despite,",
+         "why": "needs a noun after it"
+        },
+        {
+         "text": "Although,",
+         "why": "creates a sentence fragment"
+        },
+        {
+         "text": "Whereas,",
+         "why": "joins two clauses in one sentence"
+        }
+       ],
+       "form": "contrast linker + comma",
+       "note": "Turn to the disadvantages with a clear signal.",
+       "entryIds": [
+        "c-however",
+        "c-nevertheless"
+       ]
+      },
+      {
+       "id": "adv-drawback",
+       "plain": "bad point",
+       "formal": [
+        "drawback",
+        "disadvantage",
+        "downside"
+       ],
+       "plainSentence": "The most serious bad point is the risk of loneliness.",
+       "formalSentence": "The most serious drawback is the risk of loneliness.",
+       "traps": [
+        {
+         "text": "withdrawal",
+         "why": "wrong meaning"
+        },
+        {
+         "text": "negativity",
+         "why": "wrong meaning: a negative attitude"
+        },
+        {
+         "text": "disadvantaged",
+         "why": "adjective, not noun"
+        }
+       ],
+       "form": "noun",
+       "note": "'Bad point' → drawback / disadvantage.",
+       "entryIds": [
+        "b1-disadvantage"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "adv-isolated",
+       "plain": "feel lonely",
+       "formal": [
+        "become socially isolated",
+        "grow socially isolated"
+       ],
+       "plainSentence": "Without colleagues around them, some employees feel lonely and unmotivated.",
+       "formalSentence": "Without colleagues around them, some employees become socially isolated and unmotivated.",
+       "traps": [
+        {
+         "text": "feel isolating",
+         "why": "'isolated' describes how people feel"
+        },
+        {
+         "text": "become socially isolate",
+         "why": "adjective form: 'isolated'"
+        },
+        {
+         "text": "become socially isolation",
+         "why": "noun, not adjective"
+        }
+       ],
+       "form": "verb + adjective",
+       "note": "-ed = the person's feeling; -ing = the cause.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-blur",
+       "plain": "mixes up",
+       "formal": [
+        "blurs the boundary between",
+        "blurs the line between"
+       ],
+       "plainSentence": "Working at the kitchen table mixes up work and family life.",
+       "formalSentence": "Working at the kitchen table blurs the boundary between work and family life.",
+       "traps": [
+        {
+         "text": "blurs the boundary of",
+         "why": "'boundary between A and B'"
+        },
+        {
+         "text": "confuses between",
+         "why": "no 'between' after confuse"
+        },
+        {
+         "text": "blurries the line between",
+         "why": "not a verb: 'blurs'"
+        }
+       ],
+       "form": "verb + noun + between",
+       "note": "Blur the boundary between A and B.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-deteriorate",
+       "plain": "get worse",
+       "formal": [
+        "deteriorate",
+        "suffer"
+       ],
+       "plainSentence": "Communication within teams can get worse when meetings take place only online.",
+       "formalSentence": "Communication within teams can deteriorate when meetings take place only online.",
+       "traps": [
+        {
+         "text": "be deteriorated",
+         "why": "'deteriorate' has no passive"
+        },
+        {
+         "text": "worsen off",
+         "why": "no particle 'off'"
+        },
+        {
+         "text": "deteriorating",
+         "why": "after 'can': base form"
+        }
+       ],
+       "form": "intransitive verb, base form",
+       "note": "Deteriorate is intransitive: things deteriorate.",
+       "entryIds": [
+        "b2-deteriorate"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "adv-managers",
+       "plain": "bosses",
+       "formal": [
+        "managers",
+        "employers"
+       ],
+       "plainSentence": "It can also be difficult for bosses to monitor staff performance.",
+       "formalSentence": "It can also be difficult for managers to monitor staff performance.",
+       "traps": [
+        {
+         "text": "chefs",
+         "why": "wrong meaning: cooks"
+        },
+        {
+         "text": "boss people",
+         "why": "plain and ungrammatical"
+        },
+        {
+         "text": "employees",
+         "why": "wrong meaning: the workers"
+        }
+       ],
+       "form": "noun, plural",
+       "note": "'Boss' is informal; use manager or employer.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-poses-challenge",
+       "plain": "is a big problem",
+       "formal": [
+        "poses a serious challenge",
+        "presents a real difficulty"
+       ],
+       "plainSentence": "This lack of face-to-face contact is a big problem for new staff.",
+       "formalSentence": "This lack of face-to-face contact poses a serious challenge for new staff.",
+       "traps": [
+        {
+         "text": "makes a serious challenge",
+         "why": "collocation: 'pose a challenge'"
+        },
+        {
+         "text": "poses a big trouble",
+         "why": "'trouble' is uncountable"
+        },
+        {
+         "text": "is a pressing challenge problem",
+         "why": "redundant noun"
+        }
+       ],
+       "form": "verb + noun phrase",
+       "note": "Pose / present a challenge (to / for someone).",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "adv-on-balance",
+       "plain": "In the end,",
+       "formal": [
+        "On balance,",
+        "All things considered,"
+       ],
+       "plainSentence": "In the end, I believe that remote working is a positive development.",
+       "formalSentence": "On balance, I believe that remote working is a positive development.",
+       "traps": [
+        {
+         "text": "At the end,",
+         "why": "needs 'of': 'at the end of'"
+        },
+        {
+         "text": "In balance,",
+         "why": "wrong preposition: 'on balance'"
+        },
+        {
+         "text": "Lastly,",
+         "why": "introduces a final point, not a verdict"
+        }
+       ],
+       "form": "concluding linker + comma",
+       "note": "'On balance' = after weighing both sides.",
+       "entryIds": [
+        "c-on-balance"
+       ]
+      },
+      {
+       "id": "adv-positive-development",
+       "plain": "a good thing",
+       "formal": [
+        "a positive development",
+        "a welcome development"
+       ],
+       "plainSentence": "Despite its limitations, working from home is a good thing for most employees.",
+       "formalSentence": "Despite its limitations, working from home is a positive development for most employees.",
+       "traps": [
+        {
+         "text": "a positively development",
+         "why": "adverb cannot modify a noun"
+        },
+        {
+         "text": "a goodness",
+         "why": "wrong word"
+        },
+        {
+         "text": "a positive develop",
+         "why": "verb used as noun"
+        }
+       ],
+       "form": "adjective + noun",
+       "note": "Give a clear final verdict on the trend.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "adv-overcome",
+       "plain": "fixed",
+       "formal": [
+        "overcome",
+        "addressed",
+        "mitigated"
+       ],
+       "plainSentence": "Most of these problems can be fixed if companies hold regular team meetings.",
+       "formalSentence": "Most of these problems can be overcome if companies hold regular team meetings.",
+       "traps": [
+        {
+         "text": "repaired",
+         "why": "for objects, not problems"
+        },
+        {
+         "text": "fixated",
+         "why": "wrong meaning: 'obsessed'"
+        },
+        {
+         "text": "overcame",
+         "why": "past participle is 'overcome'"
+        }
+       ],
+       "form": "past participle (passive)",
+       "note": "Show that the drawbacks can be managed.",
+       "entryIds": []
+      },
+      {
+       "id": "adv-considerably",
+       "plain": "a lot",
+       "formal": [
+        "considerably",
+        "significantly"
+       ],
+       "plainSentence": "With good management, the benefits for both employers and employees would increase a lot.",
+       "formalSentence": "With good management, the benefits for both employers and employees would increase considerably.",
+       "traps": [
+        {
+         "text": "very much",
+         "why": "unnatural after this verb"
+        },
+        {
+         "text": "considerable",
+         "why": "adjective, not adverb"
+        },
+        {
+         "text": "in a considerable way",
+         "why": "wordy and unnatural"
+        }
+       ],
+       "form": "adverb of degree",
+       "note": "'A lot' is spoken English; use considerably.",
+       "entryIds": []
+      }
+     ]
+    }
+   ],
+   "rewrites": [
+    {
+     "id": "adv-r1",
+     "slot": "intro",
+     "plain": "Nowadays more and more people work from home and this has good and bad points.",
+     "best": "In recent years, an increasing number of people have begun working from home, a trend that has both benefits and drawbacks.",
+     "tooPlain": "Nowadays, many people work from home, and this has advantages and disadvantages.",
+     "tooPlainWhy": "'nowadays' and 'many people' are plain",
+     "broken": "In recent years, an increasing amount of people is working from home, a trend which has benefits and drawbacks points.",
+     "brokenWhy": "'amount of people'; redundant 'points'"
+    },
+    {
+     "id": "adv-r2",
+     "slot": "intro",
+     "plain": "I think the good things are more than the bad things.",
+     "best": "In my view, the advantages of this development clearly outweigh its disadvantages.",
+     "tooPlain": "I think the advantages are more than the disadvantages.",
+     "tooPlainWhy": "'are more than' → outweigh",
+     "broken": "In my view, the advantages are outweighing than the disadvantages.",
+     "brokenWhy": "progressive and 'than' are both wrong"
+    },
+    {
+     "id": "adv-r3",
+     "slot": "body1",
+     "plain": "The main good thing is people don't waste time going to work.",
+     "best": "The principal advantage is that employees no longer lose hours commuting.",
+     "tooPlain": "The main advantage is that people don't waste time travelling to work.",
+     "tooPlainWhy": "contraction; plain wording",
+     "broken": "The principle advantage is that employees no longer lose hours to commute.",
+     "brokenWhy": "'principle' misspelt; 'lose hours to commute'"
+    },
+    {
+     "id": "adv-r4",
+     "slot": "body1",
+     "plain": "Companies save a lot of money because they don't need big offices.",
+     "best": "Companies can also reduce their expenditure on office space considerably.",
+     "tooPlain": "Companies can also save a lot of money on offices.",
+     "tooPlainWhy": "'a lot of money' is plain",
+     "broken": "Companies can also reduce their expenditures of office space considerable.",
+     "brokenWhy": "'expenditures of'; 'considerable' is an adjective"
+    },
+    {
+     "id": "adv-r5",
+     "slot": "body2",
+     "plain": "But some workers feel lonely and it is a big problem.",
+     "best": "However, some employees become socially isolated, which poses a serious challenge to their well-being.",
+     "tooPlain": "However, some workers feel lonely, which is a big problem.",
+     "tooPlainWhy": "'feel lonely' and 'big problem' are plain",
+     "broken": "However, some employees become socially isolating, which makes a serious challenge.",
+     "brokenWhy": "'isolating'; 'makes a challenge'"
+    },
+    {
+     "id": "adv-r6",
+     "slot": "body2",
+     "plain": "Also, it is hard to stop working because home and work get mixed up.",
+     "best": "In addition, home working can blur the boundary between professional and personal life, making it difficult to switch off.",
+     "tooPlain": "Also, it is hard to stop working because home and work are mixed.",
+     "tooPlainWhy": "'also' and 'mixed' are plain",
+     "broken": "In addition, home working can blur the boundary of professional and personal life, making difficult to switch off.",
+     "brokenWhy": "'boundary of'; missing 'it'"
+    },
+    {
+     "id": "adv-r7",
+     "slot": "conclusion",
+     "plain": "In the end the good points win and the problems can be fixed.",
+     "best": "On balance, the benefits outweigh the drawbacks, most of which can be overcome with careful management.",
+     "tooPlain": "In conclusion, the good points are bigger and the problems can be solved.",
+     "tooPlainWhy": "'good points are bigger' is plain",
+     "broken": "On balance, the benefits are outweighing the drawbacks, most of which can be overcame.",
+     "brokenWhy": "progressive 'outweighing'; 'overcame'"
+    }
+   ],
+   "report": {
+    "question": "In many countries, a growing number of people now work from home rather than travelling to an office. Do the advantages of this development outweigh the disadvantages?",
+    "chart": null,
+    "paragraphs": [
+     {
+      "slot": "intro",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Paraphrase the question",
+        "best": "In recent years, advances in digital technology have enabled an increasing number of employees to carry out their work remotely instead of commuting to an office every day.",
+        "others": [
+         {
+          "text": "Nowadays, many people work from home rather than in an office.",
+          "why": "copies the question; 'nowadays'"
+         },
+         {
+          "text": "In this modern era of technology, working from home is a hot topic.",
+          "why": "cliché; does not paraphrase"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Answer the question directly",
+        "best": "Although this trend undoubtedly has certain drawbacks, I believe that its benefits clearly outweigh them for the majority of workers and their employers.",
+        "others": [
+         {
+          "text": "This essay will look at the good and bad points.",
+          "why": "does not answer 'do they outweigh?'"
+         },
+         {
+          "text": "Although this trend has certain drawbacks, but the benefits are outweighing.",
+          "why": "'although … but'; progressive 'outweighing'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body1",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Topic sentence: the main advantage",
+        "best": "The principal advantage of working from home is that it eliminates the daily commute, which can take two or more hours in many large cities.",
+        "others": [
+         {
+          "text": "The main good thing is that people don't have to travel to work.",
+          "why": "plain; contraction"
+         },
+         {
+          "text": "The principle advantage of home working is that eliminates the commute.",
+          "why": "'principle' misspelt; missing subject 'it'"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Develop the advantage",
+        "best": "This saves employees both time and money, and it enables parents in particular to combine their professional responsibilities with childcare far more easily than would otherwise be possible.",
+        "others": [
+         {
+          "text": "This helps people save time and money and look after kids.",
+          "why": "plain verbs; 'kids' is informal"
+         },
+         {
+          "text": "This facilitates parents to combine work and childcare more easy.",
+          "why": "'facilitate' + person + to; 'easy'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Add a second benefit",
+        "best": "Furthermore, companies can reduce their expenditure on office space, and a number of studies suggest that remote staff are more productive when they are freed from constant office distractions.",
+        "others": [
+         {
+          "text": "Also, companies spend less money on offices and people work better.",
+          "why": "correct but too plain"
+         },
+         {
+          "text": "Furthermore, companies can reduce their expenditures of office space and staffs are more productive.",
+          "why": "'expenditures of' and 'staffs' are wrong"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body2",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Turn to the disadvantages",
+        "best": "Nevertheless, remote working is not without its drawbacks, the most serious of which is that some employees become socially isolated and gradually lose motivation without the daily support of their colleagues.",
+        "others": [
+         {
+          "text": "But there are some bad points, like people feel lonely.",
+          "why": "plain; 'like' is informal"
+         },
+         {
+          "text": "Nevertheless, the most serious drawback is some employees become isolating.",
+          "why": "'become isolating' is the wrong form"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Add a second drawback",
+        "best": "In addition, the absence of a separate workplace can blur the boundary between professional and family life, making it difficult for people to switch off.",
+        "others": [
+         {
+          "text": "Also, home and work get mixed up, so people can't relax.",
+          "why": "plain; contraction"
+         },
+         {
+          "text": "In addition, the absence of a workplace can blur the boundary of work and family, making difficult to switch off.",
+          "why": "'boundary of'; missing 'it'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Explain who is most affected",
+        "best": "Communication within teams may also deteriorate, which poses a particular challenge for new staff, who learn much of their role by observing more experienced colleagues.",
+        "others": [
+         {
+          "text": "Teamwork can get worse and this is a big problem for new workers.",
+          "why": "plain and repetitive"
+         },
+         {
+          "text": "Communication may be deteriorated, which makes a challenge for new staff.",
+          "why": "'deteriorate' has no passive; 'pose a challenge'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "conclusion",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Give your verdict",
+        "best": "On balance, I believe that working from home is a positive development for both individuals and businesses, since the gains in time, flexibility and productivity are considerable.",
+        "others": [
+         {
+          "text": "In the end, I think working from home is a good thing.",
+          "why": "plain; 'in the end' means 'finally'"
+         },
+         {
+          "text": "On balance, working from home is a positively development.",
+          "why": "'positively' is an adverb"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Show the drawbacks can be managed",
+        "best": "Moreover, most of its drawbacks can be overcome if employers hold regular face-to-face meetings and encourage staff to maintain a clear daily routine.",
+        "others": [
+         {
+          "text": "The problems can be fixed with meetings.",
+          "why": "too plain and underdeveloped"
+         },
+         {
+          "text": "Moreover, most of its drawbacks can be overcame if employers holds regular meetings.",
+          "why": "'overcame' and 'employers holds' are wrong"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "problem-solution",
+   "task": "task2",
+   "title": "Problems and solutions",
+   "mascot": "focused",
+   "blurb": "Explain the causes of a problem, then propose realistic ways to tackle it.",
+   "slots": [
+    {
+     "slot": "intro",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "ps-pressing-issue",
+       "plain": "a big problem",
+       "formal": [
+        "a pressing issue",
+        "a serious concern"
+       ],
+       "plainSentence": "The growing volume of household waste has become a big problem in many cities.",
+       "formalSentence": "The growing volume of household waste has become a pressing issue in many cities.",
+       "traps": [
+        {
+         "text": "a big issue",
+         "why": "still plain"
+        },
+        {
+         "text": "a pressed issue",
+         "why": "wrong form: 'pressing'"
+        },
+        {
+         "text": "a pressing problematic",
+         "why": "'problematic' is an adjective"
+        }
+       ],
+       "form": "adjective + noun",
+       "note": "'Pressing' = urgent, needing action now.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-ever-increasing",
+       "plain": "more and more rubbish",
+       "formal": [
+        "ever-increasing amounts of waste",
+        "growing quantities of waste"
+       ],
+       "plainSentence": "Urban households are producing more and more rubbish each year.",
+       "formalSentence": "Urban households are producing ever-increasing amounts of waste each year.",
+       "traps": [
+        {
+         "text": "an increasing number of waste",
+         "why": "'number' is for countable nouns"
+        },
+        {
+         "text": "more and more wastes",
+         "why": "'waste' is uncountable here"
+        },
+        {
+         "text": "ever-increasing amount of wastes",
+         "why": "wrong plurals"
+        }
+       ],
+       "form": "quantifier + uncountable noun",
+       "note": "Amount / quantity + uncountable nouns like waste.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-measures",
+       "plain": "some ways to fix it",
+       "formal": [
+        "several measures to address it",
+        "a number of possible remedies for it"
+       ],
+       "plainSentence": "This essay will outline the main causes of this trend and suggest some ways to fix it.",
+       "formalSentence": "This essay will outline the main causes of this trend and suggest several measures to address it.",
+       "traps": [
+        {
+         "text": "some ways to fixing it",
+         "why": "'way to' + base verb"
+        },
+        {
+         "text": "some measures to repair it",
+         "why": "'repair' is for objects"
+        },
+        {
+         "text": "several measures to address with it",
+         "why": "'address' takes a direct object"
+        }
+       ],
+       "form": "noun phrase + to-infinitive",
+       "note": "Measures / remedies are the key nouns for solutions.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "intro",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "ps-stems-from",
+       "plain": "comes from",
+       "formal": [
+        "stems from",
+        "arises from"
+       ],
+       "plainSentence": "I believe that the problem mainly comes from modern consumer habits.",
+       "formalSentence": "I believe that the problem mainly stems from modern consumer habits.",
+       "traps": [
+        {
+         "text": "stems out of",
+         "why": "wrong preposition: 'stems from'"
+        },
+        {
+         "text": "is stemmed from",
+         "why": "'stem from' has no passive"
+        },
+        {
+         "text": "arises of",
+         "why": "wrong preposition: 'arises from'"
+        }
+       ],
+       "form": "verb + from",
+       "note": "Stem from / arise from introduce the root cause.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-tackled",
+       "plain": "sorted out",
+       "formal": [
+        "tackled",
+        "addressed"
+       ],
+       "plainSentence": "However, it can be sorted out through a combination of government action and individual effort.",
+       "formalSentence": "However, it can be tackled through a combination of government action and individual effort.",
+       "traps": [
+        {
+         "text": "dealt",
+         "why": "needs 'with': 'dealt with'"
+        },
+        {
+         "text": "solved out",
+         "why": "no particle 'out'"
+        },
+        {
+         "text": "tackle",
+         "why": "passive needs the past participle"
+        }
+       ],
+       "form": "past participle (passive)",
+       "note": "Tackle / address a problem: formal, active-sounding verbs.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "ps-primary-cause",
+       "plain": "The main reason for",
+       "formal": [
+        "The primary cause of",
+        "The principal cause of"
+       ],
+       "plainSentence": "The main reason for this problem is the culture of convenience that dominates modern life.",
+       "formalSentence": "The primary cause of this problem is the culture of convenience that dominates modern life.",
+       "traps": [
+        {
+         "text": "The primary causation of",
+         "why": "'causation' means the process"
+        },
+        {
+         "text": "The first reason of",
+         "why": "wrong preposition: 'reason for'"
+        },
+        {
+         "text": "The principle cause of",
+         "why": "spelling: 'principal' = main"
+        }
+       ],
+       "form": "topic-sentence frame",
+       "note": "Cause of / reason for: learn the prepositions.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-attributed",
+       "plain": "is caused by",
+       "formal": [
+        "can be attributed to",
+        "results from"
+       ],
+       "plainSentence": "Much of this waste is caused by excessive packaging.",
+       "formalSentence": "Much of this waste can be attributed to excessive packaging.",
+       "traps": [
+        {
+         "text": "can be contributed to",
+         "why": "confuses 'contribute' and 'attribute'"
+        },
+        {
+         "text": "is attributed from",
+         "why": "wrong preposition: 'attributed to'"
+        },
+        {
+         "text": "is due of",
+         "why": "wrong preposition: 'due to'"
+        }
+       ],
+       "form": "passive verb + to",
+       "note": "X can be attributed to Y = Y is the cause.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "ps-discard",
+       "plain": "throw away",
+       "formal": [
+        "discard",
+        "dispose of"
+       ],
+       "plainSentence": "Consumers now throw away items that could easily be repaired.",
+       "formalSentence": "Consumers now discard items that could easily be repaired.",
+       "traps": [
+        {
+         "text": "dispose",
+         "why": "needs 'of': 'dispose of'"
+        },
+        {
+         "text": "throw out of",
+         "why": "wrong particles"
+        },
+        {
+         "text": "discharge",
+         "why": "wrong meaning: 'release liquid'"
+        }
+       ],
+       "form": "verb + object",
+       "note": "Dispose of / discard: formal verbs for 'throw away'.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-purchase",
+       "plain": "buy",
+       "formal": [
+        "purchase",
+        "acquire"
+       ],
+       "plainSentence": "People buy far more goods than they actually need.",
+       "formalSentence": "People purchase far more goods than they actually need.",
+       "traps": [
+        {
+         "text": "buy up",
+         "why": "wrong meaning: 'buy all of'"
+        },
+        {
+         "text": "purchasing",
+         "why": "present simple needed here"
+        },
+        {
+         "text": "purchase for",
+         "why": "no preposition after 'purchase'"
+        }
+       ],
+       "form": "verb, present simple",
+       "note": "'Purchase' suits formal essays and letters alike.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-inexpensive",
+       "plain": "Cheap,",
+       "formal": [
+        "Inexpensive,",
+        "Low-cost,"
+       ],
+       "plainSentence": "Cheap, low-quality products have to be replaced frequently.",
+       "formalSentence": "Inexpensive, low-quality products have to be replaced frequently.",
+       "traps": [
+        {
+         "text": "Cheaply,",
+         "why": "adverb, not adjective"
+        },
+        {
+         "text": "Economic,",
+         "why": "means 'related to the economy'"
+        },
+        {
+         "text": "Unexpensive,",
+         "why": "not a word: 'inexpensive'"
+        }
+       ],
+       "form": "adjective",
+       "note": "Economical = saving money; economic = about the economy.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body1",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "ps-exacerbates",
+       "plain": "makes the situation worse",
+       "formal": [
+        "exacerbates the situation",
+        "aggravates the situation"
+       ],
+       "plainSentence": "The rapid growth of online shopping makes the situation worse.",
+       "formalSentence": "The rapid growth of online shopping exacerbates the situation.",
+       "traps": [
+        {
+         "text": "deteriorates the situation",
+         "why": "'deteriorate' takes no object"
+        },
+        {
+         "text": "makes the situation worsen",
+         "why": "'make' + adjective: 'worse'"
+        },
+        {
+         "text": "exacerbates the situation worse",
+         "why": "redundant 'worse'"
+        }
+       ],
+       "form": "transitive verb + object",
+       "note": "Close Body 1 with a factor that intensifies the problem.",
+       "entryIds": [
+        "b2-exacerbate"
+       ]
+      },
+      {
+       "id": "ps-vast-quantities",
+       "plain": "lots of",
+       "formal": [
+        "vast quantities of",
+        "large amounts of"
+       ],
+       "plainSentence": "Almost every delivery arrives wrapped in lots of cardboard and plastic.",
+       "formalSentence": "Almost every delivery arrives wrapped in vast quantities of cardboard and plastic.",
+       "traps": [
+        {
+         "text": "a large number of",
+         "why": "'cardboard' and 'plastic' are uncountable"
+        },
+        {
+         "text": "lots and lots of",
+         "why": "too informal"
+        },
+        {
+         "text": "vast quantity of",
+         "why": "needs plural 'quantities'"
+        }
+       ],
+       "form": "quantifier + uncountable noun",
+       "note": "Quantities / amounts for materials; numbers for countable items.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "ps-viable-solution",
+       "plain": "One way to fix this",
+       "formal": [
+        "One viable solution",
+        "One effective remedy"
+       ],
+       "plainSentence": "One way to fix this is to make manufacturers responsible for their packaging.",
+       "formalSentence": "One viable solution is to make manufacturers responsible for their packaging.",
+       "traps": [
+        {
+         "text": "One viable solving",
+         "why": "'solving' is not a noun here"
+        },
+        {
+         "text": "One way to repair this",
+         "why": "'repair' is for objects"
+        },
+        {
+         "text": "One viable resolve",
+         "why": "'resolve' here is a verb"
+        }
+       ],
+       "form": "topic-sentence frame",
+       "note": "Open Body 2 with your first solution.",
+       "entryIds": [
+        "b1-viable"
+       ]
+      },
+      {
+       "id": "ps-incumbent",
+       "plain": "The government should",
+       "formal": [
+        "It is incumbent upon governments to",
+        "Governments ought to"
+       ],
+       "plainSentence": "The government should introduce stricter recycling targets for every district.",
+       "formalSentence": "It is incumbent upon governments to introduce stricter recycling targets for every district.",
+       "traps": [
+        {
+         "text": "It is incumbent for governments to",
+         "why": "wrong preposition: 'incumbent upon / on'"
+        },
+        {
+         "text": "The government must to",
+         "why": "no 'to' after 'must'"
+        },
+        {
+         "text": "It is incumbent upon governments",
+         "why": "missing 'to'"
+        }
+       ],
+       "form": "modal / impersonal obligation",
+       "note": "'It is incumbent upon X to…' = X has a duty to.",
+       "entryIds": [
+        "b1-incumbent-upon"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "ps-legislation",
+       "plain": "make laws",
+       "formal": [
+        "introduce legislation",
+        "pass legislation"
+       ],
+       "plainSentence": "Authorities could make laws to limit single-use plastics.",
+       "formalSentence": "Authorities could introduce legislation to limit single-use plastics.",
+       "traps": [
+        {
+         "text": "make legislations",
+         "why": "'legislation' is uncountable"
+        },
+        {
+         "text": "do laws",
+         "why": "wrong verb: 'pass / introduce laws'"
+        },
+        {
+         "text": "introduce legislative",
+         "why": "adjective, not noun"
+        }
+       ],
+       "form": "verb + uncountable noun",
+       "note": "Introduce / pass legislation; legislation has no plural.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-curb",
+       "plain": "stop",
+       "formal": [
+        "curb",
+        "curtail"
+       ],
+       "plainSentence": "Charging for plastic bags has helped to stop their overuse in several countries.",
+       "formalSentence": "Charging for plastic bags has helped to curb their overuse in several countries.",
+       "traps": [
+        {
+         "text": "curve",
+         "why": "spelling: 'curb' means restrict"
+        },
+        {
+         "text": "prohibit",
+         "why": "means to ban, not reduce"
+        },
+        {
+         "text": "stop up",
+         "why": "wrong meaning: 'block'"
+        }
+       ],
+       "form": "verb, base form",
+       "note": "Curb / curtail = limit something harmful.",
+       "entryIds": [
+        "b2-curtail"
+       ]
+      },
+      {
+       "id": "ps-penalise",
+       "plain": "punish",
+       "formal": [
+        "penalise",
+        "impose fines on"
+       ],
+       "plainSentence": "Local councils could also punish households that do not separate their rubbish.",
+       "formalSentence": "Local councils could also penalise households that do not separate their rubbish.",
+       "traps": [
+        {
+         "text": "penalty",
+         "why": "noun, not verb"
+        },
+        {
+         "text": "sentence",
+         "why": "courts sentence criminals"
+        },
+        {
+         "text": "penalize on",
+         "why": "no 'on' after penalise"
+        }
+       ],
+       "form": "verb + object",
+       "note": "British spelling: penalise; impose fines on + someone.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-raise-awareness",
+       "plain": "teach people about",
+       "formal": [
+        "raise public awareness of",
+        "increase public awareness of"
+       ],
+       "plainSentence": "Schools and the media should teach people about the environmental cost of waste.",
+       "formalSentence": "Schools and the media should raise public awareness of the environmental cost of waste.",
+       "traps": [
+        {
+         "text": "rise public awareness of",
+         "why": "'rise' is intransitive; use 'raise'"
+        },
+        {
+         "text": "arise public awareness of",
+         "why": "'arise' takes no object"
+        },
+        {
+         "text": "raise public awareness to",
+         "why": "wrong preposition: 'awareness of'"
+        }
+       ],
+       "form": "verb + noun + of",
+       "note": "Raise (transitive) awareness; prices rise (intransitive).",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body2",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "ps-incentive",
+       "plain": "make people want to",
+       "formal": [
+        "give people an incentive to",
+        "encourage people to"
+       ],
+       "plainSentence": "Deposit schemes for bottles make people want to return them.",
+       "formalSentence": "Deposit schemes for bottles give people an incentive to return them.",
+       "traps": [
+        {
+         "text": "incentive people to",
+         "why": "'incentive' is a noun"
+        },
+        {
+         "text": "make people to",
+         "why": "'make' + person + bare infinitive"
+        },
+        {
+         "text": "give people an incentive for",
+         "why": "'incentive to' + verb here"
+        }
+       ],
+       "form": "verb + object + to-infinitive",
+       "note": "Incentives are a classic solution word.",
+       "entryIds": [
+        "b4-incentive"
+       ]
+      },
+      {
+       "id": "ps-alleviate",
+       "plain": "make things better",
+       "formal": [
+        "alleviate the problem",
+        "ease the problem"
+       ],
+       "plainSentence": "Together, such measures would make things better within a few years.",
+       "formalSentence": "Together, such measures would alleviate the problem within a few years.",
+       "traps": [
+        {
+         "text": "enhance the problem",
+         "why": "would make the problem bigger"
+        },
+        {
+         "text": "alleviate the problem better",
+         "why": "redundant 'better'"
+        },
+        {
+         "text": "relieve of the problem",
+         "why": "wrong structure"
+        }
+       ],
+       "form": "verb + object",
+       "note": "Alleviate problems; enhance good things.",
+       "entryIds": [
+        "b2-alleviate"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "ps-in-conclusion",
+       "plain": "Finally,",
+       "formal": [
+        "In conclusion,",
+        "To summarise,"
+       ],
+       "plainSentence": "Finally, the rise in household waste has identifiable causes and practical solutions.",
+       "formalSentence": "In conclusion, the rise in household waste has identifiable causes and practical solutions.",
+       "traps": [
+        {
+         "text": "Lastly,",
+         "why": "lists a final point, not a conclusion"
+        },
+        {
+         "text": "In conclusion of,",
+         "why": "incomplete phrase"
+        },
+        {
+         "text": "To summary,",
+         "why": "'summary' is a noun"
+        }
+       ],
+       "form": "concluding linker + comma",
+       "note": "'Finally' introduces a last point, not a conclusion.",
+       "entryIds": [
+        "c-in-conclusion",
+        "c-to-summarise"
+       ]
+      },
+      {
+       "id": "ps-result-of",
+       "plain": "is mostly because of",
+       "formal": [
+        "is largely the result of",
+        "is largely attributable to"
+       ],
+       "plainSentence": "The increase in household waste is mostly because of overconsumption and excessive packaging.",
+       "formalSentence": "The increase in household waste is largely the result of overconsumption and excessive packaging.",
+       "traps": [
+        {
+         "text": "is largely resulting of",
+         "why": "wrong form: 'the result of'"
+        },
+        {
+         "text": "is largely due of",
+         "why": "wrong preposition: 'due to'"
+        },
+        {
+         "text": "is largely because",
+         "why": "needs a clause, not a noun"
+        }
+       ],
+       "form": "verb phrase + noun",
+       "note": "Summarise the causes in one sentence.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "conclusion",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "ps-left-unchecked",
+       "plain": "If nothing is done,",
+       "formal": [
+        "If left unchecked,",
+        "Unless decisive action is taken,"
+       ],
+       "plainSentence": "If nothing is done, the problem will soon overwhelm existing landfill sites.",
+       "formalSentence": "If left unchecked, the problem will soon overwhelm existing landfill sites.",
+       "traps": [
+        {
+         "text": "If left uncheck,",
+         "why": "past participle: 'unchecked'"
+        },
+        {
+         "text": "If nothing is doing,",
+         "why": "wrong form: passive needed"
+        },
+        {
+         "text": "Unless nothing is done,",
+         "why": "double negative: changes the meaning"
+        }
+       ],
+       "form": "conditional clause + comma",
+       "note": "Warn of consequences to end strongly.",
+       "entryIds": []
+      },
+      {
+       "id": "ps-repercussions",
+       "plain": "bad results",
+       "formal": [
+        "serious repercussions",
+        "grave consequences"
+       ],
+       "plainSentence": "Overconsumption will have bad results for the planet and its future inhabitants.",
+       "formalSentence": "Overconsumption will have serious repercussions for the planet and its future inhabitants.",
+       "traps": [
+        {
+         "text": "serious repercussion",
+         "why": "needs a plural noun here"
+        },
+        {
+         "text": "bad repercussions",
+         "why": "'bad' is still plain"
+        },
+        {
+         "text": "serious repercussions results",
+         "why": "redundant noun"
+        }
+       ],
+       "form": "adjective + plural noun",
+       "note": "Repercussions = serious, often unexpected effects.",
+       "entryIds": [
+        "b4-repercussions"
+       ]
+      }
+     ]
+    }
+   ],
+   "rewrites": [
+    {
+     "id": "ps-r1",
+     "slot": "intro",
+     "plain": "Nowadays rubbish is a big problem in cities.",
+     "best": "In recent years, the growing volume of household waste has become a pressing issue in many cities.",
+     "tooPlain": "Nowadays, rubbish is a serious problem in cities.",
+     "tooPlainWhy": "'nowadays' and 'rubbish' are plain",
+     "broken": "In recent years, the growing volume of household wastes has become a pressed issue.",
+     "brokenWhy": "'wastes' and 'pressed' are wrong"
+    },
+    {
+     "id": "ps-r2",
+     "slot": "body1",
+     "plain": "The main reason is people buy too much stuff.",
+     "best": "The primary cause is that consumers purchase far more goods than they need.",
+     "tooPlain": "The main reason is that people buy too many things.",
+     "tooPlainWhy": "'main reason' and 'buy' are plain",
+     "broken": "The primary cause is because consumers purchase much more goods than they need.",
+     "brokenWhy": "'cause is because'; 'much more goods'"
+    },
+    {
+     "id": "ps-r3",
+     "slot": "body1",
+     "plain": "Online shopping makes it worse because of all the boxes.",
+     "best": "The growth of online shopping has exacerbated the problem owing to the vast quantities of packaging involved.",
+     "tooPlain": "Online shopping makes the problem worse because of all the packaging.",
+     "tooPlainWhy": "'makes … worse' is plain",
+     "broken": "The growth of online shopping has exaggerated the problem owing to the large number of packaging.",
+     "brokenWhy": "'exaggerated'; 'number of packaging'"
+    },
+    {
+     "id": "ps-r4",
+     "slot": "body2",
+     "plain": "The government should make laws to stop plastic.",
+     "best": "It is incumbent upon governments to introduce legislation that curbs the use of single-use plastics.",
+     "tooPlain": "The government should make new laws to stop plastic bags.",
+     "tooPlainWhy": "'make laws' and 'stop' are plain",
+     "broken": "It is incumbent for governments to introduce legislations that curve plastic use.",
+     "brokenWhy": "'incumbent for', 'legislations', 'curve'"
+    },
+    {
+     "id": "ps-r5",
+     "slot": "body2",
+     "plain": "People should be punished if they don't recycle.",
+     "best": "Households that fail to recycle could be penalised through modest fines.",
+     "tooPlain": "People who don't recycle should be punished.",
+     "tooPlainWhy": "'punished' is plain; contraction",
+     "broken": "Households that fail to recycle could be penaltied through modest fines.",
+     "brokenWhy": "'penaltied' is not a verb"
+    },
+    {
+     "id": "ps-r6",
+     "slot": "body2",
+     "plain": "Schools should teach people about rubbish so things get better.",
+     "best": "Schools should raise awareness of the environmental cost of waste, which would help to alleviate the problem.",
+     "tooPlain": "Schools should teach children about waste so the problem gets better.",
+     "tooPlainWhy": "'teach about' and 'gets better' are plain",
+     "broken": "Schools should rise awareness of the cost of waste, which would help to enhance the problem.",
+     "brokenWhy": "'rise' and 'enhance the problem' are wrong"
+    },
+    {
+     "id": "ps-r7",
+     "slot": "conclusion",
+     "plain": "If nothing is done, it will be really bad for the future.",
+     "best": "If left unchecked, this trend will have serious repercussions for future generations.",
+     "tooPlain": "If nothing is done, it will be very bad for future generations.",
+     "tooPlainWhy": "'very bad' is plain and vague",
+     "broken": "If left unchecked, this trend will have serious repercussion to next generations.",
+     "brokenWhy": "'repercussion' plural; 'to next generations'"
+    }
+   ],
+   "report": {
+    "question": "In many cities, the amount of household waste is increasing every year. What are the main causes of this problem, and what measures could be taken to solve it?",
+    "chart": null,
+    "paragraphs": [
+     {
+      "slot": "intro",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Paraphrase the question",
+        "best": "In recent years, the volume of rubbish produced by urban households has risen steadily, and dealing with it has become a pressing issue for local authorities around the world.",
+        "others": [
+         {
+          "text": "The amount of household waste in many cities is increasing every year.",
+          "why": "copies the question"
+         },
+         {
+          "text": "Nowadays in this modern world, rubbish is a very big problem.",
+          "why": "cliché and plain"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Preview causes and solutions",
+        "best": "This essay will argue that the problem stems mainly from modern consumer habits, and that it can be tackled through a combination of legislation and education.",
+        "others": [
+         {
+          "text": "In this essay I will write about the causes and solutions.",
+          "why": "vague; gives no ideas"
+         },
+         {
+          "text": "This essay will argue that the problem is stemmed from consumer habits and can tackle by laws.",
+          "why": "'is stemmed'; 'can tackle' needs passive"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body1",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Topic sentence: the main cause",
+        "best": "The primary cause of this problem is the culture of convenience that dominates modern life, in which many products are designed to be used once and then discarded.",
+        "others": [
+         {
+          "text": "The main reason is that people like easy things and throw them away.",
+          "why": "plain and vague"
+         },
+         {
+          "text": "The primary causation of this problem is the convenience culture, where products discard after one use.",
+          "why": "'causation'; 'products discard' needs passive"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Explain the cause",
+        "best": "Consumers now purchase far more goods than they actually need, encouraged by relentless advertising, and inexpensive items are often replaced rather than repaired when they break.",
+        "others": [
+         {
+          "text": "People buy too much stuff and throw away cheap things.",
+          "why": "plain and informal ('stuff')"
+         },
+         {
+          "text": "Consumers now purchase much more goods than needed and cheap items are replaced than repaired.",
+          "why": "'much more goods'; 'replaced than'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Add a factor that makes it worse",
+        "best": "The rapid growth of online shopping has exacerbated the situation, since almost every delivery arrives wrapped in vast quantities of cardboard and plastic.",
+        "others": [
+         {
+          "text": "Online shopping makes it worse because there is lots of packaging.",
+          "why": "plain verb and quantifier"
+         },
+         {
+          "text": "Online shopping has exaggerated the situation, since deliveries come with a large number of cardboard.",
+          "why": "'exaggerated' is the wrong meaning; 'number of cardboard'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body2",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Topic sentence: the first solution",
+        "best": "One viable solution would be for governments to introduce legislation that makes manufacturers responsible for collecting and recycling their own packaging, as has already happened in parts of Europe.",
+        "others": [
+         {
+          "text": "One way to fix this is that the government makes new laws.",
+          "why": "plain, with no detail"
+         },
+         {
+          "text": "One viable solution would be for governments to make legislations for manufacturers.",
+          "why": "'legislation' is uncountable; 'make' is wrong"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Support it with an example",
+        "best": "Charges on single-use plastic bags, for instance, have already helped to curb their overuse in several countries, and deposit schemes give people a strong incentive to return bottles.",
+        "others": [
+         {
+          "text": "For example, charging for plastic bags stopped people using so many.",
+          "why": "correct but plain"
+         },
+         {
+          "text": "Charges on plastic bags, for instance, have helped to curve their overuse, and deposit schemes incentive people to return bottles.",
+          "why": "'curve' is misspelt; 'incentive' is a noun"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Add a second solution",
+        "best": "At the same time, schools and the media should raise public awareness of the environmental cost of waste, as lasting change ultimately depends on individual behaviour.",
+        "others": [
+         {
+          "text": "Also, schools should teach people about rubbish.",
+          "why": "too plain and vague"
+         },
+         {
+          "text": "At the same time, schools should rise public awareness about the environmental cost of waste.",
+          "why": "'rise' is intransitive; use 'raise'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "conclusion",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Summarise the causes",
+        "best": "In conclusion, the growth in household waste is largely the result of overconsumption and excessive packaging, both of which are encouraged by modern lifestyles.",
+        "others": [
+         {
+          "text": "Finally, rubbish is increasing because people buy lots of things.",
+          "why": "'finally' lists a point; plain wording"
+         },
+         {
+          "text": "In conclusion, the growth in household waste is largely resulting of overconsumption.",
+          "why": "'resulting of' is wrong; use 'the result of'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Recommend action and warn",
+        "best": "If left unchecked, this trend will have serious repercussions for future generations, so a combination of firm legislation and public education is urgently required.",
+        "others": [
+         {
+          "text": "If nothing is done, it will be bad for people in the future.",
+          "why": "plain and vague"
+         },
+         {
+          "text": "If left uncheck, this trend will have serious repercussion for next generations.",
+          "why": "'uncheck'; 'repercussion' needs a plural"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "formal-letter",
+   "task": "letters",
+   "title": "Formal letter",
+   "mascot": "blushing",
+   "blurb": "Complaints, requests and applications: polite, precise and never chatty.",
+   "slots": [
+    {
+     "slot": "opening",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "fl-dear-sir-madam",
+       "plain": "Hi,",
+       "formal": [
+        "Dear Sir or Madam,",
+        "Dear Sir/Madam,"
+       ],
+       "plainSentence": "Hi,",
+       "formalSentence": "Dear Sir or Madam,",
+       "traps": [
+        {
+         "text": "Hey dude,",
+         "why": "slang: never in a formal letter"
+        },
+        {
+         "text": "Dear Manager Sir,",
+         "why": "unnatural; use Sir or Madam"
+        },
+        {
+         "text": "Hello everybody,",
+         "why": "too informal and wrong audience"
+        }
+       ],
+       "form": "greeting (name unknown)",
+       "note": "Name unknown → 'Dear Sir or Madam' → 'Yours faithfully'.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-dear-mr",
+       "plain": "Hello Mr Patel,",
+       "formal": [
+        "Dear Mr Patel,"
+       ],
+       "plainSentence": "Hello Mr Patel,",
+       "formalSentence": "Dear Mr Patel,",
+       "traps": [
+        {
+         "text": "Dear Mr Raj,",
+         "why": "title + first name is wrong"
+        },
+        {
+         "text": "Dear Mr Patel Sir,",
+         "why": "don't add 'Sir' after a name"
+        },
+        {
+         "text": "Dear Mr. Raj Patel,",
+         "why": "title + full name is unnatural"
+        }
+       ],
+       "form": "greeting (name known)",
+       "note": "Name known → 'Dear Mr/Ms + surname' → 'Yours sincerely'.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "opening",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "fl-writing-to",
+       "plain": "I want to",
+       "formal": [
+        "I am writing to",
+        "I would like to"
+       ],
+       "plainSentence": "I want to complain about a coffee machine that I bought from your store.",
+       "formalSentence": "I am writing to complain about a coffee machine that I bought from your store.",
+       "traps": [
+        {
+         "text": "I am write to",
+         "why": "'am writing' needs -ing"
+        },
+        {
+         "text": "I wanna",
+         "why": "slang: far too informal"
+        },
+        {
+         "text": "I am writing for",
+         "why": "'writing to complain', not 'for'"
+        }
+       ],
+       "form": "purpose frame + to-infinitive",
+       "note": "State your purpose in the very first sentence.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-apply-for",
+       "plain": "I want the job of",
+       "formal": [
+        "I would like to apply for the position of",
+        "I wish to apply for the post of"
+       ],
+       "plainSentence": "I want the job of assistant manager that was advertised in the Evening Post.",
+       "formalSentence": "I would like to apply for the position of assistant manager that was advertised in the Evening Post.",
+       "traps": [
+        {
+         "text": "I would like to apply to the position of",
+         "why": "'apply for' a job"
+        },
+        {
+         "text": "I am applying the job of",
+         "why": "missing 'for'"
+        },
+        {
+         "text": "I demand the job of",
+         "why": "rude and presumptuous"
+        }
+       ],
+       "form": "purpose frame",
+       "note": "Application letters: apply for the position / post of.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-regarding",
+       "plain": "about",
+       "formal": [
+        "regarding",
+        "with regard to",
+        "concerning"
+       ],
+       "plainSentence": "I am writing about the recent changes to the parking arrangements at our building.",
+       "formalSentence": "I am writing regarding the recent changes to the parking arrangements at our building.",
+       "traps": [
+        {
+         "text": "in regard of",
+         "why": "wrong preposition: 'with regard to'"
+        },
+        {
+         "text": "regards",
+         "why": "'regards' is a closing, not a preposition"
+        },
+        {
+         "text": "as regards to",
+         "why": "'as regards' takes no 'to'"
+        }
+       ],
+       "form": "formal preposition",
+       "note": "Regarding / with regard to introduce the topic of a letter.",
+       "entryIds": [
+        "c-with-regard-to"
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "body",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "fl-purchased",
+       "plain": "got",
+       "formal": [
+        "purchased",
+        "bought"
+       ],
+       "plainSentence": "I got the machine from your Riverside branch on 3 March.",
+       "formalSentence": "I purchased the machine from your Riverside branch on 3 March.",
+       "traps": [
+        {
+         "text": "brought",
+         "why": "'brought' is from 'bring'"
+        },
+        {
+         "text": "acquisitioned",
+         "why": "not a verb"
+        },
+        {
+         "text": "have purchased",
+         "why": "no present perfect with a date"
+        }
+       ],
+       "form": "verb, past simple",
+       "note": "Give exact dates and places in a complaint.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-does-not-function",
+       "plain": "doesn't work properly",
+       "formal": [
+        "does not function correctly",
+        "fails to operate correctly"
+       ],
+       "plainSentence": "Unfortunately, the machine doesn't work properly.",
+       "formalSentence": "Unfortunately, the machine does not function correctly.",
+       "traps": [
+        {
+         "text": "doesn't function correctly",
+         "why": "no contractions in formal letters"
+        },
+        {
+         "text": "does not functioning correctly",
+         "why": "after 'does not': base form"
+        },
+        {
+         "text": "is not working good",
+         "why": "'good' is an adjective"
+        }
+       ],
+       "form": "verb phrase, present simple",
+       "note": "Avoid contractions in formal letters: does not, I am.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "fl-telephoned",
+       "plain": "rang the shop",
+       "formal": [
+        "telephoned your store",
+        "contacted your store"
+       ],
+       "plainSentence": "On 5 March, I rang the shop to report the fault.",
+       "formalSentence": "On 5 March, I telephoned your store to report the fault.",
+       "traps": [
+        {
+         "text": "contacted to your store",
+         "why": "no 'to' after 'contact'"
+        },
+        {
+         "text": "rang up to the shop",
+         "why": "wrong preposition and informal"
+        },
+        {
+         "text": "phoned at your store",
+         "why": "no 'at' after 'phone'"
+        }
+       ],
+       "form": "verb + object, past",
+       "note": "Contact / telephone + object directly.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-assured",
+       "plain": "said they would",
+       "formal": [
+        "assured me that they would",
+        "gave me an assurance that they would"
+       ],
+       "plainSentence": "A member of staff said they would send a technician within two days.",
+       "formalSentence": "A member of staff assured me that they would send a technician within two days.",
+       "traps": [
+        {
+         "text": "ensured me that they would",
+         "why": "'ensure' ≠ 'assure'"
+        },
+        {
+         "text": "assured that me they would",
+         "why": "wrong word order"
+        },
+        {
+         "text": "assured me they will",
+         "why": "reported speech: 'would'"
+        }
+       ],
+       "form": "reporting verb + object + that-clause",
+       "note": "Assure someone that…: a firm promise.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-no-action",
+       "plain": "nothing happened",
+       "formal": [
+        "no action was taken",
+        "the matter was not followed up"
+       ],
+       "plainSentence": "However, nothing happened.",
+       "formalSentence": "However, no action was taken.",
+       "traps": [
+        {
+         "text": "no action was took",
+         "why": "past participle: 'taken'"
+        },
+        {
+         "text": "no actions were happened",
+         "why": "'happen' has no passive"
+        },
+        {
+         "text": "nobody did nothing",
+         "why": "double negative"
+        }
+       ],
+       "form": "passive, past simple",
+       "note": "The passive sounds objective: 'no action was taken'.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-unsatisfactory",
+       "plain": "bad service",
+       "formal": [
+        "unsatisfactory service",
+        "substandard service"
+       ],
+       "plainSentence": "I am very disappointed with the bad service I have received.",
+       "formalSentence": "I am very disappointed with the unsatisfactory service I have received.",
+       "traps": [
+        {
+         "text": "unsatisfied service",
+         "why": "people are unsatisfied; service is unsatisfactory"
+        },
+        {
+         "text": "rubbish service",
+         "why": "too informal"
+        },
+        {
+         "text": "unsatisfying service",
+         "why": "wrong adjective: 'unsatisfactory'"
+        }
+       ],
+       "form": "adjective + noun",
+       "note": "Unsatisfactory (the service) ≠ dissatisfied (the customer).",
+       "entryIds": []
+      },
+      {
+       "id": "fl-dissatisfied",
+       "plain": "really angry about",
+       "formal": [
+        "extremely dissatisfied with",
+        "deeply unhappy with"
+       ],
+       "plainSentence": "I am really angry about the way my complaint has been handled.",
+       "formalSentence": "I am extremely dissatisfied with the way my complaint has been handled.",
+       "traps": [
+        {
+         "text": "very furious about",
+         "why": "'furious' is extreme; no 'very'"
+        },
+        {
+         "text": "extremely unsatisfying with",
+         "why": "wrong form: 'dissatisfied with'"
+        },
+        {
+         "text": "really pissed off about",
+         "why": "offensive slang"
+        }
+       ],
+       "form": "adjective + with",
+       "note": "Express displeasure firmly but politely.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-apologise",
+       "plain": "Sorry for",
+       "formal": [
+        "I apologise for",
+        "Please accept my apologies for"
+       ],
+       "plainSentence": "Sorry for any inconvenience my late payment may have caused.",
+       "formalSentence": "I apologise for any inconvenience my late payment may have caused.",
+       "traps": [
+        {
+         "text": "I apologise any",
+         "why": "needs 'for'"
+        },
+        {
+         "text": "I am apologising for",
+         "why": "progressive is unnatural here"
+        },
+        {
+         "text": "Soz for",
+         "why": "slang"
+        }
+       ],
+       "form": "apology frame + for",
+       "note": "Formal apologies: I apologise for / Please accept my apologies.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "fl-refund",
+       "plain": "give me my money back",
+       "formal": [
+        "provide me with a full refund",
+        "refund me in full"
+       ],
+       "plainSentence": "I would like you to give me my money back.",
+       "formalSentence": "I would like you to provide me with a full refund.",
+       "traps": [
+        {
+         "text": "refund me back my money",
+         "why": "redundant 'back'"
+        },
+        {
+         "text": "reimburse my money back",
+         "why": "redundant 'back'"
+        },
+        {
+         "text": "provide me a full refund",
+         "why": "British: 'provide me with'"
+        }
+       ],
+       "form": "verb phrase",
+       "note": "Refund / reimburse already mean 'give money back'.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-replace",
+       "plain": "change it for a new one",
+       "formal": [
+        "replace it with a new model",
+        "exchange it for a new model"
+       ],
+       "plainSentence": "Alternatively, you could change it for a new one.",
+       "formalSentence": "Alternatively, you could replace it with a new model.",
+       "traps": [
+        {
+         "text": "replace it for a new model",
+         "why": "'replace with', 'exchange for'"
+        },
+        {
+         "text": "renew it",
+         "why": "wrong meaning: extend a contract"
+        },
+        {
+         "text": "substitute it by a new model",
+         "why": "'substitute X for Y'"
+        }
+       ],
+       "form": "verb + object + preposition",
+       "note": "Replace X with Y; exchange X for Y.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-rectify",
+       "plain": "fix the problem",
+       "formal": [
+        "rectify the situation",
+        "resolve the matter"
+       ],
+       "plainSentence": "I trust that you will fix the problem promptly.",
+       "formalSentence": "I trust that you will rectify the situation promptly.",
+       "traps": [
+        {
+         "text": "resolute the matter",
+         "why": "'resolute' is an adjective"
+        },
+        {
+         "text": "rectify at the matter",
+         "why": "no 'at'"
+        },
+        {
+         "text": "rectify the matter up",
+         "why": "no particle 'up'"
+        }
+       ],
+       "form": "verb + object",
+       "note": "Rectify / resolve: formal verbs for 'fix'.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "closing",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "fl-grateful-if",
+       "plain": "Please call me",
+       "formal": [
+        "I would be grateful if you could contact me",
+        "I would appreciate it if you could contact me"
+       ],
+       "plainSentence": "Please call me on 07700 900123 to arrange a visit.",
+       "formalSentence": "I would be grateful if you could contact me on 07700 900123 to arrange a visit.",
+       "traps": [
+        {
+         "text": "I would be grateful if you can contact me",
+         "why": "'would … could', not 'can'"
+        },
+        {
+         "text": "I would be grateful that you contact me",
+         "why": "'grateful if', not 'that'"
+        },
+        {
+         "text": "Call me back",
+         "why": "an order, not a request"
+        }
+       ],
+       "form": "polite request frame",
+       "note": "A polite request softens even a firm complaint.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-earliest-convenience",
+       "plain": "asap",
+       "formal": [
+        "at your earliest convenience",
+        "as soon as possible"
+       ],
+       "plainSentence": "I would appreciate a reply asap.",
+       "formalSentence": "I would appreciate a reply at your earliest convenience.",
+       "traps": [
+        {
+         "text": "at your earliest convenient",
+         "why": "'convenience' is the noun"
+        },
+        {
+         "text": "ASAP!!",
+         "why": "abbreviation and exclamation marks"
+        },
+        {
+         "text": "in your earliest convenience",
+         "why": "wrong preposition: 'at'"
+        }
+       ],
+       "form": "time phrase",
+       "note": "Never use abbreviations like asap in a formal letter.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-inform-me",
+       "plain": "tell me",
+       "formal": [
+        "inform me",
+        "let me know"
+       ],
+       "plainSentence": "Please tell me what action you intend to take.",
+       "formalSentence": "Please inform me what action you intend to take.",
+       "traps": [
+        {
+         "text": "inform to me",
+         "why": "no 'to' after 'inform'"
+        },
+        {
+         "text": "say me",
+         "why": "'say' takes no person object"
+        },
+        {
+         "text": "informate me",
+         "why": "not a word"
+        }
+       ],
+       "form": "verb + object",
+       "note": "Inform / advise me of…, inform me what…",
+       "entryIds": []
+      },
+      {
+       "id": "fl-look-forward",
+       "plain": "Write back soon.",
+       "formal": [
+        "I look forward to hearing from you.",
+        "I look forward to your reply."
+       ],
+       "plainSentence": "Write back soon.",
+       "formalSentence": "I look forward to hearing from you.",
+       "traps": [
+        {
+         "text": "I am looking forward to hear from you.",
+         "why": "'look forward to' + -ing"
+        },
+        {
+         "text": "I look forward to hear from you.",
+         "why": "'to' is a preposition: 'hearing'"
+        },
+        {
+         "text": "Waiting for your reply.",
+         "why": "fragment; too informal"
+        }
+       ],
+       "form": "fixed closing sentence",
+       "note": "'Look forward to' + -ing: the 'to' is a preposition.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "closing",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "fl-yours-faithfully",
+       "plain": "Bye,",
+       "formal": [
+        "Yours faithfully,"
+       ],
+       "plainSentence": "Bye,",
+       "formalSentence": "Yours faithfully,",
+       "traps": [
+        {
+         "text": "Yours sincerely,",
+         "why": "use after 'Dear Mr/Ms + surname'"
+        },
+        {
+         "text": "Love,",
+         "why": "far too informal"
+        },
+        {
+         "text": "Yours faithful,",
+         "why": "adverb needed: 'faithfully'"
+        }
+       ],
+       "form": "sign-off (after Dear Sir or Madam)",
+       "note": "Dear Sir or Madam → Yours faithfully.",
+       "entryIds": []
+      },
+      {
+       "id": "fl-yours-sincerely",
+       "plain": "Thanks,",
+       "formal": [
+        "Yours sincerely,"
+       ],
+       "plainSentence": "Thanks,",
+       "formalSentence": "Yours sincerely,",
+       "traps": [
+        {
+         "text": "Yours faithfully,",
+         "why": "only after 'Dear Sir or Madam'"
+        },
+        {
+         "text": "Cheers,",
+         "why": "informal"
+        },
+        {
+         "text": "Sincerely yours truly,",
+         "why": "mixed and unnatural"
+        }
+       ],
+       "form": "sign-off (after Dear Mr/Ms + name)",
+       "note": "Dear Mr Patel → Yours sincerely.",
+       "entryIds": []
+      }
+     ]
+    }
+   ],
+   "rewrites": [
+    {
+     "id": "fl-r1",
+     "slot": "opening",
+     "plain": "Hi, I want to complain about your shop.",
+     "best": "Dear Sir or Madam, I am writing to complain about the service I received at your Riverside branch.",
+     "tooPlain": "Dear Sir or Madam, I want to complain about your shop.",
+     "tooPlainWhy": "'I want to' is too direct",
+     "broken": "Dear Sir or Madam, I am writing for complain about your shop.",
+     "brokenWhy": "'writing for complain' is ungrammatical"
+    },
+    {
+     "id": "fl-r2",
+     "slot": "opening",
+     "plain": "I want the job you put in the paper.",
+     "best": "I would like to apply for the position of assistant manager advertised in the Evening Post on 12 May.",
+     "tooPlain": "I would like the job that was in the newspaper.",
+     "tooPlainWhy": "vague: which job, which newspaper?",
+     "broken": "I would like to apply to the position of assistant manager which was advertised on the Evening Post.",
+     "brokenWhy": "'apply to' and 'on the Evening Post'"
+    },
+    {
+     "id": "fl-r3",
+     "slot": "body",
+     "plain": "The machine I got doesn't work.",
+     "best": "The machine that I purchased on 3 March does not function correctly.",
+     "tooPlain": "The machine I bought doesn't work properly.",
+     "tooPlainWhy": "contraction; 'doesn't work' is plain",
+     "broken": "The machine that I have purchased on 3 March does not functioning correctly.",
+     "brokenWhy": "present perfect with a date; 'does not functioning'"
+    },
+    {
+     "id": "fl-r4",
+     "slot": "body",
+     "plain": "I called and they said they would send someone but nothing happened.",
+     "best": "I telephoned your store and was assured that a technician would visit; however, no action was taken.",
+     "tooPlain": "I phoned your store and they said someone would come, but nothing happened.",
+     "tooPlainWhy": "'said' and 'nothing happened' are plain",
+     "broken": "I telephoned to your store and was ensured that a technician would visit, however no action was took.",
+     "brokenWhy": "'telephoned to', 'ensured', 'was took'"
+    },
+    {
+     "id": "fl-r5",
+     "slot": "body",
+     "plain": "I want my money back or a new machine.",
+     "best": "I would therefore like you either to provide me with a full refund or to replace the machine with a new model.",
+     "tooPlain": "I want a refund or a new machine.",
+     "tooPlainWhy": "'I want' sounds demanding",
+     "broken": "I would like you to refund me back my money or replace the machine for a new one.",
+     "brokenWhy": "'refund me back'; 'replace … for'"
+    },
+    {
+     "id": "fl-r6",
+     "slot": "closing",
+     "plain": "Please call me asap. Write back soon. Bye.",
+     "best": "I would be grateful if you could contact me at your earliest convenience. I look forward to hearing from you.",
+     "tooPlain": "Please contact me as soon as possible. Write back soon.",
+     "tooPlainWhy": "'Write back soon' is too informal",
+     "broken": "I would be grateful if you can contact me at your earliest convenient. I look forward to hear from you.",
+     "brokenWhy": "'can', 'convenient', 'to hear' are wrong"
+    }
+   ],
+   "report": {
+    "question": "You recently bought a piece of equipment for your kitchen, but it did not work properly. You phoned the shop, but no action was taken. Write a letter to the shop manager. In your letter:\n• describe the problem with the equipment\n• explain what happened when you phoned the shop\n• say what you would like the manager to do\nWrite at least 150 words. You do NOT need to write any addresses. Begin your letter as follows: Dear Sir or Madam,",
+    "chart": null,
+    "paragraphs": [
+     {
+      "slot": "opening",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Greeting (you do not know the name)",
+        "best": "Dear Sir or Madam,",
+        "others": [
+         {
+          "text": "Hi there,",
+          "why": "far too informal for a complaint"
+         },
+         {
+          "text": "Dear Shop Manager Sir,",
+          "why": "unnatural; use 'Dear Sir or Madam'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "State why you are writing",
+        "best": "I am writing to complain about a coffee machine that I purchased from your Riverside branch on 3 March, and about the unsatisfactory way in which my complaint has since been handled.",
+        "others": [
+         {
+          "text": "I want to tell you about a coffee machine I got from your shop.",
+          "why": "plain; the purpose is unclear"
+         },
+         {
+          "text": "I am writing for complaining about a coffee machine which I have purchased on 3 March.",
+          "why": "'for complaining'; present perfect with a date"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Describe the problem",
+        "best": "Although the machine switches on, it does not heat the water properly, so every cup of coffee it produces is lukewarm, and on two occasions it has leaked water all over the worktop.",
+        "others": [
+         {
+          "text": "The machine doesn't work and it's broken.",
+          "why": "contractions; no detail"
+         },
+         {
+          "text": "Although the machine switches on, but it does not heat water properly.",
+          "why": "'although … but' is wrong"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Explain what happened when you phoned",
+        "best": "On 5 March, I telephoned your store to report the fault, and a member of staff assured me that a technician would contact me within two days.",
+        "others": [
+         {
+          "text": "I called you and a man said someone would come.",
+          "why": "vague and too plain"
+         },
+         {
+          "text": "On 5 March, I telephoned to your store and a staff ensured me a technician would call.",
+          "why": "'telephoned to'; 'ensured' should be 'assured'"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Say what went wrong",
+        "best": "However, more than a week has now passed and no action has been taken, despite a further call that I made on 10 March.",
+        "others": [
+         {
+          "text": "But nobody did anything, even when I called again.",
+          "why": "plain; no dates"
+         },
+         {
+          "text": "However, no action has been took despite of a further call on 10 March.",
+          "why": "'has been took'; 'despite of'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Say what you want the manager to do",
+        "best": "I would therefore be grateful if you could either replace the machine with a new model or provide me with a full refund.",
+        "others": [
+         {
+          "text": "Give me my money back or a new one.",
+          "why": "rude and too informal"
+         },
+         {
+          "text": "I would be grateful if you can either replace the machine for a new one or refund me back.",
+          "why": "'can'; 'replace for'; 'refund back'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "closing",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Ask for a reply",
+        "best": "Please contact me on 07700 900123 at your earliest convenience to arrange this. I look forward to hearing from you.",
+        "others": [
+         {
+          "text": "Call me asap. Write back soon.",
+          "why": "abbreviations; far too informal"
+         },
+         {
+          "text": "Please contact me at your earliest convenient. I am looking forward to hear from you.",
+          "why": "'convenient'; 'to hear' should be 'to hearing'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Sign off correctly",
+        "best": "Yours faithfully, Anna Kowalski",
+        "others": [
+         {
+          "text": "Yours sincerely, Anna Kowalski",
+          "why": "after 'Dear Sir or Madam' use 'faithfully'"
+         },
+         {
+          "text": "Love, Anna",
+          "why": "far too informal for a complaint"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "informal-letter",
+   "task": "letters",
+   "title": "Informal and semi-formal letter",
+   "mascot": "kind",
+   "blurb": "Friends and neighbours: warm, natural and idiomatic, with the right greeting and sign-off.",
+   "slots": [
+    {
+     "slot": "opening",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "il-dear-sam",
+       "plain": "Dear Friend,",
+       "formal": [
+        "Dear Sam,",
+        "Hi Sam,"
+       ],
+       "plainSentence": "Dear Friend,",
+       "formalSentence": "Dear Sam,",
+       "traps": [
+        {
+         "text": "Dear Sir or Madam,",
+         "why": "far too formal for a friend"
+        },
+        {
+         "text": "Dear Mr Sam,",
+         "why": "never use a title with a first name"
+        },
+        {
+         "text": "Dear Friend Sam,",
+         "why": "unnatural; just use the name"
+        }
+       ],
+       "form": "greeting (friend)",
+       "note": "Use the friend's first name: Dear Sam / Hi Sam.",
+       "entryIds": []
+      },
+      {
+       "id": "il-great-to-hear",
+       "plain": "I got your letter",
+       "formal": [
+        "It was great to hear from you",
+        "Thanks so much for your letter"
+       ],
+       "plainSentence": "I got your letter last week.",
+       "formalSentence": "It was great to hear from you last week.",
+       "traps": [
+        {
+         "text": "I am in receipt of your letter",
+         "why": "far too formal for a friend"
+        },
+        {
+         "text": "It was great to hear of you",
+         "why": "'hear of' = learn that someone exists"
+        },
+        {
+         "text": "It was great hearing of you",
+         "why": "'hear from' a person who writes"
+        }
+       ],
+       "form": "friendly opening line",
+       "note": "Open warmly: It was great to hear from you!",
+       "entryIds": []
+      },
+      {
+       "id": "il-keeping-well",
+       "plain": "How are you?",
+       "formal": [
+        "I hope you're keeping well.",
+        "I hope all is well with you."
+       ],
+       "plainSentence": "How are you?",
+       "formalSentence": "I hope you're keeping well.",
+       "traps": [
+        {
+         "text": "I hope this letter finds you in good health.",
+         "why": "stiff and old-fashioned for a friend"
+        },
+        {
+         "text": "I hope you are fine.",
+         "why": "unnatural; 'well' is better"
+        },
+        {
+         "text": "I hope you're keeping good.",
+         "why": "'keeping well', not 'good'"
+        }
+       ],
+       "form": "friendly opening line",
+       "note": "A warm, natural wish reads better than a bare question.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "opening",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "il-been-in-touch",
+       "plain": "I didn't write before",
+       "formal": [
+        "I haven't been in touch sooner",
+        "it's taken me so long to write back"
+       ],
+       "plainSentence": "Sorry I didn't write before, but work has been hectic.",
+       "formalSentence": "Sorry I haven't been in touch sooner, but work has been hectic.",
+       "traps": [
+        {
+         "text": "I apologise for my delayed correspondence",
+         "why": "far too formal for a friend"
+        },
+        {
+         "text": "it's took me so long to write back",
+         "why": "past participle: 'taken'"
+        },
+        {
+         "text": "I haven't been in touch before",
+         "why": "'sooner', not 'before'"
+        }
+       ],
+       "form": "present perfect clause",
+       "note": "Present perfect links the delay to now.",
+       "entryIds": []
+      },
+      {
+       "id": "il-delighted",
+       "plain": "I was happy to get",
+       "formal": [
+        "I was delighted to get",
+        "I was so pleased to get"
+       ],
+       "plainSentence": "I was happy to get your invitation to stay for the weekend.",
+       "formalSentence": "I was delighted to get your invitation to stay for the weekend.",
+       "traps": [
+        {
+         "text": "I was delighting to get",
+         "why": "'delighted' describes your feeling"
+        },
+        {
+         "text": "I was pleasured to get",
+         "why": "not natural English"
+        },
+        {
+         "text": "I was delighted for getting",
+         "why": "'delighted to' + base verb"
+        }
+       ],
+       "form": "adjective + to-infinitive",
+       "note": "Show real warmth: delighted, thrilled, so pleased.",
+       "entryIds": []
+      },
+      {
+       "id": "il-apologise-neighbour",
+       "plain": "Sorry about",
+       "formal": [
+        "I just wanted to apologise for",
+        "I'm really sorry about"
+       ],
+       "plainSentence": "Sorry about the noise from our party last Saturday.",
+       "formalSentence": "I just wanted to apologise for the noise from our party last Saturday.",
+       "traps": [
+        {
+         "text": "I just wanted to apologise the",
+         "why": "'apologise for' something"
+        },
+        {
+         "text": "We deeply regret any inconvenience caused by",
+         "why": "too corporate for a neighbour"
+        },
+        {
+         "text": "Soz about",
+         "why": "slang"
+        }
+       ],
+       "form": "semi-formal apology frame",
+       "note": "Semi-formal (to a neighbour): polite but personal.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "il-make-it",
+       "plain": "I can't come",
+       "formal": [
+        "I won't be able to make it",
+        "I can't make it"
+       ],
+       "plainSentence": "The bad news is that I can't come that weekend.",
+       "formalSentence": "The bad news is that I won't be able to make it that weekend.",
+       "traps": [
+        {
+         "text": "I will be unable to attend",
+         "why": "far too formal for a friend"
+        },
+        {
+         "text": "I won't be able to make",
+         "why": "missing 'it'"
+        },
+        {
+         "text": "I won't can come",
+         "why": "double modal: 'won't be able to'"
+        }
+       ],
+       "form": "modal clause",
+       "note": "'Make it' = manage to come: very natural with friends.",
+       "entryIds": []
+      },
+      {
+       "id": "il-snowed-under",
+       "plain": "I have lots of work",
+       "formal": [
+        "I'm snowed under with work",
+        "I'm up to my eyes in work"
+       ],
+       "plainSentence": "I have lots of work at the moment, so I can't take any time off.",
+       "formalSentence": "I'm snowed under with work at the moment, so I can't take any time off.",
+       "traps": [
+        {
+         "text": "I'm snowing under with work",
+         "why": "fixed idiom: 'snowed under'"
+        },
+        {
+         "text": "I have an excessive workload",
+         "why": "too formal for a friend"
+        },
+        {
+         "text": "I'm snowed under of work",
+         "why": "wrong preposition: 'with'"
+        }
+       ],
+       "form": "idiom",
+       "note": "One natural idiom per letter is plenty.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body",
+     "position": "middle",
+     "swaps": [
+      {
+       "id": "il-looking-forward",
+       "plain": "I really wanted to come",
+       "formal": [
+        "I was really looking forward to it",
+        "I'd have loved to come"
+       ],
+       "plainSentence": "It's a real shame, because I really wanted to come.",
+       "formalSentence": "It's a real shame, because I was really looking forward to it.",
+       "traps": [
+        {
+         "text": "I was really looking forward to come",
+         "why": "'looking forward to' + -ing or noun"
+        },
+        {
+         "text": "I was keen of coming",
+         "why": "'keen on coming'"
+        },
+        {
+         "text": "I anticipated attending with pleasure",
+         "why": "stiff and too formal"
+        }
+       ],
+       "form": "past continuous / past conditional",
+       "note": "Show feelings: I'd have loved to / I was looking forward to it.",
+       "entryIds": []
+      },
+      {
+       "id": "il-cant-wait",
+       "plain": "I want very much to see",
+       "formal": [
+        "I can't wait to see",
+        "I'm dying to see"
+       ],
+       "plainSentence": "I want very much to see your new flat.",
+       "formalSentence": "I can't wait to see your new flat.",
+       "traps": [
+        {
+         "text": "I can't wait seeing",
+         "why": "'can't wait' + to-infinitive"
+        },
+        {
+         "text": "I eagerly anticipate seeing",
+         "why": "too formal for a friend"
+        },
+        {
+         "text": "I can't wait for see",
+         "why": "wrong structure: 'wait to see'"
+        }
+       ],
+       "form": "fixed phrase + to-infinitive",
+       "note": "Natural enthusiasm: I can't wait to…",
+       "entryIds": []
+      },
+      {
+       "id": "il-id-love",
+       "plain": "I would like to",
+       "formal": [
+        "I'd love to",
+        "I'd really like to"
+       ],
+       "plainSentence": "I would like to meet your new puppy too!",
+       "formalSentence": "I'd love to meet your new puppy too!",
+       "traps": [
+        {
+         "text": "I'd love meeting",
+         "why": "after 'I'd love', use 'to'"
+        },
+        {
+         "text": "I would be grateful to",
+         "why": "too formal; wrong meaning here"
+        },
+        {
+         "text": "I'd love to meeting",
+         "why": "'to' + base verb"
+        }
+       ],
+       "form": "modal + to-infinitive",
+       "note": "Contractions are fine and natural in informal letters.",
+       "entryIds": []
+      },
+      {
+       "id": "il-how-about",
+       "plain": "Maybe I can come",
+       "formal": [
+        "How about if I come",
+        "Why don't I come"
+       ],
+       "plainSentence": "Maybe I can come in the middle of June instead?",
+       "formalSentence": "How about if I come in the middle of June instead?",
+       "traps": [
+        {
+         "text": "What about I come",
+         "why": "needs 'if' or '-ing'"
+        },
+        {
+         "text": "May I propose that I visit",
+         "why": "too formal for a friend"
+        },
+        {
+         "text": "How about I coming",
+         "why": "wrong verb form"
+        }
+       ],
+       "form": "suggestion frame",
+       "note": "Suggest an alternative: How about if… / Why don't I…?",
+       "entryIds": []
+      },
+      {
+       "id": "il-would-you-mind",
+       "plain": "Can you look after",
+       "formal": [
+        "Would you mind looking after",
+        "Could you possibly look after"
+       ],
+       "plainSentence": "Can you look after my cat while I am away?",
+       "formalSentence": "Would you mind looking after my cat while I am away?",
+       "traps": [
+        {
+         "text": "Would you mind to look after",
+         "why": "'mind' + -ing"
+        },
+        {
+         "text": "I require you to look after",
+         "why": "rude and too formal"
+        },
+        {
+         "text": "Would you mind look after",
+         "why": "'mind' + -ing"
+        }
+       ],
+       "form": "polite request (semi-formal)",
+       "note": "Asking a neighbour a favour: Would you mind + -ing?",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "body",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "il-let-me-know",
+       "plain": "Tell me if",
+       "formal": [
+        "Let me know if",
+        "Let me know whether"
+       ],
+       "plainSentence": "Tell me if that suits you.",
+       "formalSentence": "Let me know if that suits you.",
+       "traps": [
+        {
+         "text": "Inform me if",
+         "why": "too formal for a friend"
+        },
+        {
+         "text": "Let me to know if",
+         "why": "'let' + bare infinitive"
+        },
+        {
+         "text": "Let me knowing if",
+         "why": "'let' + bare infinitive"
+        }
+       ],
+       "form": "imperative + if-clause",
+       "note": "Let me know + if / what / when.",
+       "entryIds": []
+      },
+      {
+       "id": "il-catch-up",
+       "plain": "talk about everything",
+       "formal": [
+        "catch up properly",
+        "have a proper catch-up"
+       ],
+       "plainSentence": "Then we can talk about everything.",
+       "formalSentence": "Then we can catch up properly.",
+       "traps": [
+        {
+         "text": "discuss all matters",
+         "why": "too formal for a friend"
+        },
+        {
+         "text": "catch up with properly",
+         "why": "'catch up with' needs an object"
+        },
+        {
+         "text": "catch properly up",
+         "why": "wrong word order"
+        }
+       ],
+       "form": "phrasal verb",
+       "note": "Catch up = exchange all your news.",
+       "entryIds": []
+      },
+      {
+       "id": "il-keep-me-posted",
+       "plain": "Tell me the news about",
+       "formal": [
+        "Keep me posted on",
+        "Fill me in on"
+       ],
+       "plainSentence": "Tell me the news about your new job.",
+       "formalSentence": "Keep me posted on your new job.",
+       "traps": [
+        {
+         "text": "Kindly update me regarding",
+         "why": "far too formal for a friend"
+        },
+        {
+         "text": "Keep me posting on",
+         "why": "fixed phrase: 'keep me posted'"
+        },
+        {
+         "text": "Fill me on",
+         "why": "missing 'in': 'fill me in on'"
+        }
+       ],
+       "form": "idiomatic imperative",
+       "note": "Friendly ways to ask for news.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "closing",
+     "position": "opening",
+     "swaps": [
+      {
+       "id": "il-drop-a-line",
+       "plain": "Write to me soon.",
+       "formal": [
+        "Drop me a line soon.",
+        "Do write soon."
+       ],
+       "plainSentence": "Write to me soon.",
+       "formalSentence": "Drop me a line soon.",
+       "traps": [
+        {
+         "text": "I look forward to your prompt reply.",
+         "why": "far too formal for a friend"
+        },
+        {
+         "text": "Drop me a line soonly.",
+         "why": "'soonly' is not a word"
+        },
+        {
+         "text": "Drop me line soon.",
+         "why": "fixed phrase: 'drop me a line'"
+        }
+       ],
+       "form": "informal closing line",
+       "note": "'Drop me a line' = write to me.",
+       "entryIds": []
+      },
+      {
+       "id": "il-give-my-love",
+       "plain": "Say hello to your parents from me",
+       "formal": [
+        "Give my love to your parents",
+        "Send my love to your parents"
+       ],
+       "plainSentence": "Say hello to your parents from me.",
+       "formalSentence": "Give my love to your parents.",
+       "traps": [
+        {
+         "text": "Give my love for your parents",
+         "why": "'give my love to'"
+        },
+        {
+         "text": "Convey my greetings to your parents",
+         "why": "too formal for a friend"
+        },
+        {
+         "text": "Give my loves to your parents",
+         "why": "fixed phrase: 'my love'"
+        }
+       ],
+       "form": "fixed phrase",
+       "note": "A warm closing line before the sign-off.",
+       "entryIds": []
+      }
+     ]
+    },
+    {
+     "slot": "closing",
+     "position": "closing",
+     "swaps": [
+      {
+       "id": "il-best-wishes",
+       "plain": "Bye bye,",
+       "formal": [
+        "Best wishes,",
+        "All the best,",
+        "Lots of love,"
+       ],
+       "plainSentence": "Bye bye,",
+       "formalSentence": "Best wishes,",
+       "traps": [
+        {
+         "text": "Yours faithfully,",
+         "why": "only after 'Dear Sir or Madam'"
+        },
+        {
+         "text": "Yours sincerely,",
+         "why": "too formal for a close friend"
+        },
+        {
+         "text": "Best wish,",
+         "why": "fixed phrase: 'Best wishes'"
+        }
+       ],
+       "form": "sign-off (friend)",
+       "note": "Friend: Best wishes / All the best / Lots of love.",
+       "entryIds": []
+      },
+      {
+       "id": "il-kind-regards",
+       "plain": "Love,",
+       "formal": [
+        "Kind regards,",
+        "Best regards,"
+       ],
+       "plainSentence": "Love,",
+       "formalSentence": "Kind regards,",
+       "traps": [
+        {
+         "text": "Yours faithfully,",
+         "why": "only after 'Dear Sir or Madam'"
+        },
+        {
+         "text": "XOXO,",
+         "why": "far too intimate for a neighbour"
+        },
+        {
+         "text": "Kindest regard,",
+         "why": "fixed phrase: 'Kind regards'"
+        }
+       ],
+       "form": "sign-off (semi-formal)",
+       "note": "Neighbour or colleague (Dear Mrs Green): Kind regards.",
+       "entryIds": []
+      }
+     ]
+    }
+   ],
+   "rewrites": [
+    {
+     "id": "il-r1",
+     "slot": "opening",
+     "plain": "Dear Friend, I got your letter. Thank you for your invitation.",
+     "best": "Dear Sam, It was great to hear from you, and thanks so much for inviting me to stay!",
+     "tooPlain": "Dear Sam, I received your letter. Thank you for your invitation.",
+     "tooPlainWhy": "correct but cold and stiff",
+     "broken": "Dear Sam, It was great to hear of you, and thanks so much for invite me.",
+     "brokenWhy": "'hear of' and 'thanks for invite' are wrong"
+    },
+    {
+     "id": "il-r2",
+     "slot": "opening",
+     "plain": "I am writing to inform you that I received your invitation.",
+     "best": "I was so pleased to get your invitation to stay for the weekend.",
+     "tooPlain": "I got your invitation for the weekend.",
+     "tooPlainWhy": "flat and too plain",
+     "broken": "I was so pleasing to get your invitation to stay for the weekend.",
+     "brokenWhy": "'pleasing' describes the invitation, not you"
+    },
+    {
+     "id": "il-r3",
+     "slot": "body",
+     "plain": "I regret to inform you that I will be unable to attend.",
+     "best": "Unfortunately, I'm afraid I won't be able to make it that weekend.",
+     "tooPlain": "Unfortunately, I cannot come that weekend.",
+     "tooPlainWhy": "correct but flat",
+     "broken": "Unfortunately, I'm afraid I won't be able to make that weekend.",
+     "brokenWhy": "missing 'it': 'make it'"
+    },
+    {
+     "id": "il-r4",
+     "slot": "body",
+     "plain": "I have lots of work so I cannot come and I am sad.",
+     "best": "I'm completely snowed under with work at the moment, which is a real shame, as I was really looking forward to it.",
+     "tooPlain": "I have a lot of work, so I can't come, and I'm sad about it.",
+     "tooPlainWhy": "correct but repetitive and plain",
+     "broken": "I'm completely snowing under with work, and I was really looking forward to come.",
+     "brokenWhy": "'snowing under'; 'looking forward to come'"
+    },
+    {
+     "id": "il-r5",
+     "slot": "body",
+     "plain": "Maybe I can come in June. Tell me if it is OK.",
+     "best": "How about if I come down in June instead? Let me know if that suits you.",
+     "tooPlain": "Maybe I can visit in June. Tell me if that is OK.",
+     "tooPlainWhy": "'Tell me if' is abrupt",
+     "broken": "What about I come down in June instead? Let me to know if that suits you.",
+     "brokenWhy": "'What about I come'; 'let me to know'"
+    },
+    {
+     "id": "il-r6",
+     "slot": "body",
+     "plain": "Can you feed my cat when I am away next week?",
+     "best": "Would you mind feeding my cat while I'm away next week?",
+     "tooPlain": "Could you feed my cat when I am away next week?",
+     "tooPlainWhy": "acceptable, but less polite for a favour",
+     "broken": "Would you mind to feed my cat while I'm away next week?",
+     "brokenWhy": "'mind' + -ing, not 'to'"
+    },
+    {
+     "id": "il-r7",
+     "slot": "closing",
+     "plain": "Write to me soon. Yours faithfully, Alex",
+     "best": "Drop me a line soon. Best wishes, Alex",
+     "tooPlain": "Write back soon. Regards, Alex",
+     "tooPlainWhy": "'Regards' is cold for a close friend",
+     "broken": "Drop me a line soonly. Yours faithfully, Alex",
+     "brokenWhy": "'soonly'; 'Yours faithfully' is formal"
+    }
+   ],
+   "report": {
+    "question": "A friend has invited you to spend a weekend with them next month, but you are unable to go. Write a letter to your friend. In your letter:\n• thank your friend for the invitation\n• explain why you cannot go\n• suggest another time when you could visit\nWrite at least 150 words. You do NOT need to write any addresses. Begin your letter as follows: Dear ……………,",
+    "chart": null,
+    "paragraphs": [
+     {
+      "slot": "opening",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Greeting (a friend)",
+        "best": "Dear Sam,",
+        "others": [
+         {
+          "text": "Dear Sir or Madam,",
+          "why": "far too formal for a friend"
+         },
+         {
+          "text": "Dear Mr Sam,",
+          "why": "never use a title with a first name"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Warm opening and thanks",
+        "best": "It was great to hear from you, and thanks so much for inviting me to stay for the weekend of the 14th – it was really kind of you to think of me.",
+        "others": [
+         {
+          "text": "I am in receipt of your kind invitation for the weekend.",
+          "why": "far too formal for a friend"
+         },
+         {
+          "text": "It was great to hear of you, and thanks for invite me.",
+          "why": "'hear of'; 'thanks for invite'"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "body",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Break the bad news and explain why",
+        "best": "Unfortunately, I'm afraid I won't be able to make it, as my boss has asked me to go to a three-day conference in Manchester that weekend, and I really can't get out of it.",
+        "others": [
+         {
+          "text": "I regret to inform you that I will be unable to attend.",
+          "why": "far too formal for a friend"
+         },
+         {
+          "text": "Unfortunately, I won't be able to make, because of my boss asked me to go to a conference.",
+          "why": "missing 'it'; 'because of' + clause"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Show how you feel",
+        "best": "It's a real shame, because I was really looking forward to seeing your new flat and finally meeting the puppy you keep telling me about!",
+        "others": [
+         {
+          "text": "I am sad because I wanted to come.",
+          "why": "flat and too plain"
+         },
+         {
+          "text": "It's a real shame, because I was really looking forward to see your new flat.",
+          "why": "'looking forward to' + -ing"
+         }
+        ]
+       },
+       {
+        "position": "middle",
+        "prompt": "Suggest another time",
+        "best": "How about if I come down on the last weekend of June instead, once things have calmed down a bit at work?",
+        "others": [
+         {
+          "text": "May I propose an alternative date in late June?",
+          "why": "too formal for a friend"
+         },
+         {
+          "text": "What about I come on the last weekend of June instead?",
+          "why": "'What about' + clause is wrong"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Make a plan",
+        "best": "Let me know if that suits you – we could go for a long walk by the river and have a proper catch-up.",
+        "others": [
+         {
+          "text": "Tell me if it is OK.",
+          "why": "too abrupt and plain"
+         },
+         {
+          "text": "Inform me whether that is convenient for you.",
+          "why": "too formal for a friend"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "slot": "closing",
+      "steps": [
+       {
+        "position": "opening",
+        "prompt": "Friendly final line",
+        "best": "Give my love to your parents, and drop me a line soon to let me know how the new job is going.",
+        "others": [
+         {
+          "text": "I look forward to your prompt reply.",
+          "why": "too formal for a friend"
+         },
+         {
+          "text": "Give my love for your parents and drop me line soon.",
+          "why": "'love for'; missing 'a'"
+         }
+        ]
+       },
+       {
+        "position": "closing",
+        "prompt": "Sign off (a friend)",
+        "best": "Best wishes, Alex",
+        "others": [
+         {
+          "text": "Yours faithfully, Alex",
+          "why": "only after 'Dear Sir or Madam'"
+         },
+         {
+          "text": "Regards, Mr Alex Brown",
+          "why": "cold and too formal for a friend"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}
