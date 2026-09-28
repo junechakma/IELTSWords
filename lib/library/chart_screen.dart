@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../app_scope.dart';
 import '../charts/chart_view.dart';
@@ -9,11 +10,13 @@ import '../practice/practice_mode.dart';
 import '../practice/session_builder.dart';
 import '../practice/session_screen.dart';
 import '../progress/spaced_repetition.dart';
+import '../services/speech.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
-import 'swap_detail_screen.dart';
+import 'swap_deck_screen.dart';
 
-/// One chart / essay type / letter type: Learn tab, then its slots.
+/// One chart / essay type / letter type: a coloured header (prototype),
+/// then a Learn tab and one tab per paragraph slot.
 class ChartScreen extends StatefulWidget {
   const ChartScreen({super.key, required this.topic, this.initialSlot});
   final SwapTopic topic;
@@ -24,150 +27,270 @@ class ChartScreen extends StatefulWidget {
 }
 
 class _ChartScreenState extends State<ChartScreen> {
-  late int _tab = widget.topic.learn != null ? (widget.initialSlot == null ? 0 : 1 + _slotIndex(widget.initialSlot!)) : _slotIndex(widget.initialSlot ?? widget.topic.task.slots.first);
-
-  int _slotIndex(Slot s) => widget.topic.task.slots.indexOf(s).clamp(0, widget.topic.task.slots.length - 1);
+  SwapTopic get t => widget.topic;
+  bool get _hasLearn => t.learn != null;
+  late int _tab = widget.initialSlot == null ? 0 : (_hasLearn ? 1 : 0) + t.task.slots.indexOf(widget.initialSlot!).clamp(0, t.task.slots.length - 1);
 
   @override
   Widget build(BuildContext context) {
-    final t = widget.topic;
-    final hasLearn = t.learn != null;
+    final progress = AppScope.of(context).progress;
+    final tabs = [if (_hasLearn) 'Learn', for (final s in t.task.slots) s.label];
+
     return Scaffold(
       backgroundColor: AppColors.cream,
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-              child: Row(children: [
-                const BackPill(),
-                Expanded(child: Text(t.title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 17))),
-                const SizedBox(width: 46),
-              ]),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
-              child: Row(children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
+        children: [
+          // Coloured header band with a wavy edge (prototype chart screen).
+          ClipPath(
+            clipper: const WaveClipper(),
+            child: Container(
+              color: topicColor(t.id),
+              padding: EdgeInsets.fromLTRB(16, MediaQuery.paddingOf(context).top + 8, 16, 38),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const BackPill(),
+                  const SizedBox(height: 6),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(t.task.label, style: const TextStyle(color: AppColors.inkSoft, fontSize: 13)),
-                      Text(t.title, style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w500)),
-                      ListenableBuilder(
-                        listenable: AppScope.of(context).progress,
-                        builder: (context, _) {
-                          final p = AppScope.of(context).progress;
-                          final n = t.swaps.length;
-                          final natural = t.swaps.where((s) => p.mastery(s.id) == Mastery.natural).length;
-                          return Text('$n swaps · $natural natural', style: const TextStyle(fontSize: 13.5));
-                        },
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(t.task.label, style: TextStyle(fontSize: 13, color: AppColors.ink.withValues(alpha: .7))),
+                            Text(t.title, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w600, height: 1.1)),
+                            const SizedBox(height: 6),
+                            ListenableBuilder(
+                              listenable: progress,
+                              builder: (context, _) {
+                                final natural = t.swaps.where((s) => progress.mastery(s.id) == Mastery.natural).length;
+                                return Text('${t.swaps.length} swaps · $natural natural', style: const TextStyle(fontSize: 14));
+                              },
+                            ),
+                          ],
+                        ),
                       ),
+                      MascotImage(Mascot.byName(t.mascot), size: 108, sticker: true, idle: true),
                     ],
                   ),
-                ),
-                MascotImage(Mascot.byName(t.mascot), size: 74, sticker: true),
-              ]),
-            ),
-            const SizedBox(height: 14),
-            SizedBox(
-              height: 40,
-              child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                children: [
-                  if (hasLearn) _tabChip('Learn', 0),
-                  for (final (i, s) in t.task.slots.indexed) _tabChip(s.label, (hasLearn ? 1 : 0) + i),
                 ],
               ),
             ),
-            const SizedBox(height: 6),
-            Expanded(
-              child: (hasLearn && _tab == 0)
-                  ? _LearnTab(topic: t)
-                  : _SlotTab(topic: t, slot: t.task.slots[_tab - (hasLearn ? 1 : 0)]),
+          ),
+          SizedBox(
+            height: 42,
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              children: [
+                for (final (i, label) in tabs.indexed)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: ChoiceChipPill(label, selected: _tab == i, onTap: () => setState(() => _tab = i)),
+                  ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _tabChip(String label, int i) {
-    final selected = _tab == i;
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: GestureDetector(
-        onTap: () => setState(() => _tab = i),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 160),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-          decoration: BoxDecoration(color: selected ? AppColors.ink : Colors.white, borderRadius: BorderRadius.circular(20)),
-          alignment: Alignment.center,
-          child: Text(label, style: TextStyle(fontSize: 14, color: selected ? Colors.white : AppColors.ink)),
-        ),
+          ),
+          Expanded(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 220),
+              child: KeyedSubtree(
+                key: ValueKey(_tab),
+                child: (_hasLearn && _tab == 0) ? _LearnTab(topic: t) : _SlotTab(topic: t, slot: t.task.slots[_tab - (_hasLearn ? 1 : 0)]),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class _LearnTab extends StatelessWidget {
+// ------------------------------------------------------------ Learn tab
+
+/// The annotated chart, one part at a time: swipe the word cards and the
+/// chart highlights (and labels) only that part, so labels never pile up.
+/// Tap a part of the chart to jump to its card; tap an alternative word to
+/// see that variant on the chart.
+class _LearnTab extends StatefulWidget {
   const _LearnTab({required this.topic});
   final SwapTopic topic;
+  @override
+  State<_LearnTab> createState() => _LearnTabState();
+}
+
+class _LearnTabState extends State<_LearnTab> {
+  final _pager = PageController(viewportFraction: .9);
+  int _i = 0;
+  final _variant = <int, String>{}; // card index → alternative word chosen
+
+  static const _cast = [Mascot.excited, Mascot.thinking, Mascot.playful, Mascot.focused, Mascot.cheerful, Mascot.confident, Mascot.kind, Mascot.friendly];
+  static const _tints = [Color(0xFFFFF1D6), Color(0xFFF3EEFF), Color(0xFFFDE9E4), Color(0xFFEFF4DF)];
+
+  Learn get learn => widget.topic.learn!;
+
+  @override
+  void dispose() {
+    _pager.dispose();
+    super.dispose();
+  }
+
+  void _go(int i) => _pager.animateToPage(i, duration: const Duration(milliseconds: 320), curve: Curves.easeOutCubic);
 
   @override
   Widget build(BuildContext context) {
-    final learn = topic.learn!;
+    final labels = learn.labels;
+    final cur = labels[_i];
+    final word = _variant[_i] ?? cur.word;
+
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 110),
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 110),
       children: [
         Container(
-          width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(14, 14, 14, 10),
-          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(22)),
+          padding: const EdgeInsets.fromLTRB(14, 14, 14, 8),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(24)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 4, bottom: 4),
-                child: Text('Every part has a Band 8 word — tap “Practise” to label it yourself', style: TextStyle(color: AppColors.inkSoft, fontSize: 12.5)),
+              const Text('Every part has a Band 8 word', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              const Text('Swipe the cards or tap the chart', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+              const SizedBox(height: 8),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                child: ChartView(
+                  key: ValueKey('$_i$word'),
+                  chart: learn.sample,
+                  highlight: cur.part,
+                  labels: {cur.part: word},
+                  selected: cur.part,
+                  dimOthers: true,
+                  labelHeadroom: 26,
+                  onTapPart: (part) {
+                    final j = labels.indexWhere((l) => l.part == part);
+                    if (j >= 0) _go(j);
+                  },
+                ),
               ),
-              ChartView(chart: learn.sample, labels: {for (final l in learn.labels) l.part: l.word}, labelHeadroom: 24),
             ],
           ),
         ),
-        const SizedBox(height: 14),
-        for (final l in learn.labels)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(children: [
-                    Expanded(child: Text(l.word, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600))),
-                    if (l.also.isNotEmpty) Text(l.also.join(' · '), style: const TextStyle(color: AppColors.inkSoft, fontSize: 12.5)),
-                  ]),
-                  if (l.plain.isNotEmpty)
-                    Padding(padding: const EdgeInsets.only(top: 2), child: Text('instead of: ${l.plain.join(' / ')}', style: const TextStyle(color: AppColors.inkSoft, fontSize: 12.5))),
-                  const SizedBox(height: 4),
-                  Text(l.sentence, style: const TextStyle(fontSize: 14.5, height: 1.35)),
-                ],
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 236,
+          child: PageView.builder(
+            controller: _pager,
+            itemCount: labels.length,
+            onPageChanged: (i) => setState(() => _i = i),
+            itemBuilder: (context, i) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: _LabelCard(
+                label: labels[i],
+                word: _variant[i] ?? labels[i].word,
+                mascot: _cast[i % _cast.length],
+                tint: _tints[i % _tints.length],
+                onVariant: (w) => setState(() => w == labels[i].word ? _variant.remove(i) : _variant[i] = w),
               ),
             ),
           ),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          child: PillButton('Label the graph yourself', onTap: () => startPractice(context, SessionRequest(PracticeMode.labelGraph, topicId: topic.id))),
         ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (var i = 0; i < labels.length; i++)
+              GestureDetector(
+                onTap: () => _go(i),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  margin: const EdgeInsets.symmetric(horizontal: 3),
+                  width: i == _i ? 18 : 7,
+                  height: 7,
+                  decoration: BoxDecoration(color: i == _i ? AppColors.ink : const Color(0xFFD6CFC4), borderRadius: BorderRadius.circular(4)),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        PillButton('Label the graph yourself', onTap: () => startPractice(context, SessionRequest(PracticeMode.labelGraph, topicId: widget.topic.id))),
       ],
     );
   }
 }
+
+class _LabelCard extends StatelessWidget {
+  const _LabelCard({required this.label, required this.word, required this.mascot, required this.tint, required this.onVariant});
+  final LearnLabel label;
+  final String word;
+  final Mascot mascot;
+  final Color tint;
+  final ValueChanged<String> onVariant;
+
+  @override
+  Widget build(BuildContext context) {
+    final variants = [label.word, ...label.also];
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(color: tint, borderRadius: BorderRadius.circular(24)),
+      child: Stack(
+        children: [
+          Positioned(right: 4, top: 4, child: MascotImage(mascot, size: 70, sticker: true)),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 70),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (label.plain.isNotEmpty)
+                        Text(label.plain.join(' / '),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontSize: 14, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+                      Text(word, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w700, height: 1.15)),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 36,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      for (final v in variants)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 6),
+                          child: ChoiceChipPill(v, selected: v == word, onTap: () => onVariant(v)),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Expanded(child: Text(label.sentence, style: const TextStyle(fontSize: 15, height: 1.4), overflow: TextOverflow.fade)),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: GestureDetector(
+                    onTap: () => Speech.instance.speak(label.sentence),
+                    child: const Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(Icons.volume_up_rounded, size: 18),
+                      SizedBox(width: 4),
+                      Text('Hear it', style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500)),
+                    ]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ------------------------------------------------------------ Slot tabs
 
 class _SlotTab extends StatelessWidget {
   const _SlotTab({required this.topic, required this.slot});
@@ -177,7 +300,9 @@ class _SlotTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final groups = topic.bySlot(slot);
+    final all = [for (final (_, swaps) in groups) ...swaps];
     final progress = AppScope.of(context).progress;
+    var n = 0;
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 110),
       children: [
@@ -185,27 +310,31 @@ class _SlotTab extends StatelessWidget {
         for (final (position, swaps) in groups) ...[
           CapsLabel(position.label),
           for (final s in swaps)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: ListenableBuilder(
-                listenable: progress,
-                builder: (context, _) => SwapRow(
-                  swap: s,
-                  mastery: progress.mastery(s.id),
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => SwapDetailScreen(swap: s, topic: topic))),
+            () {
+              final index = n++;
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: ListenableBuilder(
+                  listenable: progress,
+                  builder: (context, _) => SwapRow(
+                    swap: s,
+                    mastery: progress.mastery(s.id),
+                    onTap: () => openSwapDeck(context, all, index),
+                  ),
                 ),
-              ),
-            ),
+              ).animate(delay: (25 * index).ms).fadeIn(duration: 220.ms).moveY(begin: 6, end: 0);
+            }(),
         ],
         const SizedBox(height: 8),
-        SizedBox(
-          width: double.infinity,
-          child: PillButton(
+        if (all.isNotEmpty) ...[
+          PillButton('See them as flashcards', outline: true, onTap: () => openSwapDeck(context, all, 0)),
+          const SizedBox(height: 8),
+          PillButton(
             'Practise ${topic.title.toLowerCase()} ${slot.label.toLowerCase()}',
             dark: true,
-            onTap: groups.isEmpty ? null : () => startPractice(context, SessionRequest(PracticeMode.swapIt, topicId: topic.id, slot: slot)),
+            onTap: () => startPractice(context, SessionRequest(PracticeMode.swapIt, topicId: topic.id, slot: slot)),
           ),
-        ),
+        ],
       ],
     );
   }

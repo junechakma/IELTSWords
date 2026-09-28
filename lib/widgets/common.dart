@@ -278,7 +278,7 @@ class EmptyState extends StatelessWidget {
           const SizedBox(height: 22),
           Text(title, textAlign: TextAlign.center, style: t.titleLarge?.copyWith(fontSize: 24)),
           const SizedBox(height: 8),
-          Text(message, textAlign: TextAlign.center, style: t.bodyMedium?.copyWith(height: 1.45, fontSize: 15)),
+          Text(message, textAlign: TextAlign.center, style: t.bodyMedium?.copyWith(height: 1.45, fontSize: 15, color: AppColors.inkSoft)),
           if (action != null) ...[
             const SizedBox(height: 28),
             PillButton(action!, onTap: onAction),

@@ -38,7 +38,7 @@ class MapCanvas extends StatelessWidget {
     this.routePath,
     this.routeProgress = 1,
     this.onTapSpot,
-    this.height = 230,
+    this.height = 290,
   });
 
   final ListeningMap map;
@@ -107,7 +107,23 @@ class _MapPainter extends CustomPainter {
       } else {
         canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(14)), paint);
       }
-      if (a.label.isNotEmpty) _label(canvas, a.label, rect.center, const Color(0xFF4A5A2E), 10);
+      if (a.label.isNotEmpty) {
+        // Put the area name where it doesn't sit under an answer letter.
+        final spots = [for (final sp in map.spots) _r(sp.rect, size).inflate(4)];
+        final tp = _layout(a.label, const Color(0xFF4A5A2E), 10, maxWidth: rect.width - 6);
+        final candidates = [
+          Offset(rect.center.dx, rect.top + tp.height / 2 + 4),
+          Offset(rect.center.dx, rect.bottom - tp.height / 2 - 4),
+          rect.center,
+          Offset(rect.right - tp.width / 2 - 6, rect.center.dy),
+          Offset(rect.left + tp.width / 2 + 6, rect.center.dy),
+        ];
+        final at = candidates.firstWhere(
+          (c) => !spots.any((sp) => sp.overlaps(Rect.fromCenter(center: c, width: tp.width, height: tp.height))),
+          orElse: () => candidates.first,
+        );
+        tp.paint(canvas, at - Offset(tp.width / 2, tp.height / 2));
+      }
     }
 
     // Paths.
@@ -129,8 +145,16 @@ class _MapPainter extends CustomPainter {
     // Buildings.
     for (final b in map.buildings) {
       final rect = _r(b.rect, size);
-      canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(6)), Paint()..color = const Color(0xFF73443A));
-      _label(canvas, b.label, rect.center, Colors.white, 9);
+      // Grow the building to fit its name (two lines at most), so labels are
+      // never clipped white-on-cream.
+      final tp = _layout(b.label, Colors.white, 9, maxWidth: (rect.width * 1.5).clamp(48.0, 84.0));
+      var box = Rect.fromCenter(center: rect.center, width: (tp.width + 10).clamp(rect.width, 96.0), height: (tp.height + 6).clamp(rect.height, 40.0));
+      box = box.shift(Offset(
+        box.left < 2 ? 2 - box.left : (box.right > size.width - 2 ? size.width - 2 - box.right : 0),
+        box.top < 2 ? 2 - box.top : (box.bottom > size.height - 2 ? size.height - 2 - box.bottom : 0),
+      ));
+      canvas.drawRRect(RRect.fromRectAndRadius(box, const Radius.circular(7)), Paint()..color = const Color(0xFF73443A));
+      tp.paint(canvas, box.center - Offset(tp.width / 2, tp.height / 2));
     }
 
     // Spots (lettered answer targets).
@@ -161,7 +185,8 @@ class _MapPainter extends CustomPainter {
     // Start marker.
     final start = _p(map.start, size);
     canvas.drawCircle(start, 6, Paint()..color = const Color(0xFF1D1D1D));
-    _label(canvas, map.startLabel, start + const Offset(0, -14), const Color(0xFF1D1D1D), 9, bold: true);
+    final st = _layout(map.startLabel, const Color(0xFF1D1D1D), 9, bold: true);
+    st.paint(canvas, Offset((start.dx + 10).clamp(0, size.width - st.width), start.dy - st.height / 2));
 
     // Route (drawn progressively as routeProgress goes 0 → 1).
     final r = routePath;
@@ -200,12 +225,15 @@ class _MapPainter extends CustomPainter {
     return d;
   }
 
+  TextPainter _layout(String text, Color color, double size, {bool bold = false, double maxWidth = 90}) => TextPainter(
+        text: TextSpan(text: text, style: TextStyle(color: color, fontSize: size, height: 1.1, fontWeight: bold ? FontWeight.w700 : FontWeight.w500, fontFamily: 'Outfit')),
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.center,
+        maxLines: 2,
+      )..layout(maxWidth: maxWidth < 20 ? 20 : maxWidth);
+
   void _label(Canvas canvas, String text, Offset center, Color color, double size, {bool bold = false}) {
-    final tp = TextPainter(
-      text: TextSpan(text: text, style: TextStyle(color: color, fontSize: size, fontWeight: bold ? FontWeight.w700 : FontWeight.w500, fontFamily: 'Outfit')),
-      textDirection: TextDirection.ltr,
-      textAlign: TextAlign.center,
-    )..layout(maxWidth: 90);
+    final tp = _layout(text, color, size, bold: bold);
     tp.paint(canvas, center - Offset(tp.width / 2, tp.height / 2));
   }
 
@@ -314,6 +342,7 @@ class _PictureViewState extends State<PictureView> {
         children: [
           const Padding(padding: EdgeInsets.fromLTRB(2, 8, 0, 10), child: Text('Which picture matches?', style: TextStyle(color: AppColors.inkSoft, fontSize: 14.5))),
           GridView.count(
+            padding: EdgeInsets.zero,
             crossAxisCount: 3,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

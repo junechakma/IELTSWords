@@ -113,7 +113,7 @@ class SummaryView extends StatelessWidget {
                   child: Text(
                     perfect ? 'Every answer was the Band 8 one. They will come back for review in a few days.' : 'Nice work. Missed items come back tomorrow.',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15, height: 1.45),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15, height: 1.45, color: AppColors.inkSoft),
                   ),
                 ),
             ],

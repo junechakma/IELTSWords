@@ -47,6 +47,7 @@ class QuickPracticeSheet extends StatelessWidget {
             const CapsLabel('Build the habit', padding: EdgeInsets.zero),
             const SizedBox(height: 8),
             GridView.count(
+              padding: EdgeInsets.zero,
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

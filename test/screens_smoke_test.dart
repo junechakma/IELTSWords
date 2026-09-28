@@ -12,7 +12,7 @@ import 'package:ielts_words/home/home_screen.dart';
 import 'package:ielts_words/library/chart_screen.dart';
 import 'package:ielts_words/library/library_screen.dart';
 import 'package:ielts_words/library/listening_screen.dart';
-import 'package:ielts_words/library/swap_detail_screen.dart';
+import 'package:ielts_words/library/swap_deck_screen.dart';
 import 'package:ielts_words/library/word_sets_screen.dart';
 import 'package:ielts_words/onboarding/onboarding_screen.dart';
 import 'package:ielts_words/practice/practice_mode.dart';
@@ -38,6 +38,13 @@ Widget _harness(VocabRepository repo, AppStore store, ProgressStore progress, Wi
       progress: progress,
       child: MaterialApp(theme: AppTheme.light(), home: Scaffold(body: child)),
     );
+
+// Same screen as the test phone (1080x2392 @3x = 360x797 logical).
+void _phone(WidgetTester tester) {
+  tester.view.physicalSize = const Size(1080, 2392);
+  tester.view.devicePixelRatio = 3;
+  addTearDown(tester.view.reset);
+}
 
 // Idle mascots animate forever (`repeat`), so pumpAndSettle never finishes.
 // This pumps a bounded number of frames instead, which is enough to carry
@@ -110,7 +117,7 @@ void main() {
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text('Library'), findsOneWidget);
-    await tester.scrollUntilVisible(find.text('Word sets'), 300, scrollable: find.byType(Scrollable).first);
+    await tester.scrollUntilVisible(find.text('Listening maps'), 300, scrollable: find.byType(Scrollable).first);
     expect(find.text('Word sets'), findsOneWidget);
     expect(find.text('Listening maps'), findsOneWidget);
   });
@@ -139,27 +146,50 @@ void main() {
     }
   });
 
-  testWidgets('Swap detail: save toggle, hear it and practise button', (tester) async {
+  testWidgets('Swap deck: flip a card, save it, swipe to the next, practise', (tester) async {
+    _phone(tester);
     final chart = repo.charts.first;
-    final swap = chart.swaps.first;
-    await tester.pumpWidget(_harness(repo, store, progress, SwapDetailScreen(swap: swap, topic: chart)));
+    final swaps = chart.swaps.take(4).toList();
+    await tester.pumpWidget(_harness(repo, store, progress, SwapDeckScreen(swaps: swaps)));
     await _settle(tester);
     expect(tester.takeException(), isNull);
-    expect(find.text(swap.best), findsOneWidget);
+    expect(find.text('1 / 4'), findsOneWidget);
+    expect(find.text('Tap to flip'), findsWidgets);
+
+    await tester.tap(find.text('Tap to flip').first);
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text(swaps.first.best), findsWidgets);
 
     await tester.tap(find.byIcon(Icons.favorite_border_rounded));
     await tester.pump();
-    expect(tester.takeException(), isNull);
-    expect(progress.isSaved(swap.id), isTrue);
+    expect(progress.isSaved(swaps.first.id), isTrue);
 
-    await tester.tap(find.byIcon(Icons.volume_up_rounded));
+    await tester.drag(find.byType(PageView), const Offset(-300, 0));
+    await _settle(tester, frames: 12);
     expect(tester.takeException(), isNull);
+    expect(find.text('2 / 4'), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.chevron_right_rounded));
+    await _settle(tester, frames: 12);
+    expect(find.text('3 / 4'), findsOneWidget);
 
-    await tester.scrollUntilVisible(find.text('Practise this swap'), 300);
-    await tester.tap(find.text('Practise this swap'));
+    await tester.tap(find.text('Practise these 4'));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.byIcon(Icons.close_rounded), findsOneWidget);
+  });
+
+  testWidgets('Learn tab: swiping cards moves the highlighted part', (tester) async {
+    _phone(tester);
+    final chart = repo.charts.first;
+    await tester.pumpWidget(_harness(repo, store, progress, ChartScreen(topic: chart)));
+    await _settle(tester);
+    final labels = chart.learn!.labels;
+    expect(find.text(labels.first.word), findsWidgets);
+    await tester.fling(find.byType(PageView).first, const Offset(-400, 0), 1500);
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text(labels[1].word), findsWidgets);
   });
 
   testWidgets('Word sets screen switches groups with no exceptions', (tester) async {

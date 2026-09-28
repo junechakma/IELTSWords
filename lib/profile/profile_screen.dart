@@ -89,6 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 18),
               const CapsLabel('Study buddy', padding: EdgeInsets.only(left: 2, bottom: 8)),
               GridView.count(
+                padding: EdgeInsets.zero,
                 crossAxisCount: 6,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

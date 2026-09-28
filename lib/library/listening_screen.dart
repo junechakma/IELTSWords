@@ -46,12 +46,13 @@ class _ListeningScreenState extends State<ListeningScreen> {
               child: Column(
                 children: [
                   const Padding(padding: EdgeInsets.only(left: 4, bottom: 8), child: Align(alignment: Alignment.centerLeft, child: Text('The park', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15.5)))),
-                  MapCanvas(map: data.map, height: 220),
+                  MapCanvas(map: data.map, height: 300),
                 ],
               ),
             ),
             const SizedBox(height: 16),
             GridView.count(
+              padding: EdgeInsets.zero,
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

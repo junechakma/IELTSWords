@@ -61,7 +61,7 @@ abstract final class AppTheme {
         headlineMedium: text.headlineMedium?.copyWith(fontWeight: FontWeight.w500, fontSize: 32),
         titleLarge: text.titleLarge?.copyWith(fontWeight: FontWeight.w500, fontSize: 21),
         titleMedium: text.titleMedium?.copyWith(fontWeight: FontWeight.w500),
-        bodyMedium: text.bodyMedium?.copyWith(color: AppColors.inkSoft, fontSize: 14),
+        bodyMedium: text.bodyMedium?.copyWith(color: AppColors.ink, fontSize: 14),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(

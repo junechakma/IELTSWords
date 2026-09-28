@@ -93,8 +93,8 @@ class _SetCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            if (set.mascot != null) Padding(padding: const EdgeInsets.only(right: 10), child: MascotImage(Mascot.byName(set.mascot), size: 32)),
-            Expanded(child: Text('${set.head}${set.scale ? ' = …' : ''}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
+            if (set.mascot != null) Padding(padding: const EdgeInsets.only(right: 10), child: MascotImage(Mascot.byName(set.mascot), size: 48, sticker: true)),
+            Expanded(child: Text('${set.head}${set.scale ? ' = …' : ''}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600))),
             if (set.scale) const Text('small → big', style: TextStyle(fontSize: 12, color: AppColors.inkSoft)),
           ]),
           if (set.scale) ...[
@@ -104,8 +104,12 @@ class _SetCard extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 6,
-              children: [for (final w in set.ordered) Text(w.w, style: const TextStyle(fontSize: 13.5))],
+              children: [for (final w in set.ordered) TagChip(w.w, color: AppColors.cream)],
             ),
+            if (set.nouns.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 8), child: Text('Nouns: ${set.nouns.join(' · ')}', style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
+          ] else if (set.words.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Wrap(spacing: 6, runSpacing: 6, children: [for (final w in set.words) TagChip(w.w, color: AppColors.cream)]),
             if (set.nouns.isNotEmpty) Padding(padding: const EdgeInsets.only(top: 8), child: Text('Nouns: ${set.nouns.join(' · ')}', style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
           ] else if (set.pairs.isNotEmpty) ...[
             const SizedBox(height: 8),

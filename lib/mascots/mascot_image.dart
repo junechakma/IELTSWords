@@ -1,4 +1,4 @@
-import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -24,22 +24,34 @@ class MascotImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget img = Image.asset(mascot.asset, width: size, height: size, fit: fit, filterQuality: FilterQuality.medium);
+    // Decode at display size, not the source size, so a screen full of
+    // mascots stays light on memory (matters on budget phones).
+    final px = (size * MediaQuery.devicePixelRatioOf(context)).round();
+    Image image() => Image.asset(
+          mascot.asset,
+          width: size,
+          height: size,
+          fit: fit,
+          cacheWidth: px,
+          filterQuality: FilterQuality.medium,
+          gaplessPlayback: true,
+        );
+
+    Widget img = image();
 
     if (sticker) {
+      // One dilated white silhouette behind the mascot = die-cut outline.
       final r = (size * 0.035).clamp(2.0, 6.0);
-      final outline = ColorFiltered(
-        colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-        child: Image.asset(mascot.asset, width: size, height: size, fit: fit),
-      );
       img = Stack(
         clipBehavior: Clip.none,
         children: [
-          for (var i = 0; i < 12; i++)
-            Transform.translate(
-              offset: Offset(math.cos(i * math.pi / 6) * r, math.sin(i * math.pi / 6) * r),
-              child: outline,
+          ImageFiltered(
+            imageFilter: ui.ImageFilter.dilate(radiusX: r, radiusY: r),
+            child: ColorFiltered(
+              colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              child: image(),
             ),
+          ),
           img,
         ],
       );

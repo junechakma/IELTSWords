@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(store.name == null ? greeting : 'Hi, ${store.name}', style: t.headlineMedium),
                         const SizedBox(height: 2),
-                        Text('${_weekdays[now.weekday - 1]}, ${now.day} ${_months[now.month - 1]}', style: t.bodyMedium),
+                        Text('${_weekdays[now.weekday - 1]}, ${now.day} ${_months[now.month - 1]}', style: t.bodyMedium?.copyWith(color: AppColors.inkSoft)),
                       ],
                     ),
                   ),
@@ -134,6 +134,7 @@ class HomeScreen extends StatelessWidget {
               SectionTitle('Charts', action: 'See all', onAction: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LibraryScreen()))),
               const SizedBox(height: 12),
               GridView.count(
+                padding: EdgeInsets.zero,
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

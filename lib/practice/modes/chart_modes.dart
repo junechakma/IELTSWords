@@ -308,12 +308,21 @@ class _LabelViewState extends State<LabelView> {
         children: [
           Text(done ? 'All labelled' : 'Which Band 8 word fits the highlighted part?', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20)),
           const SizedBox(height: 10),
-          ChartCard(child: ChartView(chart: widget.q.topic.learn!.sample, highlight: current?.part, labels: _placed, labelHeadroom: 26, dimOthers: current != null)),
+          ChartCard(child: ChartView(chart: widget.q.topic.learn!.sample, highlight: current?.part, dimOthers: current != null)),
         ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Finished parts are listed here, not drawn on the chart, so labels
+          // never pile up on top of each other.
+          if (_placed.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Wrap(spacing: 6, runSpacing: 6, children: [
+                for (final w in _placed.values) TagChip('✓ $w', color: const Color(0xFFE6EDCF), textColor: const Color(0xFF4F6414)),
+              ]),
+            ),
           if (current != null && current.plain.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(bottom: 10, top: 4),
