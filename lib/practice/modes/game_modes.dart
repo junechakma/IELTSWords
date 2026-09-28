@@ -50,7 +50,9 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
   static const _seconds = 6;
   late final _timer = AnimationController(vsync: this, duration: const Duration(seconds: _seconds))..addStatusListener(_onTimeout);
   int _i = 0;
-  double _dx = 0;
+  // Drag offset. Only the top card listens, so a drag doesn't rebuild the
+  // whole screen on every finger move.
+  final _dx = ValueNotifier(0.0);
   bool? _flash; // true = right, false = wrong (brief overlay)
   final _misses = <(SpeedCard, bool)>[]; // card, timedOut
   bool _busy = false;
@@ -66,6 +68,7 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
   @override
   void dispose() {
     _timer.dispose();
+    _dx.dispose();
     super.dispose();
   }
 
@@ -81,10 +84,8 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
     final card = cards[_i];
     final ok = saidFormal == card.formal;
     HapticFeedback.selectionClick();
-    setState(() {
-      _flash = ok;
-      _dx = saidFormal == null ? 0 : (saidFormal ? 500 : -500);
-    });
+    setState(() => _flash = ok);
+    _dx.value = saidFormal == null ? 0 : (saidFormal ? 500 : -500);
     if (!ok) _misses.add((card, saidFormal == null));
     await sessionOf(context).record(card.swap.id, correct: ok, core: false, isSwap: true);
     await Future.delayed(const Duration(milliseconds: 380));
@@ -105,9 +106,9 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
     } else {
       setState(() {
         _i++;
-        _dx = 0;
         _flash = null;
       });
+      _dx.value = 0;
       _timer.forward(from: 0);
     }
     _busy = false;
@@ -157,28 +158,31 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
                       child: Transform.scale(scale: 1 - .05 * k, child: _card(cards[_i + k], ghost: true)),
                     ),
                   GestureDetector(
-                    onPanUpdate: (d) => setState(() => _dx += d.delta.dx),
+                    onPanUpdate: (d) => _dx.value += d.delta.dx,
                     onPanEnd: (_) {
-                      if (_dx > 90) {
+                      if (_dx.value > 90) {
                         _decide(true);
-                      } else if (_dx < -90) {
+                      } else if (_dx.value < -90) {
                         _decide(false);
                       } else {
-                        setState(() => _dx = 0);
+                        _dx.value = 0;
                       }
                     },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: _dx.abs() >= 500 ? 300 : 0),
-                      transform: Matrix4.translationValues(_dx, 0, 0)..rotateZ(_dx / 900),
-                      transformAlignment: Alignment.bottomCenter,
-                      child: _card(cards[_i], flash: _flash),
+                    child: ValueListenableBuilder(
+                      valueListenable: _dx,
+                      builder: (context, dx, _) => AnimatedContainer(
+                        duration: Duration(milliseconds: dx.abs() >= 500 ? 300 : 0),
+                        transform: Matrix4.translationValues(dx, 0, 0)..rotateZ(dx / 900),
+                        transformAlignment: Alignment.bottomCenter,
+                        child: _card(cards[_i], flash: _flash, dx: dx),
+                      ),
                     ),
                   ),
                 ]),
         ),
         const SizedBox(height: 18),
         Row(children: [
-          Expanded(child: _choice('Plain', AppIcons.back, const Color(0xFFFBEAE5), AppColors.rust, () => _decide(false))),
+          Expanded(child: _choice('Plain', AppIcons.back, AppColors.plainSoft, AppColors.plain, () => _decide(false))),
           const SizedBox(width: 12),
           Expanded(child: _choice('Band 8', AppIcons.next, const Color(0xFFE6EDCF), const Color(0xFF4F6414), () => _decide(true), iconAfter: true)),
         ]),
@@ -201,8 +205,8 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
         ),
       );
 
-  Widget _card(SpeedCard c, {bool ghost = false, bool? flash}) {
-    final lean = ghost ? 0.0 : (_dx / 120).clamp(-1.0, 1.0);
+  Widget _card(SpeedCard c, {bool ghost = false, bool? flash, double dx = 0}) {
+    final lean = ghost ? 0.0 : (dx / 120).clamp(-1.0, 1.0);
     final bg = flash == null ? Colors.white : (flash ? const Color(0xFFF1F5E4) : const Color(0xFFFBEAE5));
     final (before, after) = c.formal ? c.swap.formalParts : c.swap.plainParts;
     return Container(
@@ -238,7 +242,7 @@ class _SpeedViewState extends State<SpeedView> with TickerProviderStateMixin {
               if (lean > .15)
                 Positioned(left: 0, top: 0, child: Opacity(opacity: lean, child: _stamp('BAND 8', const Color(0xFF4F6414), -.2))),
               if (lean < -.15)
-                Positioned(right: 0, top: 0, child: Opacity(opacity: -lean, child: _stamp('PLAIN', AppColors.rust, .2))),
+                Positioned(right: 0, top: 0, child: Opacity(opacity: -lean, child: _stamp('PLAIN', AppColors.plain, .2))),
             ]),
     );
   }

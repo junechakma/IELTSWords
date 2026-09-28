@@ -123,11 +123,14 @@ class FlashDeckScreen extends StatefulWidget {
 
 class _FlashDeckScreenState extends State<FlashDeckScreen> {
   late final _pager = PageController(initialPage: widget.initialIndex, viewportFraction: .88);
-  late int _index = widget.initialIndex;
+  // Only the header and buttons listen to this, so turning a page doesn't
+  // rebuild the cards mid-swipe.
+  late final _index = ValueNotifier(widget.initialIndex);
 
   @override
   void dispose() {
     _pager.dispose();
+    _index.dispose();
     super.dispose();
   }
 
@@ -142,34 +145,42 @@ class _FlashDeckScreenState extends State<FlashDeckScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-              child: Row(children: [
-                const BackPill(),
-                Expanded(
-                  child: Column(children: [
-                    Text('${_index + 1} / ${widget.count}', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
-                    if (widget.subtitle != null)
-                      Text(widget.subtitle!(_index), maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+            ValueListenableBuilder(
+              valueListenable: _index,
+              builder: (context, index, _) => Column(children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: Row(children: [
+                    const BackPill(),
+                    Expanded(
+                      child: Column(children: [
+                        Text('${index + 1} / ${widget.count}', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+                        if (widget.subtitle != null)
+                          Text(widget.subtitle!(index), maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+                      ]),
+                    ),
+                    widget.trailing?.call(context, index) ?? const SizedBox(width: 46),
                   ]),
                 ),
-                widget.trailing?.call(context, _index) ?? const SizedBox(width: 46),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(3),
+                    child: LinearProgressIndicator(value: (index + 1) / widget.count, minHeight: 5, backgroundColor: Colors.white, color: AppColors.ink),
+                  ),
+                ),
               ]),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                child: LinearProgressIndicator(value: (_index + 1) / widget.count, minHeight: 5, backgroundColor: Colors.white, color: AppColors.ink),
-              ),
             ),
             const SizedBox(height: 14),
             Expanded(
               child: PageView.builder(
                 controller: _pager,
                 itemCount: widget.count,
-                onPageChanged: (i) => setState(() => _index = i),
+                // Builds the next card before it scrolls in, so its mascot is
+                // ready instead of decoding mid-swipe.
+                allowImplicitScrolling: true,
+                onPageChanged: (i) => _index.value = i,
                 itemBuilder: (context, i) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6),
                   child: FlipCard(
@@ -182,19 +193,22 @@ class _FlashDeckScreenState extends State<FlashDeckScreen> {
               ),
             ),
             const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-              child: Row(children: [
-                RoundIconButton(icon: AppIcons.back, tooltip: 'Previous', onTap: _index == 0 ? null : () => _move(-1)),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: widget.onPractise == null
-                      ? const SizedBox.shrink()
-                      : PillButton(widget.practiseLabel ?? 'Practise', dark: true, onTap: widget.onPractise),
-                ),
-                const SizedBox(width: 10),
-                RoundIconButton(icon: AppIcons.next, tooltip: 'Next', onTap: _index >= widget.count - 1 ? null : () => _move(1)),
-              ]),
+            ValueListenableBuilder(
+              valueListenable: _index,
+              builder: (context, index, _) => Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: Row(children: [
+                  RoundIconButton(icon: AppIcons.back, tooltip: 'Previous', onTap: index == 0 ? null : () => _move(-1)),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: widget.onPractise == null
+                        ? const SizedBox.shrink()
+                        : PillButton(widget.practiseLabel ?? 'Practise', dark: true, onTap: widget.onPractise),
+                  ),
+                  const SizedBox(width: 10),
+                  RoundIconButton(icon: AppIcons.next, tooltip: 'Next', onTap: index >= widget.count - 1 ? null : () => _move(1)),
+                ]),
+              ),
             ),
           ],
         ),

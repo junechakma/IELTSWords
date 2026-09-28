@@ -15,7 +15,7 @@ import '../questions.dart';
 import '../session_controller.dart';
 import '../session_screen.dart';
 
-/// Sentence with one phrase highlighted (plain word in a soft rust box, or struck through).
+/// Sentence with one phrase highlighted (plain word in a soft grey box, or struck through).
 class HighlightSentence extends StatelessWidget {
   const HighlightSentence({super.key, required this.before, required this.phrase, required this.after, this.strike = false, this.size = 19, this.color});
   final String before, phrase, after;
@@ -31,8 +31,8 @@ class HighlightSentence extends StatelessWidget {
       TextSpan(
         text: strike ? phrase : ' $phrase ',
         style: strike
-            ? const TextStyle(color: AppColors.rust, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)
-            : TextStyle(backgroundColor: color ?? const Color(0xFFF8DAD3)),
+            ? const TextStyle(color: AppColors.plain, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain)
+            : TextStyle(backgroundColor: color ?? AppColors.plainSoft),
       ),
       TextSpan(text: after),
     ]));
@@ -162,7 +162,7 @@ class _FillGapViewState extends State<FillGapView> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text.rich(TextSpan(style: const TextStyle(fontSize: 13.5, color: AppColors.inkSoft), children: [
             const TextSpan(text: 'Instead of  '),
-            TextSpan(text: s.plain, style: const TextStyle(color: AppColors.rust, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+            TextSpan(text: s.plain, style: const TextStyle(color: AppColors.plain, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain)),
           ])),
           const SizedBox(height: 10),
           Text.rich(TextSpan(style: const TextStyle(fontSize: 19, height: 1.6, color: AppColors.ink), children: [

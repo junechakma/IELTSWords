@@ -366,7 +366,7 @@ class _LabelCard extends StatelessWidget {
                         Text(label.plain.join(' / '),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontSize: 14, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+                            style: const TextStyle(fontSize: 14, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain)),
                       Text(word, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w700, height: 1.15)),
                     ],
                   ),

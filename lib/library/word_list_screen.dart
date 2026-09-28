@@ -172,16 +172,16 @@ class SwapPairCard extends StatelessWidget {
           // Plain half
           Container(
             padding: pad,
-            color: const Color(0xFFFBEAE5),
+            color: AppColors.plainSoft,
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  const Text('YOU’D WRITE', style: TextStyle(fontSize: 10.5, letterSpacing: 1, fontWeight: FontWeight.w600, color: AppColors.rust)),
+                  const Text('YOU’D WRITE', style: TextStyle(fontSize: 10.5, letterSpacing: 1, fontWeight: FontWeight.w600, color: AppColors.plain)),
                   const SizedBox(height: 3),
                   Text(s.plain,
                       maxLines: compact ? 2 : 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: compact ? 14.5 : 17, height: 1.25, color: AppColors.rust, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust.withValues(alpha: .6))),
+                      style: TextStyle(fontSize: compact ? 14.5 : 17, height: 1.25, color: AppColors.plain, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain.withValues(alpha: .6))),
                 ]),
               ),
               if (!compact && mastery != null) MasteryDot(mastery!, size: 11),
@@ -277,11 +277,14 @@ class WordPairDeck extends ConsumerStatefulWidget {
 
 class _WordPairDeckState extends ConsumerState<WordPairDeck> {
   late final _pager = PageController(initialPage: widget.initialIndex, viewportFraction: .88);
-  late int _index = widget.initialIndex;
+  // Only the header and buttons listen to this, so turning a page doesn't
+  // rebuild the cards mid-swipe.
+  late final _index = ValueNotifier(widget.initialIndex);
 
   @override
   void dispose() {
     _pager.dispose();
+    _index.dispose();
     super.dispose();
   }
 
@@ -289,49 +292,58 @@ class _WordPairDeckState extends ConsumerState<WordPairDeck> {
   Widget build(BuildContext context) {
     final swaps = widget.swaps;
     final repo = ref.watch(repoProvider);
-    final progress = ref.watch(progressProvider);
-    final current = swaps[_index];
     return Scaffold(
       backgroundColor: AppColors.cream,
       body: SafeArea(
         child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-            child: Row(children: [
-              const BackPill(),
-              Expanded(
-                child: Column(children: [
-                  Text('${_index + 1} / ${swaps.length}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                  Text(repo.topic(current.topicId).title, style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+          ValueListenableBuilder(
+            valueListenable: _index,
+            builder: (context, index, _) {
+              final current = swaps[index];
+              return Column(children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                child: Row(children: [
+                  const BackPill(),
+                  Expanded(
+                    child: Column(children: [
+                      Text('${index + 1} / ${swaps.length}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                      Text(repo.topic(current.topicId).title, style: const TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+                    ]),
+                  ),
+                  Consumer(
+                    builder: (context, ref, _) => RoundIconButton(
+                      icon: ref.watch(progressProvider).isSaved(current.id) ? AppIcons.heartOn : AppIcons.heart,
+                      tooltip: 'Save',
+                      color: Colors.white,
+                      onTap: () => ref.read(progressProvider.notifier).toggleSaved(current.id),
+                    ),
+                  ),
                 ]),
               ),
-              RoundIconButton(
-                icon: progress.isSaved(current.id) ? AppIcons.heartOn : AppIcons.heart,
-                tooltip: 'Save',
-                color: Colors.white,
-                onTap: () => ref.read(progressProvider.notifier).toggleSaved(current.id),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: LinearProgressIndicator(
+                    value: (index + 1) / swaps.length,
+                    minHeight: 5,
+                    backgroundColor: const Color(0xFFE9E4DA),
+                    color: AppColors.ink,
+                  ),
+                ),
               ),
-            ]),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: (_index + 1) / swaps.length,
-                minHeight: 5,
-                backgroundColor: const Color(0xFFE9E4DA),
-                color: AppColors.ink,
-              ),
-            ),
+              ]);
+            },
           ),
           Expanded(
             child: PageView.builder(
               controller: _pager,
               itemCount: swaps.length,
+              allowImplicitScrolling: true,
               onPageChanged: (i) {
                 SoundFx.instance.play(Sfx.flip);
-                setState(() => _index = i);
+                _index.value = i;
               },
               itemBuilder: (context, i) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 14),
@@ -339,29 +351,32 @@ class _WordPairDeckState extends ConsumerState<WordPairDeck> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-            child: Row(children: [
-              RoundIconButton(icon: AppIcons.back, tooltip: 'Previous', color: Colors.white, onTap: _index == 0 ? null : () => _go(-1)),
-              const SizedBox(width: 10),
-              Expanded(
-                child: PillButton(
-                  'Practise these',
-                  dark: true,
-                  height: 50,
-                  onTap: () => startPractice(context, SessionRequest(PracticeMode.fillGap, swapIds: [for (final s in swaps) s.id], size: swaps.length.clamp(1, 10))),
+          ValueListenableBuilder(
+            valueListenable: _index,
+            builder: (context, index, _) => Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+              child: Row(children: [
+                RoundIconButton(icon: AppIcons.back, tooltip: 'Previous', color: Colors.white, onTap: index == 0 ? null : () => _go(-1)),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: PillButton(
+                    'Practise these',
+                    dark: true,
+                    height: 50,
+                    onTap: () => startPractice(context, SessionRequest(PracticeMode.fillGap, swapIds: [for (final s in swaps) s.id], size: swaps.length.clamp(1, 10))),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              RoundIconButton(icon: AppIcons.next, tooltip: 'Next', color: Colors.white, onTap: _index == swaps.length - 1 ? null : () => _go(1)),
-            ]),
+                const SizedBox(width: 10),
+                RoundIconButton(icon: AppIcons.next, tooltip: 'Next', color: Colors.white, onTap: index == swaps.length - 1 ? null : () => _go(1)),
+              ]),
+            ),
           ),
         ]),
       ),
     );
   }
 
-  void _go(int d) => _pager.animateToPage(_index + d, duration: const Duration(milliseconds: 280), curve: Curves.easeOutCubic);
+  void _go(int d) => _pager.animateToPage(_index.value + d, duration: const Duration(milliseconds: 280), curve: Curves.easeOutCubic);
 }
 
 class _BigPair extends StatelessWidget {
@@ -384,11 +399,11 @@ class _BigPair extends StatelessWidget {
         Expanded(
           flex: 42,
           child: Container(
-            color: const Color(0xFFFBEAE5),
+            color: AppColors.plainSoft,
             padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                const Text('YOU’D WRITE', style: TextStyle(fontSize: 11.5, letterSpacing: 1.2, fontWeight: FontWeight.w600, color: AppColors.rust)),
+                const Text('YOU’D WRITE', style: TextStyle(fontSize: 11.5, letterSpacing: 1.2, fontWeight: FontWeight.w600, color: AppColors.plain)),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Align(
@@ -402,7 +417,7 @@ class _BigPair extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 alignment: Alignment.centerLeft,
                 child: Text(s.plain,
-                    style: TextStyle(fontSize: 30, color: AppColors.rust, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust.withValues(alpha: .6))),
+                    style: TextStyle(fontSize: 30, color: AppColors.plain, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain.withValues(alpha: .6))),
               ),
               const Spacer(),
               Flexible(
@@ -411,7 +426,7 @@ class _BigPair extends StatelessWidget {
                   child: Text.rich(
                     TextSpan(style: const TextStyle(fontSize: 14.5, height: 1.45, color: AppColors.inkSoft), children: [
                       TextSpan(text: pb),
-                      TextSpan(text: s.plain, style: const TextStyle(color: AppColors.rust, fontWeight: FontWeight.w600)),
+                      TextSpan(text: s.plain, style: const TextStyle(color: AppColors.plain, fontWeight: FontWeight.w600)),
                       TextSpan(text: pa),
                     ]),
                   ),
@@ -540,7 +555,7 @@ class _MiniTicket extends StatelessWidget {
           boxShadow: const [BoxShadow(color: Color(0x18000000), blurRadius: 6, offset: Offset(0, 2))],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(s.plain, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 10.5, color: AppColors.rust, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+          Text(s.plain, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 10.5, color: AppColors.plain, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain)),
           Text(s.best, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700)),
         ]),
       );

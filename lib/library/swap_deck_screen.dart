@@ -133,7 +133,7 @@ Widget _swapBack(BuildContext context, Swap s, SwapTopic topic) {
       children: [
         Text(
           s.plain,
-          style: const TextStyle(fontSize: 16, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust),
+          style: const TextStyle(fontSize: 16, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain),
         ),
         const SizedBox(height: 2),
         Text(s.best, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700, height: 1.1)),

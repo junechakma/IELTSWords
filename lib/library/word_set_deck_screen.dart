@@ -94,7 +94,7 @@ class WordSetDeckScreen extends StatelessWidget {
         children: [
           Row(children: [Flexible(child: TagChip(caption)), const Spacer(), const FlipHint()]),
           const SizedBox(height: 22),
-          Text(big, style: TextStyle(fontSize: c is WordsCard ? 32 : 36, fontWeight: FontWeight.w700, height: 1.1, decoration: c is WordsCard ? null : TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+          Text(big, style: TextStyle(fontSize: c is WordsCard ? 32 : 36, fontWeight: FontWeight.w700, height: 1.1, decoration: c is WordsCard ? null : TextDecoration.lineThrough, decorationColor: AppColors.plain)),
           Expanded(
             child: Center(
               child: LayoutBuilder(builder: (context, box) => MascotImage(mascot, size: box.maxHeight.clamp(0, 200).toDouble(), sticker: true, idle: true)),
@@ -143,7 +143,7 @@ class WordSetDeckScreen extends StatelessWidget {
       case PairCard(:final pair):
         speak = pair.example;
         body = [
-          Text(pair.plain, style: const TextStyle(fontSize: 16, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+          Text(pair.plain, style: const TextStyle(fontSize: 16, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain)),
           const SizedBox(height: 2),
           Text(pair.formal.first, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w700, height: 1.1)),
           if (pair.formal.length > 1) ...[
@@ -160,7 +160,7 @@ class WordSetDeckScreen extends StatelessWidget {
       case AdjAdvCard(:final pair):
         speak = pair.verbSentence;
         body = [
-          Text(pair.plain, style: const TextStyle(fontSize: 16, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+          Text(pair.plain, style: const TextStyle(fontSize: 16, color: AppColors.inkSoft, decoration: TextDecoration.lineThrough, decorationColor: AppColors.plain)),
           const SizedBox(height: 4),
           Text('${pair.adv}  ·  ${pair.adj}', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w700, height: 1.1)),
           const SizedBox(height: 16),

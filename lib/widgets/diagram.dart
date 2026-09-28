@@ -3,11 +3,12 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+import '../charts/cartography.dart';
 import '../theme/app_theme.dart';
 
-/// A small picture for a map / direction word, in one consistent style:
-/// grey landmark boxes, a yellow target, beige roads, and your route as a
-/// rust line with an arrow. Places and exam traps use Phosphor icons.
+/// A small picture for a map / direction word, in the shared map style
+/// ([Carto]): 2.5D landmark blocks, a yellow pin for the target, white roads,
+/// and your route as a dark line with an arrow. Places and exam traps use Phosphor icons.
 /// Unknown keys fall back to a neutral pin, so new content never breaks.
 class DiagramIcon extends StatelessWidget {
   const DiagramIcon(this.diagram, {super.key, this.size = 90});
@@ -67,7 +68,7 @@ class _ScenePainter extends CustomPainter {
   static const _road = Color(0xFFE3DAC9);
   static const _block = Color(0xFFD9D2C6);
   static const _target = AppColors.sunflower;
-  static const _route = AppColors.rust;
+  static const _route = AppColors.ink;
   static const _ink = AppColors.ink;
 
   late Canvas c;
@@ -76,48 +77,34 @@ class _ScenePainter extends CustomPainter {
   Offset p(double x, double y) => Offset(x * u, y * u);
 
   // ---- primitives ----
-  void bg() => c.drawRRect(RRect.fromRectAndRadius(Offset.zero & Size(100 * u, 100 * u), Radius.circular(24 * u)), Paint()..color = const Color(0xFFF7F3EC));
+  void bg() {
+    final box = RRect.fromRectAndRadius(Offset.zero & Size(100 * u, 100 * u), Radius.circular(24 * u));
+    Carto.ground(c, box);
+    c.clipRRect(box);
+  }
 
-  void road(Offset a, Offset b, {double w = 14}) => c.drawLine(
-      a,
-      b,
-      Paint()
-        ..color = _road
-        ..strokeWidth = w * u
-        ..strokeCap = StrokeCap.butt);
+  void road(Offset a, Offset b, {double w = 14}) => Carto.road(c, Path()..moveTo(a.dx, a.dy)..lineTo(b.dx, b.dy), w * u);
 
+  /// A landmark; the yellow one ([_target] colour) is the place you're asked about.
   void block(double l, double t, double r, double b, {Color color = _block, bool front = false}) {
     final rect = Rect.fromLTRB(l * u, t * u, r * u, b * u);
-    c.drawRRect(RRect.fromRectAndRadius(rect, Radius.circular(4 * u)), Paint()..color = color);
-    c.drawRRect(
-        RRect.fromRectAndRadius(rect, Radius.circular(4 * u)),
-        Paint()
-          ..color = _ink.withValues(alpha: .55)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.2 * u);
+    final isTarget = color == _target;
+    Carto.building(c, rect,
+        top: isTarget ? AppColors.sunflower : Carto.buildingTop, side: isTarget ? const Color(0xFFD99A12) : Carto.buildingSide, depth: 3 * u, radius: 4 * u);
+    if (isTarget) {
+      c.drawRRect(
+          RRect.fromRectAndRadius(rect, Radius.circular(4 * u)),
+          Paint()
+            ..color = _ink
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.4 * u);
+    }
   }
 
-  void target(Offset o, {double r = 7}) {
-    c.drawCircle(o, r * u, Paint()..color = _target);
-    c.drawCircle(
-        o,
-        r * u,
-        Paint()
-          ..color = _ink
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.6 * u);
-  }
+  /// The place you're asked about: a yellow map pin whose tip is at [o].
+  void target(Offset o, {double r = 7}) => Carto.pinAt(c, o + Offset(0, r * u * .9), r * u * .85);
 
-  void walker(Offset o) {
-    c.drawCircle(o, 5 * u, Paint()..color = _ink);
-    c.drawCircle(
-        o,
-        8.5 * u,
-        Paint()
-          ..color = _ink.withValues(alpha: .25)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.4 * u);
-  }
+  void walker(Offset o) => Carto.you(c, o, 4.2 * u);
 
   void room(double l, double t, double r, double b) => c.drawRRect(
       RRect.fromRectAndRadius(Rect.fromLTRB(l * u, t * u, r * u, b * u), Radius.circular(6 * u)),
@@ -231,6 +218,7 @@ class _ScenePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     c = canvas;
     u = size.shortestSide / 100;
+    c.save(); // bg() clips to the rounded tile
     bg();
     switch (k) {
       // ---------------- position
@@ -294,7 +282,8 @@ class _ScenePainter extends CustomPainter {
       case 'surrounded-by':
         for (var i = 0; i < 8; i++) {
           final a = i * math.pi / 4;
-          c.drawCircle(p(50 + 30 * math.cos(a), 50 + 30 * math.sin(a)), 6 * u, Paint()..color = _block);
+          final q = p(50 + 30 * math.cos(a), 50 + 30 * math.sin(a));
+          Carto.building(c, Rect.fromCenter(center: q, width: 12 * u, height: 12 * u), depth: 2 * u, radius: 3 * u);
         }
         target(p(50, 50));
       case 'alongside':
@@ -476,7 +465,7 @@ class _ScenePainter extends CustomPainter {
         c.drawPath(b, Paint()..color = _road..strokeWidth = 18 * u..style = PaintingStyle.stroke);
       case 'dead-end':
         road(p(50, 100), p(50, 26), w: 18);
-        c.drawLine(p(36, 24), p(64, 24), Paint()..color = AppColors.rust..strokeWidth = 4 * u);
+        c.drawLine(p(36, 24), p(64, 24), Paint()..color = _ink..strokeWidth = 4 * u);
       case 'crossing':
         road(p(0, 50), p(100, 50), w: 30);
         for (var x = 20.0; x <= 76; x += 10) {
@@ -513,7 +502,7 @@ class _ScenePainter extends CustomPainter {
         c.drawLine(p(40, 50), p(52, 36), Paint()..color = const Color(0xFF8B6B4A)..strokeWidth = 3 * u);
       case 'hedge':
         for (var x = 14.0; x <= 86; x += 12) {
-          c.drawCircle(p(x, 52), 9 * u, Paint()..color = const Color(0xFF88A338));
+          Carto.tree(c, p(x, 52), 8 * u);
         }
 
       default:
@@ -521,6 +510,7 @@ class _ScenePainter extends CustomPainter {
         target(p(50, 44), r: 13);
         c.drawLine(p(50, 57), p(50, 80), Paint()..color = _ink..strokeWidth = 2.4 * u);
     }
+    c.restore();
   }
 
   @override

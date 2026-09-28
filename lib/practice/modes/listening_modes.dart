@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../charts/cartography.dart';
+
 import '../../data/listening_models.dart';
 import '../../library/map_set_screen.dart';
 import '../../services/speech.dart';
@@ -174,42 +176,18 @@ class _MapPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawRRect(RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(18)), Paint()..color = const Color(0xFFEFF3E1));
+    final bounds = Offset.zero & size;
+    final frame = RRect.fromRectAndRadius(bounds, const Radius.circular(18));
+    canvas.save();
+    canvas.clipRRect(frame);
+    Carto.ground(canvas, frame);
 
-    // Areas (woodland, water, etc.) as soft rounded shapes.
+    // Ground: woodland, water, car parks, gardens.
     for (final a in map.areas) {
-      final rect = _r(a.rect, size);
-      final color = switch (a.kind) {
-        'water' || 'pond' || 'lake' => const Color(0xFFBFDCEB),
-        'woodland' || 'trees' => const Color(0xFFC7D9A6),
-        _ => const Color(0xFFE3DFD6),
-      };
-      final paint = Paint()..color = color;
-      if (a.oval) {
-        canvas.drawOval(rect, paint);
-      } else {
-        canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(14)), paint);
-      }
-      if (a.label.isNotEmpty) {
-        // Put the area name where it doesn't sit under an answer letter.
-        final spots = [for (final sp in map.spots) _r(sp.rect, size).inflate(4)];
-        final tp = _layout(a.label, const Color(0xFF4A5A2E), 10, maxWidth: rect.width - 6);
-        final candidates = [
-          Offset(rect.center.dx, rect.top + tp.height / 2 + 4),
-          Offset(rect.center.dx, rect.bottom - tp.height / 2 - 4),
-          rect.center,
-          Offset(rect.right - tp.width / 2 - 6, rect.center.dy),
-          Offset(rect.left + tp.width / 2 + 6, rect.center.dy),
-        ];
-        final at = candidates.firstWhere(
-          (c) => !spots.any((sp) => sp.overlaps(Rect.fromCenter(center: c, width: tp.width, height: tp.height))),
-          orElse: () => candidates.first,
-        );
-        tp.paint(canvas, at - Offset(tp.width / 2, tp.height / 2));
-      }
+      Carto.feature(canvas, a.kind, _r(a.rect, size), oval: a.oval);
     }
 
-    // Paths.
+    // Paths and roads.
     for (final p in map.paths) {
       if (p.points.length < 2) continue;
       final path = Path()..moveTo(_p(p.points.first, size).dx, _p(p.points.first, size).dy);
@@ -217,61 +195,40 @@ class _MapPainter extends CustomPainter {
         final o = _p(pt, size);
         path.lineTo(o.dx, o.dy);
       }
-      final paint = Paint()
-        ..color = const Color(0xFFD2C6B8)
-        ..strokeWidth = p.kind == 'road' ? 8 : 4
-        ..style = PaintingStyle.stroke
-        ..strokeCap = StrokeCap.round;
-      canvas.drawPath(path, paint);
+      if (p.kind == 'road') {
+        Carto.road(canvas, path, 12);
+      } else {
+        Carto.footpath(canvas, path, 7);
+      }
     }
 
-    // Buildings.
+    // Buildings (named) and spots (the lettered answers) stand on the paths.
     for (final b in map.buildings) {
-      final rect = _r(b.rect, size);
-      // Grow the building to fit its name (two lines at most), so labels are
-      // never clipped white-on-cream.
-      final tp = _layout(b.label, Colors.white, 9, maxWidth: (rect.width * 1.5).clamp(48.0, 84.0));
-      var box = Rect.fromCenter(center: rect.center, width: (tp.width + 10).clamp(rect.width, 96.0), height: (tp.height + 6).clamp(rect.height, 40.0));
-      box = box.shift(Offset(
-        box.left < 2 ? 2 - box.left : (box.right > size.width - 2 ? size.width - 2 - box.right : 0),
-        box.top < 2 ? 2 - box.top : (box.bottom > size.height - 2 ? size.height - 2 - box.bottom : 0),
-      ));
-      canvas.drawRRect(RRect.fromRectAndRadius(box, const Radius.circular(7)), Paint()..color = const Color(0xFF73443A));
-      tp.paint(canvas, box.center - Offset(tp.width / 2, tp.height / 2));
+      Carto.building(canvas, _r(b.rect, size));
     }
-
-    // Spots (lettered answer targets).
+    final spotRects = <Rect>[];
     for (final s in map.spots) {
       final rect = _r(s.rect, size);
-      final isHi = s.letter == highlightSpot;
-      final isRight = s.letter == correctSpot;
-      final isWrong = s.letter == wrongSpot;
-      final fill = isRight
-          ? AppColors.olive
+      spotRects.add(rect.inflate(1));
+      final isRight = s.letter == correctSpot, isWrong = s.letter == wrongSpot, isHi = s.letter == highlightSpot;
+      final (top, side) = isRight
+          ? (AppColors.olive, const Color(0xFF6B8229))
           : isWrong
-              ? AppColors.rust
-              : (isHi ? AppColors.sunflower : Colors.white);
+              ? (AppColors.rust, const Color(0xFFA8432A))
+              : isHi
+                  ? (AppColors.sunflower, const Color(0xFFD99A12))
+                  : (Colors.white, const Color(0xFFCFC6B6));
+      Carto.building(canvas, rect, top: top, side: side);
       canvas.drawRRect(
-        RRect.fromRectAndRadius(rect, const Radius.circular(8)),
-        Paint()..color = fill,
-      );
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(rect, const Radius.circular(8)),
-        Paint()
-          ..color = const Color(0xFF1D1D1D)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.4,
-      );
-      _label(canvas, s.letter, rect.center, isRight || isWrong ? Colors.white : const Color(0xFF1D1D1D), 13, bold: true);
+          RRect.fromRectAndRadius(rect, const Radius.circular(4)),
+          Paint()
+            ..color = AppColors.ink
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.4);
+      _label(canvas, s.letter, rect.center - const Offset(0, 1.5), isRight || isWrong ? Colors.white : AppColors.ink, 14, bold: true);
     }
 
-    // Start marker.
-    final start = _p(map.start, size);
-    canvas.drawCircle(start, 6, Paint()..color = const Color(0xFF1D1D1D));
-    final st = _layout(map.startLabel, const Color(0xFF1D1D1D), 9, bold: true);
-    st.paint(canvas, Offset((start.dx + 10).clamp(0, size.width - st.width), start.dy - st.height / 2));
-
-    // Route (drawn progressively as routeProgress goes 0 → 1).
+    // Route (drawn progressively as routeProgress goes 0 → 1), under labels.
     final r = routePath;
     if (r != null && r.length >= 2) {
       final pts = [for (final o in r) _p(o, size)];
@@ -288,16 +245,34 @@ class _MapPainter extends CustomPainter {
           remaining = 0;
         }
       }
-      canvas.drawPath(
-        path,
-        Paint()
-          ..color = AppColors.rust
-          ..strokeWidth = 3.4
-          ..style = PaintingStyle.stroke
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round,
-      );
+      Paint pen(Color c, double w) => Paint()
+        ..color = c
+        ..strokeWidth = w
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      canvas.drawPath(path, pen(Colors.white, 7));
+      canvas.drawPath(path, pen(AppColors.ink, 3.4));
     }
+
+    // Start marker.
+    final start = _p(map.start, size);
+    Carto.you(canvas, start, 5);
+
+    // Labels last, kept off the answer letters and each other.
+    final taken = [...spotRects, Rect.fromCircle(center: Offset(size.width - 18, 22), radius: 16), Rect.fromCircle(center: start, radius: 9)];
+    // Building names sit on the building itself so it's clear which is which.
+    for (final b in map.buildings) {
+      Carto.label(canvas, b.label, _r(b.rect, size), bounds, taken, onTop: true);
+    }
+    for (final a in map.areas) {
+      if (a.label.isNotEmpty) Carto.label(canvas, a.label, _r(a.rect, size), bounds, taken);
+    }
+    if (map.startLabel.isNotEmpty) {
+      Carto.label(canvas, map.startLabel, Rect.fromCenter(center: start, width: 12, height: 12), bounds, taken, bold: true);
+    }
+    Carto.compass(canvas, Offset(size.width - 18, 24), 8);
+    canvas.restore();
   }
 
   double _pathLength(List<Offset> pts) {

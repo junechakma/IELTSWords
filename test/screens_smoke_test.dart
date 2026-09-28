@@ -9,6 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ielts_words/services/sound_fx.dart';
+import 'package:ielts_words/charts/chart_view.dart';
+import 'package:ielts_words/data/chart_models.dart';
 import 'package:ielts_words/data/vocab_repository.dart';
 import 'package:ielts_words/home/home_screen.dart';
 import 'package:ielts_words/library/word_list_screen.dart';
@@ -395,6 +397,22 @@ void main() {
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.byType(CustomPaint), findsWidgets);
+  });
+
+  testWidgets('Map practice shows only the before/after half that holds the part', (tester) async {
+    _phone(tester);
+    final map = repo.topics.firstWhere((t) => t.id == 'map').learn!.sample as MapChartData;
+    final after = map.parts.firstWhere((p) => p.map == 'after').id;
+    Future<double> heightOf(Widget w) async {
+      await tester.pumpWidget(_harness(SingleChildScrollView(child: w)));
+      await _settle(tester, frames: 2);
+      expect(tester.takeException(), isNull);
+      return tester.getSize(find.byType(ChartView)).height;
+    }
+
+    final both = await heightOf(ChartView(chart: map, highlight: after, dimOthers: true));
+    final one = await heightOf(ChartView(chart: map, highlight: after, dimOthers: true, focusMap: true));
+    expect(one, lessThan(both * .6));
   });
 
   testWidgets('Progress screen renders heatmap and mastery bars', (tester) async {

@@ -20,6 +20,11 @@ abstract final class AppColors {
   static const olive = Color(0xFF88A338);
   static const stone = Color(0xFF7A7463);
 
+  /// The plain word you'd write — "don't use this". A soft warm grey, not
+  /// red: it's a habit to swap, not a mistake.
+  static const plain = Color(0xFF6E655B);
+  static const plainSoft = Color(0xFFEEEAE3);
+
   /// Heatmap intensity, empty to busiest.
   static const heat = [
     Color(0xFFECE8E1),

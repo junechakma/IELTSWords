@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../data/chart_models.dart';
 import '../theme/app_theme.dart';
+import 'cartography.dart';
 
 /// Colours for chart series, in order.
 const seriesColors = [AppColors.rust, AppColors.olive, AppColors.cocoa, Color(0xFFE0921A), AppColors.stone, Color(0xFF7B68C8)];
@@ -24,24 +25,25 @@ abstract class ChartLayout {
 
   final Size size;
 
-  factory ChartLayout.of(ChartData chart, Size size) => switch (chart) {
+  /// [mapSide] ('before' / 'after') draws only that half of a map chart.
+  factory ChartLayout.of(ChartData chart, Size size, {String? mapSide}) => switch (chart) {
         LineChartData c => _LineLayout(c, size),
         BarChartData c => _BarLayout(c, size),
         PieChartData c => _PieLayout(c, size),
         TableChartData c => _TableLayout(c, size),
-        MapChartData c => _MapLayout(c, size),
+        MapChartData c => _MapLayout(c, size, only: mapSide),
         ProcessChartData c => _ProcessLayout(c, size),
         MixedChartData c => _MixedLayout(c, size),
       };
 
   /// Height that suits [chart] at [width].
-  static double heightFor(ChartData chart, double width) => switch (chart) {
+  static double heightFor(ChartData chart, double width, {String? mapSide}) => switch (chart) {
         LineChartData() => math.min(230, width * .62),
         BarChartData() => math.min(230, width * .62),
         PieChartData() => math.min(210, width * .56),
         TableChartData c => 34.0 + c.rows.length * 30,
-        MapChartData() => width * .56 + 22,
-        ProcessChartData c => ((c.stages.length + 2) ~/ 3) * 96.0 + 8,
+        MapChartData() => _MapLayout.heightFor(width, single: mapSide != null),
+        ProcessChartData c => _ProcessLayout.heightFor(c),
         MixedChartData c => c.charts.fold(0.0, (h, s) => h + heightFor(s, width) + 30),
       };
 
@@ -447,37 +449,55 @@ class _TableLayout extends ChartLayout {
 
 // ---------------------------------------------------------------- map
 
+/// Swatch colour per feature type (legends, practice chips).
 const mapFeatureColors = {
-  'building': Color(0xFF73443A),
-  'housing': Color(0xFFD15435),
-  'shops': Color(0xFFE0921A),
-  'trees': Color(0xFF88A338),
-  'park': Color(0xFFB9CB7C),
-  'field': Color(0xFFE6E0B8),
-  'water': Color(0xFF9CC7E4),
-  'road': Color(0xFFBDB6AA),
-  'path': Color(0xFFD9D2C5),
-  'carpark': Color(0xFFA7A29A),
-  'bridge': Color(0xFF7A7463),
+  'building': Carto.buildingSide,
+  'housing': Carto.houseRoof,
+  'shops': Carto.awning,
+  'trees': Carto.canopy,
+  'park': Carto.grass,
+  'field': Carto.fieldFill,
+  'water': Carto.waterFill,
+  'road': Carto.roadCasing,
+  'path': Carto.pathFill,
+  'carpark': Carto.lot,
+  'bridge': Carto.timber,
 };
 
+/// Before / after maps stacked (full width each, so labels stay readable on a
+/// phone), drawn in the shared [Carto] style.
 class _MapLayout extends ChartLayout {
-  _MapLayout(this.c, super.size) {
-    final w = (size.width - 10) / 2;
-    left = Rect.fromLTWH(0, 18, w, size.height - 18);
-    right = Rect.fromLTWH(w + 10, 18, w, size.height - 18);
+  _MapLayout(this.c, super.size, {this.only}) {
+    if (only != null) {
+      top = bottom = Rect.fromLTWH(0, _head, size.width, size.height - _head);
+      return;
+    }
+    final h = (size.height - 2 * _head - _gap) / 2;
+    top = Rect.fromLTWH(0, _head, size.width, h);
+    bottom = Rect.fromLTWH(0, _head * 2 + h + _gap, size.width, h);
   }
 
+  static const _head = 20.0, _gap = 12.0;
+
+  /// Height for [width]: one or two panels at 0.6 aspect plus their titles.
+  static double heightFor(double width, {bool single = false}) => single ? width * .6 + _head : 2 * (width * .6 + _head) + _gap;
+
   final MapChartData c;
-  late final Rect left, right;
+
+  /// 'before' / 'after' when only one half is shown (practice questions).
+  final String? only;
+  late final Rect top, bottom;
+
+  Rect boxOf(String map) => map == 'before' ? top : bottom;
+
+  bool _shows(String map) => only == null || only == map;
 
   Rect feat(MapFeature f, Rect box) => Rect.fromLTWH(box.left + f.x * box.width, box.top + f.y * box.height, f.w * box.width, f.h * box.height);
 
   (MapFeature, Rect)? locate(ChartPart p) {
     final side = p.map == 'before' ? c.before : c.after;
-    final box = p.map == 'before' ? left : right;
     for (final f in side.features) {
-      if (f.id == p.feature) return (f, feat(f, box));
+      if (f.id == p.feature) return (f, feat(f, boxOf(p.map!)));
     }
     return null;
   }
@@ -488,7 +508,7 @@ class _MapLayout extends ChartLayout {
   @override
   Offset? anchor(String id) {
     final p = c.part(id);
-    if (p == null) return null;
+    if (p == null || !_shows(p.map!)) return null;
     return locate(p)?.$2.center;
   }
 
@@ -497,6 +517,7 @@ class _MapLayout extends ChartLayout {
     String? best;
     var area = double.infinity;
     for (final part in c.parts) {
+      if (!_shows(part.map!)) continue;
       final r = locate(part)?.$2;
       if (r != null && r.inflate(4).contains(p) && r.width * r.height < area) {
         area = r.width * r.height;
@@ -506,74 +527,54 @@ class _MapLayout extends ChartLayout {
     return best ?? super.hitTest(p);
   }
 
-  void _side(Canvas canvas, MapSide side, Rect box, ChartPart? hp, String map) {
-    ChartLayout.text(canvas, side.label, Offset(box.left + 2, 2), size: 11, color: AppColors.ink, weight: FontWeight.w600);
-    canvas.drawRRect(RRect.fromRectAndRadius(box, const Radius.circular(10)), Paint()..color = const Color(0xFFEFF3E2));
+  static bool _isDeck(MapFeature f) => f.type == 'bridge' || (f.type == 'path' && RegExp('jetty|pier', caseSensitive: false).hasMatch(f.label));
+
+  void _side(Canvas canvas, MapSide side, Rect box, ChartPart? hp, String map, bool dim) {
+    ChartLayout.text(canvas, side.label, Offset(box.left + 2, box.top - _head + 3), size: 12, color: AppColors.ink, weight: FontWeight.w700);
+    final rr = RRect.fromRectAndRadius(box, const Radius.circular(14));
     canvas.save();
-    canvas.clipRRect(RRect.fromRectAndRadius(box, const Radius.circular(10)));
-    // Roads / paths / water / fields first, buildings on top.
-    const order = ['field', 'park', 'water', 'road', 'path', 'bridge', 'carpark', 'trees', 'housing', 'shops', 'building'];
-    final feats = [...side.features]..sort((a, b) => order.indexOf(a.type).compareTo(order.indexOf(b.type)));
+    canvas.clipRRect(rr);
+    Carto.ground(canvas, rr);
+    // Ground cover first, then roads, then anything standing on top.
+    const order = ['field', 'park', 'garden', 'trees', 'water', 'road', 'path', 'carpark', 'bridge', 'housing', 'shops', 'building'];
+    int rank(MapFeature f) => _isDeck(f) ? order.indexOf('bridge') : (order.contains(f.type) ? order.indexOf(f.type) : order.length);
+    final feats = [...side.features]..sort((a, b) => rank(a).compareTo(rank(b)));
     for (final f in feats) {
-      final r = feat(f, box);
-      final color = mapFeatureColors[f.type] ?? AppColors.stone;
-      final on = hp != null && hp.map == map && hp.feature == f.id;
-      switch (f.type) {
-        case 'trees':
-          final n = math.max(1, (r.width / 14).floor());
-          final m = math.max(1, (r.height / 14).floor());
-          for (var i = 0; i < n; i++) {
-            for (var k = 0; k < m; k++) {
-              canvas.drawCircle(Offset(r.left + r.width * (i + .5) / n, r.top + r.height * (k + .5) / m), math.min(r.width / n, r.height / m) * .42, Paint()..color = color);
-            }
-          }
-        case 'water':
-          canvas.drawRRect(RRect.fromRectAndRadius(r, Radius.circular(math.min(r.width, r.height) / 2)), Paint()..color = color);
-        case 'housing':
-          final n = math.max(1, (r.width / 13).floor());
-          final m = math.max(1, (r.height / 13).floor());
-          for (var i = 0; i < n; i++) {
-            for (var k = 0; k < m; k++) {
-              final cw = r.width / n, ch = r.height / m;
-              canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTWH(r.left + cw * i + 1.5, r.top + ch * k + 1.5, cw - 3, ch - 3), const Radius.circular(2)), Paint()..color = color);
-            }
-          }
-        default:
-          canvas.drawRRect(RRect.fromRectAndRadius(r, Radius.circular(f.type == 'road' || f.type == 'path' ? 2 : 4)), Paint()..color = color);
-      }
-      if (on) {
-        canvas.drawRRect(RRect.fromRectAndRadius(r.inflate(3), const Radius.circular(6)), Paint()..color = AppColors.sunflower.withValues(alpha: .35));
-        canvas.drawRRect(
-            RRect.fromRectAndRadius(r.inflate(3), const Radius.circular(6)),
-            Paint()
-              ..color = AppColors.ink
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 2.4);
+      Carto.feature(canvas, _isDeck(f) ? 'jetty' : f.type, feat(f, box));
+    }
+    Carto.compass(canvas, Offset(box.right - 16, box.top + 20), 8);
+
+    final on = hp != null && hp.map == map ? locate(hp)?.$2 : null;
+    if (dim && hp != null) {
+      if (on != null) {
+        Carto.spotlight(canvas, box, on);
+      } else {
+        canvas.drawRRect(rr, Paint()..color = const Color(0x8CF7F4EC));
       }
     }
-    for (final f in feats) {
+    if (on != null) Carto.highlight(canvas, on);
+
+    // Labels last so nothing covers them. Roads/paths label along their band.
+    final taken = <Rect>[Rect.fromCircle(center: Offset(box.right - 16, box.top + 18), radius: 16)];
+    final labelled = [...feats.where((f) => f.type != 'road' && f.type != 'path'), ...feats.where((f) => f.type == 'road' || f.type == 'path')];
+    for (final f in labelled) {
       if (f.label.isEmpty) continue;
       final r = feat(f, box);
-      final dark = const {'building', 'housing', 'carpark', 'bridge'}.contains(f.type);
-      final big = r.width > 40 && r.height > 16;
-      if (big) {
-        ChartLayout.text(canvas, f.label, r.center, size: 8.5, color: dark ? Colors.white : AppColors.ink, anchor: Alignment.center, maxWidth: r.width - 2, align: TextAlign.center);
-      } else {
-        ChartLayout.text(canvas, f.label, Offset(r.center.dx, r.bottom + 1), size: 8, color: AppColors.ink, anchor: Alignment.topCenter, maxWidth: 70, align: TextAlign.center);
-      }
+      final isOn = hp != null && hp.map == map && hp.feature == f.id;
+      if (dim && hp != null && !isOn && on != null) continue; // keep the spotlight clean
+      final band = (f.type == 'road' || f.type == 'path') && !_isDeck(f);
+      // Road names sit on the road itself, a little way along it.
+      final spot = band ? Rect.fromCenter(center: r.width >= r.height ? Offset(r.left + r.width * .25, r.center.dy) : Offset(r.center.dx, r.top + r.height * .72), width: 1, height: 1) : r;
+      Carto.label(canvas, f.label, spot, box, taken, bold: isOn, onTop: band);
     }
     canvas.restore();
-    // North arrow
-    final n = Offset(box.right - 10, box.top + 14);
-    canvas.drawPath(Path()..moveTo(n.dx, n.dy - 8)..lineTo(n.dx - 4, n.dy + 3)..lineTo(n.dx + 4, n.dy + 3)..close(), Paint()..color = AppColors.ink);
-    ChartLayout.text(canvas, 'N', n + const Offset(0, 5), size: 8, color: AppColors.ink, anchor: Alignment.topCenter, weight: FontWeight.w600);
   }
 
   @override
   void paint(Canvas canvas, {String? highlight, bool dimOthers = false}) {
     final hp = highlight == null ? null : c.part(highlight);
-    _side(canvas, c.before, left, hp, 'before');
-    _side(canvas, c.after, right, hp, 'after');
+    if (_shows('before')) _side(canvas, c.before, top, hp, 'before', dimOthers);
+    if (_shows('after')) _side(canvas, c.after, bottom, hp, 'after', dimOthers);
   }
 }
 
@@ -599,19 +600,22 @@ const processIcons = <String, IconData>{
   'home': Icons.home_rounded,
 };
 
+/// Steps top to bottom, one row each: numbered icon tile, the stage text,
+/// and a down arrow to the next step. A cycle gets a return line on the left.
 class _ProcessLayout extends ChartLayout {
   _ProcessLayout(this.c, super.size);
 
   final ProcessChartData c;
-  static const perRow = 3;
+  static const rowH = 58.0, gap = 16.0, loopW = 22.0;
 
-  Rect box(int i) {
-    final row = i ~/ perRow;
-    var col = i % perRow;
-    if (row.isOdd) col = perRow - 1 - col; // snake so arrows stay short
-    final w = (size.width - 16 * (perRow - 1)) / perRow;
-    return Rect.fromLTWH(col * (w + 16), row * 96.0 + 4, w, 76);
-  }
+  static double heightFor(ProcessChartData c) => c.stages.length * (rowH + gap) - gap + 4;
+
+  static const _tints = [AppColors.peach, AppColors.lilac, AppColors.sunflowerSoft, Color(0xFFD8E4B0), AppColors.blush, Color(0xFFCFE3F1)];
+
+  double get _left => c.cyclic ? loopW : 0;
+
+  Rect row(int i) => Rect.fromLTWH(_left, 2 + i * (rowH + gap), size.width - _left, rowH);
+  Rect tile(int i) => Rect.fromCenter(center: Offset(row(i).left + 30, row(i).center.dy), width: 40, height: 40);
 
   @override
   Iterable<String> get partIds => c.parts.map((p) => p.id);
@@ -620,36 +624,24 @@ class _ProcessLayout extends ChartLayout {
   Offset? anchor(String id) {
     final p = c.part(id);
     if (p == null) return null;
-    return box(p.stage!).center;
+    return tile(p.stage!).center;
   }
 
   @override
   String? hitTest(Offset p) {
     for (final part in c.parts) {
-      if (box(part.stage!).contains(p)) return part.id;
+      if (row(part.stage!).contains(p)) return part.id;
     }
     return null;
   }
 
-  void _arrow(Canvas canvas, Offset a, Offset b) {
+  void _arrowDown(Canvas canvas, Offset a, Offset b) {
     final paint = Paint()
       ..color = AppColors.stone
       ..strokeWidth = 2
-      ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
-    canvas.drawLine(a, b, paint);
-    final dir = (b - a) / (b - a).distance;
-    final nrm = Offset(-dir.dy, dir.dx);
-    canvas.drawPath(Path()..moveTo(b.dx, b.dy)..lineTo((b - dir * 7 + nrm * 4).dx, (b - dir * 7 + nrm * 4).dy)..lineTo((b - dir * 7 - nrm * 4).dx, (b - dir * 7 - nrm * 4).dy)..close(),
-        Paint()..color = AppColors.stone);
-  }
-
-  Offset _edge(Rect r, Offset toward) {
-    final d = toward - r.center;
-    if (d.dx.abs() * r.height > d.dy.abs() * r.width) {
-      return Offset(d.dx > 0 ? r.right + 2 : r.left - 2, r.center.dy);
-    }
-    return Offset(r.center.dx, d.dy > 0 ? r.bottom + 2 : r.top - 2);
+    canvas.drawLine(a, b - const Offset(0, 3), paint);
+    canvas.drawPath(Path()..moveTo(b.dx, b.dy)..lineTo(b.dx - 4.5, b.dy - 6)..lineTo(b.dx + 4.5, b.dy - 6)..close(), Paint()..color = AppColors.stone);
   }
 
   @override
@@ -657,49 +649,60 @@ class _ProcessLayout extends ChartLayout {
     final hp = highlight == null ? null : c.part(highlight);
     final n = c.stages.length;
     for (var i = 0; i < n - 1; i++) {
-      final a = box(i), b = box(i + 1);
-      _arrow(canvas, _edge(a, b.center), _edge(b, a.center));
+      _arrowDown(canvas, Offset(tile(i).center.dx, row(i).bottom + 2), Offset(tile(i).center.dx, row(i + 1).top - 2));
     }
-    if (c.cyclic && n > 2) {
-      final a = box(n - 1), b = box(0);
-      final p1 = Offset(a.left - 2, a.center.dy);
-      final path = Path()
-        ..moveTo(p1.dx, p1.dy)
-        ..quadraticBezierTo(-6, (a.center.dy + b.center.dy) / 2, b.left - 2, b.center.dy + 12);
+    if (c.cyclic && n > 1) {
+      // Return line: out of the last step, up the left margin, into the first.
+      final a = row(n - 1), b = row(0);
+      const x = 8.0;
+      final line = Paint()
+        ..color = AppColors.stone
+        ..strokeWidth = 2
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
       canvas.drawPath(
-          path,
-          Paint()
-            ..color = AppColors.stone
-            ..strokeWidth = 2
-            ..style = PaintingStyle.stroke);
-      if (a.center.dy == b.center.dy) {
-        _arrow(canvas, Offset(a.center.dx, a.bottom + 2), Offset(a.center.dx, a.bottom + 2));
-      }
+          Path()
+            ..moveTo(a.left - 2, a.center.dy)
+            ..lineTo(x + 8, a.center.dy)
+            ..quadraticBezierTo(x, a.center.dy, x, a.center.dy - 8)
+            ..lineTo(x, b.center.dy + 8)
+            ..quadraticBezierTo(x, b.center.dy, x + 8, b.center.dy)
+            ..lineTo(b.left - 6, b.center.dy),
+          line);
+      canvas.drawPath(Path()..moveTo(b.left - 1, b.center.dy)..lineTo(b.left - 7, b.center.dy - 4.5)..lineTo(b.left - 7, b.center.dy + 4.5)..close(), Paint()..color = AppColors.stone);
     }
     for (var i = 0; i < n; i++) {
-      final r = box(i);
+      final r = row(i), t = tile(i);
       final on = hp?.stage == i;
-      canvas.drawRRect(RRect.fromRectAndRadius(r, const Radius.circular(14)), Paint()..color = on ? AppColors.sunflower : const Color(0xFFF3EEE4));
+      final faded = dimOthers && hp != null && !on;
+      final rr = RRect.fromRectAndRadius(r, const Radius.circular(16));
+      canvas.drawRRect(rr, Paint()..color = on ? const Color(0xFFFFF3D1) : const Color(0xFFF6F1E7));
       if (on) {
         canvas.drawRRect(
-            RRect.fromRectAndRadius(r, const Radius.circular(14)),
+            rr,
             Paint()
               ..color = AppColors.ink
               ..style = PaintingStyle.stroke
               ..strokeWidth = 2.2);
       }
-      canvas.drawCircle(r.topLeft + const Offset(12, 12), 9, Paint()..color = AppColors.ink);
-      ChartLayout.text(canvas, '${i + 1}', r.topLeft + const Offset(12, 12), size: 10, color: Colors.white, weight: FontWeight.w600, anchor: Alignment.center);
+      canvas.drawRRect(RRect.fromRectAndRadius(t, const Radius.circular(12)), Paint()..color = _tints[i % _tints.length]);
       final icon = processIcons[c.stages[i].icon];
       if (icon != null) {
         final tp = TextPainter(
-          text: TextSpan(text: String.fromCharCode(icon.codePoint), style: TextStyle(fontSize: 20, fontFamily: icon.fontFamily, package: icon.fontPackage, color: AppColors.cocoa)),
+          text: TextSpan(text: String.fromCharCode(icon.codePoint), style: TextStyle(fontSize: 22, fontFamily: icon.fontFamily, package: icon.fontPackage, color: AppColors.ink)),
           textDirection: TextDirection.ltr,
         )..layout();
-        tp.paint(canvas, Offset(r.center.dx - tp.width / 2, r.top + 6));
+        tp.paint(canvas, t.center - Offset(tp.width / 2, tp.height / 2));
       }
-      ChartLayout.text(canvas, c.stages[i].label, Offset(r.center.dx, r.top + (icon != null ? 30 : 22)),
-          size: 10, color: AppColors.ink, anchor: Alignment.topCenter, maxWidth: r.width - 8, align: TextAlign.center);
+      // Step number badge on the tile's corner.
+      final badge = t.topLeft + const Offset(1, 1);
+      canvas.drawCircle(badge, 8.5, Paint()..color = Colors.white);
+      canvas.drawCircle(badge, 7, Paint()..color = AppColors.ink);
+      ChartLayout.text(canvas, '${i + 1}', badge, size: 9, color: Colors.white, weight: FontWeight.w700, anchor: Alignment.center);
+      ChartLayout.text(canvas, c.stages[i].label, Offset(t.right + 12, r.center.dy),
+          size: 12, color: AppColors.ink, weight: on ? FontWeight.w600 : FontWeight.w400, anchor: Alignment.centerLeft, maxWidth: r.right - t.right - 24);
+      if (faded) canvas.drawRRect(rr.inflate(1), Paint()..color = const Color(0x99FFFFFF));
     }
   }
 }

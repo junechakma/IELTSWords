@@ -20,6 +20,7 @@ class ChartView extends StatelessWidget {
     this.dimOthers = false,
     this.showTitle = true,
     this.labelHeadroom = 0,
+    this.focusMap = false,
   });
 
   final ChartData chart;
@@ -37,13 +38,19 @@ class ChartView extends StatelessWidget {
   /// Extra space around the chart so labels can sit outside the plot.
   final double labelHeadroom;
 
+  /// For a before / after map with a [highlight], show only the half that
+  /// holds it, so the chart fits above a practice question.
+  final bool focusMap;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, c) {
       final pad = labels.isEmpty ? 0.0 : labelHeadroom;
       final w = c.maxWidth;
-      final h = ChartLayout.heightFor(chart, w);
-      final layout = ChartLayout.of(chart, Size(w, h));
+      final part = highlight ?? selected;
+      final side = focusMap && chart is MapChartData && part != null ? chart.part(part)?.map : null;
+      final h = ChartLayout.heightFor(chart, w, mapSide: side);
+      final layout = ChartLayout.of(chart, Size(w, h), mapSide: side);
       final placed = _placeLabels(layout, Size(w, h + pad * 2), pad);
 
       return Column(

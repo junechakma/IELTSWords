@@ -89,7 +89,7 @@ class _DescribeViewState extends State<DescribeView> {
     final d = widget.q.item;
     final sample = widget.q.topic.learn!.sample;
     return SessionFrame(
-      header: ChartCard(child: ChartView(chart: sample, highlight: d.part, dimOthers: true)),
+      header: ChartCard(child: ChartView(chart: sample, highlight: d.part, dimOthers: true, focusMap: true)),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -309,7 +309,7 @@ class _LabelViewState extends State<LabelView> {
         children: [
           Text(done ? 'All labelled' : 'Which Band 8 word fits the highlighted part?', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20)),
           const SizedBox(height: 10),
-          ChartCard(child: ChartView(chart: widget.q.topic.learn!.sample, highlight: current?.part, dimOthers: current != null)),
+          ChartCard(child: ChartView(chart: widget.q.topic.learn!.sample, highlight: current?.part, dimOthers: current != null, focusMap: true)),
         ],
       ),
       body: Column(
@@ -526,7 +526,7 @@ class _AdjAdvViewState extends State<AdjAdvView> {
             const SizedBox(height: 6),
             GapSentence(_sentence, fill: _picked == null ? null : _answer, fillColor: AppColors.olive),
             const SizedBox(height: 8),
-            Text('You would write: “${p.plain}”', style: const TextStyle(fontSize: 13.5, color: AppColors.rust)),
+            Text('You would write: “${p.plain}”', style: const TextStyle(fontSize: 13.5, color: AppColors.plain)),
           ],
         ),
       ),
