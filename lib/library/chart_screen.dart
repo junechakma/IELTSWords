@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../app_scope.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../charts/chart_view.dart';
 import '../data/swap_models.dart';
 import '../mascots/mascot.dart';
@@ -9,7 +10,8 @@ import '../mascots/mascot_image.dart';
 import '../practice/practice_mode.dart';
 import '../practice/session_builder.dart';
 import '../practice/session_screen.dart';
-import '../progress/spaced_repetition.dart';
+import '../state/providers.dart';
+import '../theme/app_icons.dart';
 import '../services/speech.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
@@ -17,23 +19,23 @@ import 'swap_deck_screen.dart';
 
 /// One chart / essay type / letter type: a coloured header (prototype),
 /// then a Learn tab and one tab per paragraph slot.
-class ChartScreen extends StatefulWidget {
+class ChartScreen extends ConsumerStatefulWidget {
   const ChartScreen({super.key, required this.topic, this.initialSlot});
   final SwapTopic topic;
   final Slot? initialSlot;
 
   @override
-  State<ChartScreen> createState() => _ChartScreenState();
+  ConsumerState<ChartScreen> createState() => _ChartScreenState();
 }
 
-class _ChartScreenState extends State<ChartScreen> {
+class _ChartScreenState extends ConsumerState<ChartScreen> {
   SwapTopic get t => widget.topic;
   bool get _hasLearn => t.learn != null;
   late int _tab = widget.initialSlot == null ? 0 : (_hasLearn ? 1 : 0) + t.task.slots.indexOf(widget.initialSlot!).clamp(0, t.task.slots.length - 1);
 
   @override
   Widget build(BuildContext context) {
-    final progress = AppScope.of(context).progress;
+    final stats = ref.watch(topicStatsProvider(t.id));
     final tabs = [if (_hasLearn) 'Learn', for (final s in t.task.slots) s.label];
 
     return Scaffold(
@@ -61,13 +63,7 @@ class _ChartScreenState extends State<ChartScreen> {
                             Text(t.task.label, style: TextStyle(fontSize: 13, color: AppColors.ink.withValues(alpha: .7))),
                             Text(t.title, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w600, height: 1.1)),
                             const SizedBox(height: 6),
-                            ListenableBuilder(
-                              listenable: progress,
-                              builder: (context, _) {
-                                final natural = t.swaps.where((s) => progress.mastery(s.id) == Mastery.natural).length;
-                                return Text('${t.swaps.length} swaps · $natural natural', style: const TextStyle(fontSize: 14));
-                              },
-                            ),
+                            Text('${stats.total} swaps · ${stats.natural} natural · ${stats.percent}% in use', style: const TextStyle(fontSize: 14)),
                           ],
                         ),
                       ),
@@ -275,7 +271,7 @@ class _LabelCard extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => Speech.instance.speak(label.sentence),
                     child: const Row(mainAxisSize: MainAxisSize.min, children: [
-                      Icon(Icons.volume_up_rounded, size: 18),
+                      Icon(AppIcons.speak, size: 18),
                       SizedBox(width: 4),
                       Text('Hear it', style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500)),
                     ]),
@@ -292,16 +288,16 @@ class _LabelCard extends StatelessWidget {
 
 // ------------------------------------------------------------ Slot tabs
 
-class _SlotTab extends StatelessWidget {
+class _SlotTab extends ConsumerWidget {
   const _SlotTab({required this.topic, required this.slot});
   final SwapTopic topic;
   final Slot slot;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final groups = topic.bySlot(slot);
     final all = [for (final (_, swaps) in groups) ...swaps];
-    final progress = AppScope.of(context).progress;
+    final progress = ref.watch(progressProvider);
     var n = 0;
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 110),
@@ -314,13 +310,10 @@ class _SlotTab extends StatelessWidget {
               final index = n++;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: ListenableBuilder(
-                  listenable: progress,
-                  builder: (context, _) => SwapRow(
-                    swap: s,
-                    mastery: progress.mastery(s.id),
-                    onTap: () => openSwapDeck(context, all, index),
-                  ),
+                child: SwapRow(
+                  swap: s,
+                  mastery: progress.mastery(s.id),
+                  onTap: () => openSwapDeck(context, all, index),
                 ),
               ).animate(delay: (25 * index).ms).fadeIn(duration: 220.ms).moveY(begin: 6, end: 0);
             }(),

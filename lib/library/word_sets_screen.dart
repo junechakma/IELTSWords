@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../app_scope.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../data/word_set_models.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
@@ -8,22 +9,27 @@ import '../practice/practice_mode.dart';
 import '../practice/session_builder.dart';
 import '../practice/session_screen.dart';
 import '../theme/app_theme.dart';
+import '../state/providers.dart';
+import '../theme/app_icons.dart';
 import '../widgets/common.dart';
+import '../widgets/pressable.dart';
+import 'word_set_deck_screen.dart';
 
 /// Synonym scales (small → big), the no-change set, topic nouns and numbers.
-class WordSetsScreen extends StatefulWidget {
+class WordSetsScreen extends ConsumerStatefulWidget {
   const WordSetsScreen({super.key});
   @override
-  State<WordSetsScreen> createState() => _WordSetsScreenState();
+  ConsumerState<WordSetsScreen> createState() => _WordSetsScreenState();
 }
 
-class _WordSetsScreenState extends State<WordSetsScreen> {
+class _WordSetsScreenState extends ConsumerState<WordSetsScreen> {
   WordSetGroup _group = WordSetGroup.trends;
 
   @override
   Widget build(BuildContext context) {
-    final repo = AppScope.of(context).repo;
+    final repo = ref.watch(repoProvider);
     final sets = repo.setsIn(_group);
+    final cards = setCards(sets);
     return Scaffold(
       backgroundColor: AppColors.cream,
       body: SafeArea(
@@ -70,7 +76,18 @@ class _WordSetsScreenState extends State<WordSetsScreen> {
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 110),
-                children: [for (final s in sets) Padding(padding: const EdgeInsets.only(bottom: 10), child: _SetCard(s))],
+                children: [
+                  if (cards.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: PillButton('See ${_group.label.toLowerCase()} as flashcards · ${cards.length}', icon: AppIcons.cards, onTap: () => openWordSetDeck(context, cards, 0)),
+                    ),
+                  for (final s in sets)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: _SetCard(s, onTap: () => openWordSetDeck(context, cards, cards.indexWhere((c) => c.set.id == s.id).clamp(0, cards.length - 1))),
+                    ),
+                ],
               ),
             ),
           ],
@@ -81,12 +98,15 @@ class _WordSetsScreenState extends State<WordSetsScreen> {
 }
 
 class _SetCard extends StatelessWidget {
-  const _SetCard(this.set);
+  const _SetCard(this.set, {required this.onTap});
   final WordSet set;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Pressable(
+      onTap: onTap,
+      child: Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Column(
@@ -127,14 +147,16 @@ class _SetCard extends StatelessWidget {
               ),
           ],
           if (set.example != null) Padding(padding: const EdgeInsets.only(top: 8), child: Text(set.example!, style: const TextStyle(fontSize: 13, color: AppColors.inkSoft))),
-          if (set.scale) ...[
-            const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TagChip('Order the set', color: AppColors.sand, onTap: () => startPractice(context, const SessionRequest(PracticeMode.orderSet))),
-            ),
-          ],
+          const SizedBox(height: 10),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            TagChip('▶ Flashcards', color: AppColors.lilac, onTap: onTap),
+            if (set.scale) ...[
+              const SizedBox(width: 6),
+              TagChip('Order the set', color: AppColors.sand, onTap: () => startPractice(context, const SessionRequest(PracticeMode.orderSet))),
+            ],
+          ]),
         ],
+      ),
       ),
     );
   }

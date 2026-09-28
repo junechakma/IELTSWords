@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../app_scope.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../data/app_store.dart';
+import '../state/providers.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/pressable.dart';
@@ -20,13 +22,12 @@ void openQuickPractice(BuildContext context) {
   );
 }
 
-class QuickPracticeSheet extends StatelessWidget {
+class QuickPracticeSheet extends ConsumerWidget {
   const QuickPracticeSheet({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final scope = AppScope.of(context);
-    final listening = scope.store.tracks.contains(StudyTrack.listening);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final listening = ref.watch(settingsProvider).tracks.contains(StudyTrack.listening);
     return SafeArea(
       top: false,
       child: Padding(

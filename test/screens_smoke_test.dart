@@ -5,14 +5,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ielts_words/app_scope.dart';
-import 'package:ielts_words/data/app_store.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ielts_words/data/vocab_repository.dart';
 import 'package:ielts_words/home/home_screen.dart';
 import 'package:ielts_words/library/chart_screen.dart';
 import 'package:ielts_words/library/library_screen.dart';
 import 'package:ielts_words/library/listening_screen.dart';
+import 'package:ielts_words/library/listening_deck_screen.dart';
 import 'package:ielts_words/library/swap_deck_screen.dart';
+import 'package:ielts_words/library/word_set_deck_screen.dart';
 import 'package:ielts_words/library/word_sets_screen.dart';
 import 'package:ielts_words/onboarding/onboarding_screen.dart';
 import 'package:ielts_words/practice/practice_mode.dart';
@@ -20,9 +21,10 @@ import 'package:ielts_words/practice/quick_practice_sheet.dart';
 import 'package:ielts_words/practice/session_builder.dart';
 import 'package:ielts_words/practice/session_screen.dart';
 import 'package:ielts_words/profile/profile_screen.dart';
-import 'package:ielts_words/progress/progress_store.dart';
 import 'package:ielts_words/progress_screen/progress_screen.dart';
 import 'package:ielts_words/services/speech.dart';
+import 'package:ielts_words/state/providers.dart';
+import 'package:ielts_words/theme/app_icons.dart';
 import 'package:ielts_words/theme/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,12 +32,11 @@ import 'vocab_data_test.dart' show loadFromDisk;
 
 // Tab pages (Home/Library/Progress/Profile) have no Scaffold of their own —
 // in the app they sit inside AppShell's single Scaffold — so the harness
-// gives them one, same as AppShell does. AppScope wraps MaterialApp itself
-// (see main.dart) so it stays an ancestor of every pushed route too.
-Widget _harness(VocabRepository repo, AppStore store, ProgressStore progress, Widget child) => AppScope(
-      repo: repo,
-      store: store,
-      progress: progress,
+// gives them one, same as AppShell does. The provider scope wraps
+// MaterialApp (as in main.dart) so pushed routes see the same state.
+late ProviderContainer container;
+Widget _harness(Widget child) => UncontrolledProviderScope(
+      container: container,
       child: MaterialApp(theme: AppTheme.light(), home: Scaffold(body: child)),
     );
 
@@ -60,14 +61,15 @@ void main() {
   Speech.disabled = true; // no platform channel in widget tests
 
   late VocabRepository repo;
-  late AppStore store;
-  late ProgressStore progress;
 
   setUp(() async {
-    SharedPreferences.setMockInitialValues({'onboarded': true});
+    SharedPreferences.setMockInitialValues({});
     repo = await loadFromDisk();
-    store = await AppStore.load();
-    progress = await ProgressStore.load();
+    container = ProviderContainer(overrides: [
+      repoProvider.overrideWithValue(repo),
+      sharedPrefsProvider.overrideWithValue(await SharedPreferences.getInstance()),
+    ]);
+    addTearDown(container.dispose);
   });
 
   testWidgets('Onboarding shows a word of the day and Start reaches Home', (tester) async {
@@ -105,7 +107,7 @@ void main() {
   });
 
   testWidgets('Home renders with no exceptions and a Start button', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const HomeScreen()));
+    await tester.pumpWidget(_harness(const HomeScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text('Start'), findsOneWidget);
@@ -113,7 +115,7 @@ void main() {
   });
 
   testWidgets('Library opens, shows chart tiles and Word sets / Listening cards', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const LibraryScreen()));
+    await tester.pumpWidget(_harness(const LibraryScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text('Library'), findsOneWidget);
@@ -123,7 +125,7 @@ void main() {
   });
 
   testWidgets('Library search finds a swap by its plain word', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const LibraryScreen()));
+    await tester.pumpWidget(_harness(const LibraryScreen()));
     await _settle(tester);
     await tester.enterText(find.byType(TextField), 'shows');
     await _settle(tester);
@@ -133,7 +135,7 @@ void main() {
 
   testWidgets('Chart screen: Learn tab, slot tabs and swap rows all render', (tester) async {
     final chart = repo.charts.first;
-    await tester.pumpWidget(_harness(repo, store, progress, ChartScreen(topic: chart)));
+    await tester.pumpWidget(_harness(ChartScreen(topic: chart)));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text(chart.title), findsWidgets);
@@ -150,7 +152,7 @@ void main() {
     _phone(tester);
     final chart = repo.charts.first;
     final swaps = chart.swaps.take(4).toList();
-    await tester.pumpWidget(_harness(repo, store, progress, SwapDeckScreen(swaps: swaps)));
+    await tester.pumpWidget(_harness(SwapDeckScreen(swaps: swaps)));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text('1 / 4'), findsOneWidget);
@@ -161,28 +163,28 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text(swaps.first.best), findsWidgets);
 
-    await tester.tap(find.byIcon(Icons.favorite_border_rounded));
+    await tester.tap(find.byIcon(AppIcons.heart));
     await tester.pump();
-    expect(progress.isSaved(swaps.first.id), isTrue);
+    expect(container.read(progressProvider).isSaved(swaps.first.id), isTrue);
 
     await tester.drag(find.byType(PageView), const Offset(-300, 0));
     await _settle(tester, frames: 12);
     expect(tester.takeException(), isNull);
     expect(find.text('2 / 4'), findsOneWidget);
-    await tester.tap(find.byIcon(Icons.chevron_right_rounded));
+    await tester.tap(find.byIcon(AppIcons.next));
     await _settle(tester, frames: 12);
     expect(find.text('3 / 4'), findsOneWidget);
 
     await tester.tap(find.text('Practise these 4'));
     await _settle(tester);
     expect(tester.takeException(), isNull);
-    expect(find.byIcon(Icons.close_rounded), findsOneWidget);
+    expect(find.byIcon(AppIcons.close), findsOneWidget);
   });
 
   testWidgets('Learn tab: swiping cards moves the highlighted part', (tester) async {
     _phone(tester);
     final chart = repo.charts.first;
-    await tester.pumpWidget(_harness(repo, store, progress, ChartScreen(topic: chart)));
+    await tester.pumpWidget(_harness(ChartScreen(topic: chart)));
     await _settle(tester);
     final labels = chart.learn!.labels;
     expect(find.text(labels.first.word), findsWidgets);
@@ -192,8 +194,38 @@ void main() {
     expect(find.text(labels[1].word), findsWidgets);
   });
 
+  testWidgets('Word set flashcards: every group builds cards that flip', (tester) async {
+    _phone(tester);
+    for (final g in {for (final s in repo.wordSets) s.group}) {
+      final cards = setCards(repo.setsIn(g));
+      expect(cards, isNotEmpty, reason: g.label);
+      await tester.pumpWidget(_harness(WordSetDeckScreen(cards: cards)));
+      await _settle(tester);
+      expect(tester.takeException(), isNull, reason: g.label);
+      await tester.tap(find.text('Tap to flip').first);
+      await _settle(tester);
+      expect(tester.takeException(), isNull, reason: '${g.label} back');
+    }
+  });
+
+  testWidgets('Listening flashcards flip and swipe', (tester) async {
+    _phone(tester);
+    final items = repo.listening.items;
+    await tester.pumpWidget(_harness(ListeningDeckScreen(items: items)));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('1 / ${items.length}'), findsOneWidget);
+    await tester.tap(find.text('Tap to flip').first);
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text(items.first.explanation), findsOneWidget);
+    await tester.tap(find.byIcon(AppIcons.next));
+    await _settle(tester, frames: 12);
+    expect(find.text('2 / ${items.length}'), findsOneWidget);
+  });
+
   testWidgets('Word sets screen switches groups with no exceptions', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const WordSetsScreen()));
+    await tester.pumpWidget(_harness(const WordSetsScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     for (final g in [
@@ -208,23 +240,47 @@ void main() {
   });
 
   testWidgets('Listening screen draws the map and lists items', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const ListeningScreen()));
+    await tester.pumpWidget(_harness(const ListeningScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.byType(CustomPaint), findsWidgets);
   });
 
   testWidgets('Progress screen renders heatmap and mastery bars', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const ProgressScreen()));
+    await tester.pumpWidget(_harness(const ProgressScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text('Mastery'), findsOneWidget);
-    await tester.scrollUntilVisible(find.text('Start a new session'), 300);
-    expect(find.text('Start a new session'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('Start a review session'), 300, scrollable: find.byType(Scrollable).first);
+    expect(find.text('Start a review session'), findsOneWidget);
+  });
+
+  testWidgets('Recording answers updates Progress, Library and Home live (Riverpod)', (tester) async {
+    _phone(tester);
+    await tester.pumpWidget(_harness(const ProgressScreen()));
+    await _settle(tester);
+    expect(find.text('0'), findsWidgets); // nothing practised yet
+
+    final chart = repo.charts.first;
+    final notifier = container.read(progressProvider.notifier);
+    for (final s in chart.swaps.take(3)) {
+      await notifier.record(s.id, correct: true);
+    }
+    await container.read(activityProvider.notifier).recordPractice(3);
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('3'), findsWidgets); // swaps practised + Seen bar
+    expect(container.read(topicStatsProvider(chart.id)).seen, 3);
+
+    // Profile changes flow to Home's greeting.
+    await container.read(settingsProvider.notifier).setName('June');
+    await tester.pumpWidget(_harness(const HomeScreen()));
+    await _settle(tester);
+    expect(find.text('Hi, June'), findsOneWidget);
   });
 
   testWidgets('Profile screen: goal, tracks, buddy and reset dialog', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const ProfileScreen()));
+    await tester.pumpWidget(_harness(const ProfileScreen()));
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.text('Profile'), findsOneWidget);
@@ -232,7 +288,7 @@ void main() {
     await tester.tap(find.text('20 swaps'));
     await tester.pump();
     expect(tester.takeException(), isNull);
-    expect(store.dailyGoal, 20);
+    expect(container.read(settingsProvider).dailyGoal, 20);
 
     await tester.scrollUntilVisible(find.text('Reset progress'), 300, scrollable: find.byType(Scrollable).first);
     await tester.tap(find.text('Reset progress'));
@@ -243,7 +299,7 @@ void main() {
   });
 
   testWidgets('Quick practice sheet opens and starts a real session', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const HomeScreen()));
+    await tester.pumpWidget(_harness(const HomeScreen()));
     await _settle(tester);
     final ctx = tester.element(find.byType(HomeScreen));
     openQuickPractice(ctx);
@@ -254,11 +310,11 @@ void main() {
     await tester.tap(find.text(PracticeMode.swapIt.title));
     await _settle(tester);
     expect(tester.takeException(), isNull);
-    expect(find.byIcon(Icons.close_rounded), findsOneWidget);
+    expect(find.byIcon(AppIcons.close), findsOneWidget);
   });
 
   testWidgets('A full Swap it session can be answered through to the summary', (tester) async {
-    await tester.pumpWidget(_harness(repo, store, progress, const HomeScreen()));
+    await tester.pumpWidget(_harness(const HomeScreen()));
     await _settle(tester);
     final ctx = tester.element(find.byType(HomeScreen));
     final chart = repo.charts.first;

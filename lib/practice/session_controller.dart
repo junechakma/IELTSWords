@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-import '../data/app_store.dart';
-import '../progress/progress_store.dart';
 import '../progress/spaced_repetition.dart';
+import '../state/providers.dart';
 import 'practice_mode.dart';
 import 'questions.dart';
 
@@ -22,14 +21,16 @@ class AnswerFeedback {
 }
 
 /// Runs one practice session: records answers, drives the feedback panel,
-/// and collects what the summary screen shows (no score).
+/// and collects what the summary screen shows (no score). Answers go straight
+/// into `progressProvider`, and the session's total into `activityProvider`,
+/// so Home, Library and Progress update as soon as they're recorded.
 class SessionController extends ChangeNotifier {
-  SessionController({required this.mode, required this.questions, required this.progress, required this.store, this.title});
+  SessionController({required this.mode, required this.questions, required this.progress, required this.activity, this.title});
 
   final PracticeMode mode;
   final List<Question> questions;
-  final ProgressStore progress;
-  final AppStore store;
+  final ProgressNotifier progress;
+  final ActivityNotifier activity;
   final String? title;
 
   int index = 0;
@@ -52,7 +53,7 @@ class SessionController extends ChangeNotifier {
 
   /// Records one answer for [id] (a swap, entry or listening item).
   Future<void> record(String id, {required bool correct, bool? core, bool typed = false, bool isSwap = false}) async {
-    final before = progress.of(id);
+    final before = progress.current.of(id);
     final after = await progress.record(id, correct: correct, core: core ?? mode.core, typed: typed);
     practised.add(id);
     if (after.box > before.box) movedUp.add(id);
@@ -83,7 +84,7 @@ class SessionController extends ChangeNotifier {
   Future<void> complete() async {
     if (finished) return;
     finished = true;
-    if (practised.isNotEmpty) await store.recordPractice(practised.length);
+    if (practised.isNotEmpty) await activity.recordPractice(practised.length);
     notifyListeners();
   }
 }

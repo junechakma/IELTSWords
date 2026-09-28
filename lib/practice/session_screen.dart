@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../app_scope.dart';
+import '../state/providers.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
 import '../theme/app_theme.dart';
@@ -17,16 +18,23 @@ import 'questions.dart';
 import 'session_builder.dart';
 import 'session_controller.dart';
 import 'summary_view.dart';
+import '../theme/app_icons.dart';
 
 /// Opens a practice session (or the "nothing due" screen when it is empty).
 Future<void> startPractice(BuildContext context, SessionRequest request, {String? title}) {
-  final scope = AppScope.of(context);
-  final questions = SessionBuilder(scope.repo, scope.progress, scope.store).build(request);
+  final repo = context.readProvider(repoProvider);
+  final questions = SessionBuilder(repo, context.readProvider(progressProvider), context.readProvider(settingsProvider)).build(request);
   return Navigator.of(context).push(MaterialPageRoute(
     builder: (_) => questions.isEmpty
         ? _EmptySession(mode: request.mode)
         : SessionScreen(
-            controller: SessionController(mode: request.mode, questions: questions, progress: scope.progress, store: scope.store, title: title),
+            controller: SessionController(
+              mode: request.mode,
+              questions: questions,
+              progress: context.readProvider(progressProvider.notifier),
+              activity: context.readProvider(activityProvider.notifier),
+              title: title,
+            ),
             request: request,
           ),
   ));
@@ -152,7 +160,7 @@ class SessionFrame extends StatelessWidget {
                   Semantics(
                     label: 'Close',
                     button: true,
-                    child: GestureDetector(onTap: info.onClose, child: const Padding(padding: EdgeInsets.all(4), child: Icon(Icons.close_rounded, size: 24))),
+                    child: GestureDetector(onTap: info.onClose, child: const Padding(padding: EdgeInsets.all(4), child: Icon(AppIcons.close, size: 24))),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -316,8 +324,8 @@ class AnswerCard extends StatelessWidget {
                 ],
               ),
             ),
-            if (state == AnswerState.right) const Icon(Icons.check_rounded, color: AppColors.olive),
-            if (state == AnswerState.wrong) const Icon(Icons.close_rounded, color: AppColors.rust),
+            if (state == AnswerState.right) const Icon(AppIcons.check, color: AppColors.olive),
+            if (state == AnswerState.wrong) const Icon(AppIcons.close, color: AppColors.rust),
           ],
         ),
       ),
@@ -366,12 +374,10 @@ class _EmptySession extends StatelessWidget {
                     message: review ? 'Swaps come back after 1, 2, 4, 7 and 15 days.\nPractise a new chart and they will return here.' : 'This mode needs content that is not available for this choice.',
                     action: review ? 'Try a new chart' : 'Back',
                     onAction: () {
-                      Navigator.of(context).pop();
-                      if (review) {
-                        final repo = AppScope.of(context).repo;
-                        final (t, s) = repo.todaysPractice(DateTime.now());
-                        startPractice(context, SessionRequest(PracticeMode.swapIt, topicId: t.id, slot: s));
-                      }
+                      final nav = Navigator.of(context);
+                      final (t, s) = context.readProvider(todaysPracticeProvider);
+                      nav.pop();
+                      if (review) startPractice(nav.context, SessionRequest(PracticeMode.swapIt, topicId: t.id, slot: s));
                     },
                   ),
                 ),

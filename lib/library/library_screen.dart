@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../app_scope.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../data/swap_models.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
-import '../progress/spaced_repetition.dart';
+import '../state/providers.dart';
+import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
-import '../widgets/chart_glyph.dart';
 import '../widgets/common.dart';
 import '../widgets/pressable.dart';
 import 'chart_screen.dart';
@@ -18,13 +19,13 @@ import 'word_sets_screen.dart';
 /// Library: browse every chart / essay / letter type, plus Word sets and
 /// Listening maps (prototype: coloured cards with a chart glyph, count and a
 /// sticker mascot).
-class LibraryScreen extends StatefulWidget {
+class LibraryScreen extends ConsumerStatefulWidget {
   const LibraryScreen({super.key});
   @override
-  State<LibraryScreen> createState() => _LibraryScreenState();
+  ConsumerState<LibraryScreen> createState() => _LibraryScreenState();
 }
 
-class _LibraryScreenState extends State<LibraryScreen> {
+class _LibraryScreenState extends ConsumerState<LibraryScreen> {
   int _task = 0;
   String _query = '';
 
@@ -33,8 +34,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final scope = AppScope.of(context);
-    final repo = scope.repo;
+    final repo = ref.watch(repoProvider);
+    final progress = ref.watch(progressProvider);
     final t = Theme.of(context).textTheme;
     final searching = _query.trim().isNotEmpty;
     final results = searching ? repo.searchSwaps(_query) : const <Swap>[];
@@ -51,7 +52,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(26)),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(children: [
-              const Icon(Icons.search_rounded, size: 21, color: AppColors.inkSoft),
+              const Icon(AppIcons.search, size: 21, color: AppColors.inkSoft),
               const SizedBox(width: 10),
               Expanded(
                 child: TextField(
@@ -71,14 +72,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
             for (final (i, s) in results.take(40).indexed)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: ListenableBuilder(
-                  listenable: scope.progress,
-                  builder: (context, _) => SwapRow(
-                    swap: s,
-                    mastery: scope.progress.mastery(s.id),
-                    subtitle: '${repo.topic(s.topicId).title} · ${s.slot.label}',
-                    onTap: () => openSwapDeck(context, results.take(40).toList(), i),
-                  ),
+                child: SwapRow(
+                  swap: s,
+                  mastery: progress.mastery(s.id),
+                  subtitle: '${repo.topic(s.topicId).title} · ${s.slot.label}',
+                  onTap: () => openSwapDeck(context, results.take(40).toList(), i),
                 ),
               ),
           ] else ...[
@@ -139,13 +137,13 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 }
 
-class _TopicCard extends StatelessWidget {
+class _TopicCard extends ConsumerWidget {
   const _TopicCard({required this.topic});
   final SwapTopic topic;
 
   @override
-  Widget build(BuildContext context) {
-    final progress = AppScope.of(context).progress;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stats = ref.watch(topicStatsProvider(topic.id));
     return Pressable(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => ChartScreen(topic: topic))),
       child: Container(
@@ -159,21 +157,13 @@ class _TopicCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ChartGlyph(topic.id, fallback: topicIcon(topic.id)),
+                  Icon(AppIcons.topic(topic.id), size: 30),
                   const Spacer(),
                   Text(topic.title, maxLines: 2, style: const TextStyle(fontSize: 16.5, fontWeight: FontWeight.w600, color: AppColors.ink, height: 1.15)),
                   const SizedBox(height: 3),
-                  ListenableBuilder(
-                    listenable: progress,
-                    builder: (context, _) {
-                      final ids = [for (final s in topic.swaps) s.id];
-                      final seen = ids.where((id) => progress.mastery(id) != Mastery.newItem).length;
-                      final pct = (progress.share(ids) * 100).round();
-                      return Text(
-                        seen == 0 ? '${ids.length} swaps · New' : '${ids.length} swaps · $pct%',
-                        style: TextStyle(fontSize: 12.5, color: AppColors.ink.withValues(alpha: .72)),
-                      );
-                    },
+                  Text(
+                    stats.isNew ? '${stats.total} swaps · New' : '${stats.total} swaps · ${stats.percent}%',
+                    style: TextStyle(fontSize: 12.5, color: AppColors.ink.withValues(alpha: .72)),
                   ),
                 ],
               ),

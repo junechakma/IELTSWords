@@ -6,6 +6,7 @@ import '../mascots/mascot_image.dart';
 import '../progress/spaced_repetition.dart';
 import '../theme/app_theme.dart';
 import 'pressable.dart';
+import '../theme/app_icons.dart';
 
 Color masteryColor(Mastery m) => switch (m) {
       Mastery.newItem => AppColors.sunflower,
@@ -64,7 +65,7 @@ class BackPill extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) =>
-      RoundIconButton(icon: Icons.chevron_left_rounded, tooltip: 'Back', color: color, onTap: () => Navigator.of(context).maybePop());
+      RoundIconButton(icon: AppIcons.back, tooltip: 'Back', color: color, onTap: () => Navigator.of(context).maybePop());
 }
 
 /// Big pill button: sunflower (primary) or ink (dark).
@@ -210,7 +211,7 @@ class SwapRow extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: AppColors.inkSoft, size: 20),
+            const Icon(AppIcons.chevron, color: AppColors.inkSoft, size: 20),
           ],
         ),
       ),
@@ -332,14 +333,4 @@ Color topicColor(String id) => switch (id) {
       _ => AppColors.sand,
     };
 
-IconData topicIcon(String id) => switch (id) {
-      'line' => Icons.show_chart_rounded,
-      'bar' => Icons.bar_chart_rounded,
-      'pie' => Icons.pie_chart_rounded,
-      'table' => Icons.table_chart_outlined,
-      'map' => Icons.map_outlined,
-      'process' => Icons.linear_scale_rounded,
-      'mixed' => Icons.dashboard_outlined,
-      'formal-letter' || 'informal-letter' => Icons.mail_outline_rounded,
-      _ => Icons.edit_note_rounded,
-    };
+IconData topicIcon(String id) => AppIcons.topic(id);

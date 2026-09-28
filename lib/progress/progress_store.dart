@@ -1,40 +1,20 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'spaced_repetition.dart';
 
-/// Per-item progress (swaps, A–E entries, listening items), saved words and
-/// words marked "don't know". Stored as JSON in shared_preferences.
-class ProgressStore extends ChangeNotifier {
-  ProgressStore._(this._prefs) {
-    final raw = _prefs.getString(_kProgress);
-    if (raw != null) {
-      (jsonDecode(raw) as Map<String, dynamic>).forEach((k, v) => _items[k] = ItemProgress.fromJson(v as Map<String, dynamic>));
-    }
-    _saved.addAll(_prefs.getStringList(_kSaved) ?? const []);
-    _unknown.addAll(_prefs.getStringList(_kUnknown) ?? const []);
-  }
+/// Per-item progress (swaps, A–E entries, listening items), saved items and
+/// items marked "don't know". Immutable — changed through `progressProvider`.
+class Progress {
+  const Progress({this.items = const {}, this.saved = const {}, this.unknown = const {}, this.now = _systemNow});
 
-  /// In-memory store for tests.
-  ProgressStore.memory(SharedPreferences prefs) : this._(prefs);
+  final Map<String, ItemProgress> items;
+  final Set<String> saved;
+  final Set<String> unknown;
 
-  static const _kProgress = 'progress';
-  static const _kSaved = 'saved';
-  static const _kUnknown = 'unknown';
+  /// "Today" for due checks (overridable in tests).
+  final DateTime Function() now;
 
-  final SharedPreferences _prefs;
-  final Map<String, ItemProgress> _items = {};
-  final Set<String> _saved = {};
-  final Set<String> _unknown = {};
+  static DateTime _systemNow() => DateTime.now();
 
-  /// Overrides "now" in tests.
-  DateTime Function() clock = DateTime.now;
-
-  static Future<ProgressStore> load() async => ProgressStore._(await SharedPreferences.getInstance());
-
-  ItemProgress of(String id) => _items[id] ?? ItemProgress.empty;
+  ItemProgress of(String id) => items[id] ?? ItemProgress.empty;
   Mastery mastery(String id) => of(id).mastery;
 
   Map<Mastery, int> masteryCounts(Iterable<String> ids) {
@@ -45,7 +25,7 @@ class ProgressStore extends ChangeNotifier {
     return out;
   }
 
-  /// Share (0–1) of ids that are at least Using.
+  /// Share (0–1) of ids that are at least [atLeast].
   double share(Iterable<String> ids, {Mastery atLeast = Mastery.using}) {
     final l = ids.toList();
     if (l.isEmpty) return 0;
@@ -53,8 +33,8 @@ class ProgressStore extends ChangeNotifier {
   }
 
   List<String> dueIds(Iterable<String> ids) {
-    final now = clock();
-    return [for (final id in ids) if (of(id).isDue(now)) id];
+    final t = now();
+    return [for (final id in ids) if (of(id).isDue(t)) id];
   }
 
   /// Earliest upcoming review day among [ids], or null.
@@ -67,39 +47,9 @@ class ProgressStore extends ChangeNotifier {
     return best;
   }
 
-  Future<ItemProgress> record(String id, {required bool correct, bool core = true, bool typed = false}) async {
-    final p = SpacedRepetition.answer(of(id), correct: correct, core: core, typed: typed, now: clock());
-    _items[id] = p;
-    await _save();
-    notifyListeners();
-    return p;
-  }
+  bool isSaved(String id) => saved.contains(id);
+  bool isUnknown(String id) => unknown.contains(id);
 
-  bool isSaved(String id) => _saved.contains(id);
-  Set<String> get saved => Set.unmodifiable(_saved);
-
-  Future<void> toggleSaved(String id) async {
-    if (!_saved.remove(id)) _saved.add(id);
-    await _prefs.setStringList(_kSaved, _saved.toList());
-    notifyListeners();
-  }
-
-  bool isUnknown(String id) => _unknown.contains(id);
-  Set<String> get unknown => Set.unmodifiable(_unknown);
-
-  Future<void> setUnknown(String id, bool v) async {
-    v ? _unknown.add(id) : _unknown.remove(id);
-    await _prefs.setStringList(_kUnknown, _unknown.toList());
-    notifyListeners();
-  }
-
-  Future<void> reset() async {
-    _items.clear();
-    _saved.clear();
-    _unknown.clear();
-    await Future.wait([_prefs.remove(_kProgress), _prefs.remove(_kSaved), _prefs.remove(_kUnknown)]);
-    notifyListeners();
-  }
-
-  Future<void> _save() => _prefs.setString(_kProgress, jsonEncode({for (final e in _items.entries) e.key: e.value.toJson()}));
+  Progress copyWith({Map<String, ItemProgress>? items, Set<String>? saved, Set<String>? unknown}) =>
+      Progress(items: items ?? this.items, saved: saved ?? this.saved, unknown: unknown ?? this.unknown, now: now);
 }

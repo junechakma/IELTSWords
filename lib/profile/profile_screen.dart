@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app_scope.dart';
 import '../data/app_store.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
+import '../progress/spaced_repetition.dart';
 import '../services/reminders.dart';
-import '../services/speech.dart';
+import '../state/providers.dart';
+import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import '../widgets/pressable.dart';
 
-class ProfileScreen extends StatefulWidget {
+/// Name, buddy, daily goal, what you're preparing for, reminder, read aloud,
+/// reset. Every change goes through `settingsProvider`, so Home's greeting,
+/// avatar, goal and the practice pools update immediately.
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  late final _nameCtl = TextEditingController(text: AppScope.of(context).store.name ?? '');
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  late final _nameCtl = TextEditingController(text: ref.read(settingsProvider).name ?? '');
 
   @override
   void dispose() {
@@ -27,147 +32,172 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final scope = AppScope.of(context);
     final t = Theme.of(context).textTheme;
+    final settings = ref.watch(settingsProvider);
+    final notifier = ref.read(settingsProvider.notifier);
+    final activity = ref.watch(activityProvider);
+    final natural = ref.watch(masteryCountsProvider)[Mastery.natural] ?? 0;
 
-    return ListenableBuilder(
-      listenable: scope.store,
-      builder: (context, _) {
-        final store = scope.store;
-        return SafeArea(
-          bottom: false,
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 20, 16, 130),
-            children: [
-              Text('Profile', style: t.headlineMedium),
-              const SizedBox(height: 16),
-              Container(
+    return SafeArea(
+      bottom: false,
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(16, 20, 16, 130),
+        children: [
+          Text('Profile', style: t.headlineMedium),
+          const SizedBox(height: 16),
+
+          // Header card: buddy + editable name + a line of what you've done.
+          Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(color: AppColors.sunflowerSoft, borderRadius: BorderRadius.circular(26)),
+            child: Stack(children: [
+              Positioned(right: -30, top: -40, child: Container(width: 160, height: 160, decoration: const BoxDecoration(color: Color(0xFFFDD888), shape: BoxShape.circle))),
+              Padding(
                 padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(color: AppColors.sunflowerSoft, borderRadius: BorderRadius.circular(26)),
                 child: Row(children: [
                   Container(
-                    width: 64,
-                    height: 64,
+                    width: 80,
+                    height: 80,
                     decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                    child: MascotImage(store.buddy, size: 52),
+                    alignment: Alignment.center,
+                    child: MascotImage(settings.buddy, size: 66, idle: true),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
-                    child: TextField(
-                      controller: _nameCtl,
-                      decoration: const InputDecoration(border: InputBorder.none, hintText: 'Your name', isDense: true),
-                      style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                      onSubmitted: store.setName,
-                      onTapOutside: (_) => store.setName(_nameCtl.text),
-                    ),
-                  ),
-                ]),
-              ),
-              const SizedBox(height: 16),
-
-              const CapsLabel('Daily goal (swaps)', padding: EdgeInsets.only(left: 2, bottom: 8)),
-              Wrap(spacing: 8, children: [
-                for (final g in AppStore.goals) ChoiceChipPill('$g swaps', selected: store.dailyGoal == g, onTap: () => store.setGoal(g)),
-              ]),
-
-              const SizedBox(height: 18),
-              const CapsLabel('Preparing for', padding: EdgeInsets.only(left: 2, bottom: 8)),
-              Wrap(spacing: 8, runSpacing: 8, children: [
-                for (final track in StudyTrack.values)
-                  ChoiceChipPill(
-                    track.label,
-                    selected: store.tracks.contains(track),
-                    check: true,
-                    onTap: () {
-                      final s = {...store.tracks};
-                      s.contains(track) ? s.remove(track) : s.add(track);
-                      store.setTracks(s);
-                    },
-                  ),
-              ]),
-
-              const SizedBox(height: 18),
-              const CapsLabel('Study buddy', padding: EdgeInsets.only(left: 2, bottom: 8)),
-              GridView.count(
-                padding: EdgeInsets.zero,
-                crossAxisCount: 6,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                children: [
-                  for (final b in AppStore.buddies)
-                    Pressable(
-                      onTap: () => store.setBuddy(b),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: store.buddy == b ? AppColors.sunflower : AppColors.card,
-                          borderRadius: BorderRadius.circular(16),
-                          border: store.buddy == b ? Border.all(color: AppColors.ink, width: 2) : null,
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      TextField(
+                        controller: _nameCtl,
+                        textCapitalization: TextCapitalization.words,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Your name',
+                          isDense: true,
+                          suffixIcon: Icon(AppIcons.edit, size: 18),
+                          suffixIconConstraints: BoxConstraints(minWidth: 24, minHeight: 24),
                         ),
-                        child: MascotImage(b, size: 40),
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+                        onSubmitted: notifier.setName,
+                        onTapOutside: (_) {
+                          FocusScope.of(context).unfocus();
+                          notifier.setName(_nameCtl.text);
+                        },
                       ),
-                    ),
-                ],
-              ),
-
-              const SizedBox(height: 18),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(20)),
-                child: Column(children: [
-                  _toggleRow(
-                    'Daily reminder',
-                    store.reminderOn,
-                    (v) async {
-                      await store.setReminder(v);
-                      await Reminders.instance.apply(on: v, minutes: store.reminderMinutes);
-                    },
-                    trailing: store.reminderOn ? _timeLabel(store.reminderMinutes) : null,
+                      const SizedBox(height: 4),
+                      Text('${activity.daysPractised()} days · ${activity.total} swaps · $natural natural', style: const TextStyle(fontSize: 13.5)),
+                    ]),
                   ),
-                  const Divider(height: 1, color: AppColors.line),
-                  _toggleRow('Read words aloud', store.readAloud, store.setReadAloud),
                 ]),
               ),
+            ]),
+          ),
 
-              const SizedBox(height: 18),
-              Pressable(
-                onTap: () => _confirmReset(context),
-                child: Container(
-                  padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(20)),
-                  child: Row(children: [
-                    const MascotImage(Mascot.reset, size: 40),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Reset progress', style: TextStyle(color: AppColors.rust, fontWeight: FontWeight.w500)),
-                          Text('Clears mastery and the practice map', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
-                        ],
-                      ),
+          const CapsLabel('Daily goal', padding: EdgeInsets.fromLTRB(2, 22, 0, 8)),
+          Wrap(spacing: 8, children: [
+            for (final g in Settings.goals) ChoiceChipPill('$g swaps', selected: settings.dailyGoal == g, onTap: () => notifier.setGoal(g)),
+          ]),
+
+          const CapsLabel('Preparing for', padding: EdgeInsets.fromLTRB(2, 20, 0, 8)),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            for (final track in StudyTrack.values)
+              ChoiceChipPill(track.label, selected: settings.tracks.contains(track), check: true, onTap: () => notifier.toggleTrack(track)),
+          ]),
+
+          const CapsLabel('Study buddy', padding: EdgeInsets.fromLTRB(2, 20, 0, 8)),
+          GridView.count(
+            padding: EdgeInsets.zero,
+            crossAxisCount: 6,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            children: [
+              for (final b in Settings.buddies)
+                Pressable(
+                  onTap: () => notifier.setBuddy(b),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 180),
+                    decoration: BoxDecoration(
+                      color: settings.buddy == b ? AppColors.sunflower : AppColors.card,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: settings.buddy == b ? AppColors.ink : Colors.transparent, width: 2),
                     ),
-                  ]),
+                    alignment: Alignment.center,
+                    child: MascotImage(b, size: 40),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Center(child: Text('IELTS Words · 1.0.0', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
             ],
           ),
-        );
-      },
+
+          const SizedBox(height: 20),
+          Container(
+            decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(20)),
+            child: Column(children: [
+              _Row(
+                icon: AppIcons.bell,
+                label: 'Daily reminder',
+                trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                  if (settings.reminderOn)
+                    GestureDetector(
+                      onTap: () => _pickTime(settings.reminderMinutes),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(color: AppColors.cream, borderRadius: BorderRadius.circular(12)),
+                        child: Text(_timeLabel(settings.reminderMinutes), style: const TextStyle(fontWeight: FontWeight.w500)),
+                      ),
+                    ),
+                  Switch(
+                    value: settings.reminderOn,
+                    activeThumbColor: Colors.white,
+                    activeTrackColor: AppColors.olive,
+                    onChanged: (v) async {
+                      await notifier.setReminder(v);
+                      await Reminders.instance.apply(on: v, minutes: ref.read(settingsProvider).reminderMinutes);
+                    },
+                  ),
+                ]),
+              ),
+              const Divider(height: 1, color: AppColors.line, indent: 16, endIndent: 16),
+              _Row(
+                icon: AppIcons.speak,
+                label: 'Read Band 8 sentences aloud',
+                trailing: Switch(value: settings.readAloud, activeThumbColor: Colors.white, activeTrackColor: AppColors.olive, onChanged: notifier.setReadAloud),
+              ),
+            ]),
+          ),
+
+          const SizedBox(height: 12),
+          Pressable(
+            onTap: _confirmReset,
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(20)),
+              child: const Row(children: [
+                MascotImage(Mascot.reset, size: 40),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text('Reset progress', style: TextStyle(color: AppColors.rust, fontWeight: FontWeight.w600)),
+                    Text('Clears mastery, saved swaps and the practice map', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft)),
+                  ]),
+                ),
+                Icon(AppIcons.reset, color: AppColors.rust),
+              ]),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Center(child: Text('IELTS Words · 1.0.0', style: TextStyle(fontSize: 12.5, color: AppColors.inkSoft))),
+        ],
+      ),
     );
   }
 
-  Widget _toggleRow(String label, bool value, ValueChanged<bool> onChanged, {String? trailing}) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        child: Row(children: [
-          Expanded(child: Text(label)),
-          if (trailing != null) Padding(padding: const EdgeInsets.only(right: 8), child: Text(trailing, style: const TextStyle(color: AppColors.inkSoft))),
-          Switch(value: value, onChanged: onChanged, activeThumbColor: Colors.white, activeTrackColor: AppColors.olive),
-        ]),
-      );
+  Future<void> _pickTime(int minutes) async {
+    final picked = await showTimePicker(context: context, initialTime: TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60));
+    if (picked == null) return;
+    final m = picked.hour * 60 + picked.minute;
+    await ref.read(settingsProvider.notifier).setReminder(true, m);
+    await Reminders.instance.apply(on: true, minutes: m);
+  }
 
   static String _timeLabel(int minutes) {
     final h = minutes ~/ 60, m = minutes % 60;
@@ -176,22 +206,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return '$h12:${m.toString().padLeft(2, '0')} $period';
   }
 
-  Future<void> _confirmReset(BuildContext context) async {
+  Future<void> _confirmReset() async {
     final ok = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
+        backgroundColor: AppColors.cream,
         title: const Text('Reset all progress?'),
-        content: const Text('This clears every swap\'s mastery and the practice map. It can\'t be undone.'),
+        content: const Text("This clears every swap's mastery, saved swaps and the practice map. It can't be undone."),
         actions: [
-          TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: const Text('Cancel', style: TextStyle(color: AppColors.ink))),
           TextButton(onPressed: () => Navigator.of(dialogContext).pop(true), child: const Text('Reset', style: TextStyle(color: AppColors.rust))),
         ],
       ),
     );
-    if (ok != true || !context.mounted) return;
-    final scope = AppScope.of(context);
-    await scope.progress.reset();
-    await scope.store.resetActivity();
-    await Speech.instance.stop();
+    if (ok != true || !mounted) return;
+    await ref.read(progressProvider.notifier).reset();
+    await ref.read(activityProvider.notifier).reset();
+    if (mounted) showSnack(context, 'Progress reset');
   }
+}
+
+class _Row extends StatelessWidget {
+  const _Row({required this.icon, required this.label, required this.trailing});
+  final IconData icon;
+  final String label;
+  final Widget trailing;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(16, 6, 8, 6),
+        child: Row(children: [
+          Icon(icon, size: 20),
+          const SizedBox(width: 12),
+          Expanded(child: Text(label, style: const TextStyle(fontSize: 15))),
+          trailing,
+        ]),
+      );
 }

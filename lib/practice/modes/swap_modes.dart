@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../app_scope.dart';
+import '../../state/providers.dart';
 import '../../data/swap_models.dart';
 import '../../mascots/mascot.dart';
 import '../../mascots/mascot_image.dart';
@@ -45,7 +46,7 @@ AnswerFeedback swapFeedback(Swap s, {required Verdict verdict, String? why}) => 
     };
 
 void maybeSpeak(BuildContext context, String text) {
-  if (AppScope.of(context).store.readAloud) Speech.instance.speak(text);
+  if (context.readProvider(settingsProvider).readAloud) Speech.instance.speak(text);
 }
 
 // ------------------------------------------------------------ Swap it · choose

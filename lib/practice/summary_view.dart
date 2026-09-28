@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../app_scope.dart';
+import '../state/providers.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
 import '../theme/app_theme.dart';
@@ -13,6 +14,7 @@ import 'practice_mode.dart';
 import 'session_builder.dart';
 import 'session_controller.dart';
 import 'session_screen.dart';
+import '../theme/app_icons.dart';
 
 /// End of a session: mascot, what moved, "plain words you still used". No score.
 class SummaryView extends StatelessWidget {
@@ -23,7 +25,7 @@ class SummaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = controller;
-    final repo = AppScope.of(context).repo;
+    final repo = context.readProvider(repoProvider);
     final perfect = c.mistakes == 0 && c.practised.isNotEmpty;
     final mascot = perfect ? Mascot.perfect : Mascot.pick(Mascot.finished, c.practised.length);
     final noun = c.mode.group == ModeGroup.listening ? 'items' : (c.mode == PracticeMode.meaningMatch || c.mode == PracticeMode.linkerSort || c.mode == PracticeMode.letterRegister ? 'words' : 'swaps');
@@ -58,7 +60,7 @@ class SummaryView extends StatelessWidget {
                     child: Semantics(
                       label: 'Close',
                       button: true,
-                      child: GestureDetector(onTap: () => Navigator.of(context).pop(), child: const Padding(padding: EdgeInsets.all(6), child: Icon(Icons.close_rounded))),
+                      child: GestureDetector(onTap: () => Navigator.of(context).pop(), child: const Padding(padding: EdgeInsets.all(6), child: Icon(AppIcons.close))),
                     ),
                   ),
                   MascotImage(mascot, size: 150, sticker: true)

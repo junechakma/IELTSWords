@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../app_scope.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../data/listening_models.dart';
 import '../mascots/mascot_image.dart';
 import '../practice/modes/listening_modes.dart';
@@ -8,22 +9,25 @@ import '../practice/practice_mode.dart';
 import '../practice/session_builder.dart';
 import '../practice/session_screen.dart';
 import '../theme/app_theme.dart';
+import '../state/providers.dart';
+import '../theme/app_icons.dart';
 import '../widgets/common.dart';
+import 'listening_deck_screen.dart';
 
 /// Library entry for Part F: the labelled map, every item explained, and the
 /// five listening practice modes.
-class ListeningScreen extends StatefulWidget {
+class ListeningScreen extends ConsumerStatefulWidget {
   const ListeningScreen({super.key});
   @override
-  State<ListeningScreen> createState() => _ListeningScreenState();
+  ConsumerState<ListeningScreen> createState() => _ListeningScreenState();
 }
 
-class _ListeningScreenState extends State<ListeningScreen> {
+class _ListeningScreenState extends ConsumerState<ListeningScreen> {
   ListeningType? _type;
 
   @override
   Widget build(BuildContext context) {
-    final data = AppScope.of(context).repo.listening;
+    final data = ref.watch(repoProvider).listening;
     final items = _type == null ? data.items : data.ofType(_type!);
     return Scaffold(
       backgroundColor: AppColors.cream,
@@ -73,25 +77,43 @@ class _ListeningScreenState extends State<ListeningScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            for (final i in items)
+            if (items.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: PillButton(
+                  'See ${_type == null ? 'all' : _type!.label.toLowerCase()} as flashcards · ${items.length}',
+                  icon: AppIcons.cards,
+                  onTap: () => openListeningDeck(context, items, 0),
+                ),
+              ),
+            for (final (n, i) in items.indexed)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18)),
-                  child: Row(children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(i.term, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                          const SizedBox(height: 3),
-                          Text(i.explanation, style: const TextStyle(fontSize: 13, color: AppColors.inkSoft, height: 1.35)),
-                        ],
+                child: GestureDetector(
+                  onTap: () => openListeningDeck(context, items, n),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18)),
+                    child: Row(children: [
+                      Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(color: AppColors.cream, borderRadius: BorderRadius.circular(12)),
+                        child: DiagramIcon(i.diagram, size: 40),
                       ),
-                    ),
-                    HearIt(i.speakerLine),
-                  ]),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(i.term, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                            const SizedBox(height: 3),
+                            Text(i.explanation, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 13, color: AppColors.inkSoft, height: 1.35)),
+                          ],
+                        ),
+                      ),
+                      const Icon(AppIcons.chevron, color: AppColors.inkSoft),
+                    ]),
+                  ),
                 ),
               ),
           ],

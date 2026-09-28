@@ -24,8 +24,8 @@ class SessionBuilder {
   SessionBuilder(this.repo, this.progress, this.store, {Random? random}) : rnd = random ?? Random();
 
   final VocabRepository repo;
-  final ProgressStore progress;
-  final AppStore store;
+  final Progress progress;
+  final Settings store;
   final Random rnd;
 
   /// Box at which Swap it asks the learner to type instead of choose.
@@ -82,11 +82,11 @@ class SessionBuilder {
     ];
   }
 
-  List<Swap> _due() => [for (final s in repo.allSwaps) if (progress.of(s.id).isDue(progress.clock())) s];
+  List<Swap> _due() => [for (final s in repo.allSwaps) if (progress.of(s.id).isDue(progress.now())) s];
 
   /// Due first, then new, then the least practised.
   List<Swap> _pick(List<Swap> pool, int n) {
-    final now = progress.clock();
+    final now = progress.now();
     int rank(Swap s) {
       final p = progress.of(s.id);
       if (p.isDue(now)) return 0;

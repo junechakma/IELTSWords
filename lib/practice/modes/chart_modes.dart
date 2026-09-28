@@ -12,6 +12,7 @@ import '../questions.dart';
 import '../session_controller.dart';
 import '../session_screen.dart';
 import 'swap_modes.dart';
+import '../../theme/app_icons.dart';
 
 /// White card holding a chart.
 class ChartCard extends StatelessWidget {
@@ -437,7 +438,7 @@ class _OrderViewState extends State<OrderView> {
                     Text('${i + 1}', style: const TextStyle(color: AppColors.inkSoft)),
                     const SizedBox(width: 14),
                     Expanded(child: Text(i < _slots.length ? _slots[i].w : '', style: const TextStyle(fontSize: 17))),
-                    if (i < _slots.length && !_checked) const Icon(Icons.close_rounded, size: 18, color: AppColors.inkSoft),
+                    if (i < _slots.length && !_checked) const Icon(AppIcons.close, size: 18, color: AppColors.inkSoft),
                   ]),
                 ),
               ),

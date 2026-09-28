@@ -477,6 +477,16 @@ class _DiagramPainter extends CustomPainter {
   bool shouldRepaint(covariant _DiagramPainter old) => old.key_ != key_;
 }
 
+/// Public wrapper so other screens (e.g. listening flashcards) can show the
+/// same schematic diagram as "Picture it".
+class DiagramIcon extends StatelessWidget {
+  const DiagramIcon(this.diagram, {super.key, this.size = 90});
+  final String diagram;
+  final double size;
+  @override
+  Widget build(BuildContext context) => SizedBox(width: size, height: size, child: CustomPaint(painter: _DiagramPainter(diagram)));
+}
+
 // ------------------------------------------------------------ Follow the route
 
 class RouteView extends StatefulWidget {
