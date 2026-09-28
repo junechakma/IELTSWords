@@ -337,7 +337,7 @@ Packages: `google_fonts`, `shared_preferences`, `flutter_animate`. Required from
 | 8b | **Listening maps (Part F):** `part_f_listening_maps.json` (compass, position, movement, road features, places, traps — each with explanation, speaker line, diagram key), sample map painter, direction diagram painters, `flutter_tts`; modes Where is it?, Picture it, Follow the route, Spell it, Trap drill | every Part F item has an explanation + diagram; a route can be followed on the sample map |
 | 9 | Animations polish, confetti, pronunciation, reminders | |
 
-Each phase: `flutter analyze` clean, tests pass, checked on the iOS simulator with screenshots (in a cloud build without a simulator: `flutter test` incl. widget tests + golden/screenshot tests, and `flutter build web` screenshots). Mark the phase ✅ in this table when done.
+Each phase: `flutter analyze` clean, tests pass, checked on an Android emulator/device with screenshots. The app targets Android (no web build). Mark the phase ✅ in this table when done.
 
 Dev preview flags: `flutter run --dart-define=DEMO_ACTIVITY=true` (sample heatmap, not saved) and `--dart-define=SKIP_INTRO=true` (open straight on Home).
 

@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-/// Text-to-speech for pronunciation and the Listening modes (British English).
+/// Text-to-speech for pronunciation and the Listening modes (British English),
+/// on Android.
 class Speech {
   Speech._();
   static final instance = Speech._();
@@ -21,7 +22,7 @@ class Speech {
     try {
       _tts = FlutterTts();
       await _tts!.setLanguage('en-GB');
-      await _tts!.setSpeechRate(kIsWeb ? .9 : .45);
+      await _tts!.setSpeechRate(.45);
       await _tts!.setPitch(1);
     } catch (e) {
       debugPrint('TTS unavailable: $e');
@@ -35,9 +36,9 @@ class Speech {
     await _init();
     try {
       await _tts?.stop();
-      if (slow) await _tts?.setSpeechRate(kIsWeb ? .7 : .32);
+      if (slow) await _tts?.setSpeechRate(.32);
       await _tts?.speak(text);
-      if (slow) await _tts?.setSpeechRate(kIsWeb ? .9 : .45);
+      if (slow) await _tts?.setSpeechRate(.45);
     } catch (e) {
       debugPrint('TTS failed: $e');
     }

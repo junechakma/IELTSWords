@@ -3,8 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // ignore: depend_on_referenced_packages
 import 'package:timezone/timezone.dart' as tz;
 
-/// Daily practice reminder. Local notifications are not available on web, so
-/// there the setting is only stored.
+/// Daily practice reminder.
 class Reminders {
   Reminders._();
   static final instance = Reminders._();
@@ -12,7 +11,7 @@ class Reminders {
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _ready = false;
 
-  static bool get supported => !kIsWeb && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
+  static bool get supported => defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
 
   Future<bool> _init() async {
     if (!supported) return false;

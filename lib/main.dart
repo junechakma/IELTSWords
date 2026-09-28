@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import 'data/app_store.dart';
 import 'data/vocab_repository.dart';
@@ -11,12 +10,9 @@ import 'theme/app_theme.dart';
 // Dev preview flags: --dart-define=DEMO_ACTIVITY=true / SKIP_INTRO=true
 const _demoActivity = bool.fromEnvironment('DEMO_ACTIVITY');
 const _skipIntro = bool.fromEnvironment('SKIP_INTRO');
-// Turns on the semantics tree so a headless browser can find widgets by label (web click-through tests).
-const _webTest = bool.fromEnvironment('WEB_TEST');
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (_webTest) SemanticsBinding.instance.ensureSemantics();
   final (repo, store) = await (VocabRepository.load(), AppStore.load()).wait;
   if (_demoActivity) store.seedDemoActivity();
   runApp(IeltsWordsApp(repo: repo, store: store));
