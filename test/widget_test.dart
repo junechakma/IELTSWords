@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts_words/data/app_store.dart';
 import 'package:ielts_words/main.dart';
+import 'package:ielts_words/progress/progress_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'vocab_data_test.dart' show loadFromDisk;
@@ -12,9 +13,10 @@ void main() {
   testWidgets('splash leads to onboarding on first launch', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final store = await AppStore.load();
+    final progress = await ProgressStore.load();
     final repo = await loadFromDisk();
 
-    await tester.pumpWidget(IeltsWordsApp(repo: repo, store: store));
+    await tester.pumpWidget(IeltsWordsApp(repo: repo, store: store, progress: progress));
     expect(find.textContaining('Band 7+', findRichText: true), findsOneWidget);
 
     await tester.pump(const Duration(milliseconds: 2300));

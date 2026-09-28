@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'app_scope.dart';
 import 'data/app_store.dart';
 import 'data/vocab_repository.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/splash_screen.dart';
+import 'progress/progress_store.dart';
 import 'shell/app_shell.dart';
 import 'theme/app_theme.dart';
 
@@ -13,24 +15,34 @@ const _skipIntro = bool.fromEnvironment('SKIP_INTRO');
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final (repo, store) = await (VocabRepository.load(), AppStore.load()).wait;
+  final (repo, store, progress) = await (VocabRepository.load(), AppStore.load(), ProgressStore.load()).wait;
   if (_demoActivity) store.seedDemoActivity();
-  runApp(IeltsWordsApp(repo: repo, store: store));
+  runApp(IeltsWordsApp(repo: repo, store: store, progress: progress));
 }
 
 class IeltsWordsApp extends StatelessWidget {
-  const IeltsWordsApp({super.key, required this.repo, required this.store});
+  const IeltsWordsApp({super.key, required this.repo, required this.store, required this.progress});
 
   final VocabRepository repo;
   final AppStore store;
+  final ProgressStore progress;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'IELTS Words',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(),
-      home: _Root(repo: repo, store: store),
+    // AppScope wraps MaterialApp itself, not just `home`, so it stays an
+    // ancestor of every pushed route too — Navigator.push() adds routes as
+    // siblings in the same Overlay, not as descendants of the first route,
+    // so an AppScope placed only inside `home` would not reach them.
+    return AppScope(
+      repo: repo,
+      store: store,
+      progress: progress,
+      child: MaterialApp(
+        title: 'IELTS Words',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light(),
+        home: _Root(repo: repo, store: store),
+      ),
     );
   }
 }
@@ -63,7 +75,7 @@ class _RootState extends State<_Root> {
             setState(() => _stage = _Stage.app);
           },
         ),
-      _Stage.app => AppShell(repo: widget.repo, store: widget.store),
+      _Stage.app => const AppShell(),
     };
     return AnimatedSwitcher(duration: const Duration(milliseconds: 450), child: KeyedSubtree(key: ValueKey(_stage), child: child));
   }

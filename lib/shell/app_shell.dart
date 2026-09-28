@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../data/app_store.dart';
-import '../data/vocab_repository.dart';
 import '../home/home_screen.dart';
-import '../mascots/mascot.dart';
-import '../mascots/mascot_image.dart';
+import '../library/library_screen.dart';
+import '../practice/quick_practice_sheet.dart';
+import '../profile/profile_screen.dart';
+import '../progress_screen/progress_screen.dart';
 import '../theme/app_theme.dart';
+import '../widgets/pressable.dart';
 
 class AppShell extends StatefulWidget {
-  const AppShell({super.key, required this.repo, required this.store});
-
-  final VocabRepository repo;
-  final AppStore store;
+  const AppShell({super.key});
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -29,12 +27,7 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [
-      HomeScreen(repo: widget.repo, store: widget.store),
-      const _ComingSoon('Library', Mascot.focused),
-      const _ComingSoon('Progress', Mascot.proud),
-      const _ComingSoon('Profile', Mascot.calm),
-    ];
+    const pages = [HomeScreen(), LibraryScreen(), ProgressScreen(), ProfileScreen()];
 
     return Scaffold(
       extendBody: true,
@@ -57,10 +50,8 @@ class _AppShellState extends State<AppShell> {
               children: [
                 _item(0),
                 _item(1),
-                GestureDetector(
-                  onTap: () => ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(const SnackBar(content: Text('Quick practice is coming next'), behavior: SnackBarBehavior.floating)),
+                Pressable(
+                  onTap: () => openQuickPractice(context),
                   child: Container(
                     width: 56,
                     height: 56,
@@ -106,27 +97,5 @@ class _AppShellState extends State<AppShell> {
       ),
     );
   }
-}
 
-class _ComingSoon extends StatelessWidget {
-  const _ComingSoon(this.title, this.mascot);
-  final String title;
-  final Mascot mascot;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MascotImage(mascot, size: 150, idle: true),
-          const SizedBox(height: 18),
-          Text(title, style: t.headlineMedium),
-          const SizedBox(height: 6),
-          Text('Coming next', style: t.bodyMedium),
-        ],
-      ),
-    );
-  }
 }

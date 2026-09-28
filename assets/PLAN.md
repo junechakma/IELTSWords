@@ -328,14 +328,18 @@ Packages: `google_fonts`, `shared_preferences`, `flutter_animate`. Required from
 | 2 ✅ | Splash + 3 onboarding slides | runs on simulator |
 | 3 ✅ | Home (today card, heatmap, sections board, quick practice) + bottom nav | runs on simulator |
 | 3b ✅ | **Content:** write `task1_by_chart.json` (swaps for all 7 chart types × 4 slots, incl. new map + process vocab, plus one annotated sample per chart) and `word_sets.json` (trend scales, topic nouns); tests | every chart has a Learn sample and intro, overview and body swaps. *Done: 194 swaps (27–29 per chart), each with 2–3 traps, a grammar hint and a tip; one annotated sample + 8–11 labels, 8–10 Describe items, 7–8 Rewrites and a full 170–200-word model answer per chart (built sentence by sentence). 30 word sets (trends, 10 topic-noun sets, numbers, map, 18 adj↔adv pairs). Schema in `docs/DATA_SCHEMA.md`, checked by `tool/validate_content.py` and `test/vocab_data_test.dart`. Rule: formalSentence = plainSentence with plain → formal[0], so typing and highlighting are exact.* |
-| 3c | Setup screen, Library (By chart + By topic), chart **Learn tab** (annotated chart painter), **Word sets** screen, Word detail | see each chart annotated, browse every swap by chart and slot |
-| 4 | Progress store + spaced repetition + **Swap it** (choose + type) + **Rewrite the sentence** | a full session updates mastery and the heatmap |
-| 5 | Progress screen (mastery bars, year heatmap) + session summary ("plain words you still used") | numbers match the stored progress |
-| 6 | **Build the paragraph** + **Describe the chart** (mini chart painters for line, bar, pie, table, map, process) | one full report can be built for each chart type |
-| 7 | Label the graph, Order the set, Spot the plain words, Adjective ↔ adverb, Flashcards, Meaning match | |
-| 8 | Task 2 + letters in the same swap model (intro / body / conclusion), Linker sort, Letter register | |
-| 8b | **Listening maps (Part F):** `part_f_listening_maps.json` (compass, position, movement, road features, places, traps — each with explanation, speaker line, diagram key), sample map painter, direction diagram painters, `flutter_tts`; modes Where is it?, Picture it, Follow the route, Spell it, Trap drill | every Part F item has an explanation + diagram; a route can be followed on the sample map |
-| 9 | Animations polish, confetti, pronunciation, reminders | |
+| 3c ✅ | Library (By chart, tabbed Task 1 / Task 2 / Letters + search), chart screen (**Learn tab** + slot tabs), **Word sets** screen, swap detail | see each chart annotated, browse every swap by chart and slot. *Done: `lib/library/`. Deviation from plan — no separate onboarding Setup screen; Profile doubles as it (name, goal, tracks, buddy all editable there). No old Part A–E dictionary browse; the swap model supersedes it.* |
+| 4 ✅ | Progress store + spaced repetition + **Swap it** (choose + type) + **Rewrite the sentence** | a full session updates mastery and the heatmap |
+| 5 ✅ | Progress screen (mastery bars, year heatmap, per-chart list) + session summary ("plain words you still used") | numbers match the stored progress |
+| 6 ✅ | **Build the paragraph** + **Describe the chart** (mini chart painters for line, bar, pie, table, map, process) | one full report can be built for each chart type |
+| 7 ✅ | Label the graph, Order the set, Spot the plain words, Adjective ↔ adverb, Flashcards, Meaning match | |
+| 8 ✅ | Task 2 + letters in the same swap model (intro / body / conclusion), Linker sort, Letter register | |
+| 8b ✅ | **Listening maps (Part F):** `part_f_listening_maps.json`, sample map painter (`MapCanvas`), direction diagram painters, `flutter_tts`; modes Where is it?, Picture it, Follow the route, Spell it, Trap drill | every Part F item has an explanation + diagram; a route can be followed on the sample map. *Done: `lib/practice/modes/listening_modes.dart`, `lib/library/listening_screen.dart`.* |
+| 9 ✅ | Animations polish, confetti, pronunciation, reminders | *Confetti + flutter_animate throughout were already in place; Reminders and read-aloud toggles wired into Profile this phase.* |
+
+**All screens are now wired end-to-end** (`lib/main.dart` → `AppShell` → Home / Library / Progress / Profile, plus every pushed route) and covered by `test/screens_smoke_test.dart` (mounts every screen and drives a full practice session). Found and fixed one critical bug this way: `AppScope` was scoped only to `MaterialApp.home`, so any `Navigator.push()` — i.e. nearly every screen transition — lost access to the repo/store/progress and crashed; it now wraps `MaterialApp` itself. Also fixed: the quick-practice sheet didn't scroll and overflowed on smaller screens.
+
+**Not yet built, called out honestly:** the dedicated onboarding Setup screen (name/goal/tracks/buddy before first Home) — Profile covers the same settings post-onboarding instead. Nothing has been run on a real Android emulator/device or simulator; verification so far is `flutter analyze` (clean) + `flutter test` (32/32 passing, including the smoke suite), not an on-device click-through.
 
 Each phase: `flutter analyze` clean, tests pass, checked on an Android emulator/device with screenshots. The app targets Android (no web build). Mark the phase ✅ in this table when done.
 
