@@ -1,1423 +1,1423 @@
 {
- "id": "F",
- "title": "Listening: maps and directions",
- "subtitle": "IELTS Listening Part 2 plan / map labelling",
- "items": [
-  {
-   "id": "f-north",
-   "type": "compass",
-   "term": "north",
-   "explanation": "The direction towards the top of a map, unless the map shows north somewhere else.",
-   "speakerLine": "The boathouse is at the north end of the park, right on the edge of the lake.",
-   "diagram": "compass-n",
-   "spell": false
-  },
-  {
-   "id": "f-south",
-   "type": "compass",
-   "term": "south",
-   "explanation": "The direction towards the bottom of the map; the opposite of north.",
-   "speakerLine": "The car park is in the south of the site, very close to the main gate.",
-   "diagram": "compass-s",
-   "spell": false
-  },
-  {
-   "id": "f-east",
-   "type": "compass",
-   "term": "east",
-   "explanation": "The direction towards the right-hand side of a map when north is at the top.",
-   "speakerLine": "Head east along that path and you'll come to the bike hire at the very end.",
-   "diagram": "compass-e",
-   "spell": false
-  },
-  {
-   "id": "f-west",
-   "type": "compass",
-   "term": "west",
-   "explanation": "The direction towards the left-hand side of a map when north is at the top.",
-   "speakerLine": "The first-aid post is just west of the visitor centre, on the same side of the path.",
-   "diagram": "compass-w",
-   "spell": false
-  },
-  {
-   "id": "f-north-east",
-   "type": "compass",
-   "term": "north-east",
-   "explanation": "Halfway between north and east: towards the top right-hand part of the map.",
-   "speakerLine": "The lake is in the north-east of the park, so head that way if you want to hire a boat.",
-   "diagram": "compass-ne",
-   "spell": false
-  },
-  {
-   "id": "f-north-west",
-   "type": "compass",
-   "term": "north-west",
-   "explanation": "Halfway between north and west: towards the top left-hand part of the map.",
-   "speakerLine": "The woodland is in the north-west, and the bird hide is tucked away right in the middle of it.",
-   "diagram": "compass-nw",
-   "spell": false
-  },
-  {
-   "id": "f-south-east",
-   "type": "compass",
-   "term": "south-east",
-   "explanation": "Halfway between south and east: towards the bottom right-hand part of the map.",
-   "speakerLine": "The walled garden is in the south-east of the park, just behind the gift shop.",
-   "diagram": "compass-se",
-   "spell": false
-  },
-  {
-   "id": "f-south-west",
-   "type": "compass",
-   "term": "south-west",
-   "explanation": "Halfway between south and west: towards the bottom left-hand part of the map.",
-   "speakerLine": "The car park is in the south-west corner, so if you come by car you'll arrive that way.",
-   "diagram": "compass-sw",
-   "spell": false
-  },
-  {
-   "id": "f-northern-part",
-   "type": "compass",
-   "term": "in the northern part of",
-   "explanation": "Inside the place, in its top half, not outside it to the north.",
-   "speakerLine": "The picnic tables are in the northern part of the garden, where there's a bit more shade.",
-   "diagram": "northern-part",
-   "spell": false
-  },
-  {
-   "id": "f-to-the-east-of",
-   "type": "compass",
-   "term": "to the east of",
-   "explanation": "Outside something, on its east side. It may be close to it or some distance away.",
-   "speakerLine": "The bandstand is to the east of the main path, standing on its own in the open grass.",
-   "diagram": "east-of",
-   "spell": false
-  },
-  {
-   "id": "f-just-north-of",
-   "type": "compass",
-   "term": "just north of",
-   "explanation": "A short distance outside something, on its north side.",
-   "speakerLine": "The boathouse is just north of the path, right at the water's edge.",
-   "diagram": "north-of",
-   "spell": false
-  },
-  {
-   "id": "f-south-of",
-   "type": "compass",
-   "term": "south of",
-   "explanation": "Outside something, on its south side, towards the bottom of the map.",
-   "speakerLine": "The gift shop is directly south of the café, so it's the first building you'll pass on the right.",
-   "diagram": "south-of",
-   "spell": false
-  },
-  {
-   "id": "f-nw-corner",
-   "type": "compass",
-   "term": "the north-west corner",
-   "explanation": "The top left-hand corner of a room, building or area on the map.",
-   "speakerLine": "The cloakroom is in the north-west corner of the lobby, right next to the lifts.",
-   "diagram": "nw-corner",
-   "spell": false
-  },
-  {
-   "id": "f-clockwise",
-   "type": "compass",
-   "term": "clockwise",
-   "explanation": "Moving round something in the same direction as the hands of a clock.",
-   "speakerLine": "If you walk clockwise round the lake, the jetty is the first thing you'll come to.",
-   "diagram": "clockwise",
-   "spell": false
-  },
-  {
-   "id": "f-anticlockwise",
-   "type": "compass",
-   "term": "anticlockwise",
-   "explanation": "Moving round in the opposite direction to a clock's hands. American English: counterclockwise.",
-   "speakerLine": "Go anticlockwise round the pond and you'll pass the bird hide before you reach the bridge.",
-   "diagram": "anticlockwise",
-   "spell": false
-  },
-  {
-   "id": "f-opposite",
-   "type": "position",
-   "term": "opposite",
-   "explanation": "Facing it, on the other side of a road, path or open space.",
-   "speakerLine": "You'll find the gift shop directly opposite the ticket office, on the other side of the path.",
-   "diagram": "opposite",
-   "spell": false
-  },
-  {
-   "id": "f-next-to",
-   "type": "position",
-   "term": "next to / beside",
-   "explanation": "Side by side with something, with nothing else in between.",
-   "speakerLine": "The first-aid post is right next to the visitor centre, so it's very easy to find.",
-   "diagram": "next-to",
-   "spell": false
-  },
-  {
-   "id": "f-adjacent-to",
-   "type": "position",
-   "term": "adjacent to",
-   "explanation": "A formal way of saying \"next to\"; often used for rooms that share a wall.",
-   "speakerLine": "The staffroom is adjacent to the main office, so staff can go straight through.",
-   "diagram": "next-to",
-   "spell": false
-  },
-  {
-   "id": "f-between",
-   "type": "position",
-   "term": "between",
-   "explanation": "With one thing on one side and another thing on the other side.",
-   "speakerLine": "The nature centre sits between the woodland and the lake, at the top of the main path.",
-   "diagram": "between",
-   "spell": false
-  },
-  {
-   "id": "f-in-front-of",
-   "type": "position",
-   "term": "in front of",
-   "explanation": "Near the front or entrance side of something, where you see it first.",
-   "speakerLine": "There's a bike rack in front of the visitor centre, just by the main doors.",
-   "diagram": "in-front-of",
-   "spell": false
-  },
-  {
-   "id": "f-behind",
-   "type": "position",
-   "term": "behind",
-   "explanation": "At the back of something, on the side away from the path or entrance.",
-   "speakerLine": "The staff car park is behind the main building, so you can't see it from the road.",
-   "diagram": "behind",
-   "spell": false
-  },
-  {
-   "id": "f-far-end",
-   "type": "position",
-   "term": "at the far end",
-   "explanation": "At the end that is furthest from you or from where you started.",
-   "speakerLine": "The café is at the far end of the corridor, just past the lecture theatre.",
-   "diagram": "far-end",
-   "spell": false
-  },
-  {
-   "id": "f-in-the-corner",
-   "type": "position",
-   "term": "in the corner",
-   "explanation": "Where two sides or walls meet, or where a path turns sharply.",
-   "speakerLine": "The adventure playground is in the corner where the path bends round to the right.",
-   "diagram": "in-corner",
-   "spell": false
-  },
-  {
-   "id": "f-on-your-left",
-   "type": "position",
-   "term": "on your left-hand side",
-   "explanation": "On the left of the direction you are walking in, not the left of the map.",
-   "speakerLine": "As you walk in, the ticket office is on your left-hand side, next to the car park.",
-   "diagram": "on-left",
-   "spell": false
-  },
-  {
-   "id": "f-on-your-right",
-   "type": "position",
-   "term": "on your right-hand side",
-   "explanation": "On the right of the direction you are walking in, not the right of the map.",
-   "speakerLine": "Just past the crossroads, you'll see the toilets on your right-hand side.",
-   "diagram": "on-right",
-   "spell": false
-  },
-  {
-   "id": "f-just-past",
-   "type": "position",
-   "term": "just past",
-   "explanation": "A little after something, once you have walked by it.",
-   "speakerLine": "The toilets are just past the crossroads, so once you've crossed over, you're nearly there.",
-   "diagram": "just-past",
-   "spell": false
-  },
-  {
-   "id": "f-beyond",
-   "type": "position",
-   "term": "beyond",
-   "explanation": "Further on than something, on the other side of it from you.",
-   "speakerLine": "Beyond the bridge, the path gets quite narrow, so do take care with small children.",
-   "diagram": "just-past",
-   "spell": false
-  },
-  {
-   "id": "f-just-before",
-   "type": "position",
-   "term": "just before",
-   "explanation": "A little before something, so you reach it first.",
-   "speakerLine": "The information point is just before the T-junction, so you'll see it before you have to turn.",
-   "diagram": "just-before",
-   "spell": false
-  },
-  {
-   "id": "f-alongside",
-   "type": "position",
-   "term": "alongside / parallel to",
-   "explanation": "Next to something and running in the same direction along its length.",
-   "speakerLine": "A narrow footpath runs alongside the river, all the way from the mill to the bridge.",
-   "diagram": "alongside",
-   "spell": false
-  },
-  {
-   "id": "f-surrounded-by",
-   "type": "position",
-   "term": "surrounded by",
-   "explanation": "With something on every side of it.",
-   "speakerLine": "The bird hide is surrounded by trees, so it's quite hard to spot from the path.",
-   "diagram": "surrounded-by",
-   "spell": false
-  },
-  {
-   "id": "f-in-the-middle",
-   "type": "position",
-   "term": "in the middle / in the centre",
-   "explanation": "At the central point, the same distance from all the sides.",
-   "speakerLine": "The fountain is right in the middle of the square, so everyone uses it as a meeting point.",
-   "diagram": "in-middle",
-   "spell": false
-  },
-  {
-   "id": "f-at-the-junction",
-   "type": "position",
-   "term": "at the junction of",
-   "explanation": "At the point where two roads or paths meet or cross.",
-   "speakerLine": "The café stands at the junction of the main path and the east path, on the south side.",
-   "diagram": "at-junction",
-   "spell": false
-  },
-  {
-   "id": "f-diagonally-opposite",
-   "type": "position",
-   "term": "diagonally opposite",
-   "explanation": "Across a junction or square, on the corner furthest away, not straight across.",
-   "speakerLine": "The picnic shelter is diagonally opposite the café, on the far corner of the crossroads.",
-   "diagram": "diagonally-opposite",
-   "spell": false
-  },
-  {
-   "id": "f-inside",
-   "type": "position",
-   "term": "inside",
-   "explanation": "Within a building, room or area, not outside it.",
-   "speakerLine": "The information desk is inside the main building, just to the left as you come in.",
-   "diagram": "inside",
-   "spell": false
-  },
-  {
-   "id": "f-straight-on",
-   "type": "movement",
-   "term": "go straight ahead / straight on",
-   "explanation": "Keep walking in the same direction without turning.",
-   "speakerLine": "From the main gate, go straight on until you get to the crossroads.",
-   "diagram": "straight-on",
-   "spell": false
-  },
-  {
-   "id": "f-carry-on",
-   "type": "movement",
-   "term": "carry on / continue along",
-   "explanation": "Keep going along the same path or road for a while longer.",
-   "speakerLine": "Carry on along this path for a few minutes and you'll see the boathouse on your left.",
-   "diagram": "continue-along",
-   "spell": false
-  },
-  {
-   "id": "f-turn-left",
-   "type": "movement",
-   "term": "turn left",
-   "explanation": "Change direction to your own left, whichever way you are facing on the map.",
-   "speakerLine": "When you get to the T-junction, turn left and walk towards the woods.",
-   "diagram": "turn-left",
-   "spell": false
-  },
-  {
-   "id": "f-turn-right",
-   "type": "movement",
-   "term": "turn right",
-   "explanation": "Change direction to your own right, whichever way you are facing on the map.",
-   "speakerLine": "Turn right at the crossroads, and the bike hire is at the end of that path.",
-   "diagram": "turn-right",
-   "spell": false
-  },
-  {
-   "id": "f-second-left",
-   "type": "movement",
-   "term": "take the second turning on the left",
-   "explanation": "Walk past the first path on your left and turn into the next one.",
-   "speakerLine": "Take the second turning on the left, not the first one, or you'll end up in the car park.",
-   "diagram": "second-left",
-   "spell": false
-  },
-  {
-   "id": "f-first-right",
-   "type": "movement",
-   "term": "take the first right",
-   "explanation": "Turn right into the first path or road you come to on that side.",
-   "speakerLine": "Take the first right after the gate, and the reception building is straight in front of you.",
-   "diagram": "first-right",
-   "spell": false
-  },
-  {
-   "id": "f-head-towards",
-   "type": "movement",
-   "term": "head towards",
-   "explanation": "Walk in the direction of something you can see.",
-   "speakerLine": "From the café, head towards the lake and you'll find the boathouse on the shore.",
-   "diagram": "head-towards",
-   "spell": false
-  },
-  {
-   "id": "f-cross-over",
-   "type": "movement",
-   "term": "cross over",
-   "explanation": "Go from one side of a road, path or river to the other side.",
-   "speakerLine": "Cross over the road at the lights, and the museum entrance is right in front of you.",
-   "diagram": "cross-over",
-   "spell": false
-  },
-  {
-   "id": "f-follow-round",
-   "type": "movement",
-   "term": "follow the path round",
-   "explanation": "Keep on the path where it curves or bends, turning as it turns.",
-   "speakerLine": "Follow the path round to the right, and it'll bring you out by the woods.",
-   "diagram": "follow-round",
-   "spell": false
-  },
-  {
-   "id": "f-through-gate",
-   "type": "movement",
-   "term": "go through the gate",
-   "explanation": "Pass from one side of the gate to the other, into the next area.",
-   "speakerLine": "Go through the little gate in the fence, and the vegetable garden is on your left.",
-   "diagram": "through-gate",
-   "spell": false
-  },
-  {
-   "id": "f-go-past",
-   "type": "movement",
-   "term": "go past",
-   "explanation": "Walk by something without stopping or turning there.",
-   "speakerLine": "Go past the toilets, and the information point is the next building on your right.",
-   "diagram": "go-past",
-   "spell": false
-  },
-  {
-   "id": "f-as-far-as",
-   "type": "movement",
-   "term": "as far as / until you reach",
-   "explanation": "Walk until you reach that point, and then stop or change direction.",
-   "speakerLine": "Walk as far as the T-junction, and then you'll need to decide which way to go.",
-   "diagram": "as-far-as",
-   "spell": false
-  },
-  {
-   "id": "f-double-back",
-   "type": "movement",
-   "term": "double back",
-   "explanation": "Turn round and go back the way you have just come.",
-   "speakerLine": "If you get to the bridge, you've gone too far, so you'll need to double back.",
-   "diagram": "double-back",
-   "spell": false
-  },
-  {
-   "id": "f-go-up",
-   "type": "movement",
-   "term": "go up the stairs",
-   "explanation": "Climb the stairs to a higher floor.",
-   "speakerLine": "Go up the stairs to the first floor, and the reading room is straight ahead.",
-   "diagram": "go-up",
-   "spell": false
-  },
-  {
-   "id": "f-go-down",
-   "type": "movement",
-   "term": "go down",
-   "explanation": "Move to a lower level: down stairs, a slope or a hill.",
-   "speakerLine": "Go down the steps towards the river, and the ticket office is at the bottom.",
-   "diagram": "go-down",
-   "spell": false
-  },
-  {
-   "id": "f-crossroads",
-   "type": "feature",
-   "term": "crossroads",
-   "explanation": "A place where two roads or paths cross, so you can go four ways.",
-   "speakerLine": "At the crossroads, turn left, and the visitor centre is on the corner.",
-   "diagram": "crossroads",
-   "spell": true
-  },
-  {
-   "id": "f-t-junction",
-   "type": "feature",
-   "term": "T-junction",
-   "explanation": "Where one path ends at another path, making a T shape. You must turn left or right.",
-   "speakerLine": "The main path ends at a T-junction, and the nature centre is straight in front of you.",
-   "diagram": "t-junction",
-   "spell": true
-  },
-  {
-   "id": "f-roundabout",
-   "type": "feature",
-   "term": "roundabout",
-   "explanation": "A circular junction; traffic goes round it and turns off onto another road.",
-   "speakerLine": "At the roundabout, take the second exit, and the sports centre is on your left.",
-   "diagram": "roundabout",
-   "spell": true
-  },
-  {
-   "id": "f-bend",
-   "type": "feature",
-   "term": "bend",
-   "explanation": "A place where a road or path curves or changes direction.",
-   "speakerLine": "Just after the bend in the road, you'll see the old mill on your right.",
-   "diagram": "bend",
-   "spell": true
-  },
-  {
-   "id": "f-fork",
-   "type": "feature",
-   "term": "fork",
-   "explanation": "A place where one path divides into two paths going in different directions.",
-   "speakerLine": "When the path forks, keep to the left, and it'll take you down to the pond.",
-   "diagram": "fork",
-   "spell": true
-  },
-  {
-   "id": "f-footpath",
-   "type": "feature",
-   "term": "footpath",
-   "explanation": "A narrow path for people walking; cars and usually bikes are not allowed.",
-   "speakerLine": "There's a footpath across the field that takes you straight to the old mill.",
-   "diagram": "footpath",
-   "spell": true
-  },
-  {
-   "id": "f-lane",
-   "type": "feature",
-   "term": "lane",
-   "explanation": "A narrow road, usually in the countryside, often with hedges on both sides.",
-   "speakerLine": "The farm shop is about halfway down the lane, on the right, opposite the church.",
-   "diagram": "lane",
-   "spell": true
-  },
-  {
-   "id": "f-track",
-   "type": "feature",
-   "term": "track",
-   "explanation": "A rough, unpaved path, often used by farm vehicles, bikes or walkers.",
-   "speakerLine": "The track through the woods can get quite muddy, so wear sensible boots.",
-   "diagram": "track",
-   "spell": true
-  },
-  {
-   "id": "f-footbridge",
-   "type": "feature",
-   "term": "footbridge",
-   "explanation": "A narrow bridge for people walking, over a river, road or railway.",
-   "speakerLine": "Cross the river by the footbridge, and the picnic area is just on the other side.",
-   "diagram": "footbridge",
-   "spell": true
-  },
-  {
-   "id": "f-crossing",
-   "type": "feature",
-   "term": "pedestrian crossing",
-   "explanation": "A marked place on a road where people on foot can cross safely.",
-   "speakerLine": "Use the pedestrian crossing outside the station, and the hotel is directly opposite.",
-   "diagram": "crossing",
-   "spell": true
-  },
-  {
-   "id": "f-dead-end",
-   "type": "feature",
-   "term": "dead end",
-   "explanation": "A road or path that stops and goes nowhere; you have to come back the same way.",
-   "speakerLine": "The east path is a dead end, so the bike hire is the only thing down there.",
-   "diagram": "dead-end",
-   "spell": true
-  },
-  {
-   "id": "f-slope",
-   "type": "feature",
-   "term": "slope",
-   "explanation": "Ground that goes gradually up or down, such as a ramp instead of steps.",
-   "speakerLine": "There's a gentle slope up to the main entrance, so it's fine for wheelchairs and pushchairs.",
-   "diagram": "slope",
-   "spell": true
-  },
-  {
-   "id": "f-steps",
-   "type": "feature",
-   "term": "steps",
-   "explanation": "A short set of stairs outside, for example up a hill or into a building.",
-   "speakerLine": "Take the steps down to the beach; they're just to the left of the lifeguard station.",
-   "diagram": "steps",
-   "spell": true
-  },
-  {
-   "id": "f-gate",
-   "type": "feature",
-   "term": "gate",
-   "explanation": "An opening in a fence, wall or hedge that you can close.",
-   "speakerLine": "Please make sure you close the gate behind you, because there are sheep in the next field.",
-   "diagram": "gate",
-   "spell": true
-  },
-  {
-   "id": "f-fence",
-   "type": "feature",
-   "term": "fence",
-   "explanation": "A barrier of wood or wire that marks the edge of an area.",
-   "speakerLine": "The vegetable garden has a high fence round it to keep the rabbits out.",
-   "diagram": "fence",
-   "spell": true
-  },
-  {
-   "id": "f-hedge",
-   "type": "feature",
-   "term": "hedge",
-   "explanation": "A line of bushes growing close together, used like a wall around a field or garden.",
-   "speakerLine": "The picnic area is hidden behind a tall hedge, just to the left of the car park.",
-   "diagram": "hedge",
-   "spell": true
-  },
-  {
-   "id": "f-entrance",
-   "type": "place",
-   "term": "entrance / main gate",
-   "explanation": "The way into a building or site; where most visitors come in.",
-   "speakerLine": "The main entrance is on the south side, facing the car park.",
-   "diagram": "place-entrance",
-   "spell": true
-  },
-  {
-   "id": "f-reception",
-   "type": "place",
-   "term": "reception",
-   "explanation": "The desk or area just inside a building where visitors are welcomed and sign in.",
-   "speakerLine": "When you arrive, please go to reception first to collect your visitor's badge.",
-   "diagram": "place-desk",
-   "spell": true
-  },
-  {
-   "id": "f-car-park",
-   "type": "place",
-   "term": "car park",
-   "explanation": "An area where people leave their cars. American English: parking lot.",
-   "speakerLine": "The car park is on your left as you come in, so drivers don't need to go far.",
-   "diagram": "place-car",
-   "spell": true
-  },
-  {
-   "id": "f-lobby",
-   "type": "place",
-   "term": "lobby",
-   "explanation": "The large open area just inside the main door of a building such as a hotel or theatre.",
-   "speakerLine": "We'll meet in the lobby at nine o'clock, next to the big staircase.",
-   "diagram": "place-door",
-   "spell": true
-  },
-  {
-   "id": "f-corridor",
-   "type": "place",
-   "term": "corridor",
-   "explanation": "A long, narrow passage inside a building, with doors to rooms along it.",
-   "speakerLine": "Walk to the end of the corridor, and the computer room is the last door on the right.",
-   "diagram": "place-room",
-   "spell": true
-  },
-  {
-   "id": "f-jetty",
-   "type": "place",
-   "term": "pier / jetty",
-   "explanation": "A platform that goes out over water, where boats stop and people can walk.",
-   "speakerLine": "The rowing boats leave from the jetty, which is on the western shore of the lake.",
-   "diagram": "place-pier",
-   "spell": true
-  },
-  {
-   "id": "f-pond",
-   "type": "place",
-   "term": "pond",
-   "explanation": "A small area of still water, smaller than a lake.",
-   "speakerLine": "The duck pond is just inside the gate, so it's the first thing the children will see.",
-   "diagram": "place-water",
-   "spell": true
-  },
-  {
-   "id": "f-woodland",
-   "type": "place",
-   "term": "woodland",
-   "explanation": "An area of land covered with trees; smaller than a forest.",
-   "speakerLine": "The woodland fills the north-west corner of the park, and there's a bird hide hidden inside it.",
-   "diagram": "place-trees",
-   "spell": true
-  },
-  {
-   "id": "f-picnic-area",
-   "type": "place",
-   "term": "picnic area",
-   "explanation": "An outdoor place with tables and benches where people can eat their own food.",
-   "speakerLine": "The picnic area is on the grass beside the pond, with plenty of tables and benches.",
-   "diagram": "place-picnic",
-   "spell": true
-  },
-  {
-   "id": "f-cloakroom",
-   "type": "place",
-   "term": "cloakroom",
-   "explanation": "A room where you leave your coat and bags while you are in the building.",
-   "speakerLine": "You can leave your coats and bags in the cloakroom, just to the right of the entrance.",
-   "diagram": "place-room",
-   "spell": true
-  },
-  {
-   "id": "f-ticket-office",
-   "type": "place",
-   "term": "ticket office",
-   "explanation": "The place where you buy tickets before you go in or travel.",
-   "speakerLine": "The ticket office is just inside the main gate, on your left as you come in.",
-   "diagram": "place-ticket",
-   "spell": true
-  },
-  {
-   "id": "f-information-desk",
-   "type": "place",
-   "term": "information desk",
-   "explanation": "A desk where staff answer questions and give out maps and leaflets.",
-   "speakerLine": "If you get lost, ask at the information desk in the middle of the entrance hall.",
-   "diagram": "place-info",
-   "spell": true
-  },
-  {
-   "id": "f-storage-room",
-   "type": "place",
-   "term": "storage room",
-   "explanation": "A room used for keeping equipment and supplies, not for working in.",
-   "speakerLine": "The storage room is at the back of the hall, behind the stage.",
-   "diagram": "place-room",
-   "spell": true
-  },
-  {
-   "id": "f-staffroom",
-   "type": "place",
-   "term": "staffroom",
-   "explanation": "A room where staff take breaks; visitors and students usually cannot go in.",
-   "speakerLine": "The staffroom is on the first floor, directly above the main office.",
-   "diagram": "place-room",
-   "spell": true
-  },
-  {
-   "id": "f-toilets",
-   "type": "place",
-   "term": "toilets",
-   "explanation": "Rooms with toilets and washbasins. Also called the loos or, on signs, WC.",
-   "speakerLine": "The toilets are just past the crossroads on the right, just south of the information point.",
-   "diagram": "place-toilet",
-   "spell": true
-  },
-  {
-   "id": "f-lift",
-   "type": "place",
-   "term": "lift",
-   "explanation": "A small moving room that carries people between floors. American English: elevator.",
-   "speakerLine": "The lift is at the far end of the lobby, just beyond the stairs.",
-   "diagram": "place-lift",
-   "spell": true
-  },
-  {
-   "id": "f-stairs",
-   "type": "place",
-   "term": "stairs / staircase",
-   "explanation": "A set of steps inside a building going from one floor to another.",
-   "speakerLine": "Take the stairs to the second floor; the lift is out of order this morning.",
-   "diagram": "place-stairs",
-   "spell": true
-  },
-  {
-   "id": "f-trap-correction",
-   "type": "trap",
-   "term": "Corrections: \"left… sorry, I mean right\"",
-   "explanation": "The speaker changes the answer. Always write the last version you hear.",
-   "speakerLine": "The café is on the left of the lobby – oh, sorry, I mean on the right.",
-   "diagram": "trap-correction",
-   "spell": false
-  },
-  {
-   "id": "f-trap-not-first",
-   "type": "trap",
-   "term": "\"Not the first building, but the one after it\"",
-   "explanation": "The first place mentioned is a distractor; count carefully to the building meant.",
-   "speakerLine": "It isn't the first building you come to – the gift shop is the one after that.",
-   "diagram": "trap-not-first",
-   "spell": false
-  },
-  {
-   "id": "f-trap-opposite-next",
-   "type": "trap",
-   "term": "\"Opposite\" vs \"next to\"",
-   "explanation": "Opposite means across a space, facing it. Next to means on the same side, touching.",
-   "speakerLine": "The toilets aren't next to the café – they're opposite it, on the other side of the path.",
-   "diagram": "trap-opposite-vs-next",
-   "spell": false
-  },
-  {
-   "id": "f-trap-before-past",
-   "type": "trap",
-   "term": "\"Just before\" vs \"just past\"",
-   "explanation": "Before means you reach it first; past means you have already gone by the landmark.",
-   "speakerLine": "The picnic area is just past the bridge, not before it, so do cross over first.",
-   "diagram": "trap-before-vs-past",
-   "spell": false
-  },
-  {
-   "id": "f-trap-north-of-side",
-   "type": "trap",
-   "term": "\"North of the lake\" vs \"the north side of the lake\"",
-   "explanation": "North of: outside it, some way off. North side of: on its northern edge or shore.",
-   "speakerLine": "The bird hide is on the north side of the lake, right at the water's edge.",
-   "diagram": "trap-north-of-vs-side",
-   "spell": false
-  },
-  {
-   "id": "f-trap-distance",
-   "type": "trap",
-   "term": "Distances: \"about 50 metres further on\"",
-   "explanation": "Go past the landmark and keep walking that distance; the place is not at the landmark.",
-   "speakerLine": "When you reach the fountain, the shop is about fifty metres further on, on the same side.",
-   "diagram": "trap-distance",
-   "spell": false
-  },
-  {
-   "id": "f-trap-left-right",
-   "type": "trap",
-   "term": "The walker's left vs the map's left",
-   "explanation": "Left and right depend on which way you walk. Walking south, your left is east on the map.",
-   "speakerLine": "As you walk down from the car park, the lake is on your left, so that's the east side.",
-   "diagram": "trap-left-right",
-   "spell": false
-  },
-  {
-   "id": "f-trap-second-turning",
-   "type": "trap",
-   "term": "\"Not the first turning, but the second\"",
-   "explanation": "The speaker rules out one choice before giving the real one. Count the turnings carefully.",
-   "speakerLine": "Don't take the first turning on the right – that just goes to the staff car park. Take the second.",
-   "diagram": "trap-not-first",
-   "spell": false
-  }
- ],
- "map": {
-  "title": "Lakeside Country Park",
-  "north": "up",
-  "paths": [
-   {
-    "id": "main-path",
-    "kind": "road",
-    "points": [
-     [
-      0.5,
-      1.0
-     ],
-     [
-      0.5,
-      0.62
-     ],
-     [
-      0.5,
-      0.3
-     ]
-    ]
-   },
-   {
-    "id": "east-path",
-    "kind": "path",
-    "points": [
-     [
-      0.5,
-      0.62
-     ],
-     [
-      0.88,
-      0.62
-     ]
-    ]
-   },
-   {
-    "id": "west-path",
-    "kind": "path",
-    "points": [
-     [
-      0.5,
-      0.62
-     ],
-     [
-      0.12,
-      0.62
-     ],
-     [
-      0.12,
-      0.3
-     ]
-    ]
-   },
-   {
-    "id": "north-path",
-    "kind": "path",
-    "points": [
-     [
-      0.12,
-      0.3
-     ],
-     [
-      0.88,
-      0.3
-     ]
-    ]
-   }
+  "id": "F",
+  "title": "Listening: maps and directions",
+  "subtitle": "IELTS Listening Part 2 plan / map labelling",
+  "items": [
+    {
+      "id": "f-north",
+      "type": "compass",
+      "term": "north",
+      "explanation": "The direction towards the top of a map, unless the map shows north somewhere else.",
+      "speakerLine": "The boathouse is at the north end of the park, right on the edge of the lake.",
+      "diagram": "compass-n",
+      "spell": false
+    },
+    {
+      "id": "f-south",
+      "type": "compass",
+      "term": "south",
+      "explanation": "The direction towards the bottom of the map; the opposite of north.",
+      "speakerLine": "The car park is in the south of the site, very close to the main gate.",
+      "diagram": "compass-s",
+      "spell": false
+    },
+    {
+      "id": "f-east",
+      "type": "compass",
+      "term": "east",
+      "explanation": "The direction towards the right-hand side of a map when north is at the top.",
+      "speakerLine": "Head east along that path and you'll come to the bike hire at the very end.",
+      "diagram": "compass-e",
+      "spell": false
+    },
+    {
+      "id": "f-west",
+      "type": "compass",
+      "term": "west",
+      "explanation": "The direction towards the left-hand side of a map when north is at the top.",
+      "speakerLine": "The first-aid post is just west of the visitor centre, on the same side of the path.",
+      "diagram": "compass-w",
+      "spell": false
+    },
+    {
+      "id": "f-north-east",
+      "type": "compass",
+      "term": "north-east",
+      "explanation": "Halfway between north and east: towards the top right-hand part of the map.",
+      "speakerLine": "The lake is in the north-east of the park, so head that way if you want to hire a boat.",
+      "diagram": "compass-ne",
+      "spell": false
+    },
+    {
+      "id": "f-north-west",
+      "type": "compass",
+      "term": "north-west",
+      "explanation": "Halfway between north and west: towards the top left-hand part of the map.",
+      "speakerLine": "The woodland is in the north-west, and the bird hide is tucked away right in the middle of it.",
+      "diagram": "compass-nw",
+      "spell": false
+    },
+    {
+      "id": "f-south-east",
+      "type": "compass",
+      "term": "south-east",
+      "explanation": "Halfway between south and east: towards the bottom right-hand part of the map.",
+      "speakerLine": "The walled garden is in the south-east of the park, just behind the gift shop.",
+      "diagram": "compass-se",
+      "spell": false
+    },
+    {
+      "id": "f-south-west",
+      "type": "compass",
+      "term": "south-west",
+      "explanation": "Halfway between south and west: towards the bottom left-hand part of the map.",
+      "speakerLine": "The car park is in the south-west corner, so if you come by car you'll arrive that way.",
+      "diagram": "compass-sw",
+      "spell": false
+    },
+    {
+      "id": "f-northern-part",
+      "type": "compass",
+      "term": "in the northern part of",
+      "explanation": "Inside the place, in its top half, not outside it to the north.",
+      "speakerLine": "The picnic tables are in the northern part of the garden, where there's a bit more shade.",
+      "diagram": "northern-part",
+      "spell": false
+    },
+    {
+      "id": "f-to-the-east-of",
+      "type": "compass",
+      "term": "to the east of",
+      "explanation": "Outside something, on its east side. It may be close to it or some distance away.",
+      "speakerLine": "The bandstand is to the east of the main path, standing on its own in the open grass.",
+      "diagram": "east-of",
+      "spell": false
+    },
+    {
+      "id": "f-just-north-of",
+      "type": "compass",
+      "term": "just north of",
+      "explanation": "A short distance outside something, on its north side.",
+      "speakerLine": "The boathouse is just north of the path, right at the water's edge.",
+      "diagram": "north-of",
+      "spell": false
+    },
+    {
+      "id": "f-south-of",
+      "type": "compass",
+      "term": "south of",
+      "explanation": "Outside something, on its south side, towards the bottom of the map.",
+      "speakerLine": "The gift shop is directly south of the café, so it's the first building you'll pass on the right.",
+      "diagram": "south-of",
+      "spell": false
+    },
+    {
+      "id": "f-nw-corner",
+      "type": "compass",
+      "term": "the north-west corner",
+      "explanation": "The top left-hand corner of a room, building or area on the map.",
+      "speakerLine": "The cloakroom is in the north-west corner of the lobby, right next to the lifts.",
+      "diagram": "nw-corner",
+      "spell": false
+    },
+    {
+      "id": "f-clockwise",
+      "type": "compass",
+      "term": "clockwise",
+      "explanation": "Moving round something in the same direction as the hands of a clock.",
+      "speakerLine": "If you walk clockwise round the lake, the jetty is the first thing you'll come to.",
+      "diagram": "clockwise",
+      "spell": false
+    },
+    {
+      "id": "f-anticlockwise",
+      "type": "compass",
+      "term": "anticlockwise",
+      "explanation": "Moving round in the opposite direction to a clock's hands. American English: counterclockwise.",
+      "speakerLine": "Go anticlockwise round the pond and you'll pass the bird hide before you reach the bridge.",
+      "diagram": "anticlockwise",
+      "spell": false
+    },
+    {
+      "id": "f-opposite",
+      "type": "position",
+      "term": "opposite",
+      "explanation": "Facing it, on the other side of a road, path or open space.",
+      "speakerLine": "You'll find the gift shop directly opposite the ticket office, on the other side of the path.",
+      "diagram": "opposite",
+      "spell": false
+    },
+    {
+      "id": "f-next-to",
+      "type": "position",
+      "term": "next to / beside",
+      "explanation": "Side by side with something, with nothing else in between.",
+      "speakerLine": "The first-aid post is right next to the visitor centre, so it's very easy to find.",
+      "diagram": "next-to",
+      "spell": false
+    },
+    {
+      "id": "f-adjacent-to",
+      "type": "position",
+      "term": "adjacent to",
+      "explanation": "A formal way of saying \"next to\"; often used for rooms that share a wall.",
+      "speakerLine": "The staffroom is adjacent to the main office, so staff can go straight through.",
+      "diagram": "next-to",
+      "spell": false
+    },
+    {
+      "id": "f-between",
+      "type": "position",
+      "term": "between",
+      "explanation": "With one thing on one side and another thing on the other side.",
+      "speakerLine": "The nature centre sits between the woodland and the lake, at the top of the main path.",
+      "diagram": "between",
+      "spell": false
+    },
+    {
+      "id": "f-in-front-of",
+      "type": "position",
+      "term": "in front of",
+      "explanation": "Near the front or entrance side of something, where you see it first.",
+      "speakerLine": "There's a bike rack in front of the visitor centre, just by the main doors.",
+      "diagram": "in-front-of",
+      "spell": false
+    },
+    {
+      "id": "f-behind",
+      "type": "position",
+      "term": "behind",
+      "explanation": "At the back of something, on the side away from the path or entrance.",
+      "speakerLine": "The staff car park is behind the main building, so you can't see it from the road.",
+      "diagram": "behind",
+      "spell": false
+    },
+    {
+      "id": "f-far-end",
+      "type": "position",
+      "term": "at the far end",
+      "explanation": "At the end that is furthest from you or from where you started.",
+      "speakerLine": "The café is at the far end of the corridor, just past the lecture theatre.",
+      "diagram": "far-end",
+      "spell": false
+    },
+    {
+      "id": "f-in-the-corner",
+      "type": "position",
+      "term": "in the corner",
+      "explanation": "Where two sides or walls meet, or where a path turns sharply.",
+      "speakerLine": "The adventure playground is in the corner where the path bends round to the right.",
+      "diagram": "in-corner",
+      "spell": false
+    },
+    {
+      "id": "f-on-your-left",
+      "type": "position",
+      "term": "on your left-hand side",
+      "explanation": "On the left of the direction you are walking in, not the left of the map.",
+      "speakerLine": "As you walk in, the ticket office is on your left-hand side, next to the car park.",
+      "diagram": "on-left",
+      "spell": false
+    },
+    {
+      "id": "f-on-your-right",
+      "type": "position",
+      "term": "on your right-hand side",
+      "explanation": "On the right of the direction you are walking in, not the right of the map.",
+      "speakerLine": "Just past the crossroads, you'll see the toilets on your right-hand side.",
+      "diagram": "on-right",
+      "spell": false
+    },
+    {
+      "id": "f-just-past",
+      "type": "position",
+      "term": "just past",
+      "explanation": "A little after something, once you have walked by it.",
+      "speakerLine": "The toilets are just past the crossroads, so once you've crossed over, you're nearly there.",
+      "diagram": "just-past",
+      "spell": false
+    },
+    {
+      "id": "f-beyond",
+      "type": "position",
+      "term": "beyond",
+      "explanation": "Further on than something, on the other side of it from you.",
+      "speakerLine": "Beyond the bridge, the path gets quite narrow, so do take care with small children.",
+      "diagram": "just-past",
+      "spell": false
+    },
+    {
+      "id": "f-just-before",
+      "type": "position",
+      "term": "just before",
+      "explanation": "A little before something, so you reach it first.",
+      "speakerLine": "The information point is just before the T-junction, so you'll see it before you have to turn.",
+      "diagram": "just-before",
+      "spell": false
+    },
+    {
+      "id": "f-alongside",
+      "type": "position",
+      "term": "alongside / parallel to",
+      "explanation": "Next to something and running in the same direction along its length.",
+      "speakerLine": "A narrow footpath runs alongside the river, all the way from the mill to the bridge.",
+      "diagram": "alongside",
+      "spell": false
+    },
+    {
+      "id": "f-surrounded-by",
+      "type": "position",
+      "term": "surrounded by",
+      "explanation": "With something on every side of it.",
+      "speakerLine": "The bird hide is surrounded by trees, so it's quite hard to spot from the path.",
+      "diagram": "surrounded-by",
+      "spell": false
+    },
+    {
+      "id": "f-in-the-middle",
+      "type": "position",
+      "term": "in the middle / in the centre",
+      "explanation": "At the central point, the same distance from all the sides.",
+      "speakerLine": "The fountain is right in the middle of the square, so everyone uses it as a meeting point.",
+      "diagram": "in-middle",
+      "spell": false
+    },
+    {
+      "id": "f-at-the-junction",
+      "type": "position",
+      "term": "at the junction of",
+      "explanation": "At the point where two roads or paths meet or cross.",
+      "speakerLine": "The café stands at the junction of the main path and the east path, on the south side.",
+      "diagram": "at-junction",
+      "spell": false
+    },
+    {
+      "id": "f-diagonally-opposite",
+      "type": "position",
+      "term": "diagonally opposite",
+      "explanation": "Across a junction or square, on the corner furthest away, not straight across.",
+      "speakerLine": "The picnic shelter is diagonally opposite the café, on the far corner of the crossroads.",
+      "diagram": "diagonally-opposite",
+      "spell": false
+    },
+    {
+      "id": "f-inside",
+      "type": "position",
+      "term": "inside",
+      "explanation": "Within a building, room or area, not outside it.",
+      "speakerLine": "The information desk is inside the main building, just to the left as you come in.",
+      "diagram": "inside",
+      "spell": false
+    },
+    {
+      "id": "f-straight-on",
+      "type": "movement",
+      "term": "go straight ahead / straight on",
+      "explanation": "Keep walking in the same direction without turning.",
+      "speakerLine": "From the main gate, go straight on until you get to the crossroads.",
+      "diagram": "straight-on",
+      "spell": false
+    },
+    {
+      "id": "f-carry-on",
+      "type": "movement",
+      "term": "carry on / continue along",
+      "explanation": "Keep going along the same path or road for a while longer.",
+      "speakerLine": "Carry on along this path for a few minutes and you'll see the boathouse on your left.",
+      "diagram": "continue-along",
+      "spell": false
+    },
+    {
+      "id": "f-turn-left",
+      "type": "movement",
+      "term": "turn left",
+      "explanation": "Change direction to your own left, whichever way you are facing on the map.",
+      "speakerLine": "When you get to the T-junction, turn left and walk towards the woods.",
+      "diagram": "turn-left",
+      "spell": false
+    },
+    {
+      "id": "f-turn-right",
+      "type": "movement",
+      "term": "turn right",
+      "explanation": "Change direction to your own right, whichever way you are facing on the map.",
+      "speakerLine": "Turn right at the crossroads, and the bike hire is at the end of that path.",
+      "diagram": "turn-right",
+      "spell": false
+    },
+    {
+      "id": "f-second-left",
+      "type": "movement",
+      "term": "take the second turning on the left",
+      "explanation": "Walk past the first path on your left and turn into the next one.",
+      "speakerLine": "Take the second turning on the left, not the first one, or you'll end up in the car park.",
+      "diagram": "second-left",
+      "spell": false
+    },
+    {
+      "id": "f-first-right",
+      "type": "movement",
+      "term": "take the first right",
+      "explanation": "Turn right into the first path or road you come to on that side.",
+      "speakerLine": "Take the first right after the gate, and the reception building is straight in front of you.",
+      "diagram": "first-right",
+      "spell": false
+    },
+    {
+      "id": "f-head-towards",
+      "type": "movement",
+      "term": "head towards",
+      "explanation": "Walk in the direction of something you can see.",
+      "speakerLine": "From the café, head towards the lake and you'll find the boathouse on the shore.",
+      "diagram": "head-towards",
+      "spell": false
+    },
+    {
+      "id": "f-cross-over",
+      "type": "movement",
+      "term": "cross over",
+      "explanation": "Go from one side of a road, path or river to the other side.",
+      "speakerLine": "Cross over the road at the lights, and the museum entrance is right in front of you.",
+      "diagram": "cross-over",
+      "spell": false
+    },
+    {
+      "id": "f-follow-round",
+      "type": "movement",
+      "term": "follow the path round",
+      "explanation": "Keep on the path where it curves or bends, turning as it turns.",
+      "speakerLine": "Follow the path round to the right, and it'll bring you out by the woods.",
+      "diagram": "follow-round",
+      "spell": false
+    },
+    {
+      "id": "f-through-gate",
+      "type": "movement",
+      "term": "go through the gate",
+      "explanation": "Pass from one side of the gate to the other, into the next area.",
+      "speakerLine": "Go through the little gate in the fence, and the vegetable garden is on your left.",
+      "diagram": "through-gate",
+      "spell": false
+    },
+    {
+      "id": "f-go-past",
+      "type": "movement",
+      "term": "go past",
+      "explanation": "Walk by something without stopping or turning there.",
+      "speakerLine": "Go past the toilets, and the information point is the next building on your right.",
+      "diagram": "go-past",
+      "spell": false
+    },
+    {
+      "id": "f-as-far-as",
+      "type": "movement",
+      "term": "as far as / until you reach",
+      "explanation": "Walk until you reach that point, and then stop or change direction.",
+      "speakerLine": "Walk as far as the T-junction, and then you'll need to decide which way to go.",
+      "diagram": "as-far-as",
+      "spell": false
+    },
+    {
+      "id": "f-double-back",
+      "type": "movement",
+      "term": "double back",
+      "explanation": "Turn round and go back the way you have just come.",
+      "speakerLine": "If you get to the bridge, you've gone too far, so you'll need to double back.",
+      "diagram": "double-back",
+      "spell": false
+    },
+    {
+      "id": "f-go-up",
+      "type": "movement",
+      "term": "go up the stairs",
+      "explanation": "Climb the stairs to a higher floor.",
+      "speakerLine": "Go up the stairs to the first floor, and the reading room is straight ahead.",
+      "diagram": "go-up",
+      "spell": false
+    },
+    {
+      "id": "f-go-down",
+      "type": "movement",
+      "term": "go down",
+      "explanation": "Move to a lower level: down stairs, a slope or a hill.",
+      "speakerLine": "Go down the steps towards the river, and the ticket office is at the bottom.",
+      "diagram": "go-down",
+      "spell": false
+    },
+    {
+      "id": "f-crossroads",
+      "type": "feature",
+      "term": "crossroads",
+      "explanation": "A place where two roads or paths cross, so you can go four ways.",
+      "speakerLine": "At the crossroads, turn left, and the visitor centre is on the corner.",
+      "diagram": "crossroads",
+      "spell": true
+    },
+    {
+      "id": "f-t-junction",
+      "type": "feature",
+      "term": "T-junction",
+      "explanation": "Where one path ends at another path, making a T shape. You must turn left or right.",
+      "speakerLine": "The main path ends at a T-junction, and the nature centre is straight in front of you.",
+      "diagram": "t-junction",
+      "spell": true
+    },
+    {
+      "id": "f-roundabout",
+      "type": "feature",
+      "term": "roundabout",
+      "explanation": "A circular junction; traffic goes round it and turns off onto another road.",
+      "speakerLine": "At the roundabout, take the second exit, and the sports centre is on your left.",
+      "diagram": "roundabout",
+      "spell": true
+    },
+    {
+      "id": "f-bend",
+      "type": "feature",
+      "term": "bend",
+      "explanation": "A place where a road or path curves or changes direction.",
+      "speakerLine": "Just after the bend in the road, you'll see the old mill on your right.",
+      "diagram": "bend",
+      "spell": true
+    },
+    {
+      "id": "f-fork",
+      "type": "feature",
+      "term": "fork",
+      "explanation": "A place where one path divides into two paths going in different directions.",
+      "speakerLine": "When the path forks, keep to the left, and it'll take you down to the pond.",
+      "diagram": "fork",
+      "spell": true
+    },
+    {
+      "id": "f-footpath",
+      "type": "feature",
+      "term": "footpath",
+      "explanation": "A narrow path for people walking; cars and usually bikes are not allowed.",
+      "speakerLine": "There's a footpath across the field that takes you straight to the old mill.",
+      "diagram": "footpath",
+      "spell": true
+    },
+    {
+      "id": "f-lane",
+      "type": "feature",
+      "term": "lane",
+      "explanation": "A narrow road, usually in the countryside, often with hedges on both sides.",
+      "speakerLine": "The farm shop is about halfway down the lane, on the right, opposite the church.",
+      "diagram": "lane",
+      "spell": true
+    },
+    {
+      "id": "f-track",
+      "type": "feature",
+      "term": "track",
+      "explanation": "A rough, unpaved path, often used by farm vehicles, bikes or walkers.",
+      "speakerLine": "The track through the woods can get quite muddy, so wear sensible boots.",
+      "diagram": "track",
+      "spell": true
+    },
+    {
+      "id": "f-footbridge",
+      "type": "feature",
+      "term": "footbridge",
+      "explanation": "A narrow bridge for people walking, over a river, road or railway.",
+      "speakerLine": "Cross the river by the footbridge, and the picnic area is just on the other side.",
+      "diagram": "footbridge",
+      "spell": true
+    },
+    {
+      "id": "f-crossing",
+      "type": "feature",
+      "term": "pedestrian crossing",
+      "explanation": "A marked place on a road where people on foot can cross safely.",
+      "speakerLine": "Use the pedestrian crossing outside the station, and the hotel is directly opposite.",
+      "diagram": "crossing",
+      "spell": true
+    },
+    {
+      "id": "f-dead-end",
+      "type": "feature",
+      "term": "dead end",
+      "explanation": "A road or path that stops and goes nowhere; you have to come back the same way.",
+      "speakerLine": "The east path is a dead end, so the bike hire is the only thing down there.",
+      "diagram": "dead-end",
+      "spell": true
+    },
+    {
+      "id": "f-slope",
+      "type": "feature",
+      "term": "slope",
+      "explanation": "Ground that goes gradually up or down, such as a ramp instead of steps.",
+      "speakerLine": "There's a gentle slope up to the main entrance, so it's fine for wheelchairs and pushchairs.",
+      "diagram": "slope",
+      "spell": true
+    },
+    {
+      "id": "f-steps",
+      "type": "feature",
+      "term": "steps",
+      "explanation": "A short set of stairs outside, for example up a hill or into a building.",
+      "speakerLine": "Take the steps down to the beach; they're just to the left of the lifeguard station.",
+      "diagram": "steps",
+      "spell": true
+    },
+    {
+      "id": "f-gate",
+      "type": "feature",
+      "term": "gate",
+      "explanation": "An opening in a fence, wall or hedge that you can close.",
+      "speakerLine": "Please make sure you close the gate behind you, because there are sheep in the next field.",
+      "diagram": "gate",
+      "spell": true
+    },
+    {
+      "id": "f-fence",
+      "type": "feature",
+      "term": "fence",
+      "explanation": "A barrier of wood or wire that marks the edge of an area.",
+      "speakerLine": "The vegetable garden has a high fence round it to keep the rabbits out.",
+      "diagram": "fence",
+      "spell": true
+    },
+    {
+      "id": "f-hedge",
+      "type": "feature",
+      "term": "hedge",
+      "explanation": "A line of bushes growing close together, used like a wall around a field or garden.",
+      "speakerLine": "The picnic area is hidden behind a tall hedge, just to the left of the car park.",
+      "diagram": "hedge",
+      "spell": true
+    },
+    {
+      "id": "f-entrance",
+      "type": "place",
+      "term": "entrance / main gate",
+      "explanation": "The way into a building or site; where most visitors come in.",
+      "speakerLine": "The main entrance is on the south side, facing the car park.",
+      "diagram": "place-entrance",
+      "spell": true
+    },
+    {
+      "id": "f-reception",
+      "type": "place",
+      "term": "reception",
+      "explanation": "The desk or area just inside a building where visitors are welcomed and sign in.",
+      "speakerLine": "When you arrive, please go to reception first to collect your visitor's badge.",
+      "diagram": "place-reception",
+      "spell": true
+    },
+    {
+      "id": "f-car-park",
+      "type": "place",
+      "term": "car park",
+      "explanation": "An area where people leave their cars. American English: parking lot.",
+      "speakerLine": "The car park is on your left as you come in, so drivers don't need to go far.",
+      "diagram": "place-car",
+      "spell": true
+    },
+    {
+      "id": "f-lobby",
+      "type": "place",
+      "term": "lobby",
+      "explanation": "The large open area just inside the main door of a building such as a hotel or theatre.",
+      "speakerLine": "We'll meet in the lobby at nine o'clock, next to the big staircase.",
+      "diagram": "place-lobby",
+      "spell": true
+    },
+    {
+      "id": "f-corridor",
+      "type": "place",
+      "term": "corridor",
+      "explanation": "A long, narrow passage inside a building, with doors to rooms along it.",
+      "speakerLine": "Walk to the end of the corridor, and the computer room is the last door on the right.",
+      "diagram": "corridor",
+      "spell": true
+    },
+    {
+      "id": "f-jetty",
+      "type": "place",
+      "term": "pier / jetty",
+      "explanation": "A platform that goes out over water, where boats stop and people can walk.",
+      "speakerLine": "The rowing boats leave from the jetty, which is on the western shore of the lake.",
+      "diagram": "place-pier",
+      "spell": true
+    },
+    {
+      "id": "f-pond",
+      "type": "place",
+      "term": "pond",
+      "explanation": "A small area of still water, smaller than a lake.",
+      "speakerLine": "The duck pond is just inside the gate, so it's the first thing the children will see.",
+      "diagram": "place-water",
+      "spell": true
+    },
+    {
+      "id": "f-woodland",
+      "type": "place",
+      "term": "woodland",
+      "explanation": "An area of land covered with trees; smaller than a forest.",
+      "speakerLine": "The woodland fills the north-west corner of the park, and there's a bird hide hidden inside it.",
+      "diagram": "place-trees",
+      "spell": true
+    },
+    {
+      "id": "f-picnic-area",
+      "type": "place",
+      "term": "picnic area",
+      "explanation": "An outdoor place with tables and benches where people can eat their own food.",
+      "speakerLine": "The picnic area is on the grass beside the pond, with plenty of tables and benches.",
+      "diagram": "place-picnic",
+      "spell": true
+    },
+    {
+      "id": "f-cloakroom",
+      "type": "place",
+      "term": "cloakroom",
+      "explanation": "A room where you leave your coat and bags while you are in the building.",
+      "speakerLine": "You can leave your coats and bags in the cloakroom, just to the right of the entrance.",
+      "diagram": "place-cloakroom",
+      "spell": true
+    },
+    {
+      "id": "f-ticket-office",
+      "type": "place",
+      "term": "ticket office",
+      "explanation": "The place where you buy tickets before you go in or travel.",
+      "speakerLine": "The ticket office is just inside the main gate, on your left as you come in.",
+      "diagram": "place-ticket",
+      "spell": true
+    },
+    {
+      "id": "f-information-desk",
+      "type": "place",
+      "term": "information desk",
+      "explanation": "A desk where staff answer questions and give out maps and leaflets.",
+      "speakerLine": "If you get lost, ask at the information desk in the middle of the entrance hall.",
+      "diagram": "place-info",
+      "spell": true
+    },
+    {
+      "id": "f-storage-room",
+      "type": "place",
+      "term": "storage room",
+      "explanation": "A room used for keeping equipment and supplies, not for working in.",
+      "speakerLine": "The storage room is at the back of the hall, behind the stage.",
+      "diagram": "place-storage",
+      "spell": true
+    },
+    {
+      "id": "f-staffroom",
+      "type": "place",
+      "term": "staffroom",
+      "explanation": "A room where staff take breaks; visitors and students usually cannot go in.",
+      "speakerLine": "The staffroom is on the first floor, directly above the main office.",
+      "diagram": "place-staffroom",
+      "spell": true
+    },
+    {
+      "id": "f-toilets",
+      "type": "place",
+      "term": "toilets",
+      "explanation": "Rooms with toilets and washbasins. Also called the loos or, on signs, WC.",
+      "speakerLine": "The toilets are just past the crossroads on the right, just south of the information point.",
+      "diagram": "place-toilet",
+      "spell": true
+    },
+    {
+      "id": "f-lift",
+      "type": "place",
+      "term": "lift",
+      "explanation": "A small moving room that carries people between floors. American English: elevator.",
+      "speakerLine": "The lift is at the far end of the lobby, just beyond the stairs.",
+      "diagram": "place-lift",
+      "spell": true
+    },
+    {
+      "id": "f-stairs",
+      "type": "place",
+      "term": "stairs / staircase",
+      "explanation": "A set of steps inside a building going from one floor to another.",
+      "speakerLine": "Take the stairs to the second floor; the lift is out of order this morning.",
+      "diagram": "place-stairs",
+      "spell": true
+    },
+    {
+      "id": "f-trap-correction",
+      "type": "trap",
+      "term": "Corrections: \"left… sorry, I mean right\"",
+      "explanation": "The speaker changes the answer. Always write the last version you hear.",
+      "speakerLine": "The café is on the left of the lobby – oh, sorry, I mean on the right.",
+      "diagram": "trap-correction",
+      "spell": false
+    },
+    {
+      "id": "f-trap-not-first",
+      "type": "trap",
+      "term": "\"Not the first building, but the one after it\"",
+      "explanation": "The first place mentioned is a distractor; count carefully to the building meant.",
+      "speakerLine": "It isn't the first building you come to – the gift shop is the one after that.",
+      "diagram": "trap-not-first",
+      "spell": false
+    },
+    {
+      "id": "f-trap-opposite-next",
+      "type": "trap",
+      "term": "\"Opposite\" vs \"next to\"",
+      "explanation": "Opposite means across a space, facing it. Next to means on the same side, touching.",
+      "speakerLine": "The toilets aren't next to the café – they're opposite it, on the other side of the path.",
+      "diagram": "trap-opposite-vs-next",
+      "spell": false
+    },
+    {
+      "id": "f-trap-before-past",
+      "type": "trap",
+      "term": "\"Just before\" vs \"just past\"",
+      "explanation": "Before means you reach it first; past means you have already gone by the landmark.",
+      "speakerLine": "The picnic area is just past the bridge, not before it, so do cross over first.",
+      "diagram": "trap-before-vs-past",
+      "spell": false
+    },
+    {
+      "id": "f-trap-north-of-side",
+      "type": "trap",
+      "term": "\"North of the lake\" vs \"the north side of the lake\"",
+      "explanation": "North of: outside it, some way off. North side of: on its northern edge or shore.",
+      "speakerLine": "The bird hide is on the north side of the lake, right at the water's edge.",
+      "diagram": "trap-north-of-vs-side",
+      "spell": false
+    },
+    {
+      "id": "f-trap-distance",
+      "type": "trap",
+      "term": "Distances: \"about 50 metres further on\"",
+      "explanation": "Go past the landmark and keep walking that distance; the place is not at the landmark.",
+      "speakerLine": "When you reach the fountain, the shop is about fifty metres further on, on the same side.",
+      "diagram": "trap-distance",
+      "spell": false
+    },
+    {
+      "id": "f-trap-left-right",
+      "type": "trap",
+      "term": "The walker's left vs the map's left",
+      "explanation": "Left and right depend on which way you walk. Walking south, your left is east on the map.",
+      "speakerLine": "As you walk down from the car park, the lake is on your left, so that's the east side.",
+      "diagram": "trap-left-right",
+      "spell": false
+    },
+    {
+      "id": "f-trap-second-turning",
+      "type": "trap",
+      "term": "\"Not the first turning, but the second\"",
+      "explanation": "The speaker rules out one choice before giving the real one. Count the turnings carefully.",
+      "speakerLine": "Don't take the first turning on the right – that just goes to the staff car park. Take the second.",
+      "diagram": "trap-not-first",
+      "spell": false
+    }
   ],
-  "areas": [
-   {
-    "id": "woodland",
-    "kind": "woodland",
-    "label": "Woodland",
-    "rect": [
-     0.04,
-     0.03,
-     0.28,
-     0.18
-    ]
-   },
-   {
-    "id": "lake",
-    "kind": "water",
-    "label": "Lake",
-    "rect": [
-     0.6,
-     0.03,
-     0.32,
-     0.16
+  "map": {
+    "title": "Lakeside Country Park",
+    "north": "up",
+    "paths": [
+      {
+        "id": "main-path",
+        "kind": "road",
+        "points": [
+          [
+            0.5,
+            1.0
+          ],
+          [
+            0.5,
+            0.62
+          ],
+          [
+            0.5,
+            0.3
+          ]
+        ]
+      },
+      {
+        "id": "east-path",
+        "kind": "path",
+        "points": [
+          [
+            0.5,
+            0.62
+          ],
+          [
+            0.88,
+            0.62
+          ]
+        ]
+      },
+      {
+        "id": "west-path",
+        "kind": "path",
+        "points": [
+          [
+            0.5,
+            0.62
+          ],
+          [
+            0.12,
+            0.62
+          ],
+          [
+            0.12,
+            0.3
+          ]
+        ]
+      },
+      {
+        "id": "north-path",
+        "kind": "path",
+        "points": [
+          [
+            0.12,
+            0.3
+          ],
+          [
+            0.88,
+            0.3
+          ]
+        ]
+      }
     ],
-    "oval": true
-   },
-   {
-    "id": "car-park",
-    "kind": "carpark",
-    "label": "Car park",
-    "rect": [
-     0.06,
-     0.8,
-     0.26,
-     0.14
-    ]
-   },
-   {
-    "id": "garden",
-    "kind": "garden",
-    "label": "Walled garden",
-    "rect": [
-     0.68,
-     0.78,
-     0.26,
-     0.16
-    ]
-   }
+    "areas": [
+      {
+        "id": "woodland",
+        "kind": "woodland",
+        "label": "Woodland",
+        "rect": [
+          0.04,
+          0.03,
+          0.28,
+          0.18
+        ]
+      },
+      {
+        "id": "lake",
+        "kind": "water",
+        "label": "Lake",
+        "rect": [
+          0.6,
+          0.03,
+          0.32,
+          0.16
+        ],
+        "oval": true
+      },
+      {
+        "id": "car-park",
+        "kind": "carpark",
+        "label": "Car park",
+        "rect": [
+          0.06,
+          0.8,
+          0.26,
+          0.14
+        ]
+      },
+      {
+        "id": "garden",
+        "kind": "garden",
+        "label": "Walled garden",
+        "rect": [
+          0.68,
+          0.78,
+          0.26,
+          0.16
+        ]
+      }
+    ],
+    "buildings": [
+      {
+        "id": "ticket-office",
+        "label": "Ticket office",
+        "rect": [
+          0.36,
+          0.84,
+          0.1,
+          0.09
+        ],
+        "locate": "The ticket office is just inside the main gate, on your left as you walk in, next to the car park."
+      },
+      {
+        "id": "visitor-centre",
+        "label": "Visitor centre",
+        "rect": [
+          0.34,
+          0.66,
+          0.12,
+          0.1
+        ],
+        "locate": "The visitor centre is on the south-west corner of the crossroads, directly opposite the café."
+      },
+      {
+        "id": "cafe",
+        "label": "Café",
+        "rect": [
+          0.54,
+          0.66,
+          0.12,
+          0.1
+        ],
+        "locate": "The café is on the south-east corner of the crossroads, opposite the visitor centre and directly north of the gift shop."
+      },
+      {
+        "id": "toilets",
+        "label": "Toilets",
+        "rect": [
+          0.54,
+          0.5,
+          0.1,
+          0.09
+        ],
+        "locate": "The toilets are just past the crossroads on your right-hand side as you walk north along the main path."
+      },
+      {
+        "id": "bandstand",
+        "label": "Bandstand",
+        "rect": [
+          0.72,
+          0.4,
+          0.12,
+          0.1
+        ],
+        "locate": "The bandstand stands on its own in the open grass to the east of the main path, north of the east path."
+      },
+      {
+        "id": "boathouse",
+        "label": "Boathouse",
+        "rect": [
+          0.71,
+          0.195,
+          0.1,
+          0.08
+        ],
+        "locate": "The boathouse is on the southern shore of the lake, between the water and the north path."
+      }
+    ],
+    "spots": [
+      {
+        "letter": "A",
+        "rect": [
+          0.54,
+          0.84,
+          0.1,
+          0.09
+        ],
+        "is": "gift-shop",
+        "name": "Gift shop",
+        "locate": "Just inside the main gate on your right-hand side, directly opposite the ticket office."
+      },
+      {
+        "letter": "B",
+        "rect": [
+          0.2,
+          0.66,
+          0.1,
+          0.09
+        ],
+        "is": "first-aid-post",
+        "name": "First-aid post",
+        "locate": "On the south side of the west path, next to the visitor centre on its west side and just north of the car park."
+      },
+      {
+        "letter": "C",
+        "rect": [
+          0.9,
+          0.57,
+          0.08,
+          0.1
+        ],
+        "is": "bike-hire",
+        "name": "Bike hire",
+        "locate": "At the far end of the east path, facing you where the path stops; it is the easternmost building in the park."
+      },
+      {
+        "letter": "D",
+        "rect": [
+          0.36,
+          0.5,
+          0.1,
+          0.09
+        ],
+        "is": "picnic-shelter",
+        "name": "Picnic shelter",
+        "locate": "Just past the crossroads on your left as you walk north, directly opposite the toilets and diagonally opposite the café."
+      },
+      {
+        "letter": "E",
+        "rect": [
+          0.17,
+          0.35,
+          0.12,
+          0.1
+        ],
+        "is": "adventure-playground",
+        "name": "Adventure playground",
+        "locate": "In the corner where the west path bends round to join the north path, just south of the woodland."
+      },
+      {
+        "letter": "F",
+        "rect": [
+          0.54,
+          0.34,
+          0.1,
+          0.09
+        ],
+        "is": "information-point",
+        "name": "Information point",
+        "locate": "On the right-hand side of the main path just before the T-junction, directly north of the toilets."
+      },
+      {
+        "letter": "G",
+        "rect": [
+          0.45,
+          0.17,
+          0.1,
+          0.09
+        ],
+        "is": "nature-centre",
+        "name": "Nature centre",
+        "locate": "Straight ahead at the top of the main path, across the T-junction, between the woodland and the lake."
+      },
+      {
+        "letter": "H",
+        "rect": [
+          0.12,
+          0.08,
+          0.1,
+          0.08
+        ],
+        "is": "bird-hide",
+        "name": "Bird hide",
+        "locate": "In the middle of the woodland in the north-west of the park, surrounded by trees."
+      }
+    ],
+    "start": {
+      "label": "Main gate",
+      "x": 0.5,
+      "y": 0.98
+    }
+  },
+  "whereIsIt": [
+    {
+      "id": "f-w1",
+      "line": "The gift shop is just inside the main gate, directly opposite the ticket office.",
+      "answer": "A",
+      "explain": "Opposite = facing it across the path. The ticket office is west of the path, so the gift shop is on the east side."
+    },
+    {
+      "id": "f-w2",
+      "line": "The first-aid post is right next to the visitor centre, on its west side, just north of the car park.",
+      "answer": "B",
+      "explain": "Next to the visitor centre on the west, with the car park directly to its south."
+    },
+    {
+      "id": "f-w3",
+      "line": "The bike hire is at the very end of the east path. The path doesn't go any further than that.",
+      "answer": "C",
+      "explain": "The east path is a dead end; the building at its end is C."
+    },
+    {
+      "id": "f-w4",
+      "line": "The picnic shelter is just past the crossroads on your left as you walk up from the gate, opposite the toilets.",
+      "answer": "D",
+      "explain": "Walking north, left is west. Just past the crossroads on the west side, facing the toilets."
+    },
+    {
+      "id": "f-w5",
+      "line": "The adventure playground is tucked into the corner where the west path bends round and joins the north path.",
+      "answer": "E",
+      "explain": "The west path turns north and then meets the north path; E sits inside that corner."
+    },
+    {
+      "id": "f-w6",
+      "line": "The information point is on your right, just before you reach the T-junction at the top of the main path.",
+      "answer": "F",
+      "explain": "Walking north, right is east. Just before the T-junction = a little south of it."
+    },
+    {
+      "id": "f-w7",
+      "line": "The nature centre is straight ahead at the end of the main path, across the T-junction, between the woodland and the lake.",
+      "answer": "G",
+      "explain": "The main path ends at a T-junction; G faces it, with woodland to the west and the lake to the east."
+    },
+    {
+      "id": "f-w8",
+      "line": "The bird hide is right in the middle of the woodland, surrounded by trees.",
+      "answer": "H",
+      "explain": "Surrounded by = trees on every side. Only H is inside the woodland."
+    },
+    {
+      "id": "f-w9",
+      "line": "Diagonally opposite the café, on the far corner of the crossroads, you'll find the picnic shelter.",
+      "answer": "D",
+      "explain": "The café is on the south-east corner; the diagonally opposite corner is the north-west one."
+    },
+    {
+      "id": "f-w10",
+      "line": "The information point is directly north of the toilets, on the same side of the main path.",
+      "answer": "F",
+      "explain": "North = towards the top of the map. The next building up from the toilets on the east side is F."
+    },
+    {
+      "id": "f-w11",
+      "line": "The bike hire is the building furthest east in the whole park.",
+      "answer": "C",
+      "explain": "East = the right-hand edge of the map. C is the easternmost building."
+    },
+    {
+      "id": "f-w12",
+      "line": "The adventure playground is just south of the woodland, on the other side of the north path.",
+      "answer": "E",
+      "explain": "South of = below it on the map. H is inside the woodland, not south of it."
+    }
   ],
-  "buildings": [
-   {
-    "id": "ticket-office",
-    "label": "Ticket office",
-    "rect": [
-     0.36,
-     0.84,
-     0.1,
-     0.09
-    ],
-    "locate": "The ticket office is just inside the main gate, on your left as you walk in, next to the car park."
-   },
-   {
-    "id": "visitor-centre",
-    "label": "Visitor centre",
-    "rect": [
-     0.34,
-     0.66,
-     0.12,
-     0.1
-    ],
-    "locate": "The visitor centre is on the south-west corner of the crossroads, directly opposite the café."
-   },
-   {
-    "id": "cafe",
-    "label": "Café",
-    "rect": [
-     0.54,
-     0.66,
-     0.12,
-     0.1
-    ],
-    "locate": "The café is on the south-east corner of the crossroads, opposite the visitor centre and directly north of the gift shop."
-   },
-   {
-    "id": "toilets",
-    "label": "Toilets",
-    "rect": [
-     0.54,
-     0.5,
-     0.1,
-     0.09
-    ],
-    "locate": "The toilets are just past the crossroads on your right-hand side as you walk north along the main path."
-   },
-   {
-    "id": "bandstand",
-    "label": "Bandstand",
-    "rect": [
-     0.72,
-     0.4,
-     0.12,
-     0.1
-    ],
-    "locate": "The bandstand stands on its own in the open grass to the east of the main path, north of the east path."
-   },
-   {
-    "id": "boathouse",
-    "label": "Boathouse",
-    "rect": [
-     0.71,
-     0.195,
-     0.1,
-     0.08
-    ],
-    "locate": "The boathouse is on the southern shore of the lake, between the water and the north path."
-   }
+  "routes": [
+    {
+      "id": "f-r1",
+      "line": "Go straight on from the main gate as far as the crossroads. Turn right there and follow the path to the very end. It's the building facing you.",
+      "answer": "C",
+      "path": [
+        [
+          0.5,
+          0.98
+        ],
+        [
+          0.5,
+          0.62
+        ],
+        [
+          0.88,
+          0.62
+        ]
+      ],
+      "explain": "Walking north, turning right means heading east. The east path is a dead end, and C is at its end."
+    },
+    {
+      "id": "f-r2",
+      "line": "Walk up the main path and go straight over the crossroads. Go past the toilets, and it's the next building on your right.",
+      "answer": "F",
+      "path": [
+        [
+          0.5,
+          0.98
+        ],
+        [
+          0.5,
+          0.62
+        ],
+        [
+          0.5,
+          0.385
+        ]
+      ],
+      "explain": "Walking north, your right is east. After the toilets, the next building on the east side is F."
+    },
+    {
+      "id": "f-r3",
+      "line": "Head up the main path and take the second turning on the left. It's on your left, just before the path bends round to the left.",
+      "answer": "E",
+      "path": [
+        [
+          0.5,
+          0.98
+        ],
+        [
+          0.5,
+          0.3
+        ],
+        [
+          0.23,
+          0.3
+        ]
+      ],
+      "explain": "The first left is at the crossroads, the second is at the T-junction. Walking west, your left is south, so E."
+    },
+    {
+      "id": "f-r4",
+      "line": "Go straight up the main path as far as it goes. Don't turn left or right at the T-junction; the building is right in front of you.",
+      "answer": "G",
+      "path": [
+        [
+          0.5,
+          0.98
+        ],
+        [
+          0.5,
+          0.3
+        ],
+        [
+          0.5,
+          0.26
+        ]
+      ],
+      "explain": "The main path ends at the T-junction, and G faces the end of it."
+    },
+    {
+      "id": "f-r5",
+      "line": "Take the first turning on the left, at the crossroads. Go past the visitor centre, and it's the next building on your left.",
+      "answer": "B",
+      "path": [
+        [
+          0.5,
+          0.98
+        ],
+        [
+          0.5,
+          0.62
+        ],
+        [
+          0.25,
+          0.62
+        ]
+      ],
+      "explain": "Walking north, the first left is the west path. Walking west, your left is south: first the visitor centre, then B."
+    },
+    {
+      "id": "f-r6",
+      "line": "Walk up to the crossroads and cross straight over. It's the first building on your left.",
+      "answer": "D",
+      "path": [
+        [
+          0.5,
+          0.98
+        ],
+        [
+          0.5,
+          0.62
+        ],
+        [
+          0.5,
+          0.545
+        ]
+      ],
+      "explain": "Walking north, your left is west. The first building on that side after the crossroads is D."
+    }
   ],
-  "spots": [
-   {
-    "letter": "A",
-    "rect": [
-     0.54,
-     0.84,
-     0.1,
-     0.09
-    ],
-    "is": "gift-shop",
-    "name": "Gift shop",
-    "locate": "Just inside the main gate on your right-hand side, directly opposite the ticket office."
-   },
-   {
-    "letter": "B",
-    "rect": [
-     0.2,
-     0.66,
-     0.1,
-     0.09
-    ],
-    "is": "first-aid-post",
-    "name": "First-aid post",
-    "locate": "On the south side of the west path, next to the visitor centre on its west side and just north of the car park."
-   },
-   {
-    "letter": "C",
-    "rect": [
-     0.9,
-     0.57,
-     0.08,
-     0.1
-    ],
-    "is": "bike-hire",
-    "name": "Bike hire",
-    "locate": "At the far end of the east path, facing you where the path stops; it is the easternmost building in the park."
-   },
-   {
-    "letter": "D",
-    "rect": [
-     0.36,
-     0.5,
-     0.1,
-     0.09
-    ],
-    "is": "picnic-shelter",
-    "name": "Picnic shelter",
-    "locate": "Just past the crossroads on your left as you walk north, directly opposite the toilets and diagonally opposite the café."
-   },
-   {
-    "letter": "E",
-    "rect": [
-     0.17,
-     0.35,
-     0.12,
-     0.1
-    ],
-    "is": "adventure-playground",
-    "name": "Adventure playground",
-    "locate": "In the corner where the west path bends round to join the north path, just south of the woodland."
-   },
-   {
-    "letter": "F",
-    "rect": [
-     0.54,
-     0.34,
-     0.1,
-     0.09
-    ],
-    "is": "information-point",
-    "name": "Information point",
-    "locate": "On the right-hand side of the main path just before the T-junction, directly north of the toilets."
-   },
-   {
-    "letter": "G",
-    "rect": [
-     0.45,
-     0.17,
-     0.1,
-     0.09
-    ],
-    "is": "nature-centre",
-    "name": "Nature centre",
-    "locate": "Straight ahead at the top of the main path, across the T-junction, between the woodland and the lake."
-   },
-   {
-    "letter": "H",
-    "rect": [
-     0.12,
-     0.08,
-     0.1,
-     0.08
-    ],
-    "is": "bird-hide",
-    "name": "Bird hide",
-    "locate": "In the middle of the woodland in the north-west of the park, surrounded by trees."
-   }
-  ],
-  "start": {
-   "label": "Main gate",
-   "x": 0.5,
-   "y": 0.98
-  }
- },
- "whereIsIt": [
-  {
-   "id": "f-w1",
-   "line": "The gift shop is just inside the main gate, directly opposite the ticket office.",
-   "answer": "A",
-   "explain": "Opposite = facing it across the path. The ticket office is west of the path, so the gift shop is on the east side."
-  },
-  {
-   "id": "f-w2",
-   "line": "The first-aid post is right next to the visitor centre, on its west side, just north of the car park.",
-   "answer": "B",
-   "explain": "Next to the visitor centre on the west, with the car park directly to its south."
-  },
-  {
-   "id": "f-w3",
-   "line": "The bike hire is at the very end of the east path. The path doesn't go any further than that.",
-   "answer": "C",
-   "explain": "The east path is a dead end; the building at its end is C."
-  },
-  {
-   "id": "f-w4",
-   "line": "The picnic shelter is just past the crossroads on your left as you walk up from the gate, opposite the toilets.",
-   "answer": "D",
-   "explain": "Walking north, left is west. Just past the crossroads on the west side, facing the toilets."
-  },
-  {
-   "id": "f-w5",
-   "line": "The adventure playground is tucked into the corner where the west path bends round and joins the north path.",
-   "answer": "E",
-   "explain": "The west path turns north and then meets the north path; E sits inside that corner."
-  },
-  {
-   "id": "f-w6",
-   "line": "The information point is on your right, just before you reach the T-junction at the top of the main path.",
-   "answer": "F",
-   "explain": "Walking north, right is east. Just before the T-junction = a little south of it."
-  },
-  {
-   "id": "f-w7",
-   "line": "The nature centre is straight ahead at the end of the main path, across the T-junction, between the woodland and the lake.",
-   "answer": "G",
-   "explain": "The main path ends at a T-junction; G faces it, with woodland to the west and the lake to the east."
-  },
-  {
-   "id": "f-w8",
-   "line": "The bird hide is right in the middle of the woodland, surrounded by trees.",
-   "answer": "H",
-   "explain": "Surrounded by = trees on every side. Only H is inside the woodland."
-  },
-  {
-   "id": "f-w9",
-   "line": "Diagonally opposite the café, on the far corner of the crossroads, you'll find the picnic shelter.",
-   "answer": "D",
-   "explain": "The café is on the south-east corner; the diagonally opposite corner is the north-west one."
-  },
-  {
-   "id": "f-w10",
-   "line": "The information point is directly north of the toilets, on the same side of the main path.",
-   "answer": "F",
-   "explain": "North = towards the top of the map. The next building up from the toilets on the east side is F."
-  },
-  {
-   "id": "f-w11",
-   "line": "The bike hire is the building furthest east in the whole park.",
-   "answer": "C",
-   "explain": "East = the right-hand edge of the map. C is the easternmost building."
-  },
-  {
-   "id": "f-w12",
-   "line": "The adventure playground is just south of the woodland, on the other side of the north path.",
-   "answer": "E",
-   "explain": "South of = below it on the map. H is inside the woodland, not south of it."
-  }
- ],
- "routes": [
-  {
-   "id": "f-r1",
-   "line": "Go straight on from the main gate as far as the crossroads. Turn right there and follow the path to the very end. It's the building facing you.",
-   "answer": "C",
-   "path": [
-    [
-     0.5,
-     0.98
-    ],
-    [
-     0.5,
-     0.62
-    ],
-    [
-     0.88,
-     0.62
-    ]
-   ],
-   "explain": "Walking north, turning right means heading east. The east path is a dead end, and C is at its end."
-  },
-  {
-   "id": "f-r2",
-   "line": "Walk up the main path and go straight over the crossroads. Go past the toilets, and it's the next building on your right.",
-   "answer": "F",
-   "path": [
-    [
-     0.5,
-     0.98
-    ],
-    [
-     0.5,
-     0.62
-    ],
-    [
-     0.5,
-     0.385
-    ]
-   ],
-   "explain": "Walking north, your right is east. After the toilets, the next building on the east side is F."
-  },
-  {
-   "id": "f-r3",
-   "line": "Head up the main path and take the second turning on the left. It's on your left, just before the path bends round to the left.",
-   "answer": "E",
-   "path": [
-    [
-     0.5,
-     0.98
-    ],
-    [
-     0.5,
-     0.3
-    ],
-    [
-     0.23,
-     0.3
-    ]
-   ],
-   "explain": "The first left is at the crossroads, the second is at the T-junction. Walking west, your left is south, so E."
-  },
-  {
-   "id": "f-r4",
-   "line": "Go straight up the main path as far as it goes. Don't turn left or right at the T-junction; the building is right in front of you.",
-   "answer": "G",
-   "path": [
-    [
-     0.5,
-     0.98
-    ],
-    [
-     0.5,
-     0.3
-    ],
-    [
-     0.5,
-     0.26
-    ]
-   ],
-   "explain": "The main path ends at the T-junction, and G faces the end of it."
-  },
-  {
-   "id": "f-r5",
-   "line": "Take the first turning on the left, at the crossroads. Go past the visitor centre, and it's the next building on your left.",
-   "answer": "B",
-   "path": [
-    [
-     0.5,
-     0.98
-    ],
-    [
-     0.5,
-     0.62
-    ],
-    [
-     0.25,
-     0.62
-    ]
-   ],
-   "explain": "Walking north, the first left is the west path. Walking west, your left is south: first the visitor centre, then B."
-  },
-  {
-   "id": "f-r6",
-   "line": "Walk up to the crossroads and cross straight over. It's the first building on your left.",
-   "answer": "D",
-   "path": [
-    [
-     0.5,
-     0.98
-    ],
-    [
-     0.5,
-     0.62
-    ],
-    [
-     0.5,
-     0.545
-    ]
-   ],
-   "explain": "Walking north, your left is west. The first building on that side after the crossroads is D."
-  }
- ],
- "traps": [
-  {
-   "id": "f-t1",
-   "line": "The café is on the left as you come in – no, sorry, it's on the right.",
-   "question": "Where is the café?",
-   "options": [
-    "on the left",
-    "on the right",
-    "straight ahead"
-   ],
-   "answer": 1,
-   "why": "The speaker corrects herself. The last answer is the one that counts."
-  },
-  {
-   "id": "f-t2",
-   "line": "Don't go into the first building you come to. The gift shop is the one after that.",
-   "question": "Which building is the gift shop?",
-   "options": [
-    "the first building",
-    "the second building",
-    "the last building"
-   ],
-   "answer": 1,
-   "why": "\"The one after that\" means the next building, so the second."
-  },
-  {
-   "id": "f-t3",
-   "line": "The toilets aren't next to the café. They're opposite it, on the other side of the path.",
-   "question": "Where are the toilets?",
-   "options": [
-    "beside the café",
-    "across the path from the café",
-    "behind the café"
-   ],
-   "answer": 1,
-   "why": "Opposite means facing it across the path, not beside it."
-  },
-  {
-   "id": "f-t4",
-   "line": "The picnic area is just past the bridge, so once you've crossed over, you'll see it straight away.",
-   "question": "Where is the picnic area?",
-   "options": [
-    "just before the bridge",
-    "under the bridge",
-    "just after the bridge"
-   ],
-   "answer": 2,
-   "why": "Just past = a little after it, once you have crossed."
-  },
-  {
-   "id": "f-t5",
-   "line": "The bird hide isn't north of the lake. It's on the north side of the lake, right at the water's edge.",
-   "question": "Where is the bird hide?",
-   "options": [
-    "some distance north of the lake",
-    "on the lake's northern shore",
-    "in the middle of the lake"
-   ],
-   "answer": 1,
-   "why": "North side of the lake = on its northern edge, not away from it."
-  },
-  {
-   "id": "f-t6",
-   "line": "When you get to the fountain, keep going. The shop is about fifty metres further on.",
-   "question": "Where is the shop?",
-   "options": [
-    "at the fountain",
-    "fifty metres before the fountain",
-    "fifty metres beyond the fountain"
-   ],
-   "answer": 2,
-   "why": "Further on = after the landmark, in the same direction."
-  },
-  {
-   "id": "f-t7",
-   "line": "We're walking south from the car park now, so the lake is on your left.",
-   "question": "Which side of the map is the lake on?",
-   "options": [
-    "the east side",
-    "the west side",
-    "the north side"
-   ],
-   "answer": 0,
-   "why": "Walking south, your left is east on the map."
-  },
-  {
-   "id": "f-t8",
-   "line": "Don't take the first turning on the right; that only goes to the staff car park. Take the second one.",
-   "question": "Which turning should you take?",
-   "options": [
-    "the first on the right",
-    "the second on the right",
-    "the second on the left"
-   ],
-   "answer": 1,
-   "why": "The first turning is ruled out. The instruction is the second right."
-  },
-  {
-   "id": "f-t9",
-   "line": "The office used to be by the main entrance, but it's moved, and it's now at the end of the corridor.",
-   "question": "Where is the office now?",
-   "options": [
-    "by the main entrance",
-    "at the end of the corridor",
-    "in the lobby"
-   ],
-   "answer": 1,
-   "why": "The first place is where it used to be. Listen for \"now\"."
-  },
-  {
-   "id": "f-t10",
-   "line": "You'll pass the stairs first. The lift is just beyond them, at the far end of the lobby.",
-   "question": "Where is the lift?",
-   "options": [
-    "just before the stairs",
-    "next to the entrance",
-    "just after the stairs, at the far end"
-   ],
-   "answer": 2,
-   "why": "Beyond = further on. You reach the stairs first, then the lift."
-  }
- ]
+  "traps": [
+    {
+      "id": "f-t1",
+      "line": "The café is on the left as you come in – no, sorry, it's on the right.",
+      "question": "Where is the café?",
+      "options": [
+        "on the left",
+        "on the right",
+        "straight ahead"
+      ],
+      "answer": 1,
+      "why": "The speaker corrects herself. The last answer is the one that counts."
+    },
+    {
+      "id": "f-t2",
+      "line": "Don't go into the first building you come to. The gift shop is the one after that.",
+      "question": "Which building is the gift shop?",
+      "options": [
+        "the first building",
+        "the second building",
+        "the last building"
+      ],
+      "answer": 1,
+      "why": "\"The one after that\" means the next building, so the second."
+    },
+    {
+      "id": "f-t3",
+      "line": "The toilets aren't next to the café. They're opposite it, on the other side of the path.",
+      "question": "Where are the toilets?",
+      "options": [
+        "beside the café",
+        "across the path from the café",
+        "behind the café"
+      ],
+      "answer": 1,
+      "why": "Opposite means facing it across the path, not beside it."
+    },
+    {
+      "id": "f-t4",
+      "line": "The picnic area is just past the bridge, so once you've crossed over, you'll see it straight away.",
+      "question": "Where is the picnic area?",
+      "options": [
+        "just before the bridge",
+        "under the bridge",
+        "just after the bridge"
+      ],
+      "answer": 2,
+      "why": "Just past = a little after it, once you have crossed."
+    },
+    {
+      "id": "f-t5",
+      "line": "The bird hide isn't north of the lake. It's on the north side of the lake, right at the water's edge.",
+      "question": "Where is the bird hide?",
+      "options": [
+        "some distance north of the lake",
+        "on the lake's northern shore",
+        "in the middle of the lake"
+      ],
+      "answer": 1,
+      "why": "North side of the lake = on its northern edge, not away from it."
+    },
+    {
+      "id": "f-t6",
+      "line": "When you get to the fountain, keep going. The shop is about fifty metres further on.",
+      "question": "Where is the shop?",
+      "options": [
+        "at the fountain",
+        "fifty metres before the fountain",
+        "fifty metres beyond the fountain"
+      ],
+      "answer": 2,
+      "why": "Further on = after the landmark, in the same direction."
+    },
+    {
+      "id": "f-t7",
+      "line": "We're walking south from the car park now, so the lake is on your left.",
+      "question": "Which side of the map is the lake on?",
+      "options": [
+        "the east side",
+        "the west side",
+        "the north side"
+      ],
+      "answer": 0,
+      "why": "Walking south, your left is east on the map."
+    },
+    {
+      "id": "f-t8",
+      "line": "Don't take the first turning on the right; that only goes to the staff car park. Take the second one.",
+      "question": "Which turning should you take?",
+      "options": [
+        "the first on the right",
+        "the second on the right",
+        "the second on the left"
+      ],
+      "answer": 1,
+      "why": "The first turning is ruled out. The instruction is the second right."
+    },
+    {
+      "id": "f-t9",
+      "line": "The office used to be by the main entrance, but it's moved, and it's now at the end of the corridor.",
+      "question": "Where is the office now?",
+      "options": [
+        "by the main entrance",
+        "at the end of the corridor",
+        "in the lobby"
+      ],
+      "answer": 1,
+      "why": "The first place is where it used to be. Listen for \"now\"."
+    },
+    {
+      "id": "f-t10",
+      "line": "You'll pass the stairs first. The lift is just beyond them, at the far end of the lobby.",
+      "question": "Where is the lift?",
+      "options": [
+        "just before the stairs",
+        "next to the entrance",
+        "just after the stairs, at the far end"
+      ],
+      "answer": 2,
+      "why": "Beyond = further on. You reach the stairs first, then the lift."
+    }
+  ]
 }

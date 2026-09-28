@@ -19,6 +19,9 @@ enum PracticeMode {
   matchPairs('Match pairs', 'plain → Band 8', AppColors.lilac, Mascot.playful, ModeGroup.core),
   buildSentence('Build the sentence', 'Tap words in order', AppColors.peach, Mascot.focused, ModeGroup.core),
   letterTiles('Letter tiles', 'Spell it from tiles', Color(0xFFB9CB7C), Mascot.cheerful, ModeGroup.core),
+  drawTrend('Draw the trend', 'Draw what the word means', AppColors.peach, Mascot.excited, ModeGroup.core),
+  strengthDial('How big?', 'tiny → huge', AppColors.blush, Mascot.confident, ModeGroup.core),
+  bubblePop('Bubble pop', 'Pop only Band 8', Color(0xFF9CC7E4), Mascot.playful, ModeGroup.core),
   flashcards('Flashcards', 'Flip the card', AppColors.blush, Mascot.focused, ModeGroup.side),
   meaningMatch('Meaning match', 'Words you mark', AppColors.lilac, Mascot.confused, ModeGroup.side),
   linkerSort('Linker sort', 'Contrast or result?', AppColors.sand, Mascot.silly, ModeGroup.side),
@@ -41,7 +44,7 @@ enum PracticeMode {
   bool get core => group == ModeGroup.core;
 
   /// Modes shown in the "Build the habit" grid of the quick practice sheet.
-  static const habit = [speedSwipe, swapIt, matchPairs, letterTiles, buildSentence, rewrite, spotPlain, buildParagraph, describe, adjAdv, labelGraph, orderSet];
+  static const habit = [speedSwipe, bubblePop, drawTrend, strengthDial, swapIt, matchPairs, letterTiles, buildSentence, rewrite, spotPlain, buildParagraph, describe, adjAdv, labelGraph, orderSet];
   static const side = [flashcards, meaningMatch, linkerSort, letterRegister];
   static const listening = [mapGaps, whereIsIt, pictureIt, followRoute, spellIt, trapDrill];
 

@@ -168,14 +168,15 @@ class ListeningData {
 
 /// A word from a real-map set (location or direction language).
 class MapWord {
-  const MapWord({required this.term, required this.type, required this.meaning, this.also = const []});
+  const MapWord({required this.term, required this.type, required this.meaning, this.also = const [], this.diagram = ''});
   factory MapWord.fromJson(Map<String, dynamic> j) => MapWord(
         term: j['term'] as String,
         type: j['type'] as String? ?? 'location',
         meaning: j['meaning'] as String,
         also: (j['also'] as List? ?? const []).cast<String>(),
+        diagram: j['diagram'] as String? ?? '',
       );
-  final String term, type, meaning;
+  final String term, type, meaning, diagram;
   final List<String> also;
   bool get isDirection => type == 'direction';
 }

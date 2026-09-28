@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../data/listening_models.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
-import '../practice/modes/listening_modes.dart';
 import '../practice/practice_mode.dart';
 import '../practice/session_builder.dart';
 import '../practice/session_screen.dart';
 import '../services/speech.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
+import '../widgets/diagram.dart';
 import '../widgets/flash_deck.dart';
 import '../theme/app_icons.dart';
 

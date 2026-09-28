@@ -11,6 +11,7 @@ import '../theme/app_theme.dart';
 import '../widgets/common.dart';
 import 'modes/chart_modes.dart';
 import 'modes/game_modes.dart';
+import 'modes/play_modes.dart';
 import 'modes/listening_modes.dart';
 import 'modes/side_modes.dart';
 import 'modes/swap_modes.dart';
@@ -120,6 +121,9 @@ class _SessionScreenState extends State<SessionScreen> {
         SentenceQ q => SentenceView(q),
         TilesQ q => TilesView(q),
         MapGapQ q => MapGapView(q),
+        DrawQ q => DrawView(q),
+        DialQ q => DialView(q),
+        BubbleQ q => BubbleView(q),
       };
 }
 

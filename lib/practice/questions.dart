@@ -236,6 +236,36 @@ class MapGapQ extends Question {
   String get tag => 'Set ${set.number} · ${set.title}';
 }
 
+/// What shape a trend word describes.
+enum TrendShape { up, down, flat, wave }
+
+/// Draw the line a trend word describes ("plummeted" → steep fall).
+class DrawQ extends Question {
+  const DrawQ(this.set, this.word, this.shape);
+  final WordSet set;
+  final SetWord word;
+  final TrendShape shape;
+  @override
+  String get tag => set.head;
+}
+
+/// Tap how big a change a word describes, on a 1–5 scale.
+class DialQ extends Question {
+  const DialQ(this.set, this.word);
+  final WordSet set;
+  final SetWord word;
+  @override
+  String get tag => set.head;
+}
+
+/// Phrases float up as bubbles; pop only the Band 8 ones.
+class BubbleQ extends Question {
+  const BubbleQ(this.items);
+  final List<SpeedCard> items;
+  @override
+  String get tag => '${items.where((i) => i.formal).length} to pop';
+}
+
 extension TopicTitle on SwapTopic {
   /// "Pie" for "Pie chart", "Line" for "Line graph".
   String get shortTitle => switch (id) {

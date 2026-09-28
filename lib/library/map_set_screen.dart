@@ -11,6 +11,7 @@ import '../services/speech.dart';
 import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
+import '../widgets/diagram.dart';
 import '../widgets/flash_deck.dart';
 import '../widgets/shapes.dart';
 
@@ -90,17 +91,15 @@ class MapSetScreen extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
                         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18)),
                         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Container(
-                            padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(color: w.isDirection ? const Color(0xFFE6EDCF) : AppColors.lilac, shape: BoxShape.circle),
-                            child: Icon(w.isDirection ? AppIcons.arrow : AppIcons.map, size: 15),
-                          ),
-                          const SizedBox(width: 10),
+                          DiagramIcon(w.diagram, size: 58),
+                          const SizedBox(width: 12),
                           Expanded(
                             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                               Text(w.also.isEmpty ? w.term : '${w.term} / ${w.also.join(' / ')}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                               const SizedBox(height: 2),
                               Text(w.meaning, style: const TextStyle(fontSize: 13.5, height: 1.35, color: AppColors.inkSoft)),
+                              const SizedBox(height: 6),
+                              TagChip(w.isDirection ? 'Direction' : 'Location', color: w.isDirection ? const Color(0xFFE6EDCF) : AppColors.lilac),
                             ]),
                           ),
                           GestureDetector(onTap: () => Speech.instance.speak(w.term), child: const Padding(padding: EdgeInsets.all(4), child: Icon(AppIcons.speak, size: 18))),
@@ -231,7 +230,10 @@ class _MapDeck extends StatelessWidget {
               RoundIconButton(icon: AppIcons.speak, tooltip: 'Hear it', color: AppColors.cream, onTap: () => Speech.instance.speak(s.text)),
             ]),
             const SizedBox(height: 8),
-            Text(s.term, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700, height: 1.1)),
+            Row(children: [
+              Expanded(child: Text(s.term, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700, height: 1.1))),
+              if (w != null && w.diagram.isNotEmpty) DiagramIcon(w.diagram, size: 70),
+            ]),
             if (w != null) ...[
               const SizedBox(height: 6),
               Text(w.meaning, style: const TextStyle(fontSize: 16, height: 1.4)),

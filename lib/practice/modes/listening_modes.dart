@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -7,6 +6,7 @@ import '../../library/map_set_screen.dart';
 import '../../services/speech.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/common.dart';
+import '../../widgets/diagram.dart';
 import '../../widgets/shapes.dart';
 import '../questions.dart';
 import '../session_controller.dart';
@@ -452,7 +452,7 @@ class _PictureViewState extends State<PictureView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(child: CustomPaint(painter: _DiagramPainter(o.diagram))),
+                        Expanded(child: LayoutBuilder(builder: (context, c) => DiagramIcon(o.diagram, size: c.biggest.shortestSide))),
                         const SizedBox(height: 6),
                         Text(o.term, textAlign: TextAlign.center, style: const TextStyle(fontSize: 11.5)),
                       ],
@@ -469,106 +469,6 @@ class _PictureViewState extends State<PictureView> {
 
 /// A small schematic icon for a direction/position diagram key (e.g.
 /// "opposite", "t-junction", "compass-ne"). Falls back to a plain dot label
-/// for any key this doesn't recognise by name, so new content never crashes.
-class _DiagramPainter extends CustomPainter {
-  _DiagramPainter(this.key_);
-  final String key_;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final c = Offset(size.width / 2, size.height / 2);
-    final ink = Paint()
-      ..color = AppColors.ink
-      ..strokeWidth = 2.4
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-    final dot = Paint()..color = AppColors.rust;
-    final r = size.shortestSide / 2 - 4;
-
-    void marker(Offset o) => canvas.drawCircle(o, 4.5, dot);
-
-    if (key_.startsWith('compass')) {
-      canvas.drawCircle(c, r, ink);
-      final dir = key_.split('-').skip(1).join('-');
-      final angle = switch (dir) {
-        'n' => -1.5708,
-        'ne' => -0.7854,
-        'e' => 0.0,
-        'se' => 0.7854,
-        's' => 1.5708,
-        'sw' => 2.3562,
-        'w' => 3.1416,
-        'nw' => -2.3562,
-        _ => -1.5708,
-      };
-      final tip = Offset(c.dx + r * 0.8 * math.cos(angle), c.dy + r * 0.8 * math.sin(angle));
-      canvas.drawLine(c, tip, ink..strokeWidth = 3);
-      marker(tip);
-    } else if (key_ == 'opposite') {
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r, c.dy), ink);
-      canvas.drawRect(Rect.fromCenter(center: Offset(c.dx - r, c.dy), width: 10, height: 10), dot);
-      canvas.drawRect(Rect.fromCenter(center: Offset(c.dx + r, c.dy), width: 10, height: 10), Paint()..color = AppColors.olive);
-    } else if (key_ == 'adjacent' || key_ == 'beside' || key_ == 'next-to') {
-      canvas.drawRect(Rect.fromCenter(center: Offset(c.dx - 10, c.dy), width: 14, height: 14), dot);
-      canvas.drawRect(Rect.fromCenter(center: Offset(c.dx + 10, c.dy), width: 14, height: 14), Paint()..color = AppColors.olive);
-    } else if (key_ == 'between') {
-      canvas.drawRect(Rect.fromCenter(center: Offset(c.dx - r, c.dy), width: 10, height: 10), Paint()..color = AppColors.stone);
-      canvas.drawRect(Rect.fromCenter(center: Offset(c.dx + r, c.dy), width: 10, height: 10), Paint()..color = AppColors.stone);
-      canvas.drawCircle(c, 6, dot);
-    } else if (key_.contains('t-junction')) {
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r, c.dy), ink);
-      canvas.drawLine(c, Offset(c.dx, c.dy - r), ink);
-    } else if (key_.contains('crossroads')) {
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r, c.dy), ink);
-      canvas.drawLine(Offset(c.dx, c.dy - r), Offset(c.dx, c.dy + r), ink);
-    } else if (key_.contains('roundabout')) {
-      canvas.drawCircle(c, r * 0.4, ink);
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx - r * 0.4, c.dy), ink);
-      canvas.drawLine(Offset(c.dx + r * 0.4, c.dy), Offset(c.dx + r, c.dy), ink);
-      canvas.drawLine(Offset(c.dx, c.dy - r), Offset(c.dx, c.dy - r * 0.4), ink);
-    } else if (key_.contains('fork')) {
-      canvas.drawLine(Offset(c.dx, c.dy + r), c, ink);
-      canvas.drawLine(c, Offset(c.dx - r * .7, c.dy - r), ink);
-      canvas.drawLine(c, Offset(c.dx + r * .7, c.dy - r), ink);
-    } else if (key_.contains('bend') || key_.contains('curve')) {
-      final path = Path()
-        ..moveTo(c.dx - r, c.dy + r * .6)
-        ..quadraticBezierTo(c.dx - r * .2, c.dy - r * .6, c.dx + r, c.dy - r * .6);
-      canvas.drawPath(path, ink);
-    } else if (key_.contains('dead-end') || key_.contains('deadend')) {
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r * .3, c.dy), ink);
-      canvas.drawLine(Offset(c.dx + r * .3, c.dy - 8), Offset(c.dx + r * .3, c.dy + 8), ink..strokeWidth = 3);
-    } else if (key_.contains('corner')) {
-      canvas.drawLine(Offset(c.dx - r, c.dy + r), Offset(c.dx - r, c.dy - r), ink);
-      canvas.drawLine(Offset(c.dx - r, c.dy - r), Offset(c.dx + r, c.dy - r), ink);
-      marker(Offset(c.dx - r, c.dy - r));
-    } else if (key_.contains('far-end') || key_.contains('far end')) {
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r, c.dy), ink);
-      marker(Offset(c.dx + r, c.dy));
-    } else if (key_.contains('arrow')) {
-      canvas.drawLine(Offset(c.dx - r, c.dy), Offset(c.dx + r, c.dy), ink..strokeWidth = 3);
-      canvas.drawLine(Offset(c.dx + r, c.dy), Offset(c.dx + r - 8, c.dy - 7), ink);
-      canvas.drawLine(Offset(c.dx + r, c.dy), Offset(c.dx + r - 8, c.dy + 7), ink);
-    } else {
-      // Generic fallback: a simple location pin.
-      canvas.drawCircle(c.translate(0, -4), r * 0.55, dot);
-      canvas.drawLine(c.translate(0, r * 0.1), c.translate(0, r * 0.9), ink);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _DiagramPainter old) => old.key_ != key_;
-}
-
-/// Public wrapper so other screens (e.g. listening flashcards) can show the
-/// same schematic diagram as "Picture it".
-class DiagramIcon extends StatelessWidget {
-  const DiagramIcon(this.diagram, {super.key, this.size = 90});
-  final String diagram;
-  final double size;
-  @override
-  Widget build(BuildContext context) => SizedBox(width: size, height: size, child: CustomPaint(painter: _DiagramPainter(diagram)));
-}
 
 // ------------------------------------------------------------ Follow the route
 

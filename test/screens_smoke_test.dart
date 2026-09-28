@@ -244,6 +244,31 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text('Continue').evaluate().isNotEmpty || find.text('Got it').evaluate().isNotEmpty, isTrue);
 
+    // Draw the trend: drag a line across the canvas, then Check.
+    await start(PracticeMode.drawTrend);
+    final canvas = find.byType(AspectRatio).last;
+    await tester.dragFrom(tester.getTopLeft(canvas) + const Offset(20, 150), const Offset(300, -60));
+    await _settle(tester, frames: 3);
+    await tester.tap(find.text('Check'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('Continue').evaluate().isNotEmpty || find.text('Got it').evaluate().isNotEmpty, isTrue);
+
+    // How big?: tap level 3.
+    await start(PracticeMode.strengthDial);
+    await tester.tap(find.text('neutral'));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('Continue').evaluate().isNotEmpty || find.text('Got it').evaluate().isNotEmpty, isTrue);
+
+    // Bubble pop: let every bubble float away; the round ends by itself.
+    await start(PracticeMode.bubblePop);
+    for (var i = 0; i < 30 && find.text('Got it').evaluate().isEmpty && find.text('Continue').evaluate().isEmpty; i++) {
+      await tester.pump(const Duration(seconds: 1));
+    }
+    expect(tester.takeException(), isNull);
+    expect(find.text('Got it').evaluate().isNotEmpty || find.text('Continue').evaluate().isNotEmpty, isTrue);
+
     // Letter tiles: use the hint, then undo.
     await start(PracticeMode.letterTiles);
     await tester.tap(find.text('💡 First letter'));

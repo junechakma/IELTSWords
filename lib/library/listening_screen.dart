@@ -12,6 +12,7 @@ import '../theme/app_theme.dart';
 import '../state/providers.dart';
 import '../theme/app_icons.dart';
 import '../widgets/common.dart';
+import '../widgets/diagram.dart';
 import '../widgets/shapes.dart';
 import 'listening_deck_screen.dart';
 import 'map_set_screen.dart';
@@ -133,12 +134,8 @@ class _ListeningScreenState extends ConsumerState<ListeningScreen> {
                     padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
                     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18)),
                     child: Row(children: [
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(color: AppColors.cream, borderRadius: BorderRadius.circular(12)),
-                        child: DiagramIcon(i.diagram, size: 40),
-                      ),
-                      const SizedBox(width: 12),
+                      DiagramIcon(i.diagram, size: 64),
+                      const SizedBox(width: 14),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -53,6 +53,9 @@ class SessionBuilder {
       PracticeMode.buildSentence => _sentences(_pool(r, topic), n),
       PracticeMode.letterTiles => _tiles(_pool(r, topic), n),
       PracticeMode.mapGaps => _mapGaps(r.topicId, n),
+      PracticeMode.drawTrend => _draw(n),
+      PracticeMode.strengthDial => _dial(n),
+      PracticeMode.bubblePop => _bubbles(_pool(r, topic)),
       PracticeMode.whereIsIt => [for (final q in _shuffled(repo.listening.whereIsIt).take(8)) WhereQ(q, repo.listening.map)],
       PracticeMode.pictureIt => _picture(),
       PracticeMode.followRoute => [for (final q in _shuffled(repo.listening.routes).take(5)) RouteQ(q, repo.listening.map)],
@@ -266,6 +269,32 @@ class SessionBuilder {
       for (final (m, s) in _shuffled(items).take(setId == null ? n.clamp(5, 10) : items.length))
         MapGapQ(m, s, _shuffled({s.term, ..._shuffled([for (final w in m.words) if (w.term != s.term) w.term]).take(3)})),
     ];
+  }
+
+  // ---- trend-shape modes (from the word sets) ----
+
+  List<(WordSet, SetWord, TrendShape)> get _trendWords => [
+        for (final set in repo.wordSets)
+          for (final w in set.words)
+            if (set.id == 'increase') (set, w, TrendShape.up)
+            else if (set.id == 'decrease') (set, w, TrendShape.down)
+            else if (set.id == 'no-change' && w.w != 'plateaued') (set, w, TrendShape.flat)
+            else if (set.id == 'fluctuation') (set, w, TrendShape.wave),
+      ];
+
+  List<Question> _draw(int n) => [for (final (s, w, shape) in _shuffled(_trendWords).take(n.clamp(4, 8))) DrawQ(s, w, shape)];
+
+  List<Question> _dial(int n) {
+    final words = [for (final s in repo.wordSets) if (s.scale && s.steps.length >= 3) for (final w in s.words) if (w.strength > 0) (s, w)];
+    return [for (final (s, w) in _shuffled(words).take(n.clamp(5, 10))) DialQ(s, w)];
+  }
+
+  /// ~16 bubbles: half Band 8 phrases, half plain.
+  List<Question> _bubbles(List<Swap> pool) {
+    final short = [for (final s in pool) if (s.best.length <= 24 && s.plain.length <= 24) s];
+    final picked = _pick(short.length >= 8 ? short : pool, 16);
+    if (picked.length < 6) return const [];
+    return [BubbleQ([for (final (i, s) in picked.indexed) SpeedCard(s, formal: i.isEven)]..shuffle(rnd))];
   }
 
   // ---- game modes ----
