@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ielts_words/services/sound_fx.dart';
 import 'package:ielts_words/data/vocab_repository.dart';
 import 'package:ielts_words/home/home_screen.dart';
 import 'package:ielts_words/library/chart_screen.dart';
@@ -63,6 +64,7 @@ Future<void> _settle(WidgetTester tester, {int frames = 8}) async {
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;
   Speech.disabled = true; // no platform channel in widget tests
+  SoundFx.disabled = true;
 
   late VocabRepository repo;
 

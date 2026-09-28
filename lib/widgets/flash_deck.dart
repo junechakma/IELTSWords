@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../services/sound_fx.dart';
 import '../theme/app_theme.dart';
 import 'common.dart';
 import '../theme/app_icons.dart';
@@ -55,6 +56,7 @@ class _FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin
   }
 
   void _flip() {
+    SoundFx.instance.play(Sfx.flip);
     if (_c.value < .5) {
       _c.forward();
       widget.onFlippedToBack?.call();

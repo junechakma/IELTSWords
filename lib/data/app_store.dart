@@ -21,6 +21,7 @@ class Settings {
     this.reminderOn = false,
     this.reminderMinutes = 20 * 60,
     this.readAloud = false,
+    this.soundOn = true,
   });
 
   /// Buddy choices in the profile.
@@ -34,6 +35,7 @@ class Settings {
   final bool reminderOn;
   final int reminderMinutes;
   final bool readAloud;
+  final bool soundOn;
 
   Settings copyWith({
     String? name,
@@ -44,6 +46,7 @@ class Settings {
     bool? reminderOn,
     int? reminderMinutes,
     bool? readAloud,
+    bool? soundOn,
   }) =>
       Settings(
         name: clearName ? null : (name ?? this.name),
@@ -53,6 +56,7 @@ class Settings {
         reminderOn: reminderOn ?? this.reminderOn,
         reminderMinutes: reminderMinutes ?? this.reminderMinutes,
         readAloud: readAloud ?? this.readAloud,
+        soundOn: soundOn ?? this.soundOn,
       );
 }
 

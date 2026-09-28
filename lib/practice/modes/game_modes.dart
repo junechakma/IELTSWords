@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../services/sound_fx.dart';
 import '../../data/swap_models.dart';
 import '../../mascots/mascot.dart';
 import '../../mascots/mascot_image.dart';
@@ -280,7 +281,7 @@ class _MatchViewState extends State<MatchView> {
     final l = _selL!, r = _selR!;
     final c = sessionOf(context);
     if (l == r) {
-      HapticFeedback.lightImpact();
+      SoundFx.instance.play(Sfx.match);
       setState(() {
         _matched.add(l);
         _selL = _selR = null;
@@ -294,7 +295,7 @@ class _MatchViewState extends State<MatchView> {
         ));
       }
     } else {
-      HapticFeedback.heavyImpact();
+      SoundFx.instance.play(Sfx.wrong);
       if (_missed.add(l)) await c.record(l, correct: false, core: false, isSwap: true);
       setState(() => _wrong = (l, r));
       await Future.delayed(const Duration(milliseconds: 500));

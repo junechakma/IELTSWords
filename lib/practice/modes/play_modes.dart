@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../services/sound_fx.dart';
 import '../../mascots/mascot.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/common.dart';
@@ -331,11 +332,11 @@ class _BubbleViewState extends State<BubbleView> with SingleTickerProviderStateM
     final item = widget.q.items[i];
     final c = sessionOf(context);
     if (item.formal) {
-      HapticFeedback.lightImpact();
+      SoundFx.instance.play(Sfx.pop);
       setState(() => _popped.add(i));
       await c.record(item.swap.id, correct: true, core: false, isSwap: true);
     } else {
-      HapticFeedback.heavyImpact();
+      SoundFx.instance.play(Sfx.wrong);
       setState(() {
         _wrong.add(i);
         _shake = i;

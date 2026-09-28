@@ -6,6 +6,7 @@ import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
 import '../progress/spaced_repetition.dart';
 import '../services/reminders.dart';
+import '../services/sound_fx.dart';
 import '../state/providers.dart';
 import '../theme/app_icons.dart';
 import '../theme/app_theme.dart';
@@ -161,6 +162,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 icon: AppIcons.speak,
                 label: 'Read Band 8 sentences aloud',
                 trailing: Switch(value: settings.readAloud, activeThumbColor: Colors.white, activeTrackColor: AppColors.olive, onChanged: notifier.setReadAloud),
+              ),
+              const Divider(height: 1, color: AppColors.line, indent: 16, endIndent: 16),
+              _Row(
+                icon: AppIcons.sound,
+                label: 'Game sounds',
+                trailing: Switch(
+                  value: settings.soundOn,
+                  activeThumbColor: Colors.white,
+                  activeTrackColor: AppColors.olive,
+                  onChanged: (v) async {
+                    await notifier.setSound(v);
+                    if (v) SoundFx.instance.play(Sfx.tap);
+                  },
+                ),
               ),
             ]),
           ),

@@ -29,6 +29,7 @@ const _kTracks = 'tracks';
 const _kReminderOn = 'reminderOn';
 const _kReminderMinutes = 'reminderMinutes';
 const _kReadAloud = 'readAloud';
+const _kSoundOn = 'soundOn';
 
 final settingsProvider = NotifierProvider<SettingsNotifier, Settings>(SettingsNotifier.new);
 
@@ -48,6 +49,7 @@ class SettingsNotifier extends Notifier<Settings> {
       reminderOn: p.getBool(_kReminderOn) ?? false,
       reminderMinutes: p.getInt(_kReminderMinutes) ?? 20 * 60,
       readAloud: p.getBool(_kReadAloud) ?? false,
+      soundOn: p.getBool(_kSoundOn) ?? true,
     );
   }
 
@@ -83,6 +85,11 @@ class SettingsNotifier extends Notifier<Settings> {
   Future<void> setReadAloud(bool v) async {
     state = state.copyWith(readAloud: v);
     await _p.setBool(_kReadAloud, v);
+  }
+
+  Future<void> setSound(bool v) async {
+    state = state.copyWith(soundOn: v);
+    await _p.setBool(_kSoundOn, v);
   }
 }
 

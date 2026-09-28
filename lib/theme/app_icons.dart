@@ -25,6 +25,7 @@ abstract final class AppIcons {
   static const IconData heart = PhosphorIconsRegular.heart;
   static const IconData heartOn = PhosphorIconsFill.heart;
   static const IconData speak = PhosphorIconsRegular.speakerHigh;
+  static const IconData sound = PhosphorIconsRegular.musicNotes;
   static const IconData flip = PhosphorIconsRegular.handTap;
   static const IconData cards = PhosphorIconsRegular.cards;
   static const IconData check = PhosphorIconsBold.check;

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../progress/spaced_repetition.dart';
+import '../services/sound_fx.dart';
 import '../state/providers.dart';
 import 'practice_mode.dart';
 import 'questions.dart';
@@ -68,6 +69,7 @@ class SessionController extends ChangeNotifier {
   /// Shows the feedback panel for the current question.
   void answer(AnswerFeedback f) {
     feedback = f;
+    SoundFx.instance.play(f.verdict == Verdict.right ? Sfx.correct : Sfx.wrong);
     notifyListeners();
   }
 
@@ -85,6 +87,7 @@ class SessionController extends ChangeNotifier {
     if (finished) return;
     finished = true;
     if (practised.isNotEmpty) await activity.recordPractice(practised.length);
+    SoundFx.instance.play(Sfx.celebrate);
     notifyListeners();
   }
 }

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'data/vocab_repository.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'onboarding/splash_screen.dart';
+import 'services/sound_fx.dart';
 import 'shell/app_shell.dart';
 import 'state/providers.dart';
 import 'theme/app_theme.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
     repoProvider.overrideWithValue(repo),
     sharedPrefsProvider.overrideWithValue(prefs),
   ]);
+  container.listen(settingsProvider.select((s) => s.soundOn), (_, on) => SoundFx.instance.enabled = on, fireImmediately: true);
   if (_demoActivity) container.read(activityProvider.notifier).seedDemo();
   runApp(UncontrolledProviderScope(container: container, child: const IeltsWordsApp()));
 }
