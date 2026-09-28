@@ -9,7 +9,8 @@
     "part_e_letters.json"
   ],
   "swaps": [
-    "task1_by_chart.json"
+    "task1_by_chart.json",
+    "task2_letters.json"
   ],
   "wordSets": "word_sets.json",
   "listening": "part_f_listening_maps.json"
