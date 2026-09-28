@@ -39,6 +39,16 @@ class SwapTypeQ extends Question {
   String get tag => '${topic.shortTitle} · ${swap.slot.label}';
 }
 
+/// Band 8 sentence with the swap blanked out; tap the word that fits.
+class FillGapQ extends Question {
+  const FillGapQ(this.swap, this.topic, this.options);
+  final Swap swap;
+  final SwapTopic topic;
+  final List<Option> options;
+  @override
+  String get tag => '${topic.shortTitle} · ${swap.slot.label}';
+}
+
 class RewriteQ extends Question {
   const RewriteQ(this.item, this.topic, this.options);
   final RewriteItem item;

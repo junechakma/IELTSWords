@@ -100,6 +100,132 @@ class _SwapChoiceViewState extends State<SwapChoiceView> {
   }
 }
 
+// ------------------------------------------------------------ Fill the gap
+
+class FillGapView extends StatefulWidget {
+  const FillGapView(this.q, {super.key});
+  final FillGapQ q;
+  @override
+  State<FillGapView> createState() => _FillGapViewState();
+}
+
+class _FillGapViewState extends State<FillGapView> {
+  int? _picked;
+
+  Future<void> _pick(int i) async {
+    if (_picked != null) return;
+    setState(() => _picked = i);
+    final s = widget.q.swap;
+    final o = widget.q.options[i];
+    final c = sessionOf(context);
+    await c.record(s.id, correct: o.correct, isSwap: true);
+    if (!mounted) return;
+    if (o.correct) maybeSpeak(context, s.formalSentence);
+    c.answer(swapFeedback(s, verdict: o.correct ? Verdict.right : (o.tooPlain ? Verdict.tooPlain : Verdict.wrong), why: o.why == null ? null : '“${o.text}”: ${o.why}'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = widget.q.swap;
+    final (before, after) = s.formalParts;
+    final picked = _picked == null ? null : widget.q.options[_picked!];
+    final right = picked?.correct ?? false;
+    final gap = AnimatedContainer(
+      duration: const Duration(milliseconds: 220),
+      margin: const EdgeInsets.symmetric(horizontal: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+      constraints: const BoxConstraints(minWidth: 90),
+      decoration: BoxDecoration(
+        color: picked == null ? AppColors.cream : (right ? const Color(0xFFDCE8B8) : const Color(0xFFF8DAD3)),
+        borderRadius: BorderRadius.circular(10),
+        border: Border(bottom: BorderSide(color: picked == null ? AppColors.ink : (right ? AppColors.olive : AppColors.rust), width: 2.5)),
+      ),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 220),
+        transitionBuilder: (c, a) => ScaleTransition(scale: a, child: c),
+        child: Text(
+          picked?.text ?? ' ',
+          key: ValueKey(picked?.text),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.w700,
+            color: picked == null || right ? AppColors.ink : AppColors.rust,
+            decoration: picked != null && !right ? TextDecoration.lineThrough : null,
+            decorationColor: AppColors.rust,
+          ),
+        ),
+      ),
+    );
+    return SessionFrame(
+      header: PromptCard(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text.rich(TextSpan(style: const TextStyle(fontSize: 13.5, color: AppColors.inkSoft), children: [
+            const TextSpan(text: 'Instead of  '),
+            TextSpan(text: s.plain, style: const TextStyle(color: AppColors.rust, decoration: TextDecoration.lineThrough, decorationColor: AppColors.rust)),
+          ])),
+          const SizedBox(height: 10),
+          Text.rich(TextSpan(style: const TextStyle(fontSize: 19, height: 1.6, color: AppColors.ink), children: [
+            TextSpan(text: before),
+            WidgetSpan(alignment: PlaceholderAlignment.middle, child: gap),
+            TextSpan(text: after),
+          ])),
+        ]),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(padding: EdgeInsets.fromLTRB(2, 8, 0, 12), child: Text('Tap the word that fills the gap:', style: TextStyle(color: AppColors.inkSoft, fontSize: 14.5))),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              for (final (i, o) in widget.q.options.indexed)
+                _GapChip(
+                  text: o.text,
+                  state: _picked == null ? AnswerState.idle : (o.correct ? AnswerState.right : (i == _picked ? AnswerState.wrong : AnswerState.idle)),
+                  used: i == _picked,
+                  onTap: () => _pick(i),
+                ).animate(delay: (60 * i).ms).fadeIn(duration: 250.ms).scaleXY(begin: .9, end: 1),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _GapChip extends StatelessWidget {
+  const _GapChip({required this.text, required this.state, required this.used, required this.onTap});
+  final String text;
+  final AnswerState state;
+  final bool used;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final (bg, border) = switch (state) {
+      AnswerState.right => (const Color(0xFFDCE8B8), AppColors.olive),
+      AnswerState.wrong => (const Color(0xFFF8DAD3), AppColors.rust),
+      _ => (Colors.white, const Color(0xFFE2DCD0)),
+    };
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 13),
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: border, width: 2),
+          boxShadow: const [BoxShadow(color: Color(0x10000000), offset: Offset(0, 3))],
+        ),
+        child: Text(text, style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.w600, color: used && state == AnswerState.idle ? AppColors.inkSoft : AppColors.ink)),
+      ),
+    );
+  }
+}
+
 // ------------------------------------------------------------ Swap it · type
 
 class SwapTypeView extends StatefulWidget {

@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ielts_words/services/sound_fx.dart';
 import 'package:ielts_words/data/vocab_repository.dart';
 import 'package:ielts_words/home/home_screen.dart';
+import 'package:ielts_words/library/word_list_screen.dart';
 import 'package:ielts_words/library/chart_screen.dart';
 import 'package:ielts_words/library/library_screen.dart';
 import 'package:ielts_words/library/listening_screen.dart';
@@ -20,6 +21,7 @@ import 'package:ielts_words/library/swap_deck_screen.dart';
 import 'package:ielts_words/library/word_set_deck_screen.dart';
 import 'package:ielts_words/library/word_sets_screen.dart';
 import 'package:ielts_words/onboarding/onboarding_screen.dart';
+import 'package:ielts_words/practice/modes/swap_modes.dart';
 import 'package:ielts_words/practice/practice_mode.dart';
 import 'package:ielts_words/practice/quick_practice_sheet.dart';
 import 'package:ielts_words/practice/session_builder.dart';
@@ -456,10 +458,52 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text('Choose a practice'), findsOneWidget);
 
-    await tester.tap(find.text(PracticeMode.swapIt.title));
+    await tester.tap(find.text(PracticeMode.fillGap.title).last);
     await _settle(tester);
     expect(tester.takeException(), isNull);
     expect(find.byIcon(AppIcons.close), findsOneWidget);
+    expect(find.text('Tap the word that fills the gap:'), findsOneWidget);
+  });
+
+  testWidgets('Plain → Band 8 list: pair cards, filter, grid, swipe deck', (tester) async {
+    _phone(tester);
+    await tester.pumpWidget(_harness(const WordListScreen()));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.byType(SwapPairCard), findsWidgets);
+    expect(find.text('YOU’D WRITE'), findsWidgets);
+
+    await tester.tap(find.text('Line'));
+    await _settle(tester);
+    await tester.tap(find.byIcon(AppIcons.grid));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+
+    await tester.tap(find.byType(SwapPairCard).first);
+    await _settle(tester);
+    expect(find.byType(WordPairDeck), findsOneWidget);
+    expect(find.text('BAND 8'), findsWidgets);
+    await tester.drag(find.byType(PageView), const Offset(-400, 0));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('2 / ${repo.topic('line').swaps.length}'), findsOneWidget);
+  });
+
+  testWidgets('Fill the gap: tapping the Band 8 word fills the blank', (tester) async {
+    _phone(tester);
+    await tester.pumpWidget(_harness(const HomeScreen()));
+    await _settle(tester);
+    final ctx = tester.element(find.byType(HomeScreen));
+    final chart = repo.charts.first;
+    startPractice(ctx, SessionRequest(PracticeMode.fillGap, topicId: chart.id, size: 2));
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    final state = tester.state(find.byType(FillGapView)) as dynamic;
+    final q = (state.widget as FillGapView).q;
+    await tester.tap(find.text(q.swap.best).last);
+    await _settle(tester);
+    expect(tester.takeException(), isNull);
+    expect(find.text('Nice!'), findsOneWidget);
   });
 
   testWidgets('A full Swap it session can be answered through to the summary', (tester) async {

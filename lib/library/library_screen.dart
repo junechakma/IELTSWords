@@ -14,6 +14,7 @@ import '../widgets/pressable.dart';
 import 'chart_screen.dart';
 import 'listening_screen.dart';
 import 'swap_deck_screen.dart';
+import 'word_list_screen.dart';
 import 'word_sets_screen.dart';
 
 /// Library: browse every chart / essay / letter type, plus Word sets and
@@ -80,6 +81,8 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                 ),
               ),
           ] else ...[
+            const PairsBanner(),
+            const SizedBox(height: 16),
             // Segmented control (prototype: grey track, dark selected pill).
             Container(
               padding: const EdgeInsets.all(4),

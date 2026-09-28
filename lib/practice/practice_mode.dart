@@ -7,6 +7,8 @@ enum ModeGroup { core, side, listening }
 
 /// Every practice mode (PLAN.md section 3 + Part F).
 enum PracticeMode {
+  fillGap('Fill the gap', 'Tap the Band 8 word', AppColors.peach, Mascot.delighted, ModeGroup.core),
+  typeIt('Type it', 'plain → type Band 8', AppColors.lilac, Mascot.focused, ModeGroup.core),
   swapIt('Swap it', 'went up → surged', AppColors.sunflowerSoft, Mascot.proud, ModeGroup.core),
   rewrite('Rewrite', 'Whole sentence', AppColors.blush, Mascot.cheerful, ModeGroup.core),
   spotPlain('Spot the plain', 'Tap your habits', AppColors.peach, Mascot.surprised, ModeGroup.core),
@@ -44,7 +46,7 @@ enum PracticeMode {
   bool get core => group == ModeGroup.core;
 
   /// Modes shown in the "Build the habit" grid of the quick practice sheet.
-  static const habit = [speedSwipe, bubblePop, drawTrend, strengthDial, swapIt, matchPairs, letterTiles, buildSentence, rewrite, spotPlain, buildParagraph, describe, adjAdv, labelGraph, orderSet];
+  static const habit = [fillGap, matchPairs, spotPlain, typeIt, bubblePop, speedSwipe, swapIt, buildSentence, letterTiles, drawTrend, strengthDial, rewrite, buildParagraph, describe, adjAdv, labelGraph, orderSet];
   static const side = [flashcards, meaningMatch, linkerSort, letterRegister];
   static const listening = [mapGaps, whereIsIt, pictureIt, followRoute, spellIt, trapDrill];
 

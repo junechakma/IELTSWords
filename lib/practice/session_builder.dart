@@ -35,6 +35,8 @@ class SessionBuilder {
     final n = r.size ?? store.dailyGoal.clamp(5, 20);
     final topic = r.topicId == null ? null : repo.topicOrNull(r.topicId!);
     return switch (r.mode) {
+      PracticeMode.fillGap => _fillGap(_pool(r, topic), n),
+      PracticeMode.typeIt => [for (final s in _pick(_pool(r, topic), n)) SwapTypeQ(s, repo.topic(s.topicId))],
       PracticeMode.swapIt => _swapIt(_pool(r, topic), n),
       PracticeMode.review => _swapIt(_due(), n, mixRewrites: true),
       PracticeMode.rewrite => _rewrite(topic, r.slot, n),
@@ -113,6 +115,11 @@ class SessionBuilder {
       out.add(progress.of(s.id).box >= typeFromBox ? SwapTypeQ(s, t) : SwapChoiceQ(s, t, swapOptions(s, rnd)));
     }
     return out;
+  }
+
+  List<Question> _fillGap(List<Swap> pool, int n) {
+    final usable = [for (final s in pool) if (s.formalSentence.contains(s.best)) s];
+    return [for (final s in _pick(usable, n)) FillGapQ(s, repo.topic(s.topicId), swapOptions(s, rnd))];
   }
 
   List<Question> _rewrite(SwapTopic? topic, Slot? slot, int n) {

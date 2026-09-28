@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/swap_models.dart';
 import '../library/chart_screen.dart';
+import '../library/word_list_screen.dart';
 import '../mascots/mascot.dart';
 import '../mascots/mascot_image.dart';
 import '../practice/practice_mode.dart';
@@ -90,6 +91,9 @@ class HomeScreen extends ConsumerWidget {
             ),
           ).animate(delay: 80.ms).fadeIn(duration: 400.ms).moveY(begin: 12, end: 0),
 
+          const SizedBox(height: 12),
+          const PairsBanner().animate(delay: 120.ms).fadeIn(duration: 400.ms).moveY(begin: 12, end: 0),
+
           const SizedBox(height: 30),
 
           // Practice map
@@ -145,6 +149,9 @@ class HomeScreen extends ConsumerWidget {
   }
 
   static List<_Quick> _quick(SwapTopic chart) => [
+        const _Quick(PracticeMode.fillGap, 'The figure ___\nto 40%.', 'All charts', Color(0xFFB4541F), SessionRequest(PracticeMode.fillGap)),
+        const _Quick(PracticeMode.matchPairs, 'went up ⇄ surged\nshows ⇄ depicts', 'Plain → Band 8', Color(0xFF6B3FC4), SessionRequest(PracticeMode.matchPairs)),
+        const _Quick(PracticeMode.typeIt, 'went up a lot\n→ type it', 'Spelling counts', Color(0xFF6B3FC4), SessionRequest(PracticeMode.typeIt)),
         const _Quick(PracticeMode.swapIt, 'went up a lot\n→ surged', 'All charts', Color(0xFFA86A00), SessionRequest(PracticeMode.swapIt)),
         _Quick(PracticeMode.buildParagraph, 'Intro → overview\n→ body', chart.title, const Color(0xFF6B3FC4), SessionRequest(PracticeMode.buildParagraph, topicId: chart.id)),
         const _Quick(PracticeMode.describe, 'Soared, dipped or\nlevelled off?', 'Task 1', Color(0xFFB4541F), SessionRequest(PracticeMode.describe)),

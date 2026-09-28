@@ -99,6 +99,7 @@ class _SessionScreenState extends State<SessionScreen> {
 
   Widget _questionWidget(Question q) => switch (q) {
         SwapChoiceQ q => SwapChoiceView(q),
+        FillGapQ q => FillGapView(q),
         SwapTypeQ q => SwapTypeView(q),
         RewriteQ q => RewriteView(q),
         SpotQ q => SpotView(q),
@@ -226,7 +227,7 @@ class SessionFrame extends StatelessWidget {
   }
 
   static String _modeTag(PracticeMode m, Question q) => switch (q) {
-        SwapTypeQ() => 'Swap it · type',
+        SwapTypeQ() when m != PracticeMode.typeIt => 'Swap it · type',
         _ => m == PracticeMode.review ? 'Review' : m.title,
       };
 }
